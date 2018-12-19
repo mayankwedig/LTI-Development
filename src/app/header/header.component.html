@@ -1,0 +1,223 @@
+<div id="main-navbar" class="navbar navbar-inverse" [ngClass]="{'home-menu': !auth.isLoggedIn()}" role="navigation">
+    <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
+    <div class="navbar-inner">
+     <div class="navbar-header">
+      <a routerLink="" class="navbar-brand pull-left">
+      <img alt="UPPCL" src="../assets/images/logo.png">
+      </a>
+     </div>
+     <ul class="responsive-menu">
+       <!-- <li>
+          <div class="header-search-bar">
+            <form class="navbar-form">
+             <input type="text" class="form-control" placeholder="Search">
+             <a class="blue-search-btn" >Search</a>
+            </form>
+           </div>
+       </li> -->
+           <li class="nav-icon-btn nav-icon-btn-danger dropdown" *ngIf="auth.isLoggedIn()">
+            <a  class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
+            <span class="label-notification">5</span>
+            <span class="title-icon header-notification"><img src="../assets/images/notification-icon-white.png" alt=""></span>
+            <span class="small-screen-text">Notifications</span>
+            </a>
+            <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
+             <span class="ddl-icon-arrow"><img src="../assets/images/ddl-icon.png" alt=""></span>
+             <a  class="notifications-link">notifications <span>5</span></a>
+             <div class="notifications-list" id="main-navbar-notifications">
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+             </div>
+            </div>
+           </li>
+           <li class="nav-icon-btn nav-icon-btn-danger dropdown tollfree-dropdown">
+            <a href="#notifications" class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
+            <span class="title-icon header-notification"><img src="../assets/images/call-white-icon.png" alt=""></span>
+            <span class="small-screen-text">Notifications</span>
+            </a>
+            <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
+             <span class="ddl-icon-arrow"><img src="../assets/images/ddl-icon.png" alt=""></span>
+             <a  class="notifications-link">Toll Free Numbers</a>
+             <div class="notifications-list" id="main-navbar-notifications-1">
+                <div class="notification">
+                  <span>PUVVNL</span>
+                 <div class="notification-description">+1800-180-5025</div>
+                </div>
+                <div class="notification">
+                  <span>MVVNL</span>
+                 <div class="notification-description">+1800-1800-440</div>
+                </div>
+                <div class="notification">
+                  <span>PVVNL</span>
+                 <div class="notification-description">+1800-180-3002</div>
+                </div>
+                <div class="notification">
+                  <span>DVVNL</span>
+                 <div class="notification-description">+1800-180-3023</div>
+                </div>
+             </div>
+            </div>
+           </li>
+           <li class="download-menu">
+            <a ><span class="download"><img src="../assets/images/download.png" alt=""></span></a>    
+           </li>
+
+           <li class="dropdown user-account" *ngIf="auth.isLoggedIn()">
+            <a  class="dropdown-toggle user-menu" data-toggle="dropdown">
+              <img src="../assets/images/1.jpg" alt="">
+              <div class="name-email">
+                <span>{{userName}}</span>
+                <div class="email-acccount" *ngIf="userEmail != ''">{{userEmail}} <i class="fa fa-angle-down"></i></div>
+              </div>
+            </a>
+            <ul class="dropdown-menu user-info-menu">
+              <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="cursor: pointer;"><span class="label label-warning pull-right">New</span>Profile</a></li>
+              <li><a ><span class="badge badge-primary pull-right">New</span>Account</a></li>
+              <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
+              <li class="divider"></li>
+              <li><a href="JavaScript:Void(#);" (click)="logout()"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+            </ul>
+            </li>
+     </ul>
+     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
+     <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
+      <div>
+       <div class="right clearfix">
+          <ul class="nav navbar-nav pull-right right-navbar-nav">
+           <li *ngIf="auth.isLoggedIn()">
+              <a routerLink="/dashboard" routerLinkActive="active-menu"  [routerLinkActiveOptions]="{exact: true}"  >dashboard</a>
+           </li>
+           <li *ngIf="!auth.isLoggedIn()">
+            <a routerLink="" routerLinkActive="active-menu"  [routerLinkActiveOptions]="{exact: true}">Home</a>
+         </li>
+           <li>
+            <a routerLink="/about"  routerLinkActive="active-menu"  [routerLinkActiveOptions]="{exact: true}">About Us</a>
+           </li>
+           <li>
+            <a routerLink="/contact-us"  routerLinkActive="active-menu"  [routerLinkActiveOptions]="{exact: true}">Contact Us</a> 
+           </li>
+           <li class="nav-icon-btn nav-icon-btn-danger dropdown" *ngIf="auth.isLoggedIn()">
+            <a  class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
+            <span class="label-notification">5</span>
+            <span class="title-icon header-notification"><img src="../assets/images/notification-icon-white.png" alt=""></span>
+            <span class="small-screen-text">Notifications</span>
+            </a>
+            <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
+             <span class="ddl-icon-arrow"><img src="../assets/images/ddl-icon.png" alt=""></span>
+             <a  class="notifications-link">notifications <span>5</span></a>
+             <div class="notifications-list" id="main-navbar-notifications">
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+             </div>
+            </div>
+           </li>
+           <li class="nav-icon-btn nav-icon-btn-danger dropdown tollfree-dropdown">
+            <a href="#notifications" class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
+            <span class="title-icon header-notification"><img src="../assets/images/call-white-icon.png" alt=""></span>
+            <span class="small-screen-text">Notifications</span>
+            </a>
+            <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
+             <span class="ddl-icon-arrow"><img src="../assets/images/ddl-icon.png" alt=""></span>
+             <a  class="notifications-link">Toll Free Numbers</a>
+             <div class="notifications-list" id="main-navbar-notifications-1">
+                <div class="notification">
+                  <span>PUVVNL</span>
+                 <div class="notification-description">+1800-180-5025</div>
+                </div>
+                <div class="notification">
+                  <span>MVVNL</span>
+                 <div class="notification-description">+1800-1800-440</div>
+                </div>
+                <div class="notification">
+                  <span>PVVNL</span>
+                 <div class="notification-description">+1800-180-3002</div>
+                </div>
+                <div class="notification">
+                  <span>DVVNL</span>
+                 <div class="notification-description">+1800-180-3023</div>
+                </div>
+             </div>
+            </div>
+           </li>
+           <li class="download-menu">
+            <a title="Forms download" style="cursor: pointer;"><span class="download"><img src="../assets/images/download.png" alt=""></span></a>    
+           </li>
+           <li class="dropdown" *ngIf="auth.isLoggedIn()">
+            <a  class="dropdown-toggle user-menu" data-toggle="dropdown">
+              <img src="../assets/images/1.jpg" alt="">
+              <div class="name-email">
+                <span>{{userName}}</span>
+                <div class="email-acccount">{{userEmail}} <i class="fa fa-angle-down"></i></div>
+              </div>
+            </a>
+            <ul class="dropdown-menu user-info-menu">
+              <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ><span class="label label-warning pull-right" style="cursor: pointer;">New</span>Profile</a></li>
+              <li><a ><span class="badge badge-primary pull-right">New</span>Account</a></li>
+              <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
+              <li class="divider"></li>
+              <li><a href="JavaScript:Void(#);" (click)="logout()"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+            </ul>
+            </li>
+           <li class="login-signup-sec" *ngIf="!auth.isLoggedIn()">
+            <button class="login-btn blue-btn" routerLink="/login"  routerLinkActive="active" >Login</button>
+            <button class="login-btn blue-btn" routerLink="/account-verification"  routerLinkActive="active" >Signup</button>
+           </li>
+           <!-- <li class="login-signup-sec" *ngIf="auth.isLoggedIn()">
+              <button class="login-btn blue-btn" (click)="auth.logout()"  routerLinkActive="active" >Logout</button>
+             </li> -->
+          </ul>
+           <!-- <div class="header-search-bar">
+            <form class="navbar-form">
+             <input type="text" class="form-control" placeholder="Search">
+             <a class="blue-search-btn" >Search</a>
+            </form>
+           </div> -->
+       </div>
+      </div>
+     </div>
+    </div>
+ </div>

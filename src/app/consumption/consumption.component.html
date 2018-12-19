@@ -1,0 +1,142 @@
+<div id="main-wrapper">
+  <app-header></app-header>
+  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  <div id="content-wrapper">
+    <div class="page-heading ">consumption Details</div>
+    <div class="rows consumptionDesktopBackButton">
+       <div class="week-month-btn-sec pull-right">
+          <a style="cursor: pointer;" (click)="showchart('daily')" title="Weekly" class="blue-btn" *ngIf="chartToShow == 'hourly' || chartToShow == 'Weekly'" >Daily</a>
+
+          <a style="cursor: pointer;" (click)="showchart('yearly')" title="Yearly" class="blue-btn" *ngIf="chartToShow == 'monthly' ||  chartToShow == 'daily' || chartToShow == 'hourly' || chartToShow == 'Weekly'">Yearly</a>
+
+          <a style="cursor: pointer;" (click)="showchart('monthly')" title="Monthly" class="blue-btn" *ngIf="chartToShow == 'hourly' || chartToShow == 'Weekly'">Monthly</a>
+          
+          <a style="cursor: pointer;" (click)="showchart('Weekly')" title="Weekly" class="blue-btn" *ngIf="chartToShow == 'daily'" >Weekly</a>
+      </div> 
+       <div class="week-month-btn-sec pull-left" *ngIf="isMonthSelected">
+            <a (click)="backToDashBoard()" class="blue-btn" title="Back to dashboard" style="cursor: pointer;"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp; Back to dashboard</a>
+        </div>
+    </div>
+    
+    <div class="billing-sec margin_top20">
+       
+      <div class="panel ">
+        
+        <div
+          class="panel-body"
+          [ngClass]="{ consumptionPanalLoader: loder == true }"
+        >
+          <div class="graph-container modal-graph-label" *ngIf="loder == false && isDataFound == true">
+            <div class="label-left">Units <span>(KWH)</span></div>
+            <div class="consumption-canvas" *ngIf="chartToShow == 'yearly'">
+              <canvas
+                class=""
+                baseChart
+                [chartType]="chartType"
+                [datasets]="consumptionchartData"
+                [labels]="consumptionlabels"
+                [options]="consumptionchartOptions"
+                [legend]="true"
+                [colors]="consumptioncolors"
+                (chartClick)="openChartOnClick($event, 'monthly')"
+              >
+              </canvas>
+            </div>
+            <div class="consumption-canvas" *ngIf="chartToShow == 'monthly'">
+              <canvas
+                class=""
+                baseChart
+                [chartType]="chartType"
+                [datasets]="consumptionchartData"
+                [labels]="consumptionlabels"
+                [options]="consumptionchartOptions"
+                [legend]="true"
+                [colors]="consumptioncolors"
+                (chartClick)="openChartOnClick($event, 'daily')"
+              >
+              </canvas>
+            </div>
+            <div class="consumption-canvas" *ngIf="chartToShow == 'Weekly'">
+              <canvas
+                class=""
+                baseChart
+                [chartType]="chartType"
+                [datasets]="consumptionchartData"
+                [labels]="consumptionlabels"
+                [options]="consumptionchartOptions"
+                [legend]="true"
+                [colors]="consumptioncolors"
+              >
+              </canvas>
+            </div>
+            <div class="consumption-canvas" *ngIf="chartToShow == 'daily'">
+              <canvas
+                class=""
+                baseChart
+                [chartType]="chartType"
+                [datasets]="consumptionchartData"
+                [labels]="consumptionlabels"
+                [options]="consumptionchartOptions"
+                [legend]="true"
+                [colors]="consumptioncolors"
+                (chartClick)="openChartOnClick($event, 'hourly')"
+              >
+              </canvas>
+            </div>
+            <div class="consumption-canvas" *ngIf="chartToShow == 'hourly'">
+              <canvas
+                class=""
+                baseChart
+                [chartType]="chartType"
+                [datasets]="consumptionchartData"
+                [labels]="consumptionlabels"
+                [options]="consumptionchartOptions"
+                [legend]="true"
+                [colors]="consumptioncolors"
+              >
+              </canvas>
+            </div>
+            <div class="label-bottom" *ngIf="chartToShow == 'monthly'">Months
+                <div class="text-center bottom-link">
+                    <div style="    position: relative;">
+                        Click on any bar above to view more details of respective month.
+                    </div>
+                </div>
+            </div>
+            <div class="label-bottom" *ngIf="chartToShow == 'daily'">Days
+                <div class="text-center bottom-link">
+                    <div style="    position: relative;">
+                        Click on any bar above to view more details of respective day.
+                    </div>
+                </div>
+            </div>
+            <div class="label-bottom" *ngIf="chartToShow == 'hourly'">Hours</div>
+            <div class="label-bottom" *ngIf="chartToShow == 'Weekly'">Weeks</div>
+            <div class="label-bottom" *ngIf="chartToShow == 'yearly'">Years
+                <div class="text-center bottom-link">
+                    <div style="    position: relative;">
+                        Click on any bar above to view more details of respective year.
+                    </div>
+                </div>
+            </div>
+          
+					</div>
+					<div class="rows" *ngIf="loder == true ">
+						<div class="spinner box-spinner">
+							<div class="bounce1"></div>
+							<div class="bounce2"></div>
+							<div class="bounce3"></div>
+						</div>
+					</div>
+					<div  style="margin-top: 2;"
+					class="text-center font-12  field_not_found" *ngIf="isDataFound == false && loder == false">
+							<img src="/assets/images/no_data.png" /> Currently no data found for consumption details. <br />
+					 </div>
+				</div>
+			
+      </div>
+    </div>
+    <div id="main-menu-bg"></div>
+  </div>
+  <app-footer></app-footer>
+</div>

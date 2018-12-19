@@ -1,0 +1,37 @@
+<div class="owl-carousel owl-theme main-carousel">
+	<div class="item" *ngFor="let sliderContent of content">
+		<div class="item-box">
+			<img src="{{sliderContent.image}}" alt="">
+			<div class="slide-text"  [innerHTML]="sliderContent.desc"></div>
+		</div>
+	</div>
+</div>
+<div class="blue-tabs-sec">
+		<ul class="menu-listing">
+			<li>
+				<a class="credit-card-icon" href="JavaScript:Void(0);">
+					<div class="title">Pay Online</div>
+				</a>
+			</li>
+			<li>
+				<a class="register-icon" href="JavaScript:Void(0);">
+					<div class="title">Complaints <br>(Register / Track)</div>
+				</a>
+			</li>
+			<li>
+				<a class="bulb-icon" href="JavaScript:Void(0);">
+					<div class="title">Energy Tips</div>
+				</a>
+			</li>
+			<li>
+				<a class="sevice-register-icon" href="JavaScript:Void(0);">
+					<div class="title">Service Requests <br>(Register / Track)</div>
+				</a>
+			</li>
+			<li>
+				<a class="connection-icon" href="JavaScript:Void(0);">
+					<div class="title">New <br>Connection</div>
+				</a>
+			</li>
+		</ul>
+	</div>

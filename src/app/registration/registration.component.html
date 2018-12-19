@@ -1,0 +1,201 @@
+<!-- <home-page-slider [content]="sliderContent"></home-page-slider> -->
+<div id="main-wrapper" class="no-sidebar">
+  <app-header></app-header>
+  <div class="main-container-sec signup-form-page">
+    <div class="row signup-table blue-tabs-relative">
+      <div class="col-sm-8">
+        <div class="main-slide-bar">
+          <home-page-slider [content]="sliderContent"></home-page-slider>
+          <!-- <div class="blue-tabs-sec">
+            <ul class="menu-listing">
+              <li>
+                <a class="credit-card-icon" href="JavaScript:Void(0);">
+                  <div class="title">Pay Online</div>
+                </a>
+              </li>
+              <li>
+                <a class="register-icon" href="JavaScript:Void(0);">
+                  <div class="title">Complaints <br>(Register / Track)</div>
+                </a>
+              </li>
+              <li>
+                <a class="bulb-icon" href="JavaScript:Void(0);">
+                  <div class="title">Energy Tips</div>
+                </a>
+              </li>
+              <li>
+                <a class="sevice-register-icon" href="JavaScript:Void(0);">
+                  <div class="title">Service Requests <br>(Register / Track)</div>
+                </a>
+              </li>
+              <li>
+                <a class="connection-icon" href="JavaScript:Void(0);">
+                  <div class="title">New <br>Connection</div>
+                </a>
+              </li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="login-signup-bottom-sec">
+          <div class="right-sec signup-form-page login-form signup-width">
+            <div class="right-sec-inner-sec">
+              <div class="right-sec-inner signup-form-box">
+                <div class="box-title">
+                  <div class="text-title">Signup</div>
+                </div>
+                <form class="form no-padding signup-option-step2" [formGroup]="signupFrm" (ngSubmit)="signUp()">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required formControlName="username" name="username" type="text" class="form-control"
+                          placeholder="User ID" />
+                        <div *ngIf="f.username.touched && f.username.invalid ">
+                          <span class="error-msg" *ngIf="f.username.errors?.required">User Id is required.</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required formControlName="email" name="email" type="text" class="form-control"
+                          placeholder="Email Address" />
+
+                        <div *ngIf="f.email.touched && f.email.errors && f.email.invalid">
+                          <span class="error-msg" *ngIf="f.email.invalid && !f.email.errors?.required"> Email address
+                            is invalid.</span>
+                          <span class="error-msg" *ngIf="f.email.errors?.required">Email address is required.</span>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required formControlName="mobile" name="mobile" type="tel" class="form-control"
+                          placeholder="Mobile No." />
+                        <div *ngIf="f.mobile.touched && f.mobile.invalid">
+                          <span class="error-msg" *ngIf="f.mobile.errors?.required">Mobile number is required.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-hint"> <span style="color:red"> <strong>Note:</strong> </span> Conform with our Strong Password policy, you are 
+                      required to use a sufficiently strong password. Password must contain more than 8 characters, 1 upper case letter, and 1 special character.</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                          
+                        <input required formControlName="password" name="password" type="Password" class="form-control"
+                          placeholder="Password" /> 
+                        <div *ngIf="f.password.touched && f.password.invalid">
+                          <span class="error-msg" *ngIf="f.password.errors?.required">Password is required</span>
+                          <span class="error-msg" *ngIf="!f.password.errors?.patterns && f.password.value != ''">Invalid Password</span>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input required formControlName="cpassword" name="cpassword" type="Password" class="form-control"
+                          placeholder="Confirm Password" />
+                        <div *ngIf="f.cpassword.touched && f.cpassword.invalid">
+                          <span class="error-msg" *ngIf="f.cpassword.errors?.required">Confirm password is required</span>
+                        </div>
+                        <div *ngIf="(signupFrm.hasError('notSame')) && (f.cpassword.touched && f.password.touched && f.cpassword.value != '')">
+                          <span class="error-msg">Password and confirm password do not match</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <select required formControlName="questionsList1" name="questionsList1" class="form-control">
+                          <option value="">Select security question 1</option>
+                          <option *ngFor="let ques of questionsList1" [value]="ques.id">{{ques.questions}}</option>
+                        </select>
+                        <div *ngIf="f.questionsList1.touched && f.questionsList1.invalid">
+                          <span class="error-msg" *ngIf="f.questionsList1.errors?.required">Security question 1 is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required formControlName="ansques1" name="ansques1" type="text" class="form-control"
+                          placeholder="Answer 1" />
+                        <div *ngIf="f.ansques1.touched && f.ansques1.invalid">
+                          <span class="error-msg" *ngIf="f.ansques1.errors?.required">Answer 1 is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <select required formControlName="questionsList2" name="questionsList2" class="form-control">
+                          <option value="">Select security question 2</option>
+                          <option *ngFor="let ques of questionsList2" [value]="ques.id">{{ques.questions}}</option>
+                        </select>
+                        <div *ngIf="f.questionsList2.touched && f.questionsList2.invalid">
+                          <span class="error-msg" *ngIf="f.questionsList2.errors?.required">Security Question 2 is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required name="ansques2" formControlName="ansques2" type="text" class="form-control"
+                          placeholder="Answer 2" />
+                        <div *ngIf="f.ansques2.touched && f.ansques2.invalid">
+                          <span class="error-msg" *ngIf="f.ansques2.errors?.required">Answer 2 is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="lbl-checkbox">Subscribe for SMS/Email Bill.
+                                                <input formControlName="isSubscribed" value="0" type="checkbox" name="isSubscribed">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div> -->
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group text-center no-margin-b" [ngClass]="{'pos-rel': loder}">
+                      <!--   {{signupFrm.value | json}} -->
+                        <div class="spinner" *ngIf="loder">
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>
+                        <button class="btn btn-primary submit-btn" type="submit" [disabled]="!signupFrm.valid">SUBMIT</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="dont-account">Already have an account <a class="" routerLink="/login">Login</a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

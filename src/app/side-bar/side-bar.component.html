@@ -1,0 +1,255 @@
+<!--
+  <div id="main-menu" role="navigation">
+    <div id="main-menu-inner">
+       <div class="dropdown account-info">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account No. {{account_no}} (HOME)
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+             <li><a href="#">No Data</a></li>
+          </ul>
+       </div>
+       <ul class="navigation">
+          <li class="active">
+             <a class="" href="#" routerLink="/dashboard">
+                <div class="menu-icons i-dashboard"></div>
+                <span class="mm-text">Dashboard</span>
+             </a>
+          </li>
+          <li class="m-dropdown mm-dropdown">
+             <a>
+                <div class="menu-icons i-settings"></div>
+                <span class="mm-text">My Profile & Settings</span>
+             </a>
+             <ul>
+                <li>
+                   <a tabindex="-1" href="#" routerLink="/profile"><span class="mm-text">Update Profile</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">Change Password</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">Subscribe / Unsubscribe
+                   Email/SMS</span></a>
+                </li>
+             </ul>
+          </li>
+          <li>
+             <a class="" href="#">
+                <div class="menu-icons i-notifications"></div>
+                <span class="mm-text">Notifications</span>
+             </a>
+          </li>
+          <li class="m-dropdown mm-dropdown">
+             <a>
+                <div class="menu-icons i-user"></div>
+                <span class="mm-text">Accounts</span>
+             </a>
+             <ul>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">List Accounts</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">Connect Account</span></a>
+                </li>
+             </ul>
+          </li>
+          <li class="m-dropdown mm-dropdown">
+             <a>
+                <div class="menu-icons i-rupee"></div>
+                <span class="mm-text">Billing</span>
+             </a>
+             <ul>
+                <li>
+                   <a tabindex="-1" href="billing.html"><span class="mm-text">View / Pay Current Bill</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">View / Print Previous Bills</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">Billing Details</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">My Wallet</span></a>
+                </li>
+             </ul>
+          </li>
+          <li >
+           <a href="#"  routerLink="/consumption">
+              <div class="menu-icons i-consumptions"></div>
+              <span class="mm-text">Consumption Details</span>
+           </a>
+           <ul>
+              <li>
+                 <a tabindex="-1" href="billing.html"><span class="mm-text">View / Pay Current Bill</span></a>
+              </li>
+              <li>
+                 <a tabindex="-1" href="#"><span class="mm-text">View / Print Previous Bills</span></a>
+              </li>
+              <li>
+                 <a tabindex="-1" href="#"><span class="mm-text">Consumption</span></a>
+              </li>
+              <li>
+                 <a tabindex="-1" href="#"><span class="mm-text">My Wallet</span></a>
+              </li>
+           </ul>
+        </li>
+
+          <li class="m-dropdown mm-dropdown">
+             <a>
+                <div class="menu-icons i-plus"></div>
+                <span class="mm-text">Service Requests & Complaints</span>
+             </a>
+             <ul>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">Requests, Complaints & Status</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">Submit New Service Request</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">Submit New Complaint</span></a>
+                </li>
+                <li>
+                   <a tabindex="-1" href="#"><span class="mm-text">New Connection Request</span></a>
+                </li>
+             </ul>
+          </li>
+       </ul>
+    </div>
+  </div>
+-->
+<div id="main-menu" role="navigation">
+  <div id="main-menu-inner">
+    <div class="dropdown">
+      <button
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+      >
+        {{ displayUserInfo }} <span class="caret"></span>
+      </button>
+      <!--
+        <ul class="dropdown-menu">
+          <li><a href="#">No Data</a></li>
+        </ul>
+      -->
+    </div>
+    <ul class="navigation">
+      <li
+        id="li0"
+        [ngClass]="{ openDropdown: currentUrl == '/dashboard' }"
+        (click)="removeCss($event)"
+      >
+        <a class="" routerLink="/dashboard">
+          <div class="menu-icons i-dashboard"></div>
+          <span class="mm-text" id="0">Dashboard</span>
+        </a>
+      </li>
+      <li
+        class="m-dropdown mm-dropdown"
+        id="li1"
+        [ngClass]="{
+          openDropdown:
+            currentUrl == '/profile' || currentUrl == '/update-profile'
+        }"
+        (click)="removeCss($event)"
+      >
+        <a href="javascript:void(0);">
+          <div class="menu-icons i-settings"></div>
+          <span class="mm-text" id="1">Manage Profile</span>
+        </a>
+        <ul class="mmc-dropdown-delay animated fadeInLeft">
+          <li>
+            <a
+              tabindex="-1"
+              routerLink="/profile"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">Profile</span></a
+            >
+          </li>
+          <li>
+            <a tabindex="-1" href="reset-password.html"
+              ><span class="mm-text">Change Password</span></a
+            >
+          </li>
+        </ul>
+      </li>
+      <li id="li2" [ngClass]="{ openDropdown: currentUrl == '/consumption' }">
+        <a routerLink="/consumption">
+          <div class="menu-icons i-consumptions"></div>
+          <span class="mm-text" id="2">Consumptions</span>
+        </a>
+      </li>
+      <li id="li3" [ngClass]="{ openDropdown: currentUrl == '/billing' }">
+        <a routerLink="/billing">
+          <div class="menu-icons i-rupee"></div>
+          <span class="mm-text" id="3">Billing</span>
+        </a>
+      </li>
+      <li
+        id="li4"
+        class="m-dropdown mm-dropdown"
+        [ngClass]="{
+          openDropdown:
+            currentUrl == '/manageaccount' || currentUrl == '/addaccount'
+        }"
+        (click)="removeCss($event)"
+      >
+        <a href="javascript:void(0);">
+          <div class="menu-icons i-user"></div>
+          <span class="mm-text" id="4">manage account</span>
+        </a>
+        <ul class="mmc-dropdown-delay animated fadeInLeft">
+          <li>
+            <a
+              tabindex="-1"
+              routerLink="/manageaccount"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">Accounts</span></a
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li
+        id="li5"
+        [ngClass]="{ openDropdown: currentUrl == '/service-request' }"
+        (click)="removeCss($event)"
+      >
+        <a class="" routerLink="/service-request">
+          <div class="menu-icons i-service-request"></div>
+          <span class="mm-text" id="6">Service Request</span>
+        </a>
+      </li>
+      <li
+        id="li6"
+        [ngClass]="{ openDropdown: currentUrl == '/complaints' }"
+        (click)="removeCss($event)"
+      >
+        <a class="" routerLink="/complaints">
+          <div class="menu-icons i-complaints"></div>
+          <span class="mm-text" id="6">Complaints</span>
+        </a>
+      </li>
+      <li
+        id="li7"
+        *ngIf="is_net_metering"
+        [ngClass]="{ openDropdown: currentUrl == '/net-metering' }"
+        (click)="removeCss($event)"
+      >
+        <a class="" routerLink="/net-metering">
+          <div class="menu-icons i-consumptions"></div>
+          <span class="mm-text" id="6">Net Metering</span>
+        </a>
+      </li>
+      <li id="li8">
+        <a class="">
+          <div class="menu-icons i-notifications"></div>
+          <span class="mm-text" id="5">Notifications</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

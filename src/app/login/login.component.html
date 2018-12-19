@@ -1,0 +1,147 @@
+<div id="main-wrapper" class="no-sidebar">
+  <app-header></app-header>
+  <div class="main-container-sec signup-form-page">
+    <div class="row login-table blue-tabs-relative">
+      <div class="col-sm-8">
+        <div class="main-slide-bar">
+          <home-page-slider [content]="sliderContent"></home-page-slider>
+          <!-- <div class="blue-tabs-sec">
+                   <ul class="menu-listing">
+                    <li>
+                     <a class="credit-card-icon" href="JavaScript:Void(0);">
+                      <div class="title">Pay Online</div>
+                     </a>
+                    </li>
+                    <li>
+                     <a  class="register-icon" href="JavaScript:Void(0);">
+                      <div class="title">Complaints <br>(Register / Track)</div>
+                     </a>
+                    </li>
+                    <li>
+                     <a  class="bulb-icon" href="JavaScript:Void(0);">
+                      <div class="title">Energy Tips</div>
+                     </a>
+                    </li>
+                    <li>
+                     <a  class="sevice-register-icon" href="JavaScript:Void(0);">
+                      <div class="title">Service Requests <br>(Register / Track)</div>
+                     </a>
+                    </li>
+                    <li>
+                     <a  class="connection-icon" href="JavaScript:Void(0);">
+                      <div class="title">New <br>Connection</div>
+                     </a>
+                    </li>
+                   </ul>
+                </div> -->
+        </div>
+      </div>
+      <div class="col-sm-4" style="display:block;" id="loginFr">
+        <div class="login-signup-bottom-sec">
+          <div class="right-sec signup-form-page login-form login-width">
+            <div class="right-sec-inner-sec">
+              <div class="right-sec-inner signup-form-box">
+                <div class="box-title">
+                  <div class="text-title">login</div>
+                </div>
+                <form [formGroup]="loginFrm" (ngSubmit)="login()">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required formControlName="user_name" name="user_name" type="text" class="form-control"
+                          placeholder="User Id">
+                        <div *ngIf="f.user_name.touched && f.user_name.invalid">
+                          <span class="error-msg" *ngIf="f.user_name.errors?.required">User Id is required.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required formControlName="password" type="password" name="password" class="form-control"
+                          placeholder="Password">
+                        <div *ngIf="f.password.touched && f.password.invalid">
+                          <span class="error-msg" *ngIf="f.password.errors?.required">Password is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group text-right">
+                        <div class="f-text"><a (click)="showForgotPass()" style="cursor: pointer" >Forgot Password?</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group text-center no-margin-b" [ngClass]="{'pos-rel': loder}">
+                        <div class="spinner" *ngIf="loder">
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>
+                        
+                        <button class="btn btn-primary submit-btn" type="submit" [disabled]="!loginFrm.valid">login</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="dont-account">Don’t have account? <a class="" routerLink="/account-verification">Signup</a></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4"  style="display:none;" id="forgotPass">
+        <div class="login-signup-bottom-sec">
+          <div class="right-sec signup-form-page login-form login-width">
+            <div class="right-sec-inner-sec">
+              <div class="right-sec-inner signup-form-box">
+                <div class="box-title">
+                  <div class="text-title">Forgot Password</div>
+                </div>
+                <form class="form no-padding" [formGroup]="forgotPassFrm" (ngSubmit)="forgotPassFunction()">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input required formControlName="email"  name="email" type="text" class="form-control" placeholder="User ID / Email / Mobile" >
+                          <div *ngIf="forgotPassFields.email.touched && forgotPassFields.email.invalid">
+                            <span class="error-msg" *ngIf="forgotPassFields.email.errors?.required">User ID / Email / Mobile is required.</span>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group text-center no-margin-b" [ngClass]="{'pos-rel': loder}">
+                          <div class="spinner" *ngIf="loder">
+                              <div class="bounce1"></div>
+                              <div class="bounce2"></div>
+                              <div class="bounce3"></div>
+                            </div>
+                        <button class="btn btn-primary submit-btn" [disabled]="!forgotPassFrm.valid">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </form>
+                <div class="col-sm-12" style="margin-top: 30px;">
+                  <div class="form-group text-right">
+                    <div class="f-text"><a (click)="showLogin()" style="cursor: pointer;" >  Back to login</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

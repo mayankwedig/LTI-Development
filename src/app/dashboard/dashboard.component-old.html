@@ -1,0 +1,340 @@
+<div id="main-wrapper">
+        <app-header></app-header>
+  
+        <app-side-bar></app-side-bar>
+  <div id="content-wrapper">
+    <!--  <div class="page-heading">
+        Good Evening {{userName}}
+     </div> -->
+     <ul class="dash-box-list">
+        <li class="dash-box-li dash-box1">
+           <div class="panel-body">
+              <div class="row">
+                 <div class="col-sm-7 border-divider">
+                    <div class="">
+                       <div class="box-title">
+                          <span class="title-icon"><img src="assets/images/bill-icon.png" alt=""></span>
+                          <div class="text-title">Yesterday's Consumption</div>
+                       </div>
+                       <div class="amount">{{yesterdayReading}}<span>&nbsp;kwh</span></div>
+                    </div>
+                 </div>
+                 <div class="col-sm-5">
+                    <div class="padding_left15 rows">
+                       <div class="box-title">
+                          <span class="title-icon"><img src="assets/images/bill-icon.png" alt=""></span>
+                          <div class="text-title">YTD Consumption</div>
+                       </div>
+                       <!-- {{yetToDateReading}} -->
+                       <div class="amount">{{yetToDateReading|number:'2.2-2'}}<span>&nbsp;kwh</span></div>
+                       <!-- <span class="date-as">As of 8 Aug, 2018</span> -->
+                    </div>
+                 </div>
+              </div>
+              <div class="scroll-div">
+                 <ul>
+                   <li class="no-style">
+                     <div class="page-heading energy-title no-padding-l"><img src="assets/images/energy-icon1.png" /> &nbsp;energy tips </div>
+                   </li>
+                   <li>Preheat combustion air with waste heat (22 <sup>0</sup>C reduction in flue gas temperature increases boiler efficiency by 1%).</li>
+                   <li>Use variable speed drives on large boiler combustion air fans with variable flows.</li>
+                   <li>Burn wastes if permitted.</li>
+                   <li>Insulate exposed heated oil tanks.</li>
+                   <li>Clean burners, nozzles, strainers, etc.</li>
+                   <li>Inspect oil heaters for proper oil temperature.</li>
+                   <li>Close burner air and/or stack dampers when the burner is off to minimize heat loss up the stack.</li>
+                 </ul>
+              </div>
+           </div>
+        </li>
+        <li class="dash-box-li">
+           <div class="panel-body">
+              <div class="row">
+                 <div class="col-sm-12">
+                    <div class="">
+                       <div class="box-title">
+                          <span class="title-icon"><img src="assets/images/notification-icon-white.png" alt=""></span>
+                          <div class="text-title">alerts & notifications</div>
+                       </div>
+                       <ul class="notification-listing">
+                          <li>
+                             <img src="assets/images/rupee-icon-hover.png" alt=""> 
+                             <div>Your account {{account_no}} bill due on 22 Oct. 2018 <!-- <a class="blue-btn pay-now-btn" href="#">Pay Now</a> --></div>
+                          </li>
+                          <li>
+                             <img src="assets/images/power-icon.png" alt=""> 
+                             <div ngNonBindable>Power voltage in your area on 12 Oct. 2018</div>
+                          </li>
+                          <li>
+                             <img src="assets/images/save-icon.png" alt=""> 
+                             <div>Tips on how to save energy and help have the world</div>
+                          </li>
+                          <li>
+                             <img src="assets/images/loud-icon.png" alt=""> 
+                             <div>Your service request status for load change has been accepted.</div>
+                          </li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+              <div class="text-center bottom-link">
+                 <a class="view-more" href="#">View More</a>
+              </div>
+           </div>
+        </li>
+     </ul>
+     <ul class="dash-box-list margin_top30">
+        <div class="page-heading">
+           Power Consumption Summary
+        </div>
+        <li class="dash-box-li">
+           <div class="panel-body">
+              <div class="row">
+                 <div class="col-sm-12">
+                    <div class="chart-box">
+                       <div class="box-title">
+                          <span class="title-icon"><img src="assets/images/usage-icon.png" alt=""></span>
+                          <div class="text-title">your consumption - current year ({{currentYear}})</div>
+                          <div class="dropdown pull-right lti-ddl">
+                            <!-- <select id="Id" [(ngModel)]="cfilterId" class="form-control dropdown-toggle" (change)="getconsumptiongraphFilterData();">  
+                                <option value=1>Yearly</option>
+                                 <option *ngFor="let filter of consgraphFilter" value={{filter.key}}>{{filter.value}}</option>
+                            </select>   -->
+                         </div>
+                       </div>
+                       <div class="row">
+                          <div class="col-sm-12">
+                             <div class="graph-container modal-graph-label">
+                                <!-- <div id="jq-flot-bars1"></div> -->
+                                <div class="label-left">Units <span>(KWH)</span></div>
+                                <canvas
+                                    baseChart
+                                    [chartType]="'bar'"
+                                    [datasets]="consumptionchartData"
+                                    [labels]="consumptionlabels"
+                                    [options]="consumptionchartOptions"
+                                    [legend]="true"
+                                    [colors]="consumptioncolors"
+                                    (chartClick)="onChartClick($event,2)">
+                                </canvas>
+                                <div class="label-bottom">Months</div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="text-center bottom-link">
+                 <a class="view-more" href="#"  routerLink="/consumption">View More</a>
+              </div>
+           </div>
+        </li>
+        <li class="dash-box-li">
+           <div class="panel-body">
+              <div class="row">
+                 <div class="col-sm-12">
+                    <div class="chart-box">
+                       <div class="box-title">
+                          <span class="title-icon"><img src="assets/images/chart-icon.png" alt=""></span>
+                          <div class="text-title">Your Consumption- current month ({{currentMonthDisp}})</div>
+                          <div class="dropdown pull-right lti-ddl">
+                              <!-- <select id="Id" [(ngModel)]="bfilterId" class="form-control dropdown-toggle" (change)="getbillinggraphFilterData();">  
+                                  <option value=1>Yearly</option>
+                                   <option *ngFor="let filter of billgraphFilter" value={{filter.key}}>{{filter.value}}</option>
+                              </select>   -->
+                          </div>
+                       </div>
+                       <div class="row">
+                          <div class="col-sm-12">
+                             <div class="graph-container modal-graph-label">
+                                <!-- <div id="jq-flot-bars"></div> -->
+                                <div class="label-left">Units <span>(KWH)</span></div>
+                                <canvas
+                                  baseChart
+                                  [chartType]="'bar'"
+                                  [datasets]="billingchartData"
+                                  [labels]="billinglabels"
+                                  [options]="billingchartOptions"
+                                  [legend]="true"
+                                  [colors]="billingcolors">
+                                </canvas>
+                                <div class="label-bottom">Days</div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="text-center bottom-link">
+                 <a class="view-more" href="#" routerLink="/consumption">View More</a>
+              </div>
+           </div>
+        </li>
+     </ul>
+     <div class="col-sm-12 margin_top10">
+        <div class="electricity-consumption-box margin_top10">
+          <img src="assets/images/electricity-icon.png" /> <div>Your last month consumption is <span>3250</span> units. Learn tips how to save electricity. </div><a href="#" routerLink="/tips"  routerLinkActive="active">Read more <img src="assets/images/read-more-icon.png" /></a></div>
+      </div>
+     <ul class="dash-box-list">
+        <li class="dash-box-li track-complain">
+           <div class="panel-body">
+              <div class="row">
+                 <div class="col-sm-12">
+                    <div class="chart-box">
+                       <div class="box-title">
+                          <span class="title-icon"><img src="assets/images/chart-icon.png" alt=""></span>
+                          <div class="text-title">track a complaint</div>
+                       </div>
+                       <div class="row">
+                          <div class="col-sm-12">
+                             <div class="track-label">Complaint id</div>
+                          </div>
+                       </div>
+                       <div class="row">
+                          <div class="col-sm-7 col-xs-8">
+                             <div class="dropdown lti-ddl">
+                                <button class="btn btn-primary dropdown-toggle rows text-left" type="button" data-toggle="dropdown"> #5425864
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu rows">
+                                   <li><a href="#">No Data</a></li>
+                                   <li><a href="#">No Data</a></li>
+                                   <li><a href="#">No Data</a></li>
+                                   <li><a href="#">No Data</a></li>
+                                </ul>
+                             </div>
+                          </div>
+                          <div class="col-sm-3 col-xs-4">
+                             <a class="blue-btn" href="#">Track</a>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="text-center bottom-link">
+                 <a class="blue-btn" href="#"> <span class="plus"><img src="assets/images/add-icon.png" alt=""></span> &nbsp; New Complaint</a>
+              </div>
+           </div>
+        </li>
+        <li class="dash-box-li track-complain">
+           <div class="panel-body">
+              <div class="row">
+                 <div class="col-sm-12">
+                    <div class="chart-box">
+                       <div class="box-title">
+                          <span class="title-icon"><img src="assets/images/chart-icon.png" alt=""></span>
+                          <div class="text-title">track a service request</div>
+                       </div>
+                       <div class="row">
+                          <div class="col-sm-12">
+                             <div class="track-label">service request id</div>
+                          </div>
+                       </div>
+                       <div class="row">
+                          <div class="col-sm-7 col-xs-8">
+                             <div class="dropdown lti-ddl">
+                                <button class="btn btn-primary dropdown-toggle rows text-left" type="button" data-toggle="dropdown"> #98428795
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu rows">
+                                   <li><a href="#">No Data</a></li>
+                                   <li><a href="#">No Data</a></li>
+                                   <li><a href="#">No Data</a></li>
+                                   <li><a href="#">No Data</a></li>
+                                </ul>
+                             </div>
+                          </div>
+                          <div class="col-sm-3 col-xs-4">
+                             <a class="blue-btn" href="#">Track</a>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="text-center bottom-link">
+                 <a class="blue-btn" href="#"> <span class="plus"><img src="assets/images/add-icon.png" alt=""></span> &nbsp; New Service Request</a>
+              </div>
+           </div>
+        </li>
+     </ul>
+     <ul class="dash-box-list">
+        <li class="dash-box-li rows offer-li">
+           <div class="offer-section">
+              <div class="offer-content">
+                 <img src="assets/images/offer-icon.png" alt="">
+                 <div class="text-content">We have a lot more to <a href="#">OFFER</a>. Choose from a wide range of products</div>
+                 <a class="blue-btn" href="#">Explore</a>
+              </div>
+           </div>
+        </li>
+     </ul>
+     <div id="main-menu-bg"></div>
+     <div class="modal fade consumptionmonthGraph" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body" [ngClass]="{'pos-rel min_height250': loader}">
+            <div class="box-loader" *ngIf="loader">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+            </div>
+            
+        <ng-container *ngIf="containerMonth && !loader">
+          <div class="graph-container modal-graph-label">
+            <div class="label-left">Units <span>(KWH)</span></div>
+            <canvas class="consumption-month-graph-convas" 
+                baseChart
+                [chartType]="'bar'"
+                [datasets]="consumptionmonthchartData"
+                [labels]="consumptionmonthlabels"
+                [options]="consumptionmonthchartOptions"
+                [legend]="true"
+                [colors]="consumptionmonthcolors"
+                (chartClick)="onChartClick($event,3)">
+           </canvas>
+           <div class="label-bottom">Days</div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="conatinerDay && !loader">
+          <div class="graph-container modal-graph-label padding_left20">
+            <div class="label-left">Units <span>(KWH)</span></div>
+                 <canvas
+                  baseChart
+                  [chartType]="'line'"
+                  [datasets]="consumptiondaychartData"
+                  [labels]="consumptiondaylabels"
+                  [options]="consumptiondaychartOptions"
+                  [legend]="true"
+                  [colors]="consumptiondaycolors"
+                  (chartClick)="onChartClick($event,4)">
+             </canvas>
+           <div class="label-bottom">Hours</div>
+          </div>
+        </ng-container>
+
+           </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade billingmonthGraph" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="graph-container">
+              <canvas
+                  baseChart
+                  [chartType]="'bar'"
+                  [datasets]="billingmonthchartData"
+                  [labels]="billingmonthlabels"
+                  [options]="billingmonthchartOptions"
+                  [legend]="true"
+                  [colors]="billingmonthcolors">
+             </canvas>
+             </div>
+             </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  
