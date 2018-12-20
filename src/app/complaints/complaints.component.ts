@@ -1,10 +1,11 @@
+import { DashboardService } from './../services/dashboard/dashboard.service';
 import { AuthService } from "./../services/authService/auth.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { ComplaintsService } from "./../services/complaints/complaints.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
 
+import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 
@@ -25,19 +26,22 @@ export class ComplaintsComponent implements OnInit {
   complaintSupplyServiceRequests=[];
   
   accountNumber = "";
-  
+  billingData="";
   complaintSupplyProblemLoder:boolean=false;
   complaintSupplyServiceRequestLoder:boolean=false;
   userAccountsLoder: boolean = false;
   submitComplaingLoder: boolean = false;
   complaintCaseTypeLoder: boolean = false;
   complaintBillRelatedReasonLoder:boolean=false;
+  billingDataLoder:boolean = false;
+  isbillingDataFound:boolean=false
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
     private toastr: ToastrService,
     private complaints: ComplaintsService,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private DashboardService:DashboardService
   ) {}
 
   ngOnInit() {
@@ -57,6 +61,7 @@ export class ComplaintsComponent implements OnInit {
     this.getComplaintBillRelatedReason();
     this.getComplaintSupplyProblem();
     this.getComplaintSupplyServiceRequest();
+    this.getBillingData();
     this.initComplaintsFrm(this.defautlSelectedCaseType);
   }
   initComplaintsFrm(selectedCaseType) {
@@ -86,7 +91,32 @@ export class ComplaintsComponent implements OnInit {
       });
     }
   }
- 
+  getBillingData() {
+    this.billingDataLoder = true;
+    this.DashboardService.getBillingData(this.accountNumber).subscribe(
+      (response: any) => {
+        var res = response;
+        this.billingDataLoder = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.billingData = res.data_params;
+            this.isbillingDataFound = true;
+          } else {
+            this.isbillingDataFound = false;
+            this.billingData = "";
+          }
+        }
+      },
+      (error: AppError) => {
+        this.isbillingDataFound = false;
+        this.billingDataLoder = false;
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
   getUserAccounts() {
     this.userAccountsLoder = true;
     this.complaints.getAccounts().subscribe(

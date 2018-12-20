@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login/login.service';
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { ProfileService } from "./../services/profile/profile.service";
@@ -7,7 +8,7 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { AuthService } from "../services/authService/auth.service";
 import { ManageaccountService } from "./../services/manageaccount/manageaccount.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
@@ -34,10 +35,15 @@ export class ManageaccountComponent implements OnInit {
     private router: Router,
     private uerProfile: ProfileService,
     private helper: HelpersService,
-    private Dashboard: DashboardService
+    private Dashboard: DashboardService,
+    private login:LoginService
   ) {}
   ngOnInit() {
-    this.helper.clearLocalStorateData("accountToken"); //clear previously set accountAccessToken
+    var UserData = this.login.getUserData();
+    if (UserData.numberOfAccounts > 1) { // If user has more then one account.
+      this.helper.clearLocalStorateData("accountToken"); //clear previously set accountAccessToken
+    }
+   
     this.getAccount(this.searchKeyWord);
     this.initAddaccFrm();
     this.getUserProfile();

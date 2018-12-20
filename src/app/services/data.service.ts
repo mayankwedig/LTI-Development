@@ -12,8 +12,8 @@ import { promise } from 'protractor';
 
 @Injectable()
 export class DataService {
-//private apiUrl='http://103.249.98.101:3002/';
-private apiUrl='http://192.168.1.156:3002/';
+private apiUrl='http://103.249.98.101:3002/';
+//private apiUrl='http://192.168.1.156:3002/';
   constructor(private http: HttpClient) { }
 
   getAll(url,body,headerData={},methode="POST") {
@@ -52,7 +52,7 @@ private apiUrl='http://192.168.1.156:3002/';
   }
 
   private handleError(error: Response) {
-    console.log(error);
+
     if (error.status === 400)
       return Observable.throw(new BadInput(error));
   

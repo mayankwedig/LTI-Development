@@ -1,123 +1,3 @@
-<!--
-  <div id="main-menu" role="navigation">
-    <div id="main-menu-inner">
-       <div class="dropdown account-info">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account No. {{account_no}} (HOME)
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-             <li><a href="#">No Data</a></li>
-          </ul>
-       </div>
-       <ul class="navigation">
-          <li class="active">
-             <a class="" href="#" routerLink="/dashboard">
-                <div class="menu-icons i-dashboard"></div>
-                <span class="mm-text">Dashboard</span>
-             </a>
-          </li>
-          <li class="m-dropdown mm-dropdown">
-             <a>
-                <div class="menu-icons i-settings"></div>
-                <span class="mm-text">My Profile & Settings</span>
-             </a>
-             <ul>
-                <li>
-                   <a tabindex="-1" href="#" routerLink="/profile"><span class="mm-text">Update Profile</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">Change Password</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">Subscribe / Unsubscribe
-                   Email/SMS</span></a>
-                </li>
-             </ul>
-          </li>
-          <li>
-             <a class="" href="#">
-                <div class="menu-icons i-notifications"></div>
-                <span class="mm-text">Notifications</span>
-             </a>
-          </li>
-          <li class="m-dropdown mm-dropdown">
-             <a>
-                <div class="menu-icons i-user"></div>
-                <span class="mm-text">Accounts</span>
-             </a>
-             <ul>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">List Accounts</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">Connect Account</span></a>
-                </li>
-             </ul>
-          </li>
-          <li class="m-dropdown mm-dropdown">
-             <a>
-                <div class="menu-icons i-rupee"></div>
-                <span class="mm-text">Billing</span>
-             </a>
-             <ul>
-                <li>
-                   <a tabindex="-1" href="billing.html"><span class="mm-text">View / Pay Current Bill</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">View / Print Previous Bills</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">Billing Details</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">My Wallet</span></a>
-                </li>
-             </ul>
-          </li>
-          <li >
-           <a href="#"  routerLink="/consumption">
-              <div class="menu-icons i-consumptions"></div>
-              <span class="mm-text">Consumption Details</span>
-           </a>
-           <ul>
-              <li>
-                 <a tabindex="-1" href="billing.html"><span class="mm-text">View / Pay Current Bill</span></a>
-              </li>
-              <li>
-                 <a tabindex="-1" href="#"><span class="mm-text">View / Print Previous Bills</span></a>
-              </li>
-              <li>
-                 <a tabindex="-1" href="#"><span class="mm-text">Consumption</span></a>
-              </li>
-              <li>
-                 <a tabindex="-1" href="#"><span class="mm-text">My Wallet</span></a>
-              </li>
-           </ul>
-        </li>
-
-          <li class="m-dropdown mm-dropdown">
-             <a>
-                <div class="menu-icons i-plus"></div>
-                <span class="mm-text">Service Requests & Complaints</span>
-             </a>
-             <ul>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">Requests, Complaints & Status</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">Submit New Service Request</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">Submit New Complaint</span></a>
-                </li>
-                <li>
-                   <a tabindex="-1" href="#"><span class="mm-text">New Connection Request</span></a>
-                </li>
-             </ul>
-          </li>
-       </ul>
-    </div>
-  </div>
--->
 <div id="main-menu" role="navigation">
   <div id="main-menu-inner">
     <div class="dropdown">
@@ -168,11 +48,11 @@
               ><span class="mm-text">Profile</span></a
             >
           </li>
-          <li>
+         <!--  <li>
             <a tabindex="-1" href="reset-password.html"
               ><span class="mm-text">Change Password</span></a
             >
-          </li>
+          </li> -->
         </ul>
       </li>
       <li id="li2" [ngClass]="{ openDropdown: currentUrl == '/consumption' }">
@@ -189,18 +69,17 @@
       </li>
       <li
         id="li4"
-        class="m-dropdown mm-dropdown"
         [ngClass]="{
           openDropdown:
             currentUrl == '/manageaccount' || currentUrl == '/addaccount'
         }"
         (click)="removeCss($event)"
       >
-        <a href="javascript:void(0);">
+      <a routerLink="/manageaccount">
           <div class="menu-icons i-user"></div>
           <span class="mm-text" id="4">manage account</span>
         </a>
-        <ul class="mmc-dropdown-delay animated fadeInLeft">
+        <!-- <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
             <a
               tabindex="-1"
@@ -210,7 +89,7 @@
               ><span class="mm-text">Accounts</span></a
             >
           </li>
-        </ul>
+        </ul> -->
       </li>
 
       <li

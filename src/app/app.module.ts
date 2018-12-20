@@ -1,3 +1,4 @@
+import { SignupOtpVerificationService } from './services/signup-otp-verification/signup-otp-verification.service';
 import { NetMeteringService } from './services/net-metering/net-metering.service';
 import { SerivceRequestService } from './services/service-request/serivce-request.service';
 import { ComplaintsService } from './services/complaints/complaints.service';
@@ -64,6 +65,8 @@ import { ComplaintsComponent } from './complaints/complaints.component';
 import { ServiceRequestComponent } from './service-request/service-request.component';
 import { NetMeteringComponent } from './net-metering/net-metering.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { SingupOtpVarificationComponent } from './singup-otp-varification/singup-otp-varification.component';
+
 @NgModule({
   declarations: [
     
@@ -105,6 +108,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     ComplaintsComponent,
     ServiceRequestComponent,
     NetMeteringComponent,
+    SingupOtpVarificationComponent,
     
   ],
   imports: [
@@ -143,6 +147,7 @@ import { NgxLoadingModule } from 'ngx-loading';
       {path:'complaints',component: ComplaintsComponent,canActivate:[AuthGuard]},
       {path:'service-request',component:ServiceRequestComponent,canActivate:[AuthGuard]},
       {path:'net-metering',component:NetMeteringComponent,canActivate:[AuthGuard]},
+      {path:'singup-otp-varification',component:SingupOtpVarificationComponent},
       {path:'**',component: PageNotFoundComponent},
       
       
@@ -169,7 +174,8 @@ import { NgxLoadingModule } from 'ngx-loading';
     ProfileService,
     ComplaintsService,
     SerivceRequestService,
-    NetMeteringService
+    NetMeteringService,
+    SignupOtpVerificationService
   ],
   bootstrap: [AppComponent]
 })

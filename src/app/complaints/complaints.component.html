@@ -41,10 +41,15 @@
                         </div>
                       </div>
                     </div>
+                    <!-- {{billingData|json}} -->
                     <div class="col-xs-12" *ngIf="complaintsFrm.value.caseType == 'Bill Related'">
                       <div class="form-group">
                         <label>Bill Id*</label>
-                        <input required formControlName="billId" name="billId" type="text" class="form-control"  placeholder="Enter Bill Id">
+                        <select  required *ngIf="billingDataLoder == false && isbillingDataFound == true" formControlName="billId" name="billId" class="form-control">
+                          <option value="" selected>Select Bill Id</option>
+                          <option value="{{bill.receipt_no}}" *ngFor="let bill of billingData">{{bill.receipt_no}} ({{bill.meter_reading_date | date: "MMMM"}})</option>
+                        </select>
+                        <div *ngIf="billingDataLoder">Loding...</div>
                         <div *ngIf="f.billId.touched && f.billId.invalid ">
                           <span class="error-msg" *ngIf="f.billId.errors?.required">Bill Id is required.</span>
                         </div>
@@ -121,6 +126,7 @@
                           submit
                         </button>
                       </div>
+                      <!-- {{complaintsFrm.value | json}} -->
                 </form>
               </div>
             </div>

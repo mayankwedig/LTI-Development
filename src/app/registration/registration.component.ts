@@ -5,7 +5,6 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { AuthService } from "../services/authService/auth.service";
 import { SignupService } from "../services/signup/signup.service"; //for later purpose
 import { ToastrService } from "ngx-toastr";
 import { CustomValidationsService } from './../services/custom-validations/custom-validations.service';
@@ -27,17 +26,16 @@ export class RegistrationComponent implements OnInit {
   questionsList1Loader = false;
   questionsList2Loader = false;
 
-  verifiedAccountNumber={};
+  otpVerifiedAcInfo:any={};
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
     private SignupService: SignupService,
     private router: Router,
     private toastr: ToastrService,
     private CustomValidations: CustomValidationsService,
     private helpers :HelpersService
   ) {
-    this.initRegistrationFrm();
+    
   }
   
   //Initialize registration form
@@ -45,8 +43,8 @@ export class RegistrationComponent implements OnInit {
     this.signupFrm = this.fb.group(
       {
         username: ["", Validators.required],
-        email: ["", [Validators.required, this.CustomValidations.isEmailValid("email")]],
-        mobile: ["", Validators.required],
+        email: [this.otpVerifiedAcInfo.email, [Validators.required, this.CustomValidations.isEmailValid("email")]],
+        mobile: [this.otpVerifiedAcInfo.mobile, Validators.required],
         password: ["", Validators.compose([Validators.required,Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{9,})/)])],
         cpassword: ["", Validators.required],
         questionsList1: ["", Validators.required],
@@ -63,12 +61,20 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.verifiedAccountNumber=this.helpers.getLocalStoragData("verifiedAccountNumber");
-    this.auth.ClearIsVerifiedAccountNumber();
-    this.fechQuestionList("1");
-    this.fechQuestionList("2");
+      let otpVerifiedAccEmail = this.helpers.getLocalStoragData("otpVerifiedAccEmail"); // cehck if account token is exists
+      let otpVerifiedAccMobileNo = this.helpers.getLocalStoragData("otpVerifiedAccMobileNo"); // cehck if account token is exists
+      let otpVerifiedAccountNumber= this.helpers.getLocalStoragData("otpVerifiedAccountNumber");
+      this.otpVerifiedAcInfo={"email":otpVerifiedAccEmail,"mobile":otpVerifiedAccMobileNo,"account_number":otpVerifiedAccountNumber};
+      this.initRegistrationFrm();
+      this.clearOtpVerifiedAccountInfoSession();
+      this.fechQuestionList("1");
+      this.fechQuestionList("2");
   }
-
+  clearOtpVerifiedAccountInfoSession(){
+    this.helpers.clearLocalStorateData("otpVerifiedAccEmail"); // verified  account info  session
+    this.helpers.clearLocalStorateData("otpVerifiedAccMobileNo"); // verified  account info  session
+    this.helpers.clearLocalStorateData("otpVerifiedAccountNumber"); // verified  account info  session
+}
   fechQuestionList(quesType) {
     if (quesType == "1") {
       this.questionsList1Loader = true;
@@ -115,8 +121,7 @@ export class RegistrationComponent implements OnInit {
     // register user
     this.loder = true;
     const apiData = this.signupFrm.value;
-    console.log(this.verifiedAccountNumber);
-    apiData["accountNumber"]=this.verifiedAccountNumber;
+    apiData["accountNumber"]=this.otpVerifiedAcInfo.account_number;
     this.SignupService.registerUser("users/register", apiData).subscribe(
       (response: any) => {
         var res = response;
@@ -138,4 +143,5 @@ export class RegistrationComponent implements OnInit {
       }
     );
   }
+
 }

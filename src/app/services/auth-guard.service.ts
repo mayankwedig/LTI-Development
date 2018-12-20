@@ -27,10 +27,11 @@ export class AuthGuard implements CanActivate {
   canActivate(route, state: RouterStateSnapshot) {
     if (state.url == "/registration") {
       //if registration page
-
-      if (this.auth.isAccountNumberValidated()) {
-        //check if user has verified account number
-        return true; // if yes
+      let otpVerifiedAccEmail = this.helpers.getLocalStoragData("otpVerifiedAccEmail"); // cehck if account token is exists
+      let otpVerifiedAccMobileNo = this.helpers.getLocalStoragData("otpVerifiedAccMobileNo"); // cehck if account token is exists
+      let otpVerifiedAccountNumber= this.helpers.getLocalStoragData("otpVerifiedAccountNumber");
+      if (otpVerifiedAccEmail !=null && otpVerifiedAccMobileNo !=null && otpVerifiedAccountNumber != null) {//check if user has verified account number
+          return true; // if yes
       } else {
         //if no
         this.router.navigate(["/account-verification"]); // redirect usre back to the account verfication page for account verification

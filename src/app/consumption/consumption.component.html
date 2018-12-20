@@ -27,6 +27,18 @@
           [ngClass]="{ consumptionPanalLoader: loder == true }"
         >
           <div class="graph-container modal-graph-label" *ngIf="loder == false && isDataFound == true">
+            <div class="pull-right">
+              <a
+                      (click)="downloadGraphExcelConsumption()"
+                      style="cursor: pointer;"
+                      title="Download"
+                    >
+                      <div class="download-circle">
+                        <img src="assets/images/download.png" />
+                      </div>
+                    </a>
+
+            </div>
             <div class="label-left">Units <span>(KWH)</span></div>
             <div class="consumption-canvas" *ngIf="chartToShow == 'yearly'">
               <canvas
