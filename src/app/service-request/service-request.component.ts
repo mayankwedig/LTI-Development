@@ -5,7 +5,6 @@ import { HelpersService } from "./../services/helpers/helpers.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
-
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 
@@ -279,7 +278,7 @@ export class ServiceRequestComponent implements OnInit {
             },30000);
             
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
           }
         }
       },

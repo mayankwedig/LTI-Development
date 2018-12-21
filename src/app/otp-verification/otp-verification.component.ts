@@ -80,7 +80,7 @@ export class OtpVerificationComponent {
         if (res.authCode == "200" && res.status == true) {
           this.toastr.success(res.msg, "Password updated!");
         } else {
-          this.toastr.error(res.msg, "Faild!");
+          this.toastr.error(res.msg, "Failed!");
         }
         this.otpVerificationToken = "";
         this.router.navigate(["/login"]);
@@ -101,7 +101,7 @@ export class OtpVerificationComponent {
             this.toastr.success(res.msg, "Success!");
             this.isOtpVerified = true;
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
             this.isOtpVerified = false;
             this.router.navigate(["/login"]);
           }

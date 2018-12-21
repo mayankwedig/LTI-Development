@@ -4,6 +4,8 @@ import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
+import { WindowRefService } from "./../services/window-ref/window-ref.service";
+import { ToastrService } from "ngx-toastr";
 require("../../../node_modules/moment/min/moment.min.js");
 declare var moment: any;
 declare var $: any;
@@ -35,7 +37,9 @@ export class BillingComponent implements OnInit {
   constructor(
     private DashboardService: DashboardService,
     private activateRoute: ActivatedRoute,
-    private helpers:HelpersService
+    private helpers:HelpersService,
+    private WindowRef: WindowRefService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -105,6 +109,15 @@ export class BillingComponent implements OnInit {
       }
     );
   }
+
+  downloadPDFfile(PDFURL){
+    this.WindowRef.nativeWindow.open(PDFURL, "popup");
+
+    this.toastr.success("Excel downloaded successfully", "Success!");
+
+  }
+
+
   showDailyBillingGraphData() {
     this.graphLoader=true;
     let data = [];

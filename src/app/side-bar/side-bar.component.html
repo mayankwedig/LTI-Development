@@ -77,7 +77,8 @@
         [ngClass]="{
           openDropdown:
             currentUrl == '/service-request' ||
-            currentUrl == '/view-all-service-request'
+            currentUrl == '/view-all-service-request' || currentUrl == '/service-request-details'
+            
         }"
         (click)="removeCss($event)"
       >

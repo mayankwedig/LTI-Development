@@ -150,8 +150,9 @@ export class ManageaccountComponent implements OnInit {
               }
             );
           } else {
-            this.toastr.error(res.msg, "Faild!");
-            this.router.navigate(["/account-verification"]);
+           this.toastr.error(res.msg, "Failed!");
+          this.router.navigate(["/account-verification"]);
+
           }
         }
       },

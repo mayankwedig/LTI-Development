@@ -90,7 +90,7 @@ export class SingupOtpVarificationComponent implements OnInit{
             localStorage.setItem("otpVerifiedAccountNumber",  this.verifiedAccountNumber);
             this.router.navigate(["/registration"]);
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
             this.router.navigate(["/account-verification"]);
           }
         }
