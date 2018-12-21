@@ -8,10 +8,10 @@
       </div>
     -->
     <ul class="dash-box-list">
-      <li class="dash-box-li">
+      <li class="dash-box-li width-9">
         <div class="panel-body">
           <div class="row">
-            <div class="col-sm-6 border-divider">
+            <div class="col-sm-4 border-divider">
               <div class="">
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"
@@ -36,8 +36,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="padding_left15 rows">
+            <div class="col-sm-4 border-divider">
+              <div class="rows">
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"
                     ><img src="assets/images/bill-icon.png" alt=""
@@ -59,6 +59,45 @@
                     <div class="bounce2"></div>
                     <div class="bounce3"></div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="box-title max-content-title title-min-height">
+                <span class="title-icon"
+                  ><img src="assets/images/bill-icon.png" alt=""
+                /></span>
+                <div class="text-title">Current Meter Reading</div>
+              </div>
+
+              <div class="amount">
+                {{ onDemandReadData | number: "3.2" }}
+                <span *ngIf="onDemandReadData != ''">KWH</span> &nbsp;
+
+                <a
+                  *ngIf="onDemandReadLoder == false && showGetReadButton == true"
+                  (click)="getOnDemandRead()"
+                  style="cursor:pointer;"
+                  class="blue-btn pay-now-btn"
+                  >Get Read</a>
+                  
+                  <a
+                  *ngIf="onDemandReadLoder == false && showGetReadButton == false"
+                  (click)="getOnDemandRead()"
+                  style="cursor:pointer;"
+                  ><img width="20" src="assets/images/refresh.png" /></a>
+                <div class="rows" *ngIf="onDemandReadLoder">
+                  <div class="spinner_odr spinner box-spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+                </div>
+                <div
+                  class="dashboardTimeStapm"
+                  *ngIf="onDemandReadData != ''"
+                >
+                  {{ currentTime }}
                 </div>
               </div>
             </div>
@@ -99,56 +138,18 @@
           </div>
         </div>
       </li>
-      <li class="dash-box-li">
+      <li class="dash-box-li width-3">
         <div class="panel-body">
           <div class="row">
-            <div class="col-xs-12">
-              <div class="">
-                <div class="box-title title-min-height">
-                  <span class="title-icon"
-                    ><img src="assets/images/bill-icon.png" alt=""
-                  /></span>
-                  <div class="text-title">Current Meter Reading</div>
-                </div>
-
-                <div class="amount">
-                  {{ onDemandReadData | number: "3.2" }}
-                  <span *ngIf="onDemandReadData != ''">KWH</span>
-
-                  <a
-                    *ngIf="!onDemandReadLoder"
-                    (click)="getOnDemandRead()"
-                    style="cursor:pointer;"
-                    class="blue-btn pay-now-btn"
-                    >{{ button_text }}</a
-                  >
-                  <div class="rows" *ngIf="onDemandReadLoder">
-                    <div class="spinner_odr spinner box-spinner">
-                      <div class="bounce1"></div>
-                      <div class="bounce2"></div>
-                      <div class="bounce3"></div>
-                    </div>
-                  </div>
-                  <div
-                    class="dashboardTimeStapm"
-                    *ngIf="onDemandReadData != ''"
-                  >
-                    {{ currentTime }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-sm-12">
-              <div class="scroll-div">
+              <div class="scroll-div no-border">
                 <div class="box-title">
                   <span class="title-icon"
                     ><img src="assets/images/notification-icon-white.png" alt=""
                   /></span>
                   <div class="text-title">alert & notifications</div>
                 </div>
-                <ul class="notification-listing" style="height: 80px;">
+                <ul class="notification-listing">
                   <li>
                     <img src="assets/images/rupee-icon-hover.png" alt="" />
                     <div>

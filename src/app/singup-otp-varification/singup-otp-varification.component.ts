@@ -32,8 +32,8 @@ export class SingupOtpVarificationComponent implements OnInit{
     }
   ];
 
-  private loder: boolean = false;
-  private OtpVerificationFrm: FormGroup;
+  public loder: boolean = false;
+  public  OtpVerificationFrm: FormGroup;
   
   verifiedAccountNumber="";
   isAccountNumberValid="false";

@@ -66,6 +66,7 @@ import { ServiceRequestComponent } from './service-request/service-request.compo
 import { NetMeteringComponent } from './net-metering/net-metering.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { SingupOtpVarificationComponent } from './singup-otp-varification/singup-otp-varification.component';
+import { ViewAllServiceRequestsComponent } from './view-all-service-requests/view-all-service-requests.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { SingupOtpVarificationComponent } from './singup-otp-varification/singup
     ServiceRequestComponent,
     NetMeteringComponent,
     SingupOtpVarificationComponent,
+    ViewAllServiceRequestsComponent,
     
   ],
   imports: [
@@ -147,7 +149,8 @@ import { SingupOtpVarificationComponent } from './singup-otp-varification/singup
       {path:'complaints',component: ComplaintsComponent,canActivate:[AuthGuard]},
       {path:'service-request',component:ServiceRequestComponent,canActivate:[AuthGuard]},
       {path:'net-metering',component:NetMeteringComponent,canActivate:[AuthGuard]},
-      {path:'singup-otp-varification',component:SingupOtpVarificationComponent},
+      {path:'singup-otp-varification',component:SingupOtpVarificationComponent}, 
+      {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent},
       
       

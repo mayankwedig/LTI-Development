@@ -1171,8 +1171,8 @@ body {
   padding: 0 10px;
 }
 #content-wrapper .dash-box-list .dash-box-li>.panel-body{
- 	padding: 20px 30px;
- 	min-height: 285px;
+ 	padding: 20px 20px;
+ 	min-height: 295px;
 	border-radius: 4px;
 	-webkit-box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.12);
 	-moz-box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.12);
@@ -1260,8 +1260,9 @@ body {
 	float: left;
 	width: 100%;
 	padding-left: 0;
-	padding: 0 0;
-	/*border-bottom: 1px solid #ececec;*/
+	padding: 15px 0 0;
+    height: 100%;
+	max-height: 221px;
 }
 #content-wrapper .dash-box-list .dash-box-li .notification-listing li{
     float: left;
@@ -1574,9 +1575,9 @@ body {
 .pay-now-btn{
     padding: 4px 15px 2px;
     font-size: 12px;
-    margin-left: 12px;
+    margin-left: 6px;
     position: relative;
-    top: -4px;
+    top: -2px;
 }
 .blue-search-btn{
     position: absolute;
@@ -4614,11 +4615,11 @@ table.table.consumer-basic-table tbody tr th:last-child {
     background-color: rgb(7, 113, 215);  
     height: 10px;
 }
-.billing-sec .table-wrapper .fl-table thead, 
+/*.billing-sec .table-wrapper .fl-table thead, 
 .billing-sec .table-wrapper .fl-table tbody{
     display: table;
     width: 100%;
-}
+}*/
 .manage-account.billing-sec .table-wrapper .fl-table {
     height: inherit;
 }
@@ -4931,4 +4932,87 @@ table.table.consumer-basic-table tbody tr th:last-child {
     width: 100%;
     float: left;
     padding-top: 35px;
+}
+#content-wrapper .dash-box-list .dash-box-li.width-9 {
+    width: 60%;
+}
+#content-wrapper .dash-box-list .dash-box-li.width-3 {
+    width: 40%;
+}   
+
+.scroll-div.no-border {
+    border-top: none; 
+    padding-top: 0;
+    margin-top: 0;
+}
+/**20-12-2018**/
+.service-request-dtl {
+    padding: 20px 115px;
+}
+.service-dtl-block {
+    width: 100%;
+    float: left;
+    padding: 40px 0 0;
+    border-bottom: solid 1px #eaeaea; 
+}
+.service-dtl-block:last-child {
+    border-bottom: none; 
+}
+.service-dtl-block .form-group {
+    margin-bottom: 40px;
+}
+.service-request-dtl label {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 0;
+}
+.dtl-value {
+    padding-top: 12px;
+}
+.dtl-status {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+}
+.status-box {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 3px;
+    padding: 0 15px;
+    display: inline-block;
+    vertical-align: 1px;
+    margin-left: 3px;
+}
+.status-open {
+    background: #03a9f4; 
+}
+.status-pending {
+    background: #ffb300; 
+}
+.status-resolved {
+    background: #8bc34a; 
+}
+.status-rejected {
+    background: #f44336; 
+}
+.status-closed {
+    background: #009688; 
+}
+
+.service-request-table .status-box {
+    width: 82px;
+    text-align: center;
+}
+.sr-heading {
+    color: #0571d7;
+    font-size: 14px;
+    margin-bottom: 25px;
+    text-align: left;
+} 
+
+.reload-icon {
+    margin-left: 5px; 
 }

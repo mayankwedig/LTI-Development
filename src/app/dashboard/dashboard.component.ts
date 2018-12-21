@@ -73,7 +73,7 @@ export class DashboardComponent implements OnInit {
   AccountDetailsFound = false;
   accountDetailsLoder = false;
   accountData: any = "";
-  button_text = "Get Read";
+  showGetReadButton:boolean = true;
   energyTips = "";
   energyTipsFound = false;
   billingDataLoder: boolean = false;
@@ -149,7 +149,7 @@ export class DashboardComponent implements OnInit {
   }
   //changes by Rajesh nair
   getOnDemandRead() {
-    this.button_text = "Get Read";
+    this.showGetReadButton =false;
     this.currentTime = moment().format("Do MMM, YYYY hh:mm A	");
     this.onDemandReadLoder = true;
     this.DashboardService.getOnDemandRead(this.accountNumber, (result: any) => {
