@@ -112,7 +112,7 @@ export class SideBarComponent implements OnInit {
   /** Redirection Loder Ends Here*/
 
   redirectoDashBoard(accountId, userId) {
-    
+      
     this.redirectLoding = true; // make loder true
     var userId = this.auth.getCurrentUser().userId;
     var is_net_metering = 0;

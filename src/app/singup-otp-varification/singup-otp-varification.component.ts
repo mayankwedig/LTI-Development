@@ -73,15 +73,15 @@ export class SingupOtpVarificationComponent implements OnInit{
     }
     this.initOtpVerificationForm();
   }
+  Otoploder:boolean = true;
   verifyOtp() {
     const verifyOtpData = this.OtpVerificationFrm.value;
     verifyOtpData["otpAccountNumber"] = this.verifiedAccountNumber;
-    console.log(verifyOtpData);
-    this.loder = true;
+    this.Otoploder = true;
     this.OtpVeriyService.verifyOtp("users/otpVerifyRegistration", verifyOtpData).subscribe(
       (response: any) => {
         var res = response;
-        this.loder = false;
+        this.Otoploder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.toastr.success(res.msg, "Success!");

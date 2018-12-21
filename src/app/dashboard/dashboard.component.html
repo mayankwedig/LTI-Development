@@ -70,7 +70,7 @@
                 <div class="text-title">Current Meter Reading</div>
               </div>
 
-              <div class="amount">
+              <div class="amount cmr-amount">
                 {{ onDemandReadData | number: "3.2" }}
                 <span *ngIf="onDemandReadData != ''">KWH</span> &nbsp;
 
@@ -81,7 +81,7 @@
                   class="blue-btn pay-now-btn"
                   >Get Read</a>
                   
-                  <a
+                  <a class="cmr-refresh" 
                   *ngIf="onDemandReadLoder == false && showGetReadButton == false"
                   (click)="getOnDemandRead()"
                   style="cursor:pointer;"

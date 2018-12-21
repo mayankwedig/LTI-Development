@@ -1,4 +1,5 @@
-import { LoginService } from './../services/login/login.service';
+import { SignupOtpVerificationService } from "./../services/signup-otp-verification/signup-otp-verification.service";
+import { LoginService } from "./../services/login/login.service";
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { ProfileService } from "./../services/profile/profile.service";
@@ -8,7 +9,8 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { AuthService } from "../services/authService/auth.service";
 import { ManageaccountService } from "./../services/manageaccount/manageaccount.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms"
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ValidateAccountNumberService } from "./../services/validate-account-number/validate-account-number.service";
 
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
@@ -27,6 +29,10 @@ export class ManageaccountComponent implements OnInit {
   accountProcesLoader = false;
   displayUserInfo = "";
   dispString = "";
+  ShowOtpVerifyFrm: boolean = false;
+
+  verifiedAccountNumber = "";
+  public OtpVerificationFrm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private accountServices: ManageaccountService,
@@ -36,23 +42,29 @@ export class ManageaccountComponent implements OnInit {
     private uerProfile: ProfileService,
     private helper: HelpersService,
     private Dashboard: DashboardService,
-    private login:LoginService
+    private login: LoginService,
+    private ValidateAccountNumber: ValidateAccountNumberService,
+    private OtpVeriyService: SignupOtpVerificationService
   ) {}
   ngOnInit() {
     var UserData = this.login.getUserData();
-    if (UserData.numberOfAccounts > 1) { // If user has more then one account.
+    if (UserData.numberOfAccounts > 1) {
+      // If user has more then one account.
       this.helper.clearLocalStorateData("accountToken"); //clear previously set accountAccessToken
     }
-   
+
     this.getAccount(this.searchKeyWord);
     this.initAddaccFrm();
     this.getUserProfile();
+    this.initOtpVerificationForm();
   }
 
   get f() {
     return this.addAccountFrm.controls;
   }
-
+  get OtpVerificationFields() {
+    return this.OtpVerificationFrm.controls;
+  }
   getUserProfile() {
     this.dispString =
       "User Name ( " + this.auth.getCurrentUser().username + " )";
@@ -60,6 +72,11 @@ export class ManageaccountComponent implements OnInit {
   initAddaccFrm() {
     this.addAccountFrm = this.fb.group({
       account_number: ["", Validators.required]
+    });
+  }
+  initOtpVerificationForm() {
+    this.OtpVerificationFrm = this.fb.group({
+      verifyOtp: ["", Validators.required]
     });
   }
   getAccount(searchKeyWord) {
@@ -92,32 +109,85 @@ export class ManageaccountComponent implements OnInit {
     this.searchKeyWord = value;
     this.getAccount(this.searchKeyWord);
   }
-  addAccountFunc() {
-    // login funtion goes here
-    const accountData = this.addAccountFrm.value;
-    this.accountProcesLoader = true;
-    this.accountServices.addAccount(accountData).subscribe(
+  Otoploder: boolean = false;
+  verifyOtp() {
+    const verifyOtpData = this.OtpVerificationFrm.value;
+    verifyOtpData["otpAccountNumber"] = this.verifiedAccountNumber;
+    this.Otoploder = true;
+    this.OtpVeriyService.verifyOtp(
+      "users/otpVerifyRegistration",
+      verifyOtpData
+    ).subscribe(
       (response: any) => {
         var res = response;
-        this.accountProcesLoader = false;
+        this.Otoploder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
-            this.toastr.success(res.msg, "Success!");
-            $("#add-account-modal").hide();
-            $(".modal-backdrop").remove();
-            $("body").removeClass("modal-open");
-            this.getAccount(this.searchKeyWord);
+            var accountData = { account_number: this.verifiedAccountNumber };
+            this.accountServices.addAccount(accountData).subscribe(
+              (response: any) => {
+                var res = response;
+                this.accountProcesLoader = false;
+                if (res.authCode) {
+                  if (res.authCode == "200" && res.status == true) {
+                    this.toastr.success(res.msg, "Success!");
+                  
+                    $("#add-account-modal").hide();
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
+                    this.getAccount(this.searchKeyWord);
+                  } else {
+                    this.toastr.error(res.msg, "Faild!");
+                  }
+                }
+              },
+              (error: AppError) => {
+                this.accountProcesLoader = false;
+                if (error instanceof BadInput) {
+                } else {
+                  throw error;
+                }
+              }
+            );
           } else {
             this.toastr.error(res.msg, "Faild!");
+            this.router.navigate(["/account-verification"]);
           }
         }
       },
       (error: AppError) => {
-        this.accountProcesLoader = false;
+        this.Otoploder = false;
         if (error instanceof BadInput) {
         } else {
           throw error;
         }
+      }
+    );
+  }
+  addAccountFunc() {
+    // login funtion goes here
+    const accountData = this.addAccountFrm.value.account_number;
+    this.accountProcesLoader = true;
+    this.ValidateAccountNumber.verifyAccountNumber(accountData).subscribe(
+      (res: any) => {
+        this.accountProcesLoader = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status) {
+            this.verifiedAccountNumber = accountData.account_number;
+            this.ShowOtpVerifyFrm = true;
+            this.toastr.success(res.msg, "Success!");
+          } else {
+            this.ShowOtpVerifyFrm = false;
+            this.verifiedAccountNumber = "";
+            this.toastr.error(res.msg, "Failed!");
+          }
+        }
+      },
+      error => {
+        this.accountProcesLoader = false;
+        this.ShowOtpVerifyFrm = false;
+        this.verifiedAccountNumber = "";
+        this.toastr.error(error, "Failed!");
       }
     );
   }

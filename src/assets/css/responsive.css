@@ -152,6 +152,9 @@
     .profile-page .profile-right-content .col-sm-6:first-child {
         width: 40%
     }
+    .cmr-refresh {
+        right: 0;
+    }
 }
 @media(max-width:1280px) {
 	#content-wrapper .dash-box-list .dash-box-li .amount {
@@ -182,6 +185,9 @@
     }
     .profile-page .profile-right-content .consumer-detail {
         padding: 20px 0 0px 0;
+    }
+    #content-wrapper .dash-box-list .dash-box-li .notification-listing li div {
+        width: 85%;
     }
 }
 @media(max-width:1240px) {
