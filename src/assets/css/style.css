@@ -4600,7 +4600,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .billing-sec .table-wrapper .fl-table.tb-body {
     height: 218px;
     overflow-y: auto;
-    display: block;
+    /* display: block; */
 }
 .slimScrollDiv .slimScrollBar {
     background: rgb(7, 113, 215) !important;
