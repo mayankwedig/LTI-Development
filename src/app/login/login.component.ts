@@ -90,7 +90,7 @@ export class LoginComponent {
               this.router.navigate(["/otp-verification"]);
             }
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
           }
         }
       });
@@ -155,7 +155,7 @@ export class LoginComponent {
               this.router.navigate([returnUrl || "/manageaccount"]);
             }
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
           }
         }
       },

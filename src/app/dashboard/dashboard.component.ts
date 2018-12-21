@@ -267,6 +267,17 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+
+  downloadPDFfile(PDFURL){
+    this.WindowRef.nativeWindow.open(PDFURL, "popup");
+
+    this.toastr.success("PDF downloaded successfully", "Success!");
+
+  }
+
+
+
   getDashboardData() {
     this.showYtdData();
     this.showAccountDetails();

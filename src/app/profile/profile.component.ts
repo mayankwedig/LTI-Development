@@ -101,7 +101,7 @@ export class ProfileComponent implements OnInit {
             this.profileData = res.data_params;
             this.profile_image = this.profileData.profile_image;
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
           }
         }
       },
@@ -157,7 +157,7 @@ export class ProfileComponent implements OnInit {
             this.showProfileUpdateFrm(false);
             this.getProfile();
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
           }
         }
       },

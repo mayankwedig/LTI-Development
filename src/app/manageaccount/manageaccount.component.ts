@@ -108,7 +108,7 @@ export class ManageaccountComponent implements OnInit {
             $("body").removeClass("modal-open");
             this.getAccount(this.searchKeyWord);
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
           }
         }
       },

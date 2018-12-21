@@ -150,13 +150,13 @@
                               data-placement="top"
                               title="View"
                               ><i class="fa fa-eye"></i></a
-                            ><a
+                            ><a *ngIf="account.is_primary == 0"
                               class="blue-btn delete-btn action-sm-btn"
                               (click)="deleteAccount(account.id)"
                               style="cursor: pointer;"
                               data-toggle="tooltip"
                               data-placement="top"
-                              title="Link"
+                              title="Linked"
                               ><i class="fa fa-chain-broken"></i
                             ></a>
                           </td>

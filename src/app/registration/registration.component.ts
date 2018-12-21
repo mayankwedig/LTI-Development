@@ -98,7 +98,7 @@ export class RegistrationComponent implements OnInit {
           this.questionsList2 = res.data_params;
         }
       } else {
-        this.toastr.error(res.msg, "Faild!");
+        this.toastr.error(res.msg, "Failed!");
       }
     });
   }
@@ -131,7 +131,7 @@ export class RegistrationComponent implements OnInit {
             this.toastr.success(res.msg, "Success!");
             this.router.navigate(["/login"]);
           } else {
-            this.toastr.error(res.msg, "Faild!");
+            this.toastr.error(res.msg, "Failed!");
           }
         }
       },

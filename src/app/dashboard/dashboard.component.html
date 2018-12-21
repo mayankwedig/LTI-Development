@@ -523,10 +523,11 @@
                   <td width="10%">
                     <a
                       class="pdf-btn action-sm-btn"
-                      href="#"
+
                       data-toggle="tooltip"
                       data-placement="top"
-                      title="View"
+                      (click)="downloadPDFfile(billing.billUrl)"
+                      title="Download Bill PDF" style="cursor: pointer"
                       ><i class="fa fa-file-pdf-o" aria-hidden="true"></i
                     ></a>
                   </td>

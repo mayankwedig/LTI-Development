@@ -7,8 +7,8 @@ export class AppErrorHandler implements ErrorHandler{
     }
     handleError(error){
             console.log(error);
-        /* this.ToastrServ.error("unaccepted error occured", 'Faild!'); */
-        /* this.ToastrServ.error("unaccepted error occured", 'Faild!'); */
+        /* this.ToastrServ.error("unaccepted error occured", 'Failed!'); */
+        /* this.ToastrServ.error("unaccepted error occured", 'Failed!'); */
         /* alert('an unexpected error occurred'); */
         
     }

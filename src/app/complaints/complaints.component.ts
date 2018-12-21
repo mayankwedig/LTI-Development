@@ -255,7 +255,7 @@ export class ComplaintsComponent implements OnInit {
               res["msg"]="Your complaint has been registered successfully, We've sent a notification E-mail along with tracking number.";
               this.toastr.success(res.msg, "Success!");
             } else {
-              this.toastr.error(res.msg, "Faild!");
+              this.toastr.error(res.msg, "Failed!");
             }
           }
         },
