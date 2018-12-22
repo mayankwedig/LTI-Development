@@ -3,7 +3,7 @@ import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "../services/data.service";
 import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
-
+import { WindowRefService } from "./../services/window-ref/window-ref.service";
 require("../../../node_modules/moment/min/moment.min.js");
 declare var moment: any;
 declare var $: any;
@@ -18,6 +18,7 @@ export class ConsumptionComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private dashboard: DashboardService,
     private helpers: HelpersService,
+    private WindowRef: WindowRefService,
     private router: Router
   ) {}
   selected_month: any = "";
@@ -74,6 +75,105 @@ export class ConsumptionComponent implements OnInit {
       this.showchart("yearly");
     }
   }
+
+  // new changes By chandni  22/12/2018
+  downloadGraphExcelConsumption() {
+    var excelBillingYearlyDataAPI="users/excelYearlyData"; 
+    var requestParams = {
+      account_number: this.accountNumber,
+      year: parseInt(this.selected_year)
+    };
+
+    this.dashboard.downloadGraphExcel(excelBillingYearlyDataAPI,requestParams, (response: any) => { //Monthly Consumption
+      if (response.authCode == "200") {
+        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+
+        // this.toastr.success("Excel downloaded successfully", "Success!");
+      } else {
+        // this.toastr.error("Something went wrong!", "failed!");
+      }
+    });
+  }
+
+
+  downloadAllYesrExcelConsumption() {
+    var excelAllYearConsumption="users/excelAllYearConsumption";
+    var requestParams = {
+      account_number: this.accountNumber
+    };
+
+    this.dashboard.downloadGraphExcel(excelAllYearConsumption,requestParams, (response: any) => { //Yearly Consumption
+      if (response.authCode == "200") {
+        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+
+        // this.toastr.success("Excel downloaded successfully", "Success!");
+      } else {
+        // this.toastr.error("Something went wrong!", "failed!");
+      }
+    });
+  }
+
+  
+
+
+  downloadAllDailyExcelConsumption() {
+    var excelDailyData="users/excelDailyData";
+    var requestParams = {
+      account_number: this.accountNumber,
+      year: parseInt(this.selected_year),
+      month : parseInt(this.selected_month)
+    };
+    this.dashboard.downloadGraphExcel(excelDailyData,requestParams, (response: any) => { //Daily Consumption
+      if (response.authCode == "200") {
+        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+
+        // this.toastr.success("Excel downloaded successfully", "Success!");
+      } else {
+        // this.toastr.error("Something went wrong!", "failed!");
+      }
+    });
+  }
+
+  downloadAllWeeklyExcelConsumption() {
+    var excelWeeklyData="users/excelWeeklyData";
+    var requestParams = {
+      account_number: this.accountNumber,
+      year: parseInt(this.selected_year),
+      month : parseInt(this.selected_month)
+    };
+    this.dashboard.downloadGraphExcel(excelWeeklyData,requestParams, (response: any) => { //Weekly Consumption
+      if (response.authCode == "200") {
+        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+
+        // this.toastr.success("Excel downloaded successfully", "Success!");
+      } else {
+        // this.toastr.error("Something went wrong!", "failed!");
+      }
+    });
+  }
+  
+   
+  downloadAllHourlyExcelConsumption() {
+    var excelHourlyData="users/excelHourlyData";
+    var requestParams = {
+      account_number: this.accountNumber,
+      year: parseInt(this.selected_year),
+      month : parseInt(this.selected_month),
+      day: parseInt(this.selectedDay)
+    };
+    this.dashboard.downloadGraphExcel(excelHourlyData,requestParams, (response: any) => { //Hourly Consumption
+      if (response.authCode == "200") {
+        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+
+        // this.toastr.success("Excel downloaded successfully", "Success!");
+      } else {
+        // this.toastr.error("Something went wrong!", "failed!");
+      }
+    });
+  }
+
+
+
   backToDashBoard() {
     this.router.navigate(["/dashboard"]);
   }
@@ -411,4 +511,5 @@ export class ConsumptionComponent implements OnInit {
       }
     ];
   }
+  
 }
