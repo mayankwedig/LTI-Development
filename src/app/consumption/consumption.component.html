@@ -28,7 +28,10 @@
         >
           <div class="graph-container modal-graph-label" *ngIf="loder == false && isDataFound == true">
             <div class="pull-right">
-              <a
+               <!--New Changes By Chandni-->
+
+              <a 
+              *ngIf="chartToShow == 'monthly'"
                       (click)="downloadGraphExcelConsumption()"
                       style="cursor: pointer;"
                       title="Download"
@@ -37,6 +40,54 @@
                         <img src="assets/images/download.png" />
                       </div>
                     </a>
+
+                    <a 
+              *ngIf="chartToShow == 'yearly'"
+                      (click)="downloadAllYesrExcelConsumption()"
+                      style="cursor: pointer;"
+                      title="Download"
+                    >
+                      <div class="download-circle">
+                        <img src="assets/images/download.png" />
+                      </div>
+                    </a>
+                     
+                    <a 
+                  *ngIf="chartToShow == 'daily'"
+                      (click)="downloadAllDailyExcelConsumption()"
+                      style="cursor: pointer;"
+                      title="Download"
+                    >
+                      <div class="download-circle">
+                        <img src="assets/images/download.png" />
+                      </div>
+                    </a>
+
+                    <a 
+                  *ngIf="chartToShow == 'hourly'"
+                      (click)="downloadAllHourlyExcelConsumption()"
+                      style="cursor: pointer;"
+                      title="Download"
+                    >
+                      <div class="download-circle">
+                        <img src="assets/images/download.png" />
+                      </div>
+                    </a>
+
+
+                    <a 
+                    *ngIf="chartToShow == 'Weekly'"
+                        (click)="downloadAllWeeklyExcelConsumption()"
+                        style="cursor: pointer;"
+                        title="Download"
+                      >
+                        <div class="download-circle">
+                          <img src="assets/images/download.png" />
+                        </div>
+                      </a>
+
+
+                      <!--End Wrok  22/12/2018-->
 
             </div>
             <div class="label-left">Units <span>(KWH)</span></div>

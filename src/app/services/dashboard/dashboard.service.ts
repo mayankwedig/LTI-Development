@@ -119,7 +119,7 @@ export class DashboardService {
       }
     );
   }
-  getWeeklyGraphData(body, callback) { //dail graph data
+  getWeeklyGraphData(body, callback) { //Weekly graph data
     var currentUser=this.auth.getCurrentUser();
     body["userId"]=currentUser.userId;
     this.DataService.getAll(this.weeklyGetDataAPI, body,this.helpers.setHeaderData()).subscribe(
@@ -128,7 +128,7 @@ export class DashboardService {
       }
     );
   }
-  getHourlyGraphData(body, callback) { //dail graph data
+  getHourlyGraphData(body, callback) { //Hourly graph data
     var currentUser=this.auth.getCurrentUser();
     body["userId"]=currentUser.userId;
     this.DataService.getAll(this.hourlyGetDataAPI, body,this.helpers.setHeaderData()).subscribe(
@@ -147,10 +147,10 @@ export class DashboardService {
     );
   }
   
-  downloadGraphExcel(body,callback){
+  downloadGraphExcel(APIURL,body,callback){
     var currentUser=this.auth.getCurrentUser();
     body["userId"]=currentUser.userId;
-    this.DataService.getAll(this.excelYearlyDataAPI, body,this.helpers.setHeaderData()).subscribe(
+    this.DataService.getAll(APIURL, body,this.helpers.setHeaderData()).subscribe(
       (result: any) => {
         callback(result);
       }
