@@ -307,7 +307,7 @@
                     </div>
                     <button
                       class="btn btn-primary submit-btn"
-                      [disabled]="!addAccountFrm.valid"
+                      [disabled]="!addAccountFrm.valid || accountProcesLoader == true"
                     >
                       Submit
                     </button>
@@ -378,7 +378,7 @@
                         </div>
                         <button
                           class="btn btn-primary submit-btn"
-                          [disabled]="!OtpVerificationFrm.valid"
+                          [disabled]="!OtpVerificationFrm.valid  || Otoploder == true"
                         >
                           Submit
                         </button>

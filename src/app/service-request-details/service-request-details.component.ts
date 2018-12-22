@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ServiceRequestDetailsComponent implements OnInit {
 
   constructor() { }
-
+  dispString="";
   ngOnInit() {
   }
 
