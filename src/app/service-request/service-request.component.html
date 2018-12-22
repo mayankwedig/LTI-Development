@@ -6,132 +6,138 @@
     <div class="billing-sec complaints-page">
       <div class="row margin_top20">
         <div class="col-sm-12">
-                <div class="service-box" *ngIf="showTrackingNo == true">
-                  <div class="panel-body" >
-                    <div class="title">
-                        service registration
-                      </div>
-                      <div class="req-success-msg">
-                        Thank You For Registering Your Request.
-                      </div>
-                      <div class="req-number">
-                        Your request no. is:   <span>{{trackingNo}}</span>
-                      </div>
-                      <div class="team-contact">
-                        Our Team Will Contact You Shortly.
-                      </div>
-                      <div class="text-center padding_top50">Page will be redirect automatically after 30 second.</div>
-                    </div>
+          <div class="service-box" *ngIf="showTrackingNo == true">
+            <div class="panel-body">
+              <div class="title">service registration</div>
+              <div class="req-success-msg">
+                Thank You For Registering Your Request.
+              </div>
+              <div class="req-number">
+                Your request no. is: <span>{{ trackingNo }}</span>
+              </div>
+              <div class="team-contact">Our Team Will Contact You Shortly.</div>
+              <div class="text-center padding_top50">
+                Page will be redirect automatically after 30 second.
+              </div>
             </div>
-            
-          <div class="panel-body" *ngIf="hideServiceRequestDetailsFrm == true && showTrackingNo == false">
+          </div>
+
+          <div
+            class="panel-body"
+            *ngIf="
+              hideServiceRequestDetailsFrm == true && showTrackingNo == false
+            "
+          >
             <div class="row">
-              <div class="col-sm-6 col-sm-offset-3 profile-right-content padding_top50">
+              <div
+                class="col-sm-6 col-sm-offset-3 profile-right-content padding_top50"
+              >
                 <form
                   class="form top-label-form"
                   [formGroup]="selectServiceRequestFrm"
                   (ngSubmit)="submitSelectServiceRequestFrm()"
                 >
                   <div class="row">
-                      <div class="col-xs-12">
-                        <div class="form-group">
-                          <label>Account Number*</label>
-                          <select
-                            required
-                            *ngIf="!userAccountsLoder && userAccounts.length > 0"
-                            formControlName="accountNumber"
-                            name="accountNumber"
-                            (change)="
-                              showAccountDetails(
-                                selectServiceRequestFrm.value.accountNumber
-                              )
-                            "
-                            class="form-control"
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>Account Number*</label>
+                        <select
+                          required
+                          *ngIf="!userAccountsLoder && userAccounts.length > 0"
+                          formControlName="accountNumber"
+                          name="accountNumber"
+                          (change)="
+                            showAccountDetails(
+                              selectServiceRequestFrm.value.accountNumber
+                            )
+                          "
+                          class="form-control"
+                        >
+                          <option value="" selected
+                            >Select Account Number</option
                           >
-                            <option value="" selected
-                              >Select Account Number</option
-                            >
-                            <option
-                              value="{{user.account_number}}"
-                              *ngFor="let user of userAccounts"
-                              >{{ user.account_number }}</option
-                            >
-                          </select>
-                          <div *ngIf="userAccountsLoder">Loding...</div>
-                          <div
-                            *ngIf="
-                              fSelectRequ.accountNumber.touched &&
-                              fSelectRequ.accountNumber.invalid
-                            "
+                          <option
+                            value="{{ user.account_number }}"
+                            *ngFor="let user of userAccounts"
+                            >{{ user.account_number }}</option
                           >
-                            <span
-                              class="error-msg"
-                              *ngIf="fSelectRequ.accountNumber.errors?.required"
-                              >Account Number is required.</span
-                            >
-                          </div>
+                        </select>
+                        <div *ngIf="userAccountsLoder">Loding...</div>
+                        <div
+                          *ngIf="
+                            fSelectRequ.accountNumber.touched &&
+                            fSelectRequ.accountNumber.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="fSelectRequ.accountNumber.errors?.required"
+                            >Account Number is required.</span
+                          >
                         </div>
                       </div>
-                      <div class="col-xs-12">
-                        <div class="form-group">
-                          <label>Service Request Type*</label>
-                          <select
-                            *ngIf="
-                              !serviceRequestTypeLoder &&
-                              serviceRequestTypes.length > 0
-                            "
-                            required
-                            formControlName="serviceRequestType"
-                            name="serviceRequestType"
-                            class="form-control"
-                            (change)="
-                              initServiceRequestFrm(
-                                selectServiceRequestFrm.value.serviceRequestType
-                              )
-                            "
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>Service Request Type*</label>
+                        <select
+                          *ngIf="
+                            !serviceRequestTypeLoder &&
+                            serviceRequestTypes.length > 0
+                          "
+                          required
+                          formControlName="serviceRequestType"
+                          name="serviceRequestType"
+                          class="form-control"
+                          (change)="
+                            initServiceRequestFrm(
+                              selectServiceRequestFrm.value.serviceRequestType
+                            )
+                          "
+                        >
+                          <option value="" selected>Select Request Type</option>
+                          <option
+                            value="{{ serReqType.request_type }}"
+                            *ngFor="let serReqType of serviceRequestTypes"
+                            >{{ serReqType.request_type }}</option
                           >
-                            <option value="" selected
-                              >Select Request Type</option
-                            >
-                            <option
-                              value="{{serReqType.request_type}}"
-                              *ngFor="let serReqType of serviceRequestTypes"
-                              >{{ serReqType.request_type }}</option
-                            >
-                          </select>
-                          <div *ngIf="serviceRequestTypeLoder">Loding...</div>
-                          <div
+                        </select>
+                        <div *ngIf="serviceRequestTypeLoder">Loding...</div>
+                        <div
+                          *ngIf="
+                            fSelectRequ.serviceRequestType.touched &&
+                            fSelectRequ.serviceRequestType.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
                             *ngIf="
-                              fSelectRequ.serviceRequestType.touched &&
-                              fSelectRequ.serviceRequestType.invalid
+                              fSelectRequ.serviceRequestType.errors?.required
                             "
+                            >Request Type is required.</span
                           >
-                            <span
-                              class="error-msg"
-                              *ngIf="
-                                fSelectRequ.serviceRequestType.errors?.required
-                              "
-                              >Request Type is required.</span
-                            >
-                          </div>
                         </div>
                       </div>
+                    </div>
 
-                      <button
-                        class="btn btn-primary submit-btn full-btn"
-                        type="submit"
-                        [disabled]="!selectServiceRequestFrm.valid"
-                      >
-                        Next
-                        <i class="fa fa-forward" aria-hidden="true"></i>
-                      </button>
+                    <button
+                      class="btn btn-primary submit-btn full-btn"
+                      type="submit"
+                      [disabled]="!selectServiceRequestFrm.valid"
+                    >
+                      Next <i class="fa fa-forward" aria-hidden="true"></i>
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
           </div>
-          <div class="panel-body" *ngIf="hideServiceRequestDetailsFrm == false && showTrackingNo == false">
-              
+          <div
+            class="panel-body"
+            *ngIf="
+              hideServiceRequestDetailsFrm == false && showTrackingNo == false
+            "
+          >
             <div class="form-holder">
               <form
                 class="top-label-form"
@@ -156,7 +162,7 @@
                       >
                         <option value="" selected>Select Account Number</option>
                         <option
-                          value="{{user.account_number}}"
+                          value="{{ user.account_number }}"
                           *ngFor="let user of userAccounts"
                           >{{ user.account_number }}</option
                         >
@@ -197,7 +203,7 @@
                       >
                         <option value="" selected>Select Request Type</option>
                         <option
-                          value="{{serReqType.request_type}}"
+                          value="{{ serReqType.request_type }}"
                           *ngFor="let serReqType of serviceRequestTypes"
                           >{{ serReqType.request_type }}</option
                         >
@@ -352,7 +358,9 @@
                             >Select Enclosed Identification Document</option
                           >
                           <option
-                            value="{{servReqEnclosedIdentifDoc.enclosed_identification_documents}}"
+                            value="{{
+                              servReqEnclosedIdentifDoc.enclosed_identification_documents
+                            }}"
                             *ngFor="
                               let servReqEnclosedIdentifDoc of servReqEnclosedIdentifDocs
                             "
@@ -418,7 +426,8 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Load Unit <!-- <span class="red">*</span> --></label
+                          >Load Unit
+                          <!-- <span class="red">*</span> --></label
                         >
                         <input
                           type="text"
@@ -536,7 +545,7 @@
                         >
                           <option value="" selected>Select Reason</option>
                           <option
-                            value="{{changeReason.reason}}"
+                            value="{{ changeReason.reason }}"
                             *ngFor="let changeReason of changeReasons"
                             >{{ changeReason.reason }}</option
                           >
@@ -704,7 +713,9 @@
                             >Select Enclosed Identification Document</option
                           >
                           <option
-                            value="{{servReqEnclosedIdentifDoc.enclosed_identification_documents}}"
+                            value="{{
+                              servReqEnclosedIdentifDoc.enclosed_identification_documents
+                            }}"
                             *ngFor="
                               let servReqEnclosedIdentifDoc of servReqEnclosedIdentifDocs
                             "
@@ -801,7 +812,10 @@
                   </div>
                   <button
                     class="btn btn-primary submit-btn"
-                    [disabled]="!requestServicesFrm.valid || submitServiceRequestLoder == true"
+                    [disabled]="
+                      !requestServicesFrm.valid ||
+                      submitServiceRequestLoder == true
+                    "
                   >
                     Submit
                   </button>

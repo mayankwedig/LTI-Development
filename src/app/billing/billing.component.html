@@ -15,16 +15,19 @@
             class="fl-table tb-header"
             *ngIf="isbillingDataFound == true && billingDataLoder == false"
           >
-            <thead>
+          <thead>
               <tr>
-                <th width="12%">Meter Reading Date</th>
-                <th width="8%">Reading</th>
-                <th width="10%">Consumption</th>
-                <th width="8%">Number of Days</th>
-                <th width="10%">Total Bill Amount</th>
-                <th width="12%">Due Date</th>
-                <th width="10%">Bill Paid</th>
-                <th width="10%">Receipt Number</th>
+                <th width="11%">Meter Reading Date</th>
+                <th width="11%">Reading <br/> 
+                  <span style="font-size:11px;">(In KWH)</span></th>
+                <th width="11%">Consumption <br/>
+                  <span style="font-size:11px;">(In KWH)</span></th>
+                <th width="11%">Number of Days</th>
+                <th width="10%">Total Bill Amount <br/><i class="fa fa-inr" aria-hidden="true"></i></th>
+                <th width="6%">Due Date</th>
+                <th width="10%">Bill Paid  <br/>
+                  <i class="fa fa-inr" aria-hidden="true"></i></th>
+                <th width="10%">Receipt No.</th>
                 <th width="10%">Payment Date</th>
                 <th width="10%">Download</th>
               </tr>
@@ -34,25 +37,25 @@
             class="fl-table tb-body"
             *ngIf="isbillingDataFound == true && billingDataLoder == false"
           >
-            <tbody>
+          <tbody>
               <tr *ngFor="let billing of billingData">
-                <td width="12%">
+                <td width="11%">
                   {{ billing.meter_reading_date | date: "dd/MM/yyyy" }}
                 </td>
-                <td width="8%">{{ billing.meter_reading }} KW</td>
-                <td width="10%">{{ billing.consumption_units }} KW</td>
-                <td width="8%">{{ billing.numberOfDays }}</td>
+                <td width="11%">{{ billing.meter_reading }}</td>
+                <td width="11%">{{ billing.consumption_units }}</td>
+                <td width="11%">{{ billing.numberOfDays }}</td>
                 <td width="10%">
-                  <i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{
+                  &nbsp;{{
                     billing.bill_amount
                   }}
                 </td>
-                <td width="12%">{{ billing.due_date | date: "dd/MM/yyyy" }}</td>
+                <td width="6%">
+                  {{ billing.due_date | date: "dd/MM/yyyy" }}
+                </td>
                 <td width="10%">
-                  <span *ngIf="billing.bill_paid != ''">{{
-                    billing.bill_paid
-                  }}</span
-                  ><span *ngIf="billing.bill_paid == ''">---</span>
+                  <span *ngIf="billing.bill_paid != ''">{{billing.bill_paid}}</span>
+                      <span *ngIf="billing.bill_paid == ''">---</span>
                 </td>
                 <td width="10%">
                   <span *ngIf="billing.receipt_no != ''">{{
@@ -69,11 +72,11 @@
                 <td width="10%">
                   <a
                     class="pdf-btn action-sm-btn"
-                   
+
                     data-toggle="tooltip"
                     data-placement="top"
                     (click)="downloadPDFfile(billing.billUrl)"
-                      title="Download Bill PDF" style="cursor: pointer"
+                    title="Download Bill PDF" style="cursor: pointer"
                     ><i class="fa fa-file-pdf-o" aria-hidden="true"></i
                   ></a>
                 </td>

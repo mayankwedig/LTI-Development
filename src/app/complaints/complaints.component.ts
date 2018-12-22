@@ -34,7 +34,10 @@ export class ComplaintsComponent implements OnInit {
   complaintCaseTypeLoder: boolean = false;
   complaintBillRelatedReasonLoder:boolean=false;
   billingDataLoder:boolean = false;
-  isbillingDataFound:boolean=false
+  isbillingDataFound:boolean=false;
+
+  showTrackingNo=false;
+  trackingNo="";
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -244,7 +247,18 @@ export class ComplaintsComponent implements OnInit {
   }
   
   submitComplaintFrm() {
-      const complaintsFrmData = this.complaintsFrm.value;
+    console.log(this.complaintsFrm.status == "INVALID");
+    
+
+      this.complaintsFrm.controls['comments'].markAsTouched();
+      var resultArray = Object.keys(this.complaintsFrm.controls).map(function(personNamedIndex){
+        let person = personNamedIndex/* this.complaintsFrm.controls[personNamedIndex].markAsTouched(); */
+        // do something with person
+        return person;
+    });
+    console.log(resultArray);
+      if(this.complaintsFrm.status != "INVALID"){
+          /* const complaintsFrmData = this.complaintsFrm.value;
       this.submitComplaingLoder = true;
       this.complaints.addComplaint(complaintsFrmData).subscribe(
         (response: any) => {
@@ -254,8 +268,16 @@ export class ComplaintsComponent implements OnInit {
             if (res.authCode == "200" && res.status == true) {
               res["msg"]="Your complaint has been registered successfully, We've sent a notification E-mail along with tracking number.";
               this.toastr.success(res.msg, "Success!");
+              this.showTrackingNo=true;
+              this.trackingNo=res.data_params;
+              setTimeout(()=>{  
+                this.showTrackingNo=false;
+                this.trackingNo=res.data_params;
+              },30000);
             } else {
               this.toastr.error(res.msg, "Failed!");
+              this.showTrackingNo=false;
+              this.trackingNo="";
             }
           }
         },
@@ -266,6 +288,10 @@ export class ComplaintsComponent implements OnInit {
             throw error;
           }
         }
-      );
+      ); */
+      }else{
+        this.toastr.error("Please fill all required fields", "Failed!");
+      }
+    
   }
 }
