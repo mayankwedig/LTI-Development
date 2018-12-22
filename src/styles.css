@@ -124,3 +124,16 @@ router-outlet ~ * {
     background: #0571d7;
     color: #fff;
 }
+.fieldLoding{
+    position: relative;
+    top: -10px;
+    left: 145px;
+    color: #0571d7;
+
+}
+.fieldLodingServiceReq{
+    position: relative;
+    top: 16px;
+    left: 108px;
+    color: #0571d7;
+}

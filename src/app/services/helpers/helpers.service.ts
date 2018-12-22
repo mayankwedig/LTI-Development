@@ -1,16 +1,34 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl
+} from "@angular/forms";
 
 @Injectable()
 export class HelpersService {
-
-  constructor() { }
+  constructor(private fb: FormBuilder) {}
+// Marking form fileds as touched.
+  markAsTouched(fg: FormGroup) {
+    var resultArray = Object.keys(fg.controls).map(function(keys) {
+      let person = keys;
+      return person;
+    });
+    if (resultArray.length > 0) {
+      resultArray.forEach(element => {
+        fg.controls[element].markAsTouched();
+      });
+    }
+    return fg;
+  }
   // Some helper Functions
-  setHeaderData(contentType='application/json'){
+  setHeaderData(contentType = "application/json") {
     let headerData = new HttpHeaders();
-    headerData= headerData.append('Content-Type', contentType)
-    headerData= headerData.append('Access-Control-Allow-Origin','token')
-    headerData= headerData.append('token', this.getLocalStoragData("token"));
+    headerData = headerData.append("Content-Type", contentType);
+    headerData = headerData.append("Access-Control-Allow-Origin", "token");
+    headerData = headerData.append("token", this.getLocalStoragData("token"));
     return headerData;
   }
   getArray(length, callBack) {
@@ -49,16 +67,16 @@ export class HelpersService {
       resolve(mon);
     });
   }
-  getLocalStoragData(value:string){
-    var val=value||"";
-    return val != "" ? localStorage.getItem(val):val;
+  getLocalStoragData(value: string) {
+    var val = value || "";
+    return val != "" ? localStorage.getItem(val) : val;
   }
-  setLocalStoragData(name:string,value:string){
-    localStorage.setItem(name,value);
-  /*   var val=value||"";
+  setLocalStoragData(name: string, value: string) {
+    localStorage.setItem(name, value);
+    /*   var val=value||"";
     return val != "" ? localStorage.getItem(val):val; */
   }
-  clearLocalStorateData(sessionName:string){
+  clearLocalStorateData(sessionName: string) {
     localStorage.removeItem(sessionName);
   }
 }

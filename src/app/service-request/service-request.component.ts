@@ -15,23 +15,23 @@ import { AppError } from "./../common/app-error";
 })
 export class ServiceRequestComponent implements OnInit {
   requestServicesFrm: FormGroup;
-  selectServiceRequestFrm:FormGroup;
+  selectServiceRequestFrm: FormGroup;
   selectedRequestType: any = "";
   accountNumber = "";
   dispString: any = "";
 
   userAccounts: any = [];
-  serviceRequestTypes:any = [];
-  servReqEnclosedIdentifDocs:any=[];
-  changeReasons:any=[];
+  serviceRequestTypes: any = [];
+  servReqEnclosedIdentifDocs: any = [];
+  changeReasons: any = [];
 
-  submitServiceRequestLoder:boolean=false;
-  ChangeReasonsLoder:any= false;
+  submitServiceRequestLoder: boolean = false;
+  ChangeReasonsLoder: any = false;
   userAccountsLoder: boolean = false;
-  serviceRequestTypeLoder :boolean = false;
-  accountDetailsLoder:boolean= true;
-  servReqEnclosedIdentifDocLoder:boolean=false;
-  
+  serviceRequestTypeLoder: boolean = false;
+  accountDetailsLoder: boolean = true;
+  servReqEnclosedIdentifDocLoder: boolean = false;
+
   accountDetails: any = "";
   name: any = "";
   installationAddress: any = "";
@@ -40,8 +40,8 @@ export class ServiceRequestComponent implements OnInit {
   mobileNumber: any = "";
   emailId: any = "";
   comments: any = "";
-  showTrackingNo=false;
-  hideServiceRequestDetailsFrm=true;
+  showTrackingNo = false;
+  hideServiceRequestDetailsFrm = true;
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -52,12 +52,12 @@ export class ServiceRequestComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.hideServiceRequestDetailsFrm=true;
+    this.hideServiceRequestDetailsFrm = true;
     this.getServReqEnclosedIdentifDoc();
     this.getServiceRequestType();
     this.getChangeReasons();
     this.getUserAccounts();
-    
+
     if (this.helpers.getLocalStoragData("accountToken") != null) {
       let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
       let accountTokenInfo = accountToken.split(":");
@@ -69,7 +69,6 @@ export class ServiceRequestComponent implements OnInit {
       this.dispString =
         "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
       //this.initServiceRequestFrm(this.selectedRequestType); // init form
-      
     }
     this.initSelectServiceRequestFrm(this.selectedRequestType);
   }
@@ -79,18 +78,26 @@ export class ServiceRequestComponent implements OnInit {
   get fSelectRequ() {
     return this.selectServiceRequestFrm.controls;
   }
-  initSelectServiceRequestFrm(selectedCaseType){
+  initSelectServiceRequestFrm(selectedCaseType) {
     var fields = {
       accountNumber: [this.accountNumber, [Validators.required]],
-      serviceRequestType: [selectedCaseType, [Validators.required]]}
-      this.selectServiceRequestFrm = this.fb.group(fields);
-      this.showAccountDetails(this.accountNumber);
+      serviceRequestType: [selectedCaseType, [Validators.required]]
+    };
+    this.selectServiceRequestFrm = this.fb.group(fields);
+    this.showAccountDetails(this.accountNumber);
   }
-  submitSelectServiceRequestFrm(){
-    this.accountNumber=this.selectServiceRequestFrm.value.accountNumber;
-    this.selectedRequestType=this.selectServiceRequestFrm.value.serviceRequestType;
-    this.hideServiceRequestDetailsFrm=false;
-    this.initServiceRequestFrm(this.selectedRequestType);
+  submitSelectServiceRequestFrm() {
+    this.selectServiceRequestFrm = this.helpers.markAsTouched(
+      this.selectServiceRequestFrm
+    );
+    if (this.selectServiceRequestFrm.status != "INVALID") {
+      this.accountNumber = this.selectServiceRequestFrm.value.accountNumber;
+      this.selectedRequestType = this.selectServiceRequestFrm.value.serviceRequestType;
+      this.hideServiceRequestDetailsFrm = false;
+      this.initServiceRequestFrm(this.selectedRequestType);
+    } else {
+      this.toastr.warning("Please fill all required fields", "Failed!");
+    }
   }
   initServiceRequestFrm(selectedCaseType) {
     var fields = {
@@ -178,8 +185,8 @@ export class ServiceRequestComponent implements OnInit {
       }
     });
   }
-  
-  getServReqEnclosedIdentifDoc(){
+
+  getServReqEnclosedIdentifDoc() {
     this.servReqEnclosedIdentifDocLoder = true;
     this.SerivceRequest.getServReqEnclosedIdentifDoc().subscribe(
       (response: any) => {
@@ -203,8 +210,8 @@ export class ServiceRequestComponent implements OnInit {
       }
     );
   }
- 
-  getChangeReasons(){
+
+  getChangeReasons() {
     this.ChangeReasonsLoder = true;
     this.SerivceRequest.getChangeReasons().subscribe(
       (response: any) => {
@@ -253,43 +260,51 @@ export class ServiceRequestComponent implements OnInit {
     );
   }
 
-  trackingNo:any="";
+  trackingNo: any = "";
   submitServiceRequestFrm() {
-    this.trackingNo="";
-    const requestServicesFrmData = this.requestServicesFrm.value;
-    if(this.requestServicesFrm.value.serviceRequestType== "Load Change Request"){
-      requestServicesFrmData["loadUnit"]="KW";
-    }
-    this.submitServiceRequestLoder = true;
-    this.SerivceRequest.addServiceRequest(requestServicesFrmData).subscribe(
-      (response: any) => {
-        var res = response;
-        this.submitServiceRequestLoder = false;
-        this.hideServiceRequestDetailsFrm=true;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            res["msg"]="Your service request has been registered successfully, We've sent a notification E-mail along with tracking number."
-            this.toastr.success(res.msg, "Success!");
-            this.showTrackingNo=true;
-            this.trackingNo=res.data_params;
-            setTimeout(()=>{  
-              this.showTrackingNo=false;
-              this.trackingNo=res.data_params;
-            },30000);
-            
+    this.requestServicesFrm = this.helpers.markAsTouched(this.requestServicesFrm);
+    if (this.requestServicesFrm.status != "INVALID") {
+      this.trackingNo = "";
+      const requestServicesFrmData = this.requestServicesFrm.value;
+      if (
+        this.requestServicesFrm.value.serviceRequestType ==
+        "Load Change Request"
+      ) {
+        requestServicesFrmData["loadUnit"] = "KW";
+      }
+      this.submitServiceRequestLoder = true;
+      this.SerivceRequest.addServiceRequest(requestServicesFrmData).subscribe(
+        (response: any) => {
+          var res = response;
+          this.submitServiceRequestLoder = false;
+          this.hideServiceRequestDetailsFrm = true;
+          if (res.authCode) {
+            if (res.authCode == "200" && res.status == true) {
+              res["msg"] =
+                "Your service request has been registered successfully, We've sent a notification E-mail along with tracking number.";
+              this.toastr.success(res.msg, "Success!");
+              this.showTrackingNo = true;
+              this.trackingNo = res.data_params;
+              setTimeout(() => {
+                this.showTrackingNo = false;
+                this.trackingNo = res.data_params;
+              }, 30000);
+            } else {
+              this.toastr.error(res.msg, "Failed!");
+            }
+          }
+        },
+        (error: AppError) => {
+          this.submitServiceRequestLoder = false;
+          this.hideServiceRequestDetailsFrm = true;
+          if (error instanceof BadInput) {
           } else {
-            this.toastr.error(res.msg, "Failed!");
+            throw error;
           }
         }
-      },
-      (error: AppError) => {
-        this.submitServiceRequestLoder = false;
-        this.hideServiceRequestDetailsFrm=true;
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
-}
+      );
+    }else{
+      this.toastr.warning("Please fill all required fields", "Failed!");
+    }
+  }
 }

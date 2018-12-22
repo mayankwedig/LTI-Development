@@ -1,4 +1,4 @@
-import { DashboardService } from './../services/dashboard/dashboard.service';
+import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { AuthService } from "./../services/authService/auth.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { ComplaintsService } from "./../services/complaints/complaints.service";
@@ -21,30 +21,30 @@ export class ComplaintsComponent implements OnInit {
   defautlSelectedCaseType: any = "Meter Related";
   userAccounts = [];
   complaintCaseTypes = [];
-  complaintBillRelatedReasons=[];
-  complaintSupplyProblems=[];
-  complaintSupplyServiceRequests=[];
-  
+  complaintBillRelatedReasons = [];
+  complaintSupplyProblems = [];
+  complaintSupplyServiceRequests = [];
+
   accountNumber = "";
-  billingData="";
-  complaintSupplyProblemLoder:boolean=false;
-  complaintSupplyServiceRequestLoder:boolean=false;
+  billingData = "";
+  complaintSupplyProblemLoder: boolean = false;
+  complaintSupplyServiceRequestLoder: boolean = false;
   userAccountsLoder: boolean = false;
   submitComplaingLoder: boolean = false;
   complaintCaseTypeLoder: boolean = false;
-  complaintBillRelatedReasonLoder:boolean=false;
-  billingDataLoder:boolean = false;
-  isbillingDataFound:boolean=false;
+  complaintBillRelatedReasonLoder: boolean = false;
+  billingDataLoder: boolean = false;
+  isbillingDataFound: boolean = false;
 
-  showTrackingNo=false;
-  trackingNo="";
+  showTrackingNo = false;
+  trackingNo = "";
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
     private toastr: ToastrService,
     private complaints: ComplaintsService,
     private AuthService: AuthService,
-    private DashboardService:DashboardService
+    private DashboardService: DashboardService
   ) {}
 
   ngOnInit() {
@@ -58,7 +58,7 @@ export class ComplaintsComponent implements OnInit {
       this.dispString =
         "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
     }
-   
+
     this.getUserAccounts();
     this.getComplaintCaseType();
     this.getComplaintBillRelatedReason();
@@ -68,31 +68,21 @@ export class ComplaintsComponent implements OnInit {
     this.initComplaintsFrm(this.defautlSelectedCaseType);
   }
   initComplaintsFrm(selectedCaseType) {
-    if (selectedCaseType == "Meter Related") {
-      this.complaintsFrm = this.fb.group({
-        accountNumber: [this.accountNumber, Validators.required],
-        caseType: [selectedCaseType, [Validators.required]],
-        comments: [""]
-      });
-    }
+    var fields={
+      accountNumber: [this.accountNumber, Validators.required],
+      caseType: [selectedCaseType, [Validators.required]],
+      comments: [""]
+    };
     if (selectedCaseType == "Bill Related") {
-      this.complaintsFrm = this.fb.group({
-        accountNumber: [this.accountNumber, Validators.required],
-        caseType: [selectedCaseType, [Validators.required]],
-        billId: ["", Validators.required],
-        reason: ["", Validators.required],
-        comments: ["", Validators.required]
-      });
+
+      fields["billId"]=["", Validators.required];
+      fields["reason"]=["", Validators.required];
     }
     if (selectedCaseType == "Supply Related") {
-      this.complaintsFrm = this.fb.group({
-        accountNumber: [this.accountNumber, Validators.required],
-        caseType: [selectedCaseType, [Validators.required]],
-        serviceRequest: ["", Validators.required],
-        problem: ["", Validators.required],
-        comments: ["", Validators.required]
-      });
+      fields["serviceRequest"]=["", Validators.required];
+      fields["problem"]=["", Validators.required];
     }
+    this.complaintsFrm = this.fb.group(fields);
   }
   getBillingData() {
     this.billingDataLoder = true;
@@ -129,7 +119,6 @@ export class ComplaintsComponent implements OnInit {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.userAccounts = res.data_params;
-            
           } else {
             this.userAccounts = [];
           }
@@ -155,7 +144,7 @@ export class ComplaintsComponent implements OnInit {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.complaintCaseTypes = res.data_params;
-            this.defautlSelectedCaseType=this.complaintCaseTypes[0].case_type;
+            this.defautlSelectedCaseType = this.complaintCaseTypes[0].case_type;
           } else {
             this.complaintCaseTypes = [];
           }
@@ -171,7 +160,7 @@ export class ComplaintsComponent implements OnInit {
       }
     );
   }
-  getComplaintBillRelatedReason(){
+  getComplaintBillRelatedReason() {
     this.complaintBillRelatedReasonLoder = true;
     this.complaints.getComplaintBillRelatedReason().subscribe(
       (response: any) => {
@@ -195,8 +184,8 @@ export class ComplaintsComponent implements OnInit {
       }
     );
   }
-  
-  getComplaintSupplyProblem(){
+
+  getComplaintSupplyProblem() {
     this.complaintSupplyProblemLoder = true;
     this.complaints.getComplaintSupplyProblem().subscribe(
       (response: any) => {
@@ -220,8 +209,8 @@ export class ComplaintsComponent implements OnInit {
       }
     );
   }
-  
-  getComplaintSupplyServiceRequest(){
+
+  getComplaintSupplyServiceRequest() {
     this.complaintSupplyServiceRequestLoder = true;
     this.complaints.getComplaintSupplyServiceRequest().subscribe(
       (response: any) => {
@@ -245,20 +234,11 @@ export class ComplaintsComponent implements OnInit {
       }
     );
   }
-  
-  submitComplaintFrm() {
-    console.log(this.complaintsFrm.status == "INVALID");
-    
 
-      this.complaintsFrm.controls['comments'].markAsTouched();
-      var resultArray = Object.keys(this.complaintsFrm.controls).map(function(personNamedIndex){
-        let person = personNamedIndex/* this.complaintsFrm.controls[personNamedIndex].markAsTouched(); */
-        // do something with person
-        return person;
-    });
-    console.log(resultArray);
-      if(this.complaintsFrm.status != "INVALID"){
-          /* const complaintsFrmData = this.complaintsFrm.value;
+  submitComplaintFrm() {
+    this.complaintsFrm = this.helpers.markAsTouched(this.complaintsFrm);
+    if (this.complaintsFrm.status != "INVALID") { // If form is not invalid
+      const complaintsFrmData = this.complaintsFrm.value;
       this.submitComplaingLoder = true;
       this.complaints.addComplaint(complaintsFrmData).subscribe(
         (response: any) => {
@@ -266,18 +246,19 @@ export class ComplaintsComponent implements OnInit {
           this.submitComplaingLoder = false;
           if (res.authCode) {
             if (res.authCode == "200" && res.status == true) {
-              res["msg"]="Your complaint has been registered successfully, We've sent a notification E-mail along with tracking number.";
+              res["msg"] =
+                "Your complaint has been registered successfully, We've sent a notification E-mail along with tracking number.";
               this.toastr.success(res.msg, "Success!");
-              this.showTrackingNo=true;
-              this.trackingNo=res.data_params;
-              setTimeout(()=>{  
-                this.showTrackingNo=false;
-                this.trackingNo=res.data_params;
-              },30000);
+              this.showTrackingNo = true;
+              this.trackingNo = res.data_params;
+              setTimeout(() => {
+                this.showTrackingNo = false;
+                this.trackingNo = res.data_params;
+              }, 30000);
             } else {
               this.toastr.error(res.msg, "Failed!");
-              this.showTrackingNo=false;
-              this.trackingNo="";
+              this.showTrackingNo = false;
+              this.trackingNo = "";
             }
           }
         },
@@ -288,10 +269,9 @@ export class ComplaintsComponent implements OnInit {
             throw error;
           }
         }
-      ); */
-      }else{
-        this.toastr.error("Please fill all required fields", "Failed!");
-      }
-    
+      );
+    } else {
+      this.toastr.warning("Please fill all required fields", "Failed!");
+    }
   }
 }

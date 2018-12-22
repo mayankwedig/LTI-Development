@@ -62,7 +62,18 @@
                             >{{ user.account_number }}</option
                           >
                         </select>
-                        <div *ngIf="userAccountsLoder">Loding...</div>
+                        <select
+                        required
+                        *ngIf="!userAccountsLoder && userAccounts.length == 0"
+                        formControlName="accountNumber"
+                        name="accountNumber"
+                        class="form-control"
+                      >
+                        <option value="" selected
+                          >Select Account Number</option
+                        >
+                      </select>
+                        <div *ngIf="userAccountsLoder" class="fieldLoding" class="fieldLoding" >Loding...</div>
                         <div
                           *ngIf="
                             fSelectRequ.accountNumber.touched &&
@@ -102,7 +113,19 @@
                             >{{ serReqType.request_type }}</option
                           >
                         </select>
-                        <div *ngIf="serviceRequestTypeLoder">Loding...</div>
+                        <select
+                          *ngIf="
+                            !serviceRequestTypeLoder &&
+                            serviceRequestTypes.length == 0
+                          "
+                          required
+                          formControlName="serviceRequestType"
+                          name="serviceRequestType"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select Request Type</option>
+                        </select>
+                        <div *ngIf="serviceRequestTypeLoder" class="fieldLoding" style="left:168px">Loding...</div>
                         <div
                           *ngIf="
                             fSelectRequ.serviceRequestType.touched &&
@@ -123,7 +146,6 @@
                     <button
                       class="btn btn-primary submit-btn full-btn"
                       type="submit"
-                      [disabled]="!selectServiceRequestFrm.valid"
                     >
                       Next <i class="fa fa-forward" aria-hidden="true"></i>
                     </button>
@@ -134,9 +156,7 @@
           </div>
           <div
             class="panel-body"
-            *ngIf="
-              hideServiceRequestDetailsFrm == false && showTrackingNo == false
-            "
+            *ngIf="hideServiceRequestDetailsFrm == false && showTrackingNo == false"
           >
             <div class="form-holder">
               <form
@@ -167,7 +187,17 @@
                           >{{ user.account_number }}</option
                         >
                       </select>
-                      <div *ngIf="userAccountsLoder">Loding...</div>
+                      <select
+                        required
+                        *ngIf="!userAccountsLoder && userAccounts.length == 0"
+                        formControlName="accountNumber"
+                        name="accountNumber"
+                        class="form-control"
+                      >
+                        <option value="" selected >Select Account Number</option>
+                        
+                      </select>
+                      <div *ngIf="userAccountsLoder" class="fieldLoding" >Loding...</div>
                       <div
                         *ngIf="
                           f.accountNumber.touched && f.accountNumber.invalid
@@ -208,7 +238,20 @@
                           >{{ serReqType.request_type }}</option
                         >
                       </select>
-                      <div *ngIf="serviceRequestTypeLoder">Loding...</div>
+                      <select
+                      *ngIf="
+                        !serviceRequestTypeLoder &&
+                        serviceRequestTypes.length == 0
+                      "
+                      required
+                      formControlName="serviceRequestType"
+                      name="serviceRequestType"
+                      class="form-control"
+                    >
+                      <option value="" selected>Select Request Type</option>
+                     
+                    </select>
+                      <div class="fieldLoding" *ngIf="serviceRequestTypeLoder" style="left: 164px;" >Loding...</div> 
                       <div
                         *ngIf="
                           f.serviceRequestType.touched &&
@@ -346,12 +389,12 @@
                         <select
                           required
                           formControlName="enclosedIdentificationDocument"
-                          name="enclosedIdentificationDocument"
-                          class="form-control"
                           *ngIf="
                             !servReqEnclosedIdentifDocLoder &&
                             servReqEnclosedIdentifDocs.length > 0
                           "
+                          name="enclosedIdentificationDocument"
+                          class="form-control"
                           id="exampleFormControlSelect1"
                         >
                           <option value=""
@@ -369,7 +412,22 @@
                             }}</option
                           >
                         </select>
-                        <div *ngIf="servReqEnclosedIdentifDocLoder">
+                        <select
+                        required
+                        formControlName="enclosedIdentificationDocument"
+                        *ngIf="
+                          !servReqEnclosedIdentifDocLoder &&
+                          servReqEnclosedIdentifDocs.length == 0
+                        "
+                        name="enclosedIdentificationDocument"
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option value=""
+                          >Select Enclosed Identification Document</option
+                        >
+                      </select>
+                        <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
                           Loding...
                         </div>
                         <div
@@ -533,24 +591,15 @@
                         <label for="exampleFormControlSelect1"
                           >Reason<span class="red">*</span></label
                         >
-                        <select
-                          *ngIf="
-                            !ChangeReasonsLoder && changeReasons.length > 0
-                          "
-                          required
-                          formControlName="reason"
-                          name="reason"
-                          class="form-control"
-                          id="exampleFormControlSelect1"
-                        >
-                          <option value="" selected>Select Reason</option>
-                          <option
-                            value="{{ changeReason.reason }}"
-                            *ngFor="let changeReason of changeReasons"
-                            >{{ changeReason.reason }}</option
-                          >
-                        </select>
-                        <div *ngIf="ChangeReasonsLoder">Loding...</div>
+                        <input
+                        required
+                        formControlName="reason"
+                        name="reason"
+                        type="text"
+                        class="form-control"
+                        id="exampleInputEmail1"
+                        placeholder="Enter reason"
+                      />
                         <div *ngIf="f.reason.touched && f.reason.invalid">
                           <span
                             class="error-msg"
@@ -567,27 +616,43 @@
                         <label for="exampleInputEmail1"
                           >Proposed Supply Code<span class="red">*</span></label
                         >
-                        <input
-                          required
-                          formControlName="proposedSupplyCode"
-                          name="proposedSupplyCode"
-                          type="text"
-                          class="form-control"
-                          id="exampleInputEmail1"
-                          placeholder="Enter proposed supply code"
-                        />
-                        <div
-                          *ngIf="
-                            f.proposedSupplyCode.touched &&
-                            f.proposedSupplyCode.invalid
-                          "
+                        <select
+                        *ngIf="
+                          !ChangeReasonsLoder && changeReasons.length > 0
+                        "
+                        formControlName="proposedSupplyCode"
+                        required
+                        name="proposedSupplyCode"
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option value="" selected>Select Proposed Supply Code</option>
+                        <option
+                          value="{{ changeReason.reason }}"
+                          *ngFor="let changeReason of changeReasons"
+                          >{{ changeReason.reason }}</option
                         >
-                          <span
-                            class="error-msg"
-                            *ngIf="f.proposedSupplyCode.errors?.required"
-                            >Proposed Supply Code is required.</span
-                          >
-                        </div>
+                      </select>
+                      <select
+                        *ngIf="
+                          !ChangeReasonsLoder && changeReasons.length == 0
+                        "
+                        formControlName="proposedSupplyCode"
+                        required
+                        name="proposedSupplyCode"
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option value="" selected>Select Proposed Supply Code</option>
+                      </select>
+                      <div *ngIf="ChangeReasonsLoder" class="fieldLodingServiceReq" >Loding...</div>
+                      <div *ngIf="f.proposedSupplyCode.touched && f.proposedSupplyCode.invalid">
+                        <span
+                          class="error-msg"
+                          *ngIf="f.proposedSupplyCode.errors?.required"
+                          >Proposed Supply Code is required.</span
+                        >
+                      </div>
                       </div>
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
@@ -724,7 +789,22 @@
                             }}</option
                           >
                         </select>
-                        <div *ngIf="servReqEnclosedIdentifDocLoder">
+                        <select
+                          required
+                          formControlName="enclosedIdentificationDocument"
+                          name="enclosedIdentificationDocument"
+                          class="form-control"
+                          *ngIf="
+                            !servReqEnclosedIdentifDocLoder &&
+                            servReqEnclosedIdentifDocs.length == 0
+                          "
+                          id="exampleFormControlSelect1"
+                        >
+                          <option value=""
+                            >Select Enclosed Identification Document</option
+                          >
+                        </select>
+                        <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
                           Loding...
                         </div>
                         <div
@@ -812,9 +892,7 @@
                   </div>
                   <button
                     class="btn btn-primary submit-btn"
-                    [disabled]="
-                      !requestServicesFrm.valid ||
-                      submitServiceRequestLoder == true
+                    [disabled]="submitServiceRequestLoder == true
                     "
                   >
                     Submit
