@@ -107,15 +107,43 @@
           </li>
         </ul>
       </li>
+
       <li
+      class="m-dropdown mm-dropdown"
         id="li6"
-        [ngClass]="{ openDropdown: currentUrl == '/complaints' }"
+        [ngClass]="{
+          openDropdown:
+            currentUrl == '/complaints' ||
+            currentUrl == '/view-all-complaints' || currentUrl == '/service-request-details'
+            
+        }"
         (click)="removeCss($event)"
       >
-        <a class="" routerLink="/complaints">
+        <a href="javascript:void(0);">
           <div class="menu-icons i-complaints"></div>
           <span class="mm-text" id="6">Complaints</span>
         </a>
+        <ul class="mmc-dropdown-delay animated fadeInLeft">
+
+            <li>
+                <a
+                  tabindex="-1"
+                  routerLink="/view-all-complaints"
+                  routerLinkActive="DropdownActive"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  ><span class="mm-text">View complaint</span></a
+                >
+              </li>
+              <li>
+                <a
+                  tabindex="-1"
+                  routerLink="/complaints"
+                  routerLinkActive="DropdownActive"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  ><span class="mm-text">Register Complaint</span></a
+                >
+              </li>
+            </ul>
       </li>
       <li
         id="li7"
