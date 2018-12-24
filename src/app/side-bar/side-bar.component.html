@@ -75,11 +75,8 @@
         class="m-dropdown mm-dropdown"
         id="li5"
         [ngClass]="{
-          openDropdown:
-            currentUrl == '/service-request' ||
-            currentUrl == '/view-all-service-request' || currentUrl == '/service-request-details'
-            
-        }"
+                openDropdown: currentUrl == '/service-request' || currentUrl == '/view-all-service-request' || currentUrl == '/service-request-details'            
+          }"
         (click)="removeCss($event)"
       >
         <a href="javascript:void(0);">
@@ -114,7 +111,7 @@
         [ngClass]="{
           openDropdown:
             currentUrl == '/complaints' ||
-            currentUrl == '/view-all-complaints' || currentUrl == '/service-request-details'
+            currentUrl == '/view-all-complaints'
             
         }"
         (click)="removeCss($event)"

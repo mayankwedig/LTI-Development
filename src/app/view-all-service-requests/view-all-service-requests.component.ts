@@ -3,6 +3,7 @@ import { ViewAllServiceRequestsService } from './../services/view-all-service-re
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { Component, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
+
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 
@@ -51,8 +52,9 @@ export class ViewAllServiceRequestsComponent implements OnInit {
       }
     );
   }
- 
-  redirectoDashBoard(accountId, userId) {
-    this.router.navigate(["/dashboard"]); 
+  
+  redirectoRequestDetails(requestRecId) {
+    var serviceRequestId=btoa(requestRecId);
+    this.router.navigate(['/service-request-details'],{ queryParams: { serviceReq: serviceRequestId } });
   }
 }

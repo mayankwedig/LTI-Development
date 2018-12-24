@@ -64,6 +64,10 @@ export class SideBarComponent implements OnInit {
     var init = [];
     this.winRef.nativeWindow.PixelAdmin.start(init);
     this.currentUrl = this.router.url;
+    if(this.currentUrl.indexOf("serviceReq") !== -1){
+      this.currentUrl="/service-request-details";
+    }
+    this.currentUrl.indexOf("serviceReq");
     this.userData = this.auth.getCurrentUser();
     this.getAccount("");
   }

@@ -4,59 +4,69 @@ import { AuthService } from "./../services/authService/auth.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
+import { ActivatedRoute, Router } from "@angular/router";
+
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 
 @Component({
-  selector: 'app-service-request-details',
-  templateUrl: './service-request-details.component.html',
-  styleUrls: ['./service-request-details.component.css']
+  selector: "app-service-request-details",
+  templateUrl: "./service-request-details.component.html",
+  styleUrls: ["./service-request-details.component.css"]
 })
 export class ServiceRequestDetailsComponent implements OnInit {
- 
   accountNumber = "";
   dispString: any = "";
 
-  
+  serviceTokenNumber: any = "";
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
     private toastr: ToastrService,
     private AuthService: AuthService,
     private SerivceRequest: SerivceRequestService,
-    private DashboardService: DashboardService
+    private DashboardService: DashboardService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     
-    
-    
-
-    if (this.helpers.getLocalStoragData("accountToken") != null) {
-      let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
-      let accountTokenInfo = accountToken.split(":");
-      this.accountNumber = accountTokenInfo[1]; //account Number
-      this.dispString = "Account No. ( " + this.accountNumber + " ) ";
-      //this.showAccountDetails(this.accountNumber); // if account no is already selected then show details of selected account.
+    if (this.route.snapshot.queryParams.serviceReq != null) {
+      if (this.helpers.getLocalStoragData("accountToken") != null) {
+        let accountToken = atob(
+          this.helpers.getLocalStoragData("accountToken")
+        ); // fetch account number.
+        let accountTokenInfo = accountToken.split(":");
+        this.accountNumber = accountTokenInfo[1]; //account Number
+        this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+        //this.showAccountDetails(this.accountNumber); // if account no is already selected then show details of selected account.
+      } else {
+        this.AuthService.getCurrentUser();
+        this.dispString =
+          "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
+        //this.initServiceRequestFrm(this.selectedRequestType); // init form
+      }
+      this.serviceTokenNumber=this.route.snapshot.queryParams.serviceReq;
+      this.showAccountDetails(this.accountNumber);
+      this.getServiceRequestDetails();
     } else {
-      this.AuthService.getCurrentUser();
-      this.dispString =
-        "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
-      //this.initServiceRequestFrm(this.selectedRequestType); // init form
+      this.router.navigate(["/view-all-service-request"]);
     }
-    this.showAccountDetails(this.accountNumber);
-  }
-  
-  accountDetailsLoder:boolean=false;
-  accountDetails={
-    "name":"",
-    "installationAddress":"",
-    "currentLoad":"",
-    "supplyType":"",
-    "mobileNumber":"",
-    "emailId":""
 
+    
+  }
+
+  accountDetailsLoder: boolean = false;
+  accountDetails = {
+    name: "",
+    installationAddress: "",
+    currentLoad: "",
+    supplyType: "",
+    mobileNumber: "",
+    emailId: ""
   };
   showAccountDetails(accNo) {
     this.accountDetailsLoder = true;
@@ -71,16 +81,44 @@ export class ServiceRequestDetailsComponent implements OnInit {
         this.supplyType = this.accountDetails.supply_type;
         this.mobileNumber = this.accountDetails.mobile;
         this.emailId = this.accountDetails.email; */
-       this.accountDetails["name"]=accountDetails.account_name;
-       this.accountDetails["installationAddress"]=accountDetails.premise_address;
-       this.accountDetails["currentLoad"]=accountDetails.current_load;
-       this.accountDetails["supplyType"]=accountDetails.supplyType;
-       this.accountDetails["mobileNumber"]=accountDetails.mobile;
-       this.accountDetails["emailId"]=accountDetails.email;
+        this.accountDetails["name"] = accountDetails.account_name;
+        this.accountDetails["installationAddress"] = accountDetails.premise_address;
+        this.accountDetails["currentLoad"] = accountDetails.current_load;
+        this.accountDetails["supplyType"] = accountDetails.supplyType;
+        this.accountDetails["mobileNumber"] = accountDetails.mobile;
+        this.accountDetails["emailId"] = accountDetails.email;
       } else {
-       
       }
     });
   }
+  getSerReqDtLoder: boolean = false;
+  serviceRequestDetails = [];
+  getServiceRequestDetails() {
+    var requestData = {
+      accountToken: btoa(this.accountNumber),
+      serviceToken: this.serviceTokenNumber
+    };
+    this.getSerReqDtLoder = true;
+    this.SerivceRequest.getServiceRequestDetails(requestData).subscribe(
+      (response: any) => {
+        var res = response;
+        this.getSerReqDtLoder = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.serviceRequestDetails = res.data_params;
+          } else {
+            this.serviceRequestDetails = [];
+          }
+        }
+      },
+      (error: AppError) => {
+        this.getSerReqDtLoder = false;
+        this.serviceRequestDetails = [];
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
 }
-
