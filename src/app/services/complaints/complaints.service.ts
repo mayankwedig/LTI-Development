@@ -13,6 +13,7 @@ export class ComplaintsService {
   addComplaintAPI="users/addComplaint";
   getComplaintSupplyProblemAPI="users/getComplaintSupplyProblem";
   getComplaintSupplyServiceRequestAPI="users/getComplaintSupplyServiceRequest";
+  getComplaintListAPI="users/complaintList";
   constructor(
     private userAccounts: ManageaccountService,
     private data: DataService,
@@ -34,7 +35,12 @@ export class ComplaintsService {
    getComplaintSupplyServiceRequest(){
     return this.data.getAll(this.getComplaintSupplyServiceRequestAPI,"",this.helper.setHeaderData(),"POST");
    }
-
+   getComplaintData(accountNumber){
+    var currentUser=this.auth.getCurrentUser();
+    var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
+    return this.data.getAll(this.getComplaintListAPI, body,this.helper.setHeaderData());
+   }
+   
    addComplaint(updSubsData){
     var currentUser=this.auth.getCurrentUser();
     updSubsData["profileToken"]=btoa(currentUser.userId);

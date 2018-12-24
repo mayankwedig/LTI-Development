@@ -68,6 +68,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { SingupOtpVarificationComponent } from './singup-otp-varification/singup-otp-varification.component';
 import { ViewAllServiceRequestsComponent } from './view-all-service-requests/view-all-service-requests.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
+import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
     SingupOtpVarificationComponent,
     ViewAllServiceRequestsComponent,
     ServiceRequestDetailsComponent,
+    ViewAllComplaintsComponent,
     
   ],
   imports: [
@@ -154,6 +156,7 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
       {path:'singup-otp-varification',component:SingupOtpVarificationComponent}, 
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
+      {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent},
       
       
