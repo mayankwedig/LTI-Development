@@ -4612,7 +4612,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     float: left;
 }
 .billing-sec .table-wrapper .fl-table.tb-header {
-    width: 99.6%;
+    width: 100%;
 }
 .billing-sec .table-wrapper .fl-table.tb-body {
     height: 218px;
@@ -4632,11 +4632,11 @@ table.table.consumer-basic-table tbody tr th:last-child {
     background-color: rgb(7, 113, 215);  
     height: 10px;
 }
-.billing-sec .table-wrapper .fl-table thead, 
+/*.billing-sec .table-wrapper .fl-table thead, 
 .billing-sec .table-wrapper .fl-table tbody{
     display: table;
     width: 100%;
-}
+}*/
 .manage-account.billing-sec .table-wrapper .fl-table {
     height: inherit;
 }
@@ -5063,3 +5063,23 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .service-request .panel-body {
     box-shadow: 1px 1px 10px 0 rgba(0,0,0,.12);
 }
+
+/**24-12-2018**/
+/*.billing-sec .table-wrapper.scroll-table .fl-table thead,
+.billing-sec .table-wrapper.scroll-table .fl-table tbody {
+    display: block;
+}*/
+/*.billing-sec .table-wrapper.scroll-table .fl-table tbody {
+    height: 218px;
+    overflow-y: auto;
+}
+.billing-sec .table-wrapper.scroll-table .fl-table tbody::-webkit-scrollbar {  
+    width: 6px;  
+}  
+.billing-sec .table-wrapper.scroll-table .fl-table tbody::-webkit-scrollbar-track {
+    background-color: rgba(7, 113, 215, 0.5);  
+}
+.billing-sec .table-wrapper.scroll-table .fl-table tbody::-webkit-scrollbar-thumb {  
+    background-color: rgb(7, 113, 215);  
+    height: 10px;
+}*/

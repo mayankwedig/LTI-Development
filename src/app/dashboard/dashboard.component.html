@@ -483,12 +483,7 @@
                   <th width="10%">Download</th>
                 </tr>
               </thead>
-            </table>
-            <table
-              class="fl-table tb-body"
-              *ngIf="isbillingDataFound == true && billingDataLoder == false"
-            >
-              <tbody>
+              <tbody class="" *ngIf="isbillingDataFound == true && billingDataLoder == false">
                 <tr *ngFor="let billing of billingData">
                   <td width="11%">
                     {{ billing.meter_reading_date | date: "dd/MM/yyyy" }}

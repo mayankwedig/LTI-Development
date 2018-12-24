@@ -26,7 +26,13 @@
 								        		<td>{{serviceRequest.tracking_number}}</td>
 								        		<td>{{serviceRequest.created | date: "d/M/yyyy" }}</td>
 								        		<td>{{serviceRequest.service_request_type}}</td>
-								        		<td><span class="status-box status-open">Open</span></td>
+														<td>
+															<span class="status-box status-open" *ngIf="serviceRequest.status == 0"> Open </span>
+															<span class="status-box status-pending" *ngIf="serviceRequest.status == 2">Pending</span>
+															<span class="status-box status-resolved" *ngIf="serviceRequest.status == 1">Resolved</span>
+															<span class="status-box status-rejected" *ngIf="serviceRequest.status == 3">Rejected</span>
+															<span class="status-box status-closed" *ngIf="serviceRequest.status == 4">Closed</span>
+														</td>
 								        		<td>
 								        			<a class="blue-btn edit-btn action-sm-btn" routerLink="/service-request-details" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
 								        				<i class="fa fa-eye"></i>
