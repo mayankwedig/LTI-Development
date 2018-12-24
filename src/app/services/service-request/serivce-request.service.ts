@@ -11,6 +11,7 @@ export class SerivceRequestService {
   getServReqEnclosedIdentifDocAPI="users/getServiceRequestEnclosedIdentificationDocument";
   getChangeReasonsAPI="users/getServiceRequestChangeReason";
   addServiceRequestAPI="users/addServiceRequest";
+  serviceRequestDetailsAPI="users/serviceRequestDetails";
   constructor(
     private userAccounts: ManageaccountService,
     private data: DataService,
@@ -33,5 +34,10 @@ export class SerivceRequestService {
     var currentUser=this.auth.getCurrentUser();
     updSubsData["profileToken"]=btoa(currentUser.userId);
     return this.data.getAll(this.addServiceRequestAPI,updSubsData,this.helper.setHeaderData(),"POST"); 
+  }
+  getServiceRequestDetails(updSubsData){
+    var currentUser=this.auth.getCurrentUser();
+    updSubsData["profileToken"]=btoa(currentUser.userId);
+    return this.data.getAll(this.serviceRequestDetailsAPI,updSubsData,this.helper.setHeaderData(),"POST"); 
   }
 }
