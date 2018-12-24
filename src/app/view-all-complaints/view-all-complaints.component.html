@@ -1,3 +1,64 @@
-<p>
-  view-all-complaints works!
-</p>
+<div id="main-wrapper">
+  <app-header></app-header>
+  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  <div id="content-wrapper">
+    <div class="page-heading">
+      COMPLAINT REQUEST
+    </div>
+    <div class="complaints">
+      <div class="row margin_top20">
+        <div class="col-sm-12">
+          <div class="panel-body">
+            <div class="">
+              <div class="table-wrapper">
+                <table class="fl-table complaints-table" *ngIf="complaintsDataLoader == false && isComplaintsDataFound == true">
+                  <thead>
+                    <tr>
+                      <th>Tracking ID</th>
+                      <th>Request Date</th>
+                      <th>Complaint Request Type</th>
+                      <th>Status</th>
+                      <th>View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let serviceRequest of complaintsData">
+                      <td>{{serviceRequest.tracking_number}}</td>
+                      <td>{{serviceRequest.created | date: "d/M/yyyy" }}</td>
+                      <td>{{serviceRequest.complaint_type}}</td>
+                      <td>
+                        <span class="status-box status-open" *ngIf="serviceRequest.status == 0"> Open </span>
+                        <span class="status-box status-pending" *ngIf="serviceRequest.status == 2">Pending</span>
+                        <span class="status-box status-resolved" *ngIf="serviceRequest.status == 1">Resolved</span>
+                        <span class="status-box status-rejected" *ngIf="serviceRequest.status == 3">Rejected</span>
+                        <span class="status-box status-closed" *ngIf="serviceRequest.status == 4">Closed</span>
+                      </td>
+                      <td>
+                        <a class="blue-btn edit-btn action-sm-btn" routerLink="/service-request-details" data-toggle="tooltip"
+                          data-placement="top" title="" data-original-title="View">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="loderHeight accountData" [ngClass]="{ 'loderHeight accountData': serviceRequestLoder == true }"
+                  *ngIf="serviceRequestLoder == true">
+                  <div class="spinner box-spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+                </div>
+                <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="complaintsDataLoader == false && isComplaintsDataFound == false">
+                  <img src="/assets/images/no_data.png" />Currently there is no service request registered. <br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="main-menu-bg"></div>
+  </div>
+  <app-footer></app-footer>

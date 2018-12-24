@@ -1,4 +1,3 @@
-
 import { AuthService } from "./../services/authService/auth.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { ComplaintsService } from "./../services/complaints/complaints.service";
@@ -46,7 +45,6 @@ export class ViewAllComplaintsComponent implements OnInit {
 
   }
   getComplaintData() {
-    alert("ABCD")
     this.complaintsDataLoader = true;
     this.complaints.getComplaintData(this.accountNumber).subscribe(
       (response: any) => {
