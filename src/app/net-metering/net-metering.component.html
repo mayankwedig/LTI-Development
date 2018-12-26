@@ -5,6 +5,23 @@
     <div class="page-heading ">Net Metering</div>
     <div class="billing-sec margin_top20">
       <div class="panel ">
+        <div class="row">
+            <div class="col-sm-3 pull-right margin_top20" style="margin-bottom:20px; margin-right:10px;">
+          <div class="input-group"> <!--  (focus)="dp.clearDate()" -->
+              <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
+                     [(ngModel)]="selectedDateCalc"  [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
+      
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" (click)="dp.clearDate()">
+                      <i class="glyphicon glyphicon-remove"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+              </span>
+          </div>
+          </div>
+        </div>
           <div class="page-heading text-center margin_top20" style="color:#635b5b;">Net Metering as on {{currentMonth}} {{selectedDay}}, {{currentYear}}</div>
         <div
           class="panel-body"

@@ -4,6 +4,7 @@ import { ComplaintsService } from "./../services/complaints/complaints.service";
 import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-view-all-complaints',
@@ -22,7 +23,7 @@ export class ViewAllComplaintsComponent implements OnInit {
   constructor(
 
     private helpers: HelpersService,
-
+    private router: Router,
     private complaints: ComplaintsService,
     private AuthService: AuthService,
 
@@ -70,6 +71,11 @@ export class ViewAllComplaintsComponent implements OnInit {
         }
       }
     );
+  }
+
+  redirectoRequestDetails(requestRecId) {
+    var serviceRequestId=btoa(requestRecId);
+    this.router.navigate(['/complaint-request-details'],{ queryParams: { serviceReq: serviceRequestId } });
   }
 
 

@@ -71,6 +71,9 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
 import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
 import { ComplaintRequestDetailsComponent } from './complaint-request-details/complaint-request-details.component';
 
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+
+
 @NgModule({
   declarations: [
     
@@ -159,6 +162,7 @@ import { ComplaintRequestDetailsComponent } from './complaint-request-details/co
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
+      {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent},
       
       
@@ -170,7 +174,8 @@ import { ComplaintRequestDetailsComponent } from './complaint-request-details/co
     }),
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    NgxMyDatePickerModule.forRoot()
   ],
   providers: [
     WindowRefService,
