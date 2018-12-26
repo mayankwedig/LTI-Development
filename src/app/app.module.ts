@@ -69,6 +69,7 @@ import { SingupOtpVarificationComponent } from './singup-otp-varification/singup
 import { ViewAllServiceRequestsComponent } from './view-all-service-requests/view-all-service-requests.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
+import { ComplaintRequestDetailsComponent } from './complaint-request-details/complaint-request-details.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-compl
     ViewAllServiceRequestsComponent,
     ServiceRequestDetailsComponent,
     ViewAllComplaintsComponent,
+    ComplaintRequestDetailsComponent,
     
   ],
   imports: [
