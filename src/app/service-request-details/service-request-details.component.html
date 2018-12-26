@@ -96,6 +96,106 @@
                   </div>
                 </div>
               </div>
+              <div
+                  class="service-dtl-block"
+                  *ngIf="
+                    requestServicesFrm.value.serviceRequestType ==
+                    'Permanent Disconnection Request'
+                  "
+                >
+                  <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1"
+                          >Enclosed Identification Document<span class="red"
+                            >*</span
+                          ></label
+                        >
+                        <select
+                          required
+                          formControlName="enclosedIdentificationDocument"
+                          *ngIf="
+                            !servReqEnclosedIdentifDocLoder &&
+                            servReqEnclosedIdentifDocs.length > 0
+                          "
+                          name="enclosedIdentificationDocument"
+                          class="form-control"
+                          id="exampleFormControlSelect1"
+                        >
+                          <option value=""
+                            >Select Enclosed Identification Document</option
+                          >
+                          <option
+                            value="{{
+                              servReqEnclosedIdentifDoc.enclosed_identification_documents
+                            }}"
+                            *ngFor="
+                              let servReqEnclosedIdentifDoc of servReqEnclosedIdentifDocs
+                            "
+                            >{{
+                              servReqEnclosedIdentifDoc.enclosed_identification_documents
+                            }}</option
+                          >
+                        </select>
+                        <select
+                        required
+                        formControlName="enclosedIdentificationDocument"
+                        *ngIf="
+                          !servReqEnclosedIdentifDocLoder &&
+                          servReqEnclosedIdentifDocs.length == 0
+                        "
+                        name="enclosedIdentificationDocument"
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option value=""
+                          >Select Enclosed Identification Document</option
+                        >
+                      </select>
+                        <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
+                          Loding...
+                        </div>
+                        <div
+                          *ngIf="
+                            f.enclosedIdentificationDocument.touched &&
+                            f.enclosedIdentificationDocument.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="
+                              f.enclosedIdentificationDocument.errors?.required
+                            "
+                            >Enclosed Identification Document is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1"
+                          >Comments<span class="red">*</span></label
+                        >
+                        <textarea
+                          required
+                          formControlName="comments"
+                          name="comments"
+                          class="form-control"
+                          id="exampleFormControlTextarea1"
+                          rows="6"
+                          placeholder="Add comments here"
+                        ></textarea>
+                        <div *ngIf="f.comments.touched && f.comments.invalid">
+                          <span
+                            class="error-msg"
+                            *ngIf="f.comments.errors?.required"
+                            >Comments is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
