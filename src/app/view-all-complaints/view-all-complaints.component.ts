@@ -75,7 +75,7 @@ export class ViewAllComplaintsComponent implements OnInit {
 
   redirectoRequestDetails(requestRecId) {
     var serviceRequestId=btoa(requestRecId);
-    this.router.navigate(['/complaint-request-details'],{ queryParams: { serviceReq: serviceRequestId } });
+    this.router.navigate(['/complaint-request-details'],{ queryParams: {  complaintReq: serviceRequestId } });
   }
 
 

@@ -3,7 +3,7 @@
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
     <div class="page-heading">
-      COMPLAINT REQUEST
+      COMPLAINTS
     </div>
     <div class="complaints">
       <div class="row margin_top20">
@@ -21,8 +21,8 @@
                       <th>View</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr *ngFor="let serviceRequest of complaintsData">
+                  <tbody *ngIf="complaintsDataLoader == false && isComplaintsDataFound == true">
+                    <tr *ngFor="let serviceRequest of complaintsData"  >
                       <td>{{serviceRequest.tracking_number}}</td>
                       <td>{{serviceRequest.created | date: "d/M/yyyy" }}</td>
                       <td>{{serviceRequest.complaint_type}}</td>

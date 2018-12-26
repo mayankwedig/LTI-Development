@@ -69,8 +69,9 @@ export class SideBarComponent implements OnInit {
     this.currentUrl = this.router.url;
     if(this.currentUrl.indexOf("serviceReq") !== -1){
       this.currentUrl="/service-request-details";
+    }else if(this.currentUrl.indexOf("complaintReq") !== -1){
+      this.currentUrl="/complaint-request-details";
     }
-    this.currentUrl.indexOf("serviceReq");
     this.userData = this.auth.getCurrentUser();
     this.getAccount("");
   }

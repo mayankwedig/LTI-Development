@@ -33,7 +33,7 @@ export class ComplaintRequestDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.route.snapshot.queryParams.serviceReq != null) {
+    if (this.route.snapshot.queryParams.complaintReq != null) {
       if (this.helpers.getLocalStoragData("accountToken") != null) {
         let accountToken = atob(
           this.helpers.getLocalStoragData("accountToken")
@@ -48,7 +48,7 @@ export class ComplaintRequestDetailsComponent implements OnInit {
           "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
         //this.initServiceRequestFrm(this.selectedRequestType); // init form
       }
-      this.serviceTokenNumber=this.route.snapshot.queryParams.serviceReq;
+      this.serviceTokenNumber=this.route.snapshot.queryParams.complaintReq;
       this.showAccountDetails(this.accountNumber);
       this.getComplaintRequestDetails();
     } else {

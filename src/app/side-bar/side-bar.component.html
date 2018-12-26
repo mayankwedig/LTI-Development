@@ -82,8 +82,8 @@
       <li class="m-dropdown mm-dropdown" id="li6" [ngClass]="{
           openDropdown:
             currentUrl == '/complaints' ||
-            currentUrl == '/view-all-complaints'
-            
+            currentUrl == '/view-all-complaints' || 
+            currentUrl == '/complaint-request-details'
         }"
         (click)="removeCss($event)">
         <a href="javascript:void(0);">
@@ -94,7 +94,7 @@
 
           <li>
             <a tabindex="-1" routerLink="/view-all-complaints" routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"><span class="mm-text">View complaint</span></a>
+              [routerLinkActiveOptions]="{ exact: true }"><span class="mm-text">View complaints</span></a>
           </li>
           <li>
             <a tabindex="-1" routerLink="/complaints" routerLinkActive="DropdownActive" [routerLinkActiveOptions]="{ exact: true }"><span
