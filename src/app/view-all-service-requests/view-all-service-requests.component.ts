@@ -41,6 +41,7 @@ export class ViewAllServiceRequestsComponent implements OnInit {
       this.accountNumber,
       (result: any) => {
         this.serviceRequestLoder = false;
+        console.log(result);
         if (result.authCode == "200" && result.data_params.length > 0) {
           this.ServiceRequests = result.data_params;
           this.ServiceRequestFound = true;

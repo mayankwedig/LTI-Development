@@ -188,15 +188,16 @@
            </li>
            <li class="dropdown" *ngIf="auth.isLoggedIn()">
             <a  class="dropdown-toggle user-menu" data-toggle="dropdown">
-              <img src="../assets/images/1.jpg" alt="">
+              <span class="user-profile-img" *ngIf="profile_image != ''"><img src="{{profile_image}}" alt="" width="100"></span> 
+              <!-- <span *ngIf="profile_image == ''">{{userName}}</span> --> 
               <div class="name-email">
-                <span>{{userName}}</span>
-                <div class="email-acccount">{{userEmail}} <i class="fa fa-angle-down"></i></div>
+                <span>{{userName}} <i class="fa fa-angle-down"></i></span>
+                <!-- <div class="email-acccount">{{userEmail}} <i class="fa fa-angle-down"></i></div> -->
               </div>
             </a>
             <ul class="dropdown-menu user-info-menu">
-              <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ><span class="label label-warning pull-right" style="cursor: pointer;">New</span>Profile</a></li>
-              <li><a ><span class="badge badge-primary pull-right">New</span>Account</a></li>
+              <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Profile</a></li>
+              <li><a routerLink="/manageaccount" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Account</a></li>
               <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
               <li class="divider"></li>
               <li><a href="JavaScript:Void(#);" (click)="logout()"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
