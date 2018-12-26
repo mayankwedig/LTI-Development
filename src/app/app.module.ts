@@ -69,7 +69,14 @@ import { SingupOtpVarificationComponent } from './singup-otp-varification/singup
 import { ViewAllServiceRequestsComponent } from './view-all-service-requests/view-all-service-requests.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
+
 import { DashboarRedirectComponent } from './dashboar-redirect/dashboar-redirect.component';
+
+import { ComplaintRequestDetailsComponent } from './complaint-request-details/complaint-request-details.component';
+
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+
+
 
 /* import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -124,6 +131,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ServiceRequestDetailsComponent,
     ViewAllComplaintsComponent,
     DashboarRedirectComponent,
+    ComplaintRequestDetailsComponent,
     
   ],
   imports: [
@@ -166,7 +174,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
+
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
+      {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
+
       {path:'**',component: PageNotFoundComponent},
       
       
@@ -180,6 +191,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     NgxLoadingModule.forRoot({}),
     /* PerfectScrollbarModule */
+    NgxMyDatePickerModule.forRoot()
   ],
   providers: [
     WindowRefService,

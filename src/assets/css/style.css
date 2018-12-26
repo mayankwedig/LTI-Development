@@ -5150,3 +5150,14 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .table-fixed thead tr th {
     float: left;
 }
+
+.table-fixed tbody::-webkit-scrollbar {  
+    width: 6px;  
+}  
+.table-fixed tbody::-webkit-scrollbar-track {
+    background-color: rgba(7, 113, 215, 0.5);  
+}
+.table-fixed tbody::-webkit-scrollbar-thumb {  
+    background-color: rgb(7, 113, 215);  
+    height: 10px;
+}

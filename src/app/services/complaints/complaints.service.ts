@@ -14,6 +14,7 @@ export class ComplaintsService {
   getComplaintSupplyProblemAPI="users/getComplaintSupplyProblem";
   getComplaintSupplyServiceRequestAPI="users/getComplaintSupplyServiceRequest";
   getComplaintListAPI="users/complaintList";
+  complaintRequestDetailsAPI="users/complaintDetails";  
   constructor(
     private userAccounts: ManageaccountService,
     private data: DataService,
@@ -45,5 +46,11 @@ export class ComplaintsService {
     var currentUser=this.auth.getCurrentUser();
     updSubsData["profileToken"]=btoa(currentUser.userId);
     return this.data.getAll(this.addComplaintAPI,updSubsData,this.helper.setHeaderData(),"POST"); 
+  }
+
+  getComplaintRequestDetails(updSubsData){
+    var currentUser=this.auth.getCurrentUser();
+    updSubsData["profileToken"]=btoa(currentUser.userId);
+    return this.data.getAll(this.complaintRequestDetailsAPI,updSubsData,this.helper.setHeaderData(),"POST"); 
   }
 }

@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "../services/data.service";
 import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
 
+import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
 require("../../../node_modules/moment/min/moment.min.js");
 declare var moment: any;
 declare var $: any;
@@ -20,9 +21,18 @@ export class NetMeteringComponent implements OnInit {
     private dashboard: DashboardService,
     private helpers: HelpersService,
     private router: Router,
-    private NetMetering :NetMeteringService
-  ) {}
- 
+    private NetMetering: NetMeteringService
+  ) { }
+
+
+
+
+
+
+
+  onDateChanged(event: IMyDateModel): void {
+    // date selected
+  }
   currentYear: any = "";
   currentMonth: any = "";
 
@@ -44,27 +54,47 @@ export class NetMeteringComponent implements OnInit {
   chartType = "line";
   chartToShow = "hourly";
   dispString = "";
-  selectedDate="";
-  selectedDay="";
-  selected_year="";
+  selectedDate = "";
+  selectedDay = "";
+  selected_year = "";
+  selectedDateCalc: any = "";
+  myOptions: INgxMyDpOptions={
+    dateFormat: 'dd/mm/yyyy',
+    disableSince: {year: parseInt(moment().format("YYYY")), month: parseInt(moment().format("MM")), day: parseInt(moment().format("DD"))},
+    showTodayBtn:false
+  };
   ngOnInit() {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
     this.dispString = "Account No. ( " + this.accountNumber + " ) ";
-    
+
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMMM");
-    this.selectedDate=moment(moment().subtract(1, 'days').toString()).format("YYYY-MM-DD")
-    this.selectedDay=moment(moment().subtract(1, 'days').toString()).format("DD");
-    this.selected_year=this.currentYear;
-     this.initChartConfig();
+    this.selectedDate = moment(moment().subtract(1, 'days').toString()).format("YYYY-MM-DD")
+    this.selectedDay = moment(moment().subtract(1, 'days').toString()).format("DD");
+    this.selected_year = this.currentYear;
+    this.setCalanderData();
+
+    // Initialized to specific date (09.10.2018)
+    /* selectedData: any = { date: { year: parseInt(this.selected_year), month: , day: 9 } }; */
+    this.initChartConfig();
     this.genrateGraph();
   }
-  
- 
 
-  
+  setCalanderData() {
+    this.selectedDateCalc = {
+      date: {
+        year: parseInt(this.selected_year),
+        month: moment().format("MM"),
+        day: moment().subtract(1, 'days').format("DD")
+      }
+      /* disableDates: [{begin: {year: parseInt(this.selected_year), month: parseInt(moment().format("MM")), day: parseInt(moment().format("DD"))}, end: {year: 3000, month: 11, day: 20} */
+    }
+    
+  }
+
+
   genrateGraph() {
     this.netMeteringChartData = [
       {
@@ -77,9 +107,9 @@ export class NetMeteringComponent implements OnInit {
     this.netMeteringlabels = [];
     let body = {};
     let gData = [];
-    let generationData=[];
-     if (this.chartToShow == "hourly") {
-      body ={"account_number":this.accountNumber,"reference_dateTime":this.selectedDate,"displayMode":"NMBH"}
+    let generationData = [];
+    if (this.chartToShow == "hourly") {
+      body = { "account_number": this.accountNumber, "reference_dateTime": this.selectedDate, "displayMode": "NMBH" }
       this.NetMetering.getNetMeteringGraphData(body, (result: any) => {
         this.loder = false;
 
@@ -88,11 +118,11 @@ export class NetMeteringComponent implements OnInit {
           this.isDataFound = true;
           if (data.length > 0) {
             var dataSort = data.slice(0);
-            dataSort.sort(function(a, b) {
+            dataSort.sort(function (a, b) {
               return a._id - b._id;
             });
 
-            dataSort.map(function(item) {
+            dataSort.map(function (item) {
               gData.push(item.consumption);
               generationData.push(item.generation);
             });
@@ -145,10 +175,10 @@ export class NetMeteringComponent implements OnInit {
           this.isDataFound = false;
         }
       });
-    } 
+    }
   }
- 
-  
+
+
   initChartConfig() {
     this.netMeteringChartOptions = {
       responsive: true
@@ -177,6 +207,6 @@ export class NetMeteringComponent implements OnInit {
       }
     ];
     this.netMeteringlabels = [];
-    
+
   }
 }

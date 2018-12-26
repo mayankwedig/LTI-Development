@@ -9,7 +9,6 @@ import { AppError } from "./../common/app-error";
 
 
 import { Router } from "@angular/router";
-import Swal from "sweetalert2";
 @Component({
   selector: 'app-view-all-service-requests',
   templateUrl: './view-all-service-requests.component.html',

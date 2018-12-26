@@ -34,7 +34,9 @@
                         <span class="status-box status-closed" *ngIf="serviceRequest.status == 4">Closed</span>
                       </td>
                       <td>
-                        <a class="blue-btn edit-btn action-sm-btn" routerLink="/service-request-details" data-toggle="tooltip"
+                          
+              
+                        <a class="blue-btn edit-btn action-sm-btn" style="cursor: pointer;" (click)="redirectoRequestDetails(serviceRequest.id)" data-toggle="tooltip"
                           data-placement="top" title="" data-original-title="View">
                           <i class="fa fa-eye"></i>
                         </a>
@@ -42,8 +44,8 @@
                     </tr>
                   </tbody>
                 </table>
-                <div class="loderHeight accountData" [ngClass]="{ 'loderHeight accountData': serviceRequestLoder == true }"
-                  *ngIf="serviceRequestLoder == true">
+                <div class="loderHeight accountData" [ngClass]="{ 'loderHeight accountData': complaintsDataLoader == true }"
+                  *ngIf="complaintsDataLoader == true">
                   <div class="spinner box-spinner">
                     <div class="bounce1"></div>
                     <div class="bounce2"></div>
