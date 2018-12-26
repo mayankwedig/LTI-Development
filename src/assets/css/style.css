@@ -769,10 +769,11 @@ body {
 }
 #main-navbar .name-email{
 	display: block;
-	padding-left: 50px;
+	padding-left: 55px;
 	line-height: initial !important;
 	font-size: 13px;
 	color: #000;
+    line-height: 40px !important;
 }
 #main-navbar .name-email .email-acccount{
 	font-size: 12px;
@@ -5083,3 +5084,18 @@ table.table.consumer-basic-table tbody tr th:last-child {
     background-color: rgb(7, 113, 215);  
     height: 10px;
 }*/
+
+.user-menu .user-profile-img {
+    vertical-align: top;
+    line-height: normal;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    float: left;
+    margin-left: 0;
+    overflow: hidden;
+}
+.user-menu .user-profile-img img {
+    width: 44px;
+    height: 44px;
+}

@@ -131,6 +131,32 @@ export class AuthGuard implements CanActivate {
         });
         return false;
       }
+    }else if (state.url == "/view-all-service-request") {
+      if (this.auth.isLoggedIn()) {
+        // check if user is logged in.
+        let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
+        if (accountToken == null) {
+          this.toastr.warning("Please select account number", ""); // prompt msg
+          // if not
+          this.router.navigate(["/manageaccount"]); // redirect user to manage account
+          return true;
+        } else {
+          let accountTokenInfo = atob(accountToken).split(":");
+          if (accountTokenInfo[0] != this.auth.getCurrentUser().userId) {
+            // check if account token not belongs to current user
+            this.toastr.warning("Please select account number", ""); // prompt msg
+            this.router.navigate(["/manageaccount"]); // redirect user to manage account
+            return true;
+          } else {
+            return true; // if yes
+          }
+        }
+      } else {
+        this.router.navigate(["/login"], {
+          queryParams: { returnUrl: state.url }
+        });
+        return false;
+      }
     } else if (state.url == "/billing") {
       // for other page pages
       if (this.auth.isLoggedIn()) {

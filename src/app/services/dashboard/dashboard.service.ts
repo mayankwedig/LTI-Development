@@ -72,6 +72,7 @@ export class DashboardService {
   }
   getServiceRequest(accountNumber,callback){
     var currentUser=this.auth.getCurrentUser();
+    console.log(accountNumber);
     var accountData={"accountToken": btoa(accountNumber),"profileToken":btoa(currentUser.userId)};
      this.DataService.getAll(this.serviceRequestListAPI, accountData,this.helpers.setHeaderData()).subscribe(result => {
        callback(result);

@@ -487,7 +487,8 @@ export class ConsumptionComponent implements OnInit {
     // CHART COLOR.
     this.consumptionmonthcolors = [
       {
-        backgroundColor: "rgba(81, 164, 242, 1)"
+        backgroundColor: "rgba(81, 164, 242, 1)",
+        borderColor: "#0571d7"
       }
     ];
 
@@ -511,5 +512,5 @@ export class ConsumptionComponent implements OnInit {
       }
     ];
   }
-  
+
 }
