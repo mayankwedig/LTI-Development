@@ -28,6 +28,10 @@ declare var moment: any;
 //   name: 'dateFormat'
 // })
 export class DashboardComponent implements OnInit {
+  /* scrollConfig={
+    suppressScrollY:false,
+    suppressScrollX:true 
+  } */
   constructor(
     private auth: AuthService,
     private DashboardService: DashboardService,

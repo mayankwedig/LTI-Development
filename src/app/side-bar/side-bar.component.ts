@@ -29,6 +29,7 @@ export class SideBarComponent implements OnInit {
   accountLoder:boolean=false;
   accountData="";
   isAccountDataFound:boolean=false;
+  accountNumber="";
   constructor(
     private helpers: HelpersService,
     private dataservice: DataService,
@@ -52,7 +53,9 @@ export class SideBarComponent implements OnInit {
     if (accountToken != null) {
       // If not null
       let accountTokenInfo = atob(accountToken).split(":"); // split token
+      
       if (accountTokenInfo[0] == this.auth.getCurrentUser().userId) {
+          this.accountNumber=accountTokenInfo[1];
         // if token of current user
         if (parseInt(accountTokenInfo[2]) == 0) {
           this.is_net_metering = false;
@@ -135,7 +138,14 @@ export class SideBarComponent implements OnInit {
           btoa(userId + ":" + accountId + ":" + 0)
         ); // set new account access token.
       }
-      this.router.navigate(["/dashboard"]); //redirect user to dashboard.
+      this.currentUrl = this.router.url;
+      if(this.currentUrl.indexOf("dashboard") !== -1){
+       /*  this.currentUrl="/redirect-dashboard"; */
+        this.router.navigate(["/redirect-dashboard"]);
+      }else{
+        this.router.navigate(["/dashboard"]); //redirect user to dashboard.
+      }
+      
     });
   }
 }

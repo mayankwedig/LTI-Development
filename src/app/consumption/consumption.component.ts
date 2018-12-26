@@ -38,7 +38,7 @@ export class ConsumptionComponent implements OnInit {
   consumptiondaychartData: any = "";
   consumptiondaycolors: any = "";
   selectedDay: any = "";
-
+  consumptionHourlycolors:any="";
   accountNumber: any = "";
   month_name: any = "";
   loder: any = false;
@@ -68,7 +68,6 @@ export class ConsumptionComponent implements OnInit {
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMM");
     this.initChartConfig();
-    console.log(this.isMonthSelected);
     if (this.isMonthSelected) {
       this.showchart(this.chartToShow);
     } else {
@@ -488,7 +487,17 @@ export class ConsumptionComponent implements OnInit {
     this.consumptionmonthcolors = [
       {
         backgroundColor: "rgba(81, 164, 242, 1)",
-        borderColor: "#0571d7"
+      
+      }
+    ];
+    this.consumptionHourlycolors =  [
+      {
+        backgroundColor: "#3482cc",
+        borderColor: "#0571d7",
+      },
+      { // dark grey
+        backgroundColor: '#3cbaaa',
+        borderColor: "#3cba9f",
       }
     ];
 
@@ -514,3 +523,221 @@ export class ConsumptionComponent implements OnInit {
   }
 
 }
+/* [
+  {
+      "_id": "5c1e367cf7678b08a0e0787a",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 0,
+      "consumption": 0.769
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07863",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 1,
+      "consumption": 1.809
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07864",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 2,
+      "consumption": 1.531
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07865",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 3,
+      "consumption": 1.299
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07866",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 4,
+      "consumption": 1.252
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07867",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 5,
+      "consumption": 1.233
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07868",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 6,
+      "consumption": 0.98
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07869",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 7,
+      "consumption": 0.763
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e0786a",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 8,
+      "consumption": 0.541
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e0786b",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 9,
+      "consumption": 0.658
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e0786c",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 10,
+      "consumption": 0.283
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e0786d",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 11,
+      "consumption": 0.431
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e0786e",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 12,
+      "consumption": 0.439
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e0786f",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 13,
+      "consumption": 0.56
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07870",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 14,
+      "consumption": 0.716
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07871",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 15,
+      "consumption": 1.205
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07872",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 16,
+      "consumption": 1.4
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07873",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 17,
+      "consumption": 1.119
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07874",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 18,
+      "consumption": 0.944
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07875",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 19,
+      "consumption": 1.062
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07876",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 20,
+      "consumption": 0.561
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07877",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 21,
+      "consumption": 0.512
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07878",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 22,
+      "consumption": 0.705
+  },
+  {
+      "_id": "5c1e367cf7678b08a0e07879",
+      "accountNumber": "6924333333",
+      "month": 10,
+      "year": 2018,
+      "day": 16,
+      "hour": 23,
+      "consumption": 0.61
+  }
+]; */

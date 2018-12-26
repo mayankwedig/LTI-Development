@@ -41,14 +41,17 @@ export class HeaderComponent implements OnInit,AfterViewInit {
         } */
       }
     }else{
-      if(this.auth.getCurrentUser().username != null){
-        this.userName=this.auth.getCurrentUser().username;
+      if(this.auth.isLoggedIn()){
+        if(this.auth.getCurrentUser().username != null){
+          this.userName=this.auth.getCurrentUser().username;
+        }
       }
+      
      
     }
   }
   loderLoder=false;
-  profile_image:any="";
+  profile_image:any="../assets/images/placeholder-man-grid-240x268.png";
   getProfile() {
     this.loderLoder = true;
     this.profile.getProfile(this.accountNumber).subscribe(

@@ -69,7 +69,15 @@ import { SingupOtpVarificationComponent } from './singup-otp-varification/singup
 import { ViewAllServiceRequestsComponent } from './view-all-service-requests/view-all-service-requests.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
+import { DashboarRedirectComponent } from './dashboar-redirect/dashboar-redirect.component';
 
+/* import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX:true 
+}; */
 @NgModule({
   declarations: [
     
@@ -115,6 +123,7 @@ import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-compl
     ViewAllServiceRequestsComponent,
     ServiceRequestDetailsComponent,
     ViewAllComplaintsComponent,
+    DashboarRedirectComponent,
     
   ],
   imports: [
@@ -157,6 +166,7 @@ import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-compl
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
+      {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent},
       
       
@@ -168,7 +178,8 @@ import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-compl
     }),
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    /* PerfectScrollbarModule */
   ],
   providers: [
     WindowRefService,
@@ -184,7 +195,11 @@ import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-compl
     ComplaintsService,
     SerivceRequestService,
     NetMeteringService,
-    SignupOtpVerificationService
+    SignupOtpVerificationService/* ,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    } */
   ],
   bootstrap: [AppComponent]
 })

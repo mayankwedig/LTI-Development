@@ -463,8 +463,9 @@
           </div>
           <div class="table-wrapper no-padding">
             <table
-              class="fl-table tb-header"
+              class="fl-table tb-header table-fixed"
               *ngIf="isbillingDataFound == true && billingDataLoder == false"
+             
             >
               <thead>
                 <tr>
@@ -483,7 +484,8 @@
                   <th width="10%">Download</th>
                 </tr>
               </thead>
-              <tbody class="" *ngIf="isbillingDataFound == true && billingDataLoder == false">
+              <!-- <perfect-scrollbar style="max-height: 400px;" [config]="scrollConfig"> -->
+              <tbody class=""  *ngIf="isbillingDataFound == true && billingDataLoder == false">
                 <tr *ngFor="let billing of billingData">
                   <td width="11%">
                     {{ billing.meter_reading_date | date: "dd/MM/yyyy" }}
@@ -528,6 +530,7 @@
                   </td>
                 </tr>
               </tbody>
+           <!--  </perfect-scrollbar> -->
             </table>
 
             <div
