@@ -5,6 +5,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "../services/data.service";
 import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
 
+import { ToastrService } from "ngx-toastr";
+
 import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
 require("../../../node_modules/moment/min/moment.min.js");
 declare var moment: any;
@@ -21,7 +23,8 @@ export class NetMeteringComponent implements OnInit {
     private dashboard: DashboardService,
     private helpers: HelpersService,
     private router: Router,
-    private NetMetering: NetMeteringService
+    private NetMetering: NetMeteringService,
+    private toastr: ToastrService
   ) { }
 
 
@@ -30,9 +33,7 @@ export class NetMeteringComponent implements OnInit {
 
 
 
-  onDateChanged(event: IMyDateModel): void {
-    // date selected
-  }
+  
   currentYear: any = "";
   currentMonth: any = "";
 
@@ -77,7 +78,8 @@ export class NetMeteringComponent implements OnInit {
     this.setCalanderData();
 
     // Initialized to specific date (09.10.2018)
-    /* selectedData: any = { date: { year: parseInt(this.selected_year), month: , day: 9 } }; */
+    /* selectedData: any = { date: { year: parseInt(this.selected_year), month: , day: 9 } }; date: {year: 2018, month: "12", day: "26"}__proto__: Object
+ */
     this.initChartConfig();
     this.genrateGraph();
   }
@@ -91,11 +93,27 @@ export class NetMeteringComponent implements OnInit {
       }
       /* disableDates: [{begin: {year: parseInt(this.selected_year), month: parseInt(moment().format("MM")), day: parseInt(moment().format("DD"))}, end: {year: 3000, month: 11, day: 20} */
     }
-    
+    this.selectedDate=this.selectedDateCalc.date.year+"/"+this.selectedDateCalc.date.month+"/"+this.selectedDateCalc.date.day;
   }
-
-
+  onDateChanged($event){
+    console.log($event);
+    if($event.jsdate != null){
+      this.selectedDate=moment($event.jsdate).format("YYYY/MM/DD");
+      this.genrateGraph();
+    }else{
+      this.toastr.error("Please Select appropriate date!", "failed!");
+    }
+  }
+  dispSelectedYear="";
+  dispSelectedMonth="";
+  dispSelectedDay="";
   genrateGraph() {
+    /* console.log(this.selectedDateCalc); */
+    console.log(this.selectedDate.split("/"));
+    var SelectedDate=this.selectedDate.split("/");
+    this.dispSelectedYear=SelectedDate[0];
+    this.dispSelectedMonth=moment(SelectedDate[1]).format("MMMM");
+    this.dispSelectedDay=SelectedDate[2];
     this.netMeteringChartData = [
       {
         label: "Consumption",

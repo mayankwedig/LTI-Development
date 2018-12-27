@@ -5135,10 +5135,12 @@ table.table.consumer-basic-table tbody tr th:last-child {
     display: block;
     padding: 0;
 }
-.table-fixed td, 
-.table-fixed th {
-    line-height: 50px;
+.table-fixed td {
     height: 50px;
+    padding: 0 !important;
+}
+.table-fixed th {
+    height: 70px;
     padding: 0 !important;
 }
 .table-fixed tbody td {
@@ -5146,9 +5148,20 @@ table.table.consumer-basic-table tbody tr th:last-child {
     border: none;
     border-bottom: 1px solid #f7ecec;
     border-left: 1px solid #f7ecec;
+    line-height: 50px;
+}
+.table-fixed tbody td:last-child {
+    border-right: 1px solid #f7ecec;
 }
 .table-fixed thead tr th {
     float: left;
+}
+.table-fixed thead tr th span.center-pos {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    display: block;
 }
 
 .table-fixed tbody::-webkit-scrollbar {  
