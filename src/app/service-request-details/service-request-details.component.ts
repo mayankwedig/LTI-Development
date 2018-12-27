@@ -75,16 +75,11 @@ export class ServiceRequestDetailsComponent implements OnInit {
       if (result.authCode == "200") {
         this.accountNumber = accNo;
         var accountDetails = result.data_params;
-        /* this.name = this.accountDetails.account_name;
-        this.installationAddress = this.accountDetails.premise_address;
-        this.currentLoad = this.accountDetails.current_load;
-        this.supplyType = this.accountDetails.supply_type;
-        this.mobileNumber = this.accountDetails.mobile;
-        this.emailId = this.accountDetails.email; */
+        console.log(accountDetails);
         this.accountDetails["name"] = accountDetails.account_name;
         this.accountDetails["installationAddress"] = accountDetails.premise_address;
         this.accountDetails["currentLoad"] = accountDetails.current_load;
-        this.accountDetails["supplyType"] = accountDetails.supplyType;
+        this.accountDetails["supplyType"] = accountDetails.supply_type;
         this.accountDetails["mobileNumber"] = accountDetails.mobile;
         this.accountDetails["emailId"] = accountDetails.email;
       } else {
