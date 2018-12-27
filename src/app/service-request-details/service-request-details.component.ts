@@ -27,7 +27,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
     supplyType="";
     mobileNumber="";
     emailId="";
-    
+
   serviceTokenNumber: any = "";
   constructor(
     private fb: FormBuilder,
@@ -89,6 +89,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
         this.emailId = accountDetails.email; 
         
         
+
       } else {
        
       }
