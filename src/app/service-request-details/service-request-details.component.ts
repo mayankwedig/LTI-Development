@@ -20,6 +20,14 @@ export class ServiceRequestDetailsComponent implements OnInit {
   accountNumber = "";
   dispString: any = "";
 
+  accountDetailsLoder: boolean = false;
+    name ="";
+    installationAddress="";
+    currentLoad="";
+    supplyType="";
+    mobileNumber="";
+    emailId="";
+    
   serviceTokenNumber: any = "";
   constructor(
     private fb: FormBuilder,
@@ -59,15 +67,13 @@ export class ServiceRequestDetailsComponent implements OnInit {
     
   }
 
-  accountDetailsLoder: boolean = false;
-  accountDetails = {
-    name: "",
-    installationAddress: "",
-    currentLoad: "",
-    supplyType: "",
-    mobileNumber: "",
-    emailId: ""
-  };
+
+
+ 
+
+
+
+
   showAccountDetails(accNo) {
     this.accountDetailsLoder = true;
     this.DashboardService.getAccountDetails(accNo, (result: any) => {
@@ -75,19 +81,16 @@ export class ServiceRequestDetailsComponent implements OnInit {
       if (result.authCode == "200") {
         this.accountNumber = accNo;
         var accountDetails = result.data_params;
-        /* this.name = this.accountDetails.account_name;
-        this.installationAddress = this.accountDetails.premise_address;
-        this.currentLoad = this.accountDetails.current_load;
-        this.supplyType = this.accountDetails.supply_type;
-        this.mobileNumber = this.accountDetails.mobile;
-        this.emailId = this.accountDetails.email; */
-        this.accountDetails["name"] = accountDetails.account_name;
-        this.accountDetails["installationAddress"] = accountDetails.premise_address;
-        this.accountDetails["currentLoad"] = accountDetails.current_load;
-        this.accountDetails["supplyType"] = accountDetails.supplyType;
-        this.accountDetails["mobileNumber"] = accountDetails.mobile;
-        this.accountDetails["emailId"] = accountDetails.email;
+       this.name = accountDetails.account_name;
+       this.installationAddress = accountDetails.premise_address;
+        this.currentLoad = accountDetails.current_load;
+        this.supplyType = accountDetails.supply_type;
+        this.mobileNumber = accountDetails.mobile;
+        this.emailId = accountDetails.email; 
+        
+        
       } else {
+       
       }
     });
   }
@@ -119,6 +122,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
           throw error;
         }
       }
+      
     );
   }
 }
