@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <div class="page-heading ">Net Metering</div>
+    <div class="page-heading ">TOU</div>
     <div class="billing-sec margin_top20">
       <div class="panel ">
         <div class="row">
@@ -22,7 +22,7 @@
           </div>
           </div>
         </div>
-          <div class="page-heading text-center margin_top20" style="color:#635b5b;">Net Metering as on {{dispSelectedMonth}} {{dispSelectedDay}}, {{dispSelectedYear}}</div>
+          <div class="page-heading text-center margin_top20" style="color:#635b5b;">TOU as on {{dispSelectedMonth}} {{dispSelectedDay}}, {{dispSelectedYear}}</div>
         <div
           class="panel-body"
           [ngClass]="{ consumptionPanalLoader: loder == true }"
