@@ -74,6 +74,7 @@ import { ComplaintRequestDetailsComponent } from './complaint-request-details/co
 
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { TouComponent } from './tou/tou.component';
 @NgModule({
   declarations: [
     
@@ -121,6 +122,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     ViewAllComplaintsComponent,
     DashboarRedirectComponent,
     ComplaintRequestDetailsComponent,
+    TouComponent,
     
   ],
   imports: [
@@ -166,6 +168,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
       {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
+      {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
+
 
       {path:'**',component: PageNotFoundComponent},
       

@@ -1,0 +1,65 @@
+<div id="main-wrapper">
+  <app-header></app-header>
+  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  <div id="content-wrapper">
+    <div class="page-heading ">Net Metering</div>
+    <div class="billing-sec margin_top20">
+      <div class="panel ">
+        <div class="row">
+            <div class="col-sm-3 pull-right margin_top20" style="margin-bottom:20px; margin-right:10px;">
+          <div class="input-group"> <!--  (focus)="dp.clearDate()" -->
+              <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
+                     [(ngModel)]="selectedDateCalc"  [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
+      
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" (click)="dp.clearDate()">
+                      <i class="glyphicon glyphicon-remove"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+              </span>
+          </div>
+          </div>
+        </div>
+          <div class="page-heading text-center margin_top20" style="color:#635b5b;">Net Metering as on {{dispSelectedMonth}} {{dispSelectedDay}}, {{dispSelectedYear}}</div>
+        <div
+          class="panel-body"
+          [ngClass]="{ consumptionPanalLoader: loder == true }"
+        >
+          <div class="graph-container modal-graph-label" *ngIf="loder == false && isDataFound == true">
+            <div class="label-left">Units <span>(KWH)</span></div>
+            <div class="consumption-canvas" *ngIf="chartToShow == 'hourly'">
+              <canvas
+                class=""
+                baseChart
+                [chartType]="chartType"
+                [datasets]="netMeteringChartData"
+                [labels]="netMeteringlabels"
+                [options]="netMeteringChartOptions"
+                [legend]="true"
+                [colors]="netMeteringcolors"
+              >
+              </canvas>
+            </div>
+            <div class="label-bottom" *ngIf="chartToShow == 'hourly'">Hours</div>
+					</div>
+					<div class="rows" *ngIf="loder == true ">
+						<div class="spinner box-spinner">
+							<div class="bounce1"></div>
+							<div class="bounce2"></div>
+							<div class="bounce3"></div>
+						</div>
+					</div>
+					<div  style="margin-top: 2;"
+					class="text-center font-12  field_not_found" *ngIf="isDataFound == false && loder == false">
+							<img src="/assets/images/no_data.png" /> Currently no data found for consumption details. <br />
+					 </div>
+				</div>
+      </div>
+    </div>
+    <div id="main-menu-bg"></div>
+  </div>
+  <app-footer></app-footer>
+</div>
+

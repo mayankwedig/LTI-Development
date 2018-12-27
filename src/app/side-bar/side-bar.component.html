@@ -109,9 +109,16 @@
         </a>
       </li>
       <li id="li8">
-        <a class="">
+        <a class="" routerlink="/Notifications">
           <div class="menu-icons i-notifications"></div>
           <span class="mm-text" id="8">Notifications</span>
+        </a>
+      </li>
+      <li id="li9" [ngClass]="{ openDropdown: currentUrl == '/tou' }" 
+      (click)="removeCss($event)">
+        <a class="" routerLink="/tou">
+          <div class="menu-icons i-consumptions"></div>
+          <span class="mm-text" id="9">TOU</span>
         </a>
       </li>
     </ul>
