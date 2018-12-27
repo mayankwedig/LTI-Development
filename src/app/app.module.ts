@@ -69,11 +69,10 @@ import { SingupOtpVarificationComponent } from './singup-otp-varification/singup
 import { ViewAllServiceRequestsComponent } from './view-all-service-requests/view-all-service-requests.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
-
 import { DashboarRedirectComponent } from './dashboar-redirect/dashboar-redirect.component';
-
 import { ComplaintRequestDetailsComponent } from './complaint-request-details/complaint-request-details.component';
 
+import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 @NgModule({
   declarations: [
@@ -180,7 +179,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxLoadingModule.forRoot({}),
-    NgxMyDatePickerModule.forRoot()
+    NgxMyDatePickerModule.forRoot(),
+    SelectDropDownModule
   ],
   providers: [
     WindowRefService,

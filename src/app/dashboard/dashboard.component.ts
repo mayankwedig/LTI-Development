@@ -41,6 +41,56 @@ export class DashboardComponent implements OnInit {
     private WindowRef: WindowRefService,
     private toastr: ToastrService
   ) {}
+  
+  /*******************Dropdown Configs**********************************/
+  serviceReqDropDownconfig ={
+    displayKey:"description", //if objects array passed which key to be displayed defaults to description
+    search:true, //true/false for the search functionlity defaults to false,
+    height: "200px", //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
+    placeholder:'Select Service Request Tracking ID', // text to be displayed when no item is selected defaults to Select,
+    customComparator: ()=>{}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
+   /*  limitTo: options.length,  */// a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
+    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
+    noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
+    searchPlaceholder:'Search Serivce Request Tracking ID' // label thats displayed in search input
+  };
+
+  complaintReqDropDownconfig ={
+    displayKey:"description", //if objects array passed which key to be displayed defaults to description
+    search:true, //true/false for the search functionlity defaults to false,
+    height: "200px", //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
+    placeholder:'Select Complaint Tracking ID', // text to be displayed when no item is selected defaults to Select,
+    customComparator: ()=>{}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
+   /*  limitTo: options.length,  */// a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
+    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
+    noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
+    searchPlaceholder:'Search Complaint Tracking ID' // label thats displayed in search input
+  };
+
+  selectedComplaintNo:any="";
+  selectedServiceReqNo:any="";
+  showComplaintError=false;
+  redirectoComplaintDetails() {
+    if(this.selectedComplaintNo != ""){
+    var serviceRequestId=btoa(this.selectedComplaintNo);
+    this.router.navigate(['/complaint-request-details'],{ queryParams: {  complaintReq: serviceRequestId } });
+    }else{
+      this.toastr.error("Please Select Complaint ID!", "failed!");
+    }
+  }
+  redirectoRequestDetails() {
+    if(this.selectedServiceReqNo != ''){
+      var serviceRequestId=btoa(this.selectedServiceReqNo);
+    this.router.navigate(['/service-request-details'],{ queryParams: { serviceReq: serviceRequestId } });
+    }else{
+      this.toastr.error("Please Select Service Request ID!", "failed!");
+    }
+    
+  }
+
+/***********************End Dropdown Configs**********************************/
+   
+    
   // static readonly DATE_FMT = 'dd/MMM/yyyy';
   private dateVal: Date = new Date();
   // year
@@ -188,10 +238,13 @@ export class DashboardComponent implements OnInit {
     this.DashboardService.getcomplaints(this.accountNumber, (result: any) => {
       this.complaintsLoder = false;
       if (result.authCode == "200" && result.data_params.length > 0) {
-        this.complaints = result.data_params;
+       /*  this.complaints = result.data_params; */
+        result.data_params.forEach((eleme) => {
+          this.complaints.push(eleme.tracking_number);
+        });
         this.complaintsFound = true;
       } else {
-        this.complaints = "";
+        this.complaints = [];
         this.complaintsFound = false;
       }
     });
@@ -204,7 +257,10 @@ export class DashboardComponent implements OnInit {
       (result: any) => {
         this.serviceRequestLoder = false;
         if (result.authCode == "200" && result.data_params.length > 0) {
-          this.ServiceRequests = result.data_params;
+          result.data_params.forEach((eleme) => {
+            this.ServiceRequests.push(eleme.tracking_number);
+          });
+         /*  this.ServiceRequests = result.data_params; */
           this.ServiceRequestFound = true;
         } else {
           this.ServiceRequests = "";

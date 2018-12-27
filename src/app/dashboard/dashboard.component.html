@@ -596,7 +596,9 @@
                 </div>
                 <div class="row text-center" *ngIf="complaintsFound == true">
                   <div class="col-sm-8 col-sm-offset-2">
-                    <input
+                      <ngx-select-dropdown [config]="complaintReqDropDownconfig" [options]="complaints" 
+                      [(value)]="selectedComplaintNo" [multiple]="false" ></ngx-select-dropdown>
+                    <!-- <input
                       type="text"
                       name=""
                       class="form-control btn btn-default margin_bottom10 dash-input"
@@ -611,8 +613,8 @@
                         value="{{complaint.tracking_number}}"
                         >{{ complaint.tracking_number }}</option
                       >
-                    </select>
-                    <a class="blue-btn" href="#">Track</a>
+                    </select> -->
+                    <a class="blue-btn"  style="margin-top:15px; cursor: pointer;" (click)="redirectoComplaintDetails()" title="Track">Track</a>
                   </div>
                 </div>
                 <!-- Complaint sections Endes here -->
@@ -665,7 +667,9 @@
                   *ngIf="ServiceRequestFound == true"
                 >
                   <div class="col-sm-8 col-sm-offset-2">
-                    <input
+                      <ngx-select-dropdown [config]="serviceReqDropDownconfig" [options]="ServiceRequests" 
+                      [(value)]="selectedServiceReqNo" [multiple]="false" ></ngx-select-dropdown>
+                   <!--  <input
                       type="text"
                       name=""
                       class="form-control btn btn-default margin_bottom10 dash-input"
@@ -683,8 +687,9 @@
                         >{{ ServiceRequest.tracking_number }}</option
                       >
                       <div *ngIf="serviceRequestLoder == true">Loding...</div>
-                    </select>
-                    <a class="blue-btn" href="#">Track</a>
+                    </select> -->
+                  <!--   {{SelectedServiceReq}} -->
+                    <a class="blue-btn" style="margin-top:15px; cursor: pointer;" title="Track" (click)="redirectoRequestDetails()">Track</a>
                   </div>
                 </div>
               </div>

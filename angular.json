@@ -27,7 +27,8 @@
                 "node_modules/ngx-toastr/toastr.css",
                 "node_modules/material-design-icons/iconfont/material-icons.css",
                 "node_modules/sweetalert2/dist/sweetalert2.css",
-                "src/styles-app-loading.scss",
+                "node_modules/ngx-select-dropdown/dist/assets/style.css",
+                "src/styles-app-loading.scss"
               
             ],
             "scripts": [
