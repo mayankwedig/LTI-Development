@@ -22,7 +22,7 @@
                     </tr>
                   </thead>
                   <tbody *ngIf="complaintsDataLoader == false && isComplaintsDataFound == true">
-                    <tr *ngFor="let serviceRequest of complaintsData"  >
+                    <tr *ngFor="let serviceRequest of complaintsData">
                       <td>{{serviceRequest.tracking_number}}</td>
                       <td *ngIf="serviceRequest.created !='0000-00-00 00:00:00'">{{serviceRequest.created | date: "d/M/yyyy" }}</td>
                       <td *ngIf="serviceRequest.created =='0000-00-00 00:00:00'">-</td>
@@ -35,10 +35,8 @@
                         <span class="status-box status-closed" *ngIf="serviceRequest.status == 4">Closed</span>
                       </td>
                       <td>
-                          
-              
-                        <a class="blue-btn edit-btn action-sm-btn" style="cursor: pointer;" (click)="redirectoRequestDetails(serviceRequest.id)" data-toggle="tooltip"
-                          data-placement="top" title="" data-original-title="View">
+                        <a class="blue-btn edit-btn action-sm-btn" style="cursor: pointer;" (click)="redirectoRequestDetails(serviceRequest.id)"
+                          data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
                           <i class="fa fa-eye"></i>
                         </a>
                       </td>

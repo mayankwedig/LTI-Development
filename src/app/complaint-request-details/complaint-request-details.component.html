@@ -14,7 +14,11 @@
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="form-group">
-                      <div class="dtl-status">Status: <span class="status-box status-open">Open</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 0">Status: <span class="status-box status-open">Open</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 1">Status: <span class="status-box status-resolved">Resolved</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 2">Status: <span class="status-box status-pending">Pending</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 3">Status: <span class="status-box status-rejected">Rejected</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 4">Status: <span class="status-box status-closed">Closed</span></div>
                     </div>
                   </div>
                 </div>
@@ -24,19 +28,17 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Account Number</label>
-                      <div class="dtl-value">{{accountNumber}}</div>
+                      <div class="dtl-value">{{complaintsDetails.account_number}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Service Request Type</label>
-                      <div class="dtl-value">Permanent Disconnection</div>
+                      <label>Case Type</label>
+                      <div class="dtl-value">{{complaintsDetails.complaint_type}}</div>
                     </div>
                   </div>
                 </div>
               </div>
-
-
               <div class="service-dtl-block">
                 <div class="sr-heading">Consumer Information</div>
                 <div class="row">
@@ -82,22 +84,62 @@
                   </div>
                 </div>
               </div>
-              <div class="service-dtl-block">
+              <div class="service-dtl-block" *ngIf="complaintsDetails.complaint_type == 'Bill Related'">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Enclosed Identification Document</label>
-                      <div class="dtl-value">Voter ID</div>
+                      <label>Bill Id</label>
+                      <div class="dtl-value">{{complaintsDetails.billId}}</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Reason</label>
+                      <div class="dtl-value">{{complaintsDetails.reason}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Comments</label>
-                      <div class="dtl-value">Meter is not working</div>
+                      <div class="dtl-value">{{complaintsDetails.comments}}</div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="service-dtl-block" *ngIf="complaintsDetails.complaint_type == 'Meter Related'">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Comments</label>
+                      <div class="dtl-value">{{complaintsDetails.comments}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="service-dtl-block" *ngIf="complaintsDetails.complaint_type == 'Supply Related'">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Service Request</label>
+                      <div class="dtl-value">{{complaintsDetails.service_request}}</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Problem</label>
+                      <div class="dtl-value">{{complaintsDetails.problem}}</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Comments</label>
+                      <div class="dtl-value">{{complaintsDetails.comments}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- <div
                   class="service-dtl-block"
                   *ngIf="

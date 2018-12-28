@@ -86,11 +86,11 @@ export class ComplaintRequestDetailsComponent implements OnInit {
 
 
   getSerReqDtLoder: boolean = false;
-  serviceRequestDetails = [];
+  complaintsDetails = [];
   getComplaintRequestDetails() {
     var requestData = {
       accountToken: btoa(this.accountNumber),
-      serviceToken: this.serviceTokenNumber
+      complaintToken: this.serviceTokenNumber
     };
     this.getSerReqDtLoder = true;
     this.SerivceRequest.getComplaintRequestDetails(requestData).subscribe(
@@ -99,15 +99,15 @@ export class ComplaintRequestDetailsComponent implements OnInit {
         this.getSerReqDtLoder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
-            this.serviceRequestDetails = res.data_params;
+            this.complaintsDetails = res.data_params;
           } else {
-            this.serviceRequestDetails = [];
+            this.complaintsDetails = [];
           }
         }
       },
       (error: AppError) => {
         this.getSerReqDtLoder = false;
-        this.serviceRequestDetails = [];
+        this.complaintsDetails = [];
         if (error instanceof BadInput) {
         } else {
           throw error;

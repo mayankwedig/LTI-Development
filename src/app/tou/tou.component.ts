@@ -434,3 +434,4 @@ export class TouComponent implements OnInit {
     this.netMeteringlabels = [];
   }
 }
+

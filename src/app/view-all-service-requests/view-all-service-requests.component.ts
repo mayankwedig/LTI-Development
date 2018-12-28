@@ -3,11 +3,8 @@ import { ViewAllServiceRequestsService } from './../services/view-all-service-re
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { Component, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
-
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
-
-
 import { Router } from "@angular/router";
 @Component({
   selector: 'app-view-all-service-requests',
