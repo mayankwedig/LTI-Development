@@ -945,6 +945,10 @@ body {
  	background:url(../images/complaints.png) no-repeat;
  }
  
+ .theme-default #main-menu .navigation li a .i-tou:after{
+    background:url(../images/clock-off.png) no-repeat;
+}
+ 
  .theme-default #main-menu .navigation li a:hover .menu-icons:after,
  .theme-default #main-menu .navigation li.active a .menu-icons:after{
     background:url(../images/dashboard-icon-hover.png) no-repeat;
@@ -984,6 +988,11 @@ body {
  .theme-default #main-menu .navigation li a:hover .i-complaints:after,
  .theme-default #main-menu .navigation li.active a .i-complaints:after{
  	background:url(../images/complaints-hover.png) no-repeat;
+ }
+ 
+ .theme-default #main-menu .navigation li a:hover .i-tou:after,
+ .theme-default #main-menu .navigation li.active a .i-tou:after{
+ 	background:url(../images/clock-on.png) no-repeat;
  }
 
 #main-menu .m-dropdown>a:before {

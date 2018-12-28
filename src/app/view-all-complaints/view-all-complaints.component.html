@@ -24,7 +24,8 @@
                   <tbody *ngIf="complaintsDataLoader == false && isComplaintsDataFound == true">
                     <tr *ngFor="let serviceRequest of complaintsData">
                       <td>{{serviceRequest.tracking_number}}</td>
-                      <td>{{serviceRequest.created | date: "d/M/yyyy" }}</td>
+                      <td *ngIf="serviceRequest.created !='0000-00-00 00:00:00'">{{serviceRequest.created | date: "d/M/yyyy" }}</td>
+                      <td *ngIf="serviceRequest.created =='0000-00-00 00:00:00'">-</td>
                       <td>{{serviceRequest.complaint_type}}</td>
                       <td>
                         <span class="status-box status-open" *ngIf="serviceRequest.status == 0"> Open </span>
