@@ -11,7 +11,6 @@
               <!--  (focus)="dp.clearDate()" -->
               <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
                 [(ngModel)]="selectedDateCalc" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" />
-
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" (click)="dp.clearDate()">
                   <i class="glyphicon glyphicon-remove"></i>
@@ -26,14 +25,14 @@
           <div class="page-heading text-center margin_top20" style="color:#635b5b;">TOU as on {{dispSelectedMonth}} {{dispSelectedDay}}, {{dispSelectedYear}}</div>
         <div
           class="panel-body"
-          [ngClass]="{ consumptionPanalLoader: loder == true }"
+          [ngClass]="{ touLoader: loder == true }"
         >
           <div class="graph-container modal-graph-label showChart" style="display: none;">
             <div class="label-left">Units <span>(KWH)</span></div>
             <div class="consumption-canvas">
               <div id="chartdiv"></div>
             </div>
-            <div class="label-bottom" *ngIf="chartToShow == 'hourly'">Hours</div>
+            <div class="label-bottom" *ngIf="chartToShow == 'hourly'" style="position: relative;top: -35px;">Hours</div>
           </div>
 					<div class="rows" *ngIf="loder == true ">
 						<div class="spinner box-spinner">
