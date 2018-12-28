@@ -14,20 +14,14 @@
             <div class="col-sm-4 border-divider">
               <div class="">
                 <div class="box-title max-content-title title-min-height">
-                  <span class="title-icon"
-                    ><img src="assets/images/bill-icon.png" alt=""
-                  /></span>
+                  <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
                   <div class="text-title">YESTERDAY'S CONSUMPTION</div>
                 </div>
 
                 <div *ngIf="!yesterDayConsumptionLoder" class="amount">
                   {{ yesterdayReading }}&nbsp;<span>KWH</span>
                 </div>
-                <div
-                  class="rows"
-                  style="margin-top: 31px; position: relative;"
-                  *ngIf="yesterDayConsumptionLoder"
-                >
+                <div class="rows" style="margin-top: 31px; position: relative;" *ngIf="yesterDayConsumptionLoder">
                   <div class="spinner box-spinner">
                     <div class="bounce1"></div>
                     <div class="bounce2"></div>
@@ -39,9 +33,7 @@
             <div class="col-sm-4 border-divider">
               <div class="rows">
                 <div class="box-title max-content-title title-min-height">
-                  <span class="title-icon"
-                    ><img src="assets/images/bill-icon.png" alt=""
-                  /></span>
+                  <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
                   <div class="text-title">
                     Cumulative Consumption ({{ currentYear }})
                   </div>
@@ -49,11 +41,7 @@
                 <div class="amount" *ngIf="!yesterDayConsumptionLoder">
                   {{ yetToDateReading }}&nbsp;<span>KWH</span>
                 </div>
-                <div
-                  class="rows"
-                  style="margin-top: 31px; position: relative;"
-                  *ngIf="yesterDayConsumptionLoder"
-                >
+                <div class="rows" style="margin-top: 31px; position: relative;" *ngIf="yesterDayConsumptionLoder">
                   <div class="spinner box-spinner">
                     <div class="bounce1"></div>
                     <div class="bounce2"></div>
@@ -64,9 +52,7 @@
             </div>
             <div class="col-sm-4">
               <div class="box-title max-content-title title-min-height">
-                <span class="title-icon"
-                  ><img src="assets/images/bill-icon.png" alt=""
-                /></span>
+                <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
                 <div class="text-title">Current Meter Reading</div>
               </div>
 
@@ -74,18 +60,11 @@
                 {{ onDemandReadData | number: "3.2" }}
                 <span *ngIf="onDemandReadData != ''">KWH</span> &nbsp;
 
-                <a
-                  *ngIf="onDemandReadLoder == false && showGetReadButton == true"
-                  (click)="getOnDemandRead()"
-                  style="cursor:pointer;"
-                  class="blue-btn pay-now-btn"
-                  >Get Read</a>
-                  
-                  <a class="cmr-refresh" 
-                  *ngIf="onDemandReadLoder == false && showGetReadButton == false"
-                  (click)="getOnDemandRead()"
-                  style="cursor:pointer;"
-                  ><img width="20" src="assets/images/refresh.png" /></a>
+                <a *ngIf="onDemandReadLoder == false && showGetReadButton == true" (click)="getOnDemandRead()" style="cursor:pointer;"
+                  class="blue-btn pay-now-btn">Get Read</a>
+
+                <a class="cmr-refresh" *ngIf="onDemandReadLoder == false && showGetReadButton == false" (click)="getOnDemandRead()"
+                  style="cursor:pointer;"><img width="20" src="assets/images/refresh.png" /></a>
                 <div class="rows" *ngIf="onDemandReadLoder">
                   <div class="spinner_odr spinner box-spinner">
                     <div class="bounce1"></div>
@@ -93,10 +72,7 @@
                     <div class="bounce3"></div>
                   </div>
                 </div>
-                <div
-                  class="dashboardTimeStapm"
-                  *ngIf="onDemandReadData != ''"
-                >
+                <div class="dashboardTimeStapm" *ngIf="onDemandReadData != ''">
                   {{ currentTime }}
                 </div>
               </div>
@@ -144,9 +120,7 @@
             <div class="col-sm-12">
               <div class="scroll-div no-border">
                 <div class="box-title">
-                  <span class="title-icon"
-                    ><img src="assets/images/notification-icon-white.png" alt=""
-                  /></span>
+                  <span class="title-icon"><img src="assets/images/notification-icon-white.png" alt="" /></span>
                   <div class="text-title">alert & notifications</div>
                 </div>
                 <ul class="notification-listing">
@@ -193,9 +167,7 @@
             <div class="col-sm-12">
               <div class="chart-box">
                 <div class="box-title">
-                  <span class="title-icon"
-                    ><img src="assets/images/usage-icon.png" alt=""
-                  /></span>
+                  <span class="title-icon"><img src="assets/images/usage-icon.png" alt="" /></span>
                   <div class="text-title">
                     YOUR CONSUMPTION - LAST 12 MONTHs
                   </div>
@@ -209,11 +181,7 @@
                     </div>
                   -->
                   <div class="pull-right lti-ddl">
-                    <a
-                      (click)="downloadGraphExcelConsumption()"
-                      style="cursor: pointer;"
-                      title="Download"
-                    >
+                    <a (click)="downloadGraphExcelConsumption()" style="cursor: pointer;" title="Download">
                       <div class="download-circle">
                         <img src="assets/images/download.png" />
                       </div>
@@ -224,16 +192,8 @@
                   <div class="col-sm-12">
                     <div class="graph-container  modal-graph-label">
                       <div class="label-left">Units <span>(KWH)</span></div>
-                      <canvas
-                        baseChart
-                        [chartType]="'bar'"
-                        [datasets]="consumptionchartData"
-                        [labels]="consumptionlabels"
-                        [options]="consumptionchartOptions"
-                        [legend]="true"
-                        [colors]="consumptioncolors"
-                        (chartClick)="goToConsoumption($event, 2)"
-                      >
+                      <canvas baseChart [chartType]="'bar'" [datasets]="consumptionchartData" [labels]="consumptionlabels"
+                        [options]="consumptionchartOptions" [legend]="true" [colors]="consumptioncolors" (chartClick)="goToConsoumption($event, 2)">
                       </canvas>
                     </div>
                   </div>
@@ -254,16 +214,10 @@
             <div class="col-sm-12">
               <div class="chart-box">
                 <div class="box-title">
-                  <span class="title-icon"
-                    ><img src="assets/images/chart-icon.png" alt=""
-                  /></span>
+                  <span class="title-icon"><img src="assets/images/chart-icon.png" alt="" /></span>
                   <div class="text-title">Your BILLING - Last 12 Months</div>
                   <div class="pull-right lti-ddl">
-                    <a
-                      (click)="downloadGraphExcelBilling()"
-                      style="cursor: pointer;"
-                      title="Download"
-                    >
+                    <a (click)="downloadGraphExcelBilling()" style="cursor: pointer;" title="Download">
                       <div class="download-circle">
                         <img src="assets/images/download.png" />
                       </div>
@@ -274,16 +228,8 @@
                   <div class="col-sm-12">
                     <div class="graph-container modal-graph-label">
                       <div class="label-left">Units <span>(Rs)</span></div>
-                      <canvas
-                        baseChart
-                        [chartType]="'bar'"
-                        [datasets]="billingchartData"
-                        [labels]="billinglabels"
-                        [options]="billingchartOptions"
-                        [legend]="true"
-                        [colors]="billingcolors"
-                        (chartClick)="goToBilling($event, 2)"
-                      >
+                      <canvas baseChart [chartType]="'bar'" [datasets]="billingchartData" [labels]="billinglabels"
+                        [options]="billingchartOptions" [legend]="true" [colors]="billingcolors" (chartClick)="goToBilling($event, 2)">
                       </canvas>
                     </div>
                   </div>
@@ -302,10 +248,7 @@
     <div class="consumer-account-basic-detail">
       <ul class="dash-box-list">
         <li class="dash-box-li">
-          <div
-            class="panel-body"
-            [ngClass]="{ dashboardManageAccount: accountDetailsLoder == true }"
-          >
+          <div class="panel-body" [ngClass]="{ dashboardManageAccount: accountDetailsLoder == true }">
             <div class="box-title margin_bottom10">
               <span class="title-icon">
                 <img width="15" src="assets/images/account-info.svg" />
@@ -314,25 +257,18 @@
             </div>
             <div class="row">
               <div class="col-sm-12 ">
-                <div
-                  style="margin-top: 2;"
-                  class="text-center font-12  field_not_found"
-                  *ngIf="
+                <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="
                     AccountDetailsFound == false && accountDetailsLoder == false
-                  "
-                >
+                  ">
                   <img src="/assets/images/no_data.png" /> Currently no data
                   found for accounts. <br />
                   Please go to the manage account section and click on add
                   account button in order to verify and add your account or
                   contact . <br />
                 </div>
-                <table
-                  class="table consumer-basic-table"
-                  *ngIf="
+                <table class="table consumer-basic-table" *ngIf="
                     AccountDetailsFound == true && accountDetailsLoder == false
-                  "
-                >
+                  ">
                   <tr>
                     <td style="width: 45%; padding: 0px 15px;">
                       <table width="100%">
@@ -378,11 +314,16 @@
                             {{ accountData.subdivision }}
                           </th>
                         </tr>
+                        <tr>
+                            <th>Discom</th>
+                            <th *ngIf="accountData.discom == null">-</th>
+                            <th *ngIf="accountData.discom != null">
+                              {{ accountData.discom }}
+                            </th>
+                          </tr>
                       </table>
                     </td>
-                    <td
-                      style="width: 55%; padding: 0px 15px 0 40px; border-left: 2px solid #f7ecec;"
-                    >
+                    <td style="width: 55%; padding: 0px 15px 0 40px; border-left: 2px solid #f7ecec;">
                       <table width="100%">
                         <tr>
                           <th>Mobile Number</th>
@@ -410,9 +351,7 @@
                           <th *ngIf="accountData.status == ''">-</th>
                           <th *ngIf="accountData.status != ''">
                             <span *ngIf="accountData.status == 1">Active</span>
-                            <span *ngIf="accountData.status != 1"
-                              >Inactive</span
-                            >
+                            <span *ngIf="accountData.status != 1">Inactive</span>
                           </th>
                         </tr>
                         <tr>
@@ -447,45 +386,36 @@
       </ul>
     </div>
     <div class="col-sm-12">
-        
-      <div
-        class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r"
-      >
-        <div
-          class="panel-body "
-          [ngClass]="{ dashboardManageAccount: billingDataLoder == true }"
-        >
-        <div class="box-title margin_bottom10">
+
+      <div class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r">
+        <div class="panel-body " [ngClass]="{ dashboardManageAccount: billingDataLoder == true }">
+          <div class="box-title margin_bottom10">
             <span class="title-icon">
               <img width="15" src="assets/images/billing-info.svg" />
             </span>
             <div class="text-title">Billing Information</div>
           </div>
           <div class="table-wrapper no-padding">
-            <table
-              class="fl-table tb-header table-fixed"
-              *ngIf="isbillingDataFound == true && billingDataLoder == false"
-             
-            >
+            <table class="fl-table tb-header table-fixed" *ngIf="isbillingDataFound == true && billingDataLoder == false">
               <thead>
                 <tr>
                   <th width="11%"><span class="center-pos">Meter Reading Date</span></th>
-                  <th width="9%"><span class="center-pos">Reading <br/> 
-                    <span style="font-size:11px;">(In KWH)</span></span></th>
-                  <th width="9%"><span class="center-pos">Consumption <br/>
-                    <span style="font-size:11px;">(In KWH)</span></span></th>
+                  <th width="9%"><span class="center-pos">Reading <br />
+                      <span style="font-size:11px;">(In KWH)</span></span></th>
+                  <th width="9%"><span class="center-pos">Consumption <br />
+                      <span style="font-size:11px;">(In KWH)</span></span></th>
                   <th width="9%"><span class="center-pos">Number of Days</span></th>
                   <th width="10%"><span class="center-pos">Total Bill Amount <i class="fa fa-inr" aria-hidden="true"></i></span></th>
                   <th width="12%"><span class="center-pos">Due Date</span></th>
-                  <th width="10%"><span class="center-pos">Bill Paid  
-                    <i class="fa fa-inr" aria-hidden="true"></i></span></th>
+                  <th width="10%"><span class="center-pos">Bill Paid
+                      <i class="fa fa-inr" aria-hidden="true"></i></span></th>
                   <th width="10%"><span class="center-pos">Receipt No.</span></th>
                   <th width="9%"><span class="center-pos">Payment Date</span></th>
                   <th width="11%"><span class="center-pos">Download</span></th>
                 </tr>
               </thead>
               <!-- <perfect-scrollbar style="max-height: 400px;" [config]="scrollConfig"> -->
-              <tbody class=""  *ngIf="isbillingDataFound == true && billingDataLoder == false">
+              <tbody class="" *ngIf="isbillingDataFound == true && billingDataLoder == false">
                 <tr *ngFor="let billing of billingData">
                   <td width="11%">
                     {{ billing.meter_reading_date | date: "dd/MM/yyyy" }}
@@ -495,7 +425,7 @@
                   <td width="9%">{{ billing.numberOfDays }}</td>
                   <td width="10%">
                     &nbsp;{{
-                      billing.bill_amount
+                    billing.bill_amount
                     }}
                   </td>
                   <td width="12%">
@@ -503,41 +433,28 @@
                   </td>
                   <td width="10%">
                     <span *ngIf="billing.bill_paid != ''">{{billing.bill_paid}}</span>
-                        <span *ngIf="billing.bill_paid == ''">---</span>
+                    <span *ngIf="billing.bill_paid == ''">---</span>
                   </td>
                   <td width="10%">
                     <span *ngIf="billing.receipt_no != ''">{{
                       billing.receipt_no
-                    }}</span
-                    ><span *ngIf="billing.receipt_no == ''">---</span>
+                      }}</span><span *ngIf="billing.receipt_no == ''">---</span>
                   </td>
                   <td width="10%">
                     <span *ngIf="billing.payment_date != ''">{{
                       billing.payment_date | date: "dd/MM/yyyy"
-                    }}</span
-                    ><span *ngIf="billing.payment_date == ''">---</span>
+                      }}</span><span *ngIf="billing.payment_date == ''">---</span>
                   </td>
                   <td width="10%">
-                    <a
-                      class="pdf-btn action-sm-btn"
-
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      (click)="downloadPDFfile(billing.billUrl)"
-                      title="Download Bill PDF" style="cursor: pointer"
-                      ><i class="fa fa-file-pdf-o" aria-hidden="true"></i
-                    ></a>
+                    <a class="pdf-btn action-sm-btn" data-toggle="tooltip" data-placement="top" (click)="downloadPDFfile(billing.billUrl)"
+                      title="Download Bill PDF" style="cursor: pointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>
               </tbody>
-           <!--  </perfect-scrollbar> -->
+              <!--  </perfect-scrollbar> -->
             </table>
 
-            <div
-              style="margin-top: 2;"
-              class="text-center font-12  field_not_found"
-              *ngIf="isbillingDataFound == false && billingDataLoder == false"
-            >
+            <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isbillingDataFound == false && billingDataLoder == false">
               <img src="/assets/images/no_data.png" /> Currently no data found
               in billing section.
             </div>
@@ -571,17 +488,12 @@
             <div class="col-sm-12">
               <div class="chart-box">
                 <div class="box-title">
-                  <span class="title-icon"
-                    ><img src="assets/images/chart-icon.png" alt=""
-                  /></span>
+                  <span class="title-icon"><img src="assets/images/chart-icon.png" alt="" /></span>
                   <div class="text-title">track a complaint</div>
                 </div>
                 <!-- If Complaints not found -->
 
-                <div
-                  class="text-center font-12  field_not_found"
-                  *ngIf="complaintsFound == false"
-                >
+                <div class="text-center font-12  field_not_found" *ngIf="complaintsFound == false">
                   <img src="/assets/images/no_complaints.png" />You
                   don't have any complaint, You are happy with us..!!
                 </div>
@@ -596,8 +508,8 @@
                 </div>
                 <div class="row text-center" *ngIf="complaintsFound == true">
                   <div class="col-sm-8 col-sm-offset-2">
-                      <ngx-select-dropdown [config]="complaintReqDropDownconfig" [options]="complaints" 
-                      [(value)]="selectedComplaintNo" [multiple]="false" ></ngx-select-dropdown>
+                    <ngx-select-dropdown [config]="complaintReqDropDownconfig" [options]="complaints" [(value)]="selectedComplaintNo"
+                      [multiple]="false"></ngx-select-dropdown>
                     <!-- <input
                       type="text"
                       name=""
@@ -614,7 +526,8 @@
                         >{{ complaint.tracking_number }}</option
                       >
                     </select> -->
-                    <a class="blue-btn"  style="margin-top:15px; cursor: pointer;" (click)="redirectoComplaintDetails()" title="Track">Track</a>
+                    <a class="blue-btn" style="margin-top:15px; cursor: pointer;" (click)="redirectoComplaintDetails()"
+                      title="Track">Track</a>
                   </div>
                 </div>
                 <!-- Complaint sections Endes here -->
@@ -640,17 +553,12 @@
             <div class="col-sm-12">
               <div class="chart-box">
                 <div class="box-title">
-                  <span class="title-icon"
-                    ><img src="assets/images/chart-icon.png" alt=""
-                  /></span>
+                  <span class="title-icon"><img src="assets/images/chart-icon.png" alt="" /></span>
                   <div class="text-title">track a service request</div>
                 </div>
                 <!-- If service request not found -->
 
-                <div
-                  class="text-center font-12  field_not_found"
-                  *ngIf="ServiceRequestFound == false"
-                >
+                <div class="text-center font-12  field_not_found" *ngIf="ServiceRequestFound == false">
                   <img src="/assets/images/no_data.png" />Currently no service
                   request found..!!
                 </div>
@@ -662,14 +570,11 @@
                     <div class="track-label">service request id</div>
                   </div>
                 </div>
-                <div
-                  class="row text-center"
-                  *ngIf="ServiceRequestFound == true"
-                >
+                <div class="row text-center" *ngIf="ServiceRequestFound == true">
                   <div class="col-sm-8 col-sm-offset-2">
-                      <ngx-select-dropdown [config]="serviceReqDropDownconfig" [options]="ServiceRequests" 
-                      [(value)]="selectedServiceReqNo" [multiple]="false" ></ngx-select-dropdown>
-                   <!--  <input
+                    <ngx-select-dropdown [config]="serviceReqDropDownconfig" [options]="ServiceRequests" [(value)]="selectedServiceReqNo"
+                      [multiple]="false"></ngx-select-dropdown>
+                    <!--  <input
                       type="text"
                       name=""
                       class="form-control btn btn-default margin_bottom10 dash-input"
@@ -688,7 +593,7 @@
                       >
                       <div *ngIf="serviceRequestLoder == true">Loding...</div>
                     </select> -->
-                  <!--   {{SelectedServiceReq}} -->
+                    <!--   {{SelectedServiceReq}} -->
                     <a class="blue-btn" style="margin-top:15px; cursor: pointer;" title="Track" (click)="redirectoRequestDetails()">Track</a>
                   </div>
                 </div>
