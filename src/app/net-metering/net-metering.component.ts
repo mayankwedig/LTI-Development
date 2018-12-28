@@ -4,6 +4,8 @@ import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "../services/data.service";
 import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
+import { WindowRefService } from "./../services/window-ref/window-ref.service";
+
 
 import { ToastrService } from "ngx-toastr";
 
@@ -24,16 +26,10 @@ export class NetMeteringComponent implements OnInit {
     private helpers: HelpersService,
     private router: Router,
     private NetMetering: NetMeteringService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private DashboardService: DashboardService,
+    private WindowRef: WindowRefService
   ) { }
-
-
-
-
-
-
-
-  
   currentYear: any = "";
   currentMonth: any = "";
 
@@ -56,13 +52,14 @@ export class NetMeteringComponent implements OnInit {
   chartToShow = "hourly";
   dispString = "";
   selectedDate = "";
-  selectedDay = "";
-  selected_year = "";
+  selectedDay: any = "";
+  selected_year: any = "";
+  selected_month: any = "";
   selectedDateCalc: any = "";
-  myOptions: INgxMyDpOptions={
+  myOptions: INgxMyDpOptions = {
     dateFormat: 'dd/mm/yyyy',
-    disableSince: {year: parseInt(moment().format("YYYY")), month: parseInt(moment().format("MM")), day: parseInt(moment().format("DD"))},
-    showTodayBtn:false
+    disableSince: { year: parseInt(moment().format("YYYY")), month: parseInt(moment().format("MM")), day: parseInt(moment().format("DD")) },
+    showTodayBtn: false
   };
   ngOnInit() {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
@@ -93,27 +90,25 @@ export class NetMeteringComponent implements OnInit {
       }
       /* disableDates: [{begin: {year: parseInt(this.selected_year), month: parseInt(moment().format("MM")), day: parseInt(moment().format("DD"))}, end: {year: 3000, month: 11, day: 20} */
     }
-    this.selectedDate=this.selectedDateCalc.date.year+"/"+this.selectedDateCalc.date.month+"/"+this.selectedDateCalc.date.day;
+    this.selectedDate = this.selectedDateCalc.date.year + "/" + this.selectedDateCalc.date.month + "/" + this.selectedDateCalc.date.day;
   }
-  onDateChanged($event){
+  onDateChanged($event) {
     console.log($event);
-    if($event.jsdate != null){
-      this.selectedDate=moment($event.jsdate).format("YYYY/MM/DD");
+    if ($event.jsdate != null) {
+      this.selectedDate = moment($event.jsdate).format("YYYY/MM/DD");
       this.genrateGraph();
-    }else{
+    } else {
       this.toastr.error("Please Select appropriate date!", "failed!");
     }
   }
-  dispSelectedYear="";
-  dispSelectedMonth="";
-  dispSelectedDay="";
+  dispSelectedYear = "";
+  dispSelectedMonth = "";
+  dispSelectedDay = "";
   genrateGraph() {
-    /* console.log(this.selectedDateCalc); */
-    console.log(this.selectedDate.split("/"));
-    var SelectedDate=this.selectedDate.split("/");
-    this.dispSelectedYear=SelectedDate[0];
-    this.dispSelectedMonth=moment(SelectedDate[1]).format("MMMM");
-    this.dispSelectedDay=SelectedDate[2];
+    var SelectedDate = this.selectedDate.split("/");
+    this.dispSelectedYear = SelectedDate[0];
+    this.dispSelectedMonth = moment(SelectedDate[1]).format("MMMM");
+    this.dispSelectedDay = SelectedDate[2];
     this.netMeteringChartData = [
       {
         label: "Consumption",
@@ -195,6 +190,32 @@ export class NetMeteringComponent implements OnInit {
       });
     }
   }
+
+
+  downloadGraphExcelNetmetering() {
+    var SelectedDate = this.selectedDate.split("/");
+    var excelNetmeteringHourlyData = "users/excelHourlyDataNetMetering";
+    var data = {
+      account_number: this.accountNumber,
+      year: parseInt(SelectedDate[0]),
+      month: parseInt(SelectedDate[1]),
+      day: parseInt(SelectedDate[2]),
+
+    };
+
+    this.DashboardService.downloadGraphExcel(excelNetmeteringHourlyData, data, (response: any) => {
+      if (response.authCode == "200") {
+        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+
+        //this.toastr.success("Excel downloaded successfully", "Success!");
+      } else {
+        //this.toastr.error("Something went wrong!", "failed!");
+      }
+    });
+  }
+
+
+
 
 
   initChartConfig() {

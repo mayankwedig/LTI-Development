@@ -314,13 +314,7 @@
                             {{ accountData.subdivision }}
                           </th>
                         </tr>
-                        <tr>
-                            <th>Discom</th>
-                            <th *ngIf="accountData.discom == null">-</th>
-                            <th *ngIf="accountData.discom != null">
-                              {{ accountData.discom }}
-                            </th>
-                          </tr>
+                        
                       </table>
                     </td>
                     <td style="width: 55%; padding: 0px 15px 0 40px; border-left: 2px solid #f7ecec;">
@@ -347,13 +341,20 @@
                           </th>
                         </tr>
                         <tr>
+                            <th>Discom</th>
+                            <th *ngIf="accountData.discom == null">-</th>
+                            <th *ngIf="accountData.discom != null">
+                              {{ accountData.discom }}
+                            </th>
+                          </tr>
+                        <!-- <tr>
                           <th>Account Status</th>
                           <th *ngIf="accountData.status == ''">-</th>
                           <th *ngIf="accountData.status != ''">
                             <span *ngIf="accountData.status == 1">Active</span>
                             <span *ngIf="accountData.status != 1">Inactive</span>
                           </th>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <th>Premise Address</th>
                           <th *ngIf="accountData.premise_address == ''">-</th>
