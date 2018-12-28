@@ -27,23 +27,13 @@
           class="panel-body"
           [ngClass]="{ consumptionPanalLoader: loder == true }"
         >
-          <div class="graph-container modal-graph-label" *ngIf="loder == false && isDataFound == true">
+          <div class="graph-container modal-graph-label showChart" style="display: none;">
             <div class="label-left">Units <span>(KWH)</span></div>
-            <div class="consumption-canvas" *ngIf="chartToShow == 'hourly'">
-              <canvas
-                class=""
-                baseChart
-                [chartType]="chartType"
-                [datasets]="netMeteringChartData"
-                [labels]="netMeteringlabels"
-                [options]="netMeteringChartOptions"
-                [legend]="true"
-                [colors]="netMeteringcolors"
-              >
-              </canvas>
+            <div class="consumption-canvas">
+              <div id="chartdiv"></div>
             </div>
             <div class="label-bottom" *ngIf="chartToShow == 'hourly'">Hours</div>
-					</div>
+          </div>
 					<div class="rows" *ngIf="loder == true ">
 						<div class="spinner box-spinner">
 							<div class="bounce1"></div>

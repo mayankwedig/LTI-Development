@@ -14,7 +14,12 @@
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="form-group">
-                      <div class="dtl-status">Status: <span class="status-box status-open">Open</span></div>
+                     <!--  {{serviceRequestDetails|json}} -->
+                      <div class="dtl-status" *ngIf="serviceRequestDetails.status == 0">Status: <span class="status-box status-open">Open</span></div>
+                      <div class="dtl-status" *ngIf="serviceRequestDetails.status == 1">Status: <span class="status-box status-resolved">Resolved</span></div>
+                      <div class="dtl-status" *ngIf="serviceRequestDetails.status == 2">Status: <span class="status-box status-pending">Pending</span></div>
+                      <div class="dtl-status" *ngIf="serviceRequestDetails.status == 3">Status: <span class="status-box status-rejected">Rejected</span></div>
+                      <div class="dtl-status" *ngIf="serviceRequestDetails.status == 4">Status: <span class="status-box status-closed">Closed</span></div>
                     </div>
                   </div>
                 </div>
@@ -24,13 +29,13 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Account Number</label>
-                      <div class="dtl-value">{{accountNumber}}</div>
+                      <div class="dtl-value">{{serviceRequestDetails.account_number}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Service Request Type</label>
-                      <div class="dtl-value">Permanent Disconnection</div>
+                      <div class="dtl-value">{{serviceRequestDetails.service_request_type}}</div>
                     </div>
                   </div>
                 </div>
@@ -87,22 +92,110 @@
                   </div>
                 </div>
               </div>
-              <div class="service-dtl-block">
+              <div class="service-dtl-block" *ngIf="serviceRequestDetails.service_request_type == 'Permanent Disconnection Request'">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Enclosed Identification Document</label>
-                      <div class="dtl-value">Voter ID</div>
+                      <div class="dtl-value">{{serviceRequestDetails.enclosed_identificaton_document}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Comments</label>
-                      <div class="dtl-value">Meter is not working</div>
+                      <div class="dtl-value">{{serviceRequestDetails.comment}}</div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="service-dtl-block" *ngIf="serviceRequestDetails.service_request_type == 'Load Change Request'">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Load Unit</label>
+                        <div class="dtl-value">{{serviceRequestDetails.load_unit}}</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>New Load</label>
+                          <div class="dtl-value">{{serviceRequestDetails.new_load}}</div>
+                        </div>
+                      </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Comments</label>
+                        <div class="dtl-value">{{serviceRequestDetails.comment}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="service-dtl-block" *ngIf="serviceRequestDetails.service_request_type == 'Category Change Request'">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Proposed Category</label>
+                          <div class="dtl-value">{{serviceRequestDetails.proposed_category}}</div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Reason</label>
+                            <div class="dtl-value">{{serviceRequestDetails.reason}}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Proposed Supply Code</label>
+                              <div class="dtl-value">{{serviceRequestDetails.proposed_supply_code}}</div>
+                            </div>
+                          </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Comments</label>
+                          <div class="dtl-value">{{serviceRequestDetails.comment}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="service-dtl-block" *ngIf="serviceRequestDetails.service_request_type == 'Shifting of Meter' || serviceRequestDetails.service_request_type == 'Meter Testing'">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Comments</label>
+                            <div class="dtl-value">{{serviceRequestDetails.comment}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="service-dtl-block" *ngIf="serviceRequestDetails.service_request_type == 'Transfer of Connection'">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Applicant Name</label>
+                              <div class="dtl-value">{{serviceRequestDetails.applicant_name}}</div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                <label>Enclosed Identification Document</label>
+                                <div class="dtl-value">{{serviceRequestDetails.enclosed_identificaton_document}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                  <label>House Number</label>
+                                  <div class="dtl-value">{{serviceRequestDetails.house_number}}</div>
+                                </div>
+                              </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Comments</label>
+                              <div class="dtl-value">{{serviceRequestDetails.comment}}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
             </div>
           </div>
         </div>

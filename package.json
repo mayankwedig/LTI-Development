@@ -11,6 +11,8 @@
   },
   "private": true,
   "dependencies": {
+    "@amcharts/amcharts4": "^4.0.13",
+    "@amcharts/amcharts4-geodata": "^4.0.25",
     "@angular-material-extensions/password-strength": "^3.3.0",
     "@angular/animations": "^6.1.9",
     "@angular/cdk": "^6.4.7",
