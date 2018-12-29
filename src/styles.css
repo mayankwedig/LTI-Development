@@ -109,9 +109,6 @@ router-outlet ~ * {
   .consumptionPanalLoader{
     min-height: 700px !important; 
   }
-  .touLoader{
-    min-height: 350px !important; 
-  } 
   .consumptionDesktopBackButton{
     margin-top: 10px;
     margin-left: 16px;
