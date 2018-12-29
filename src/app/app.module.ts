@@ -39,7 +39,6 @@ import { CustomersServiceComponent } from './customers-service/customers-service
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { ConsumptionComponent } from './consumption/consumption.component';
 import { SettingsComponent } from './settings/settings.component';
-import { NewConnectionComponent } from './new-connection/new-connection.component';
 import { UsageComponent } from './usage/usage.component';
 import { NewsMediaComponent } from './news-media/news-media.component';
 import { TipsComponent } from './tips/tips.component';
@@ -75,6 +74,7 @@ import { ComplaintRequestDetailsComponent } from './complaint-request-details/co
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { TouComponent } from './tou/tou.component';
+import { NewServiceConnectionComponent } from './new-service-connection/new-service-connection.component';
 @NgModule({
   declarations: [
     
@@ -97,7 +97,6 @@ import { TouComponent } from './tou/tou.component';
     SitemapComponent,
     ConsumptionComponent,
     SettingsComponent,
-    NewConnectionComponent,
     UsageComponent,
     NewsMediaComponent,
     TipsComponent,
@@ -123,6 +122,7 @@ import { TouComponent } from './tou/tou.component';
     DashboarRedirectComponent,
     ComplaintRequestDetailsComponent,
     TouComponent,
+    NewServiceConnectionComponent,
     
   ],
   imports: [
@@ -145,7 +145,6 @@ import { TouComponent } from './tou/tou.component';
       {path:'sitemap',component: SitemapComponent},    
       {path:'consumption',component: ConsumptionComponent,canActivate:[AuthGuard]},
       {path:'settings',component: SettingsComponent},
-      {path:'new-connection',component: NewConnectionComponent},
       {path:'usage',component: UsageComponent},
       {path:'news-media',component: NewsMediaComponent},
       {path:'tips',component: TipsComponent}, 
@@ -168,8 +167,9 @@ import { TouComponent } from './tou/tou.component';
 
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
       {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
+      {path:'new-service-connection',component:NewServiceConnectionComponent,canActivate:[AuthGuard]},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
-
+      
 
       {path:'**',component: PageNotFoundComponent},
       
