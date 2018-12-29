@@ -75,6 +75,7 @@ import { ComplaintRequestDetailsComponent } from './complaint-request-details/co
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { TouComponent } from './tou/tou.component';
+import { RechargeHistoryComponent } from './recharge-history/recharge-history.component';
 @NgModule({
   declarations: [
     
@@ -123,6 +124,7 @@ import { TouComponent } from './tou/tou.component';
     DashboarRedirectComponent,
     ComplaintRequestDetailsComponent,
     TouComponent,
+    RechargeHistoryComponent,
     
   ],
   imports: [
