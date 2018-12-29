@@ -29,6 +29,16 @@
         width: auto;
         max-width: inherit;
     }
+    .table-dashboard-billing.table-fixed thead tr th:nth-child(3),
+    .table-dashboard-billing.table-fixed tbody tr td:nth-child(3) {
+        width: 13%;
+    }
+    .table-dashboard-billing.table-fixed thead tr th:nth-child(7),
+    .table-dashboard-billing.table-fixed tbody tr td:nth-child(7),
+    .table-dashboard-billing.table-fixed thead tr th:nth-child(8),
+    .table-dashboard-billing.table-fixed tbody tr td:nth-child(8) {
+        width: 8%;
+    }
 }
 @media(max-width:1450px) {
 	.dash-box-li .rows.margin_top25 .blue-btn {
@@ -154,6 +164,12 @@
     }
     .cmr-refresh {
         right: 0;
+    }
+    .dash-billing-scroll-hori {
+        overflow-x: auto;
+    }
+    .dash-billing-scroll-hori table {
+        width: 1150px !important;
     }
 }
 @media(max-width:1280px) {
@@ -336,7 +352,7 @@
         position: absolute;
         top: 100%;
         right: -320px;
-        height: 100vh !important;
+        min-height: 180px !important;
         width: 320px;
         background: #fff; 
         z-index: 99999;
@@ -445,6 +461,10 @@
     }
     #content-wrapper .dash-box-list.dash-top-block .dash-box-li>.panel-body {
         min-height: auto;
+    }
+    #content-wrapper .dash-box-list .dash-box-li .notification-listing li .pay-now-btn {
+        display: inline-block;
+        margin-top: 0; 
     }
 }
 @media(max-width:1100px) {
@@ -1075,6 +1095,49 @@
     #content-wrapper .max-content-title.box-title .text-title {
         min-height: inherit;
     }
+    #content-wrapper .et-first-box .box-title {
+        text-align: left;
+        margin-left: 5px;
+    }
+    #content-wrapper .et-first-box .max-content-title.box-title .text-title {
+        display: inline-block;
+        width: auto;
+    }
+    #content-wrapper .dash-box-list .dash-box-li .et-first-box .amount {
+        text-align: left;
+        margin-left: 51px;
+    }
+    .cmr-refresh {
+        right: inherit;
+        bottom: inherit;
+        position: inherit;
+    }
+    .dashboardTimeStapm {
+        padding-left: 4px !important;
+        text-align: left;
+        position: inherit;
+        bottom: inherit;
+    }
+    .cmr-amount .blue-btn {
+        top: -2px;
+        margin-left: -10px;
+    }
+    .offer-content {
+        padding-left: 20px;
+        padding-right: 20px; 
+    }
+    #content-wrapper .dash-box-list .border-divider {
+        border-right: none; 
+    }
+    table.table.consumer-basic-table tbody tr th:first-child {
+        width: 40%;
+    }
+    table.table.consumer-basic-table tbody tr th:last-child {
+        width: 60%;
+    }
+    table.table.consumer-basic-table tbody tr td {
+        padding: 0 !important;
+    }
 }
 
 @media(max-width:640px) { 
@@ -1108,6 +1171,13 @@
     .bannar-sidebar .c-m-message .msg-detail .cm-msg-box {
         padding-left: 65px;
     }
+    table.table.consumer-basic-table tbody tr th:first-child {
+        width: 50%;
+    }
+    table.table.consumer-basic-table tbody tr th:last-child {
+        width: 50%;
+        word-break: break-word;
+    }
 }
 @media(max-width:600px) { 
 	.responsive-menu li {
@@ -1124,12 +1194,7 @@
         text-align: center;
     }
     .responsive-menu li:first-child {
-        position: inherit;
-        left: inherit;
-        right: inherit;
-        top: inherit;
-        bottom: inherit;
-        width: 65%;
+        position: relative;
         padding: 0;
     }
     .main-container-sec {
@@ -1263,6 +1328,16 @@
     .about-tabs .abt-tbs-li a br {
         display: block;
     }
+    #content-wrapper {
+        padding: 135px 8px 18px;
+    }
+    #main-menu {
+        padding-top: 120px;
+    }
+    .custom-form .submit-btn {
+        min-width: 100%;
+        max-width: 375px;
+    }
 }
 @media(max-width:480px) {  
 	.theme-default #main-navbar .navbar-header a.navbar-brand img{
@@ -1294,8 +1369,9 @@
     .mme #main-navbar #main-menu-toggle {
         width: 50%;
     }
-    .mme #content-wrapper, .mme #main-navbar .navbar-inner {
-        left: 50%;
+
+    .mme #main-navbar .navbar-inner {
+        left: 40%;
     }
     .signup-form-page .login-width .signup-form-box .form-group .submit-btn {
         min-width: 100%;
@@ -1358,9 +1434,6 @@
 @media(max-width:380px) { 
     .theme-default #main-navbar .navbar-header a.navbar-brand img{
         width: 250px;
-    }
-    .responsive-menu li:first-child {
-        width: 60%;
     }
     .important-links .important-links-slide .item-link .title-link {
         line-height: 17px;
