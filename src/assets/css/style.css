@@ -5132,7 +5132,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     width: 100%;
 }
 .table-fixed tbody {
-    height: 200px;
+    max-height: 200px;
     overflow-y: auto;
     width: 100%;
 }

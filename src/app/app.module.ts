@@ -71,6 +71,7 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
 import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
 import { DashboarRedirectComponent } from './dashboar-redirect/dashboar-redirect.component';
 import { ComplaintRequestDetailsComponent } from './complaint-request-details/complaint-request-details.component';
+
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { TouComponent } from './tou/tou.component';
@@ -166,10 +167,12 @@ import { RechargeHistoryComponent } from './recharge-history/recharge-history.co
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
+
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
       {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
-      {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
+
+
       {path:'**',component: PageNotFoundComponent},
       
       

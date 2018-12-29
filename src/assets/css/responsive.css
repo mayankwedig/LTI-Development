@@ -29,6 +29,16 @@
         width: auto;
         max-width: inherit;
     }
+    .table-dashboard-billing.table-fixed thead tr th:nth-child(3),
+    .table-dashboard-billing.table-fixed tbody tr td:nth-child(3) {
+        width: 13%;
+    }
+    .table-dashboard-billing.table-fixed thead tr th:nth-child(7),
+    .table-dashboard-billing.table-fixed tbody tr td:nth-child(7),
+    .table-dashboard-billing.table-fixed thead tr th:nth-child(8),
+    .table-dashboard-billing.table-fixed tbody tr td:nth-child(8) {
+        width: 8%;
+    }
 }
 @media(max-width:1450px) {
 	.dash-box-li .rows.margin_top25 .blue-btn {
@@ -112,8 +122,6 @@
     .login-signup-bottom-sec .right-sec.login-width {
         width: 92%;
     }
-    
-    
     .signup-form-page .login-width .signup-form-box .form-group .submit-btn {
         min-width: 350px;
     }
@@ -154,6 +162,12 @@
     }
     .cmr-refresh {
         right: 0;
+    }
+    .dash-billing-scroll-hori {
+        overflow-x: auto;
+    }
+    .dash-billing-scroll-hori table {
+        width: 1150px !important;
     }
 }
 @media(max-width:1280px) {
