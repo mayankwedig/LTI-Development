@@ -39,6 +39,7 @@ export class NewServiceConnectionComponent implements OnInit {
 
   showTrackingNo = false;
   trackingNo = "";
+  showMainForm:boolean=false;
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -233,37 +234,7 @@ export class NewServiceConnectionComponent implements OnInit {
     this.newServiceConnectionFrm = this.helpers.markAsTouched(this.newServiceConnectionFrm);
     if (this.newServiceConnectionFrm.status != "INVALID") { // If form is not invalid
       const newServiceConnectionFrmData = this.newServiceConnectionFrm.value;
-      this.submitComplaingLoder = true;
-      this.complaints.addComplaint(newServiceConnectionFrmData).subscribe(
-        (response: any) => {
-          var res = response;
-          this.submitComplaingLoder = false;
-          if (res.authCode) {
-            if (res.authCode == "200" && res.status == true) {
-              res["msg"] =
-                "Your complaint has been registered successfully, We've sent a notification E-mail along with tracking number.";
-              this.toastr.success(res.msg, "Success!");
-              this.showTrackingNo = true;
-              this.trackingNo = res.data_params;
-              setTimeout(() => {
-                this.showTrackingNo = false;
-                this.trackingNo = res.data_params;
-              }, 30000);
-            } else {
-              this.toastr.error(res.msg, "Failed!");
-              this.showTrackingNo = false;
-              this.trackingNo = "";
-            }
-          }
-        },
-        (error: AppError) => {
-          this.submitComplaingLoder = false;
-          if (error instanceof BadInput) {
-          } else {
-            throw error;
-          }
-        }
-      );
+        this.showMainForm=true;
     } else {
       this.toastr.warning("Please fill all required fields", "Failed!");
     }
