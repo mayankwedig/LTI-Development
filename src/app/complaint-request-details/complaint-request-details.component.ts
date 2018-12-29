@@ -86,7 +86,7 @@ export class ComplaintRequestDetailsComponent implements OnInit {
 
 
   getSerReqDtLoder: boolean = false;
-  complaintsDetails = [];
+  complaintsDetails:any = [];
   getComplaintRequestDetails() {
     var requestData = {
       accountToken: btoa(this.accountNumber),
