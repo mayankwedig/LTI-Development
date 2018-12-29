@@ -350,7 +350,7 @@
         position: absolute;
         top: 100%;
         right: -320px;
-        height: 100vh !important;
+        min-height: 180px !important;
         width: 320px;
         background: #fff; 
         z-index: 99999;
@@ -442,6 +442,28 @@
     .service-box form .form-group .submit-btn {
         min-width: 100%;
         width: 100%; 
+    }
+
+    .track-complain .chart-box .col-sm-8.col-sm-offset-2 {
+        max-width: 80%;
+        margin: 0 auto;
+        width: 100%;
+        float: none;
+    }
+}
+@media(max-width:1150px) {
+    #content-wrapper .dash-box-list.dash-top-block .dash-box-li {
+        width: 100%;
+    }
+    #content-wrapper .dash-box-list.dash-top-block .dash-box-li:first-child {
+        margin-bottom: 20px;  
+    }
+    #content-wrapper .dash-box-list.dash-top-block .dash-box-li>.panel-body {
+        min-height: auto;
+    }
+    #content-wrapper .dash-box-list .dash-box-li .notification-listing li .pay-now-btn {
+        display: inline-block;
+        margin-top: 0; 
     }
 }
 @media(max-width:1100px) {
@@ -1026,6 +1048,65 @@
         float: none;
         overflow: hidden;
     }
+    .theme-default #main-menu .m-dropdown.mm-dropdown a {
+        background-position: 82% center;
+    }
+    .user-account-no {
+        display: none;
+    }
+    .mme .user-account-no {
+        display: block;
+    }
+    .title-min-height {
+        min-height: inherit;
+    }
+    #content-wrapper .max-content-title.box-title .text-title {
+        min-height: inherit;
+    }
+    #content-wrapper .et-first-box .box-title {
+        text-align: left;
+        margin-left: 5px;
+    }
+    #content-wrapper .et-first-box .max-content-title.box-title .text-title {
+        display: inline-block;
+        width: auto;
+    }
+    #content-wrapper .dash-box-list .dash-box-li .et-first-box .amount {
+        text-align: left;
+        margin-left: 51px;
+    }
+    .cmr-refresh {
+        right: inherit;
+        bottom: inherit;
+        position: inherit;
+    }
+    .dashboardTimeStapm {
+        padding-left: 4px !important;
+        text-align: left;
+        position: inherit;
+        bottom: inherit;
+    }
+    .cmr-amount .blue-btn {
+        top: -2px;
+        margin-left: -10px;
+    }
+    .offer-content {
+        padding-left: 20px;
+        padding-right: 20px; 
+    }
+    #content-wrapper .dash-box-list .border-divider {
+        border-right: none; 
+    }
+    table.table.consumer-basic-table tbody tr th:first-child {
+        width: 40%;
+    }
+    table.table.consumer-basic-table tbody tr th:last-child {
+        width: 60%;
+    }
+    table.table.consumer-basic-table tbody tr td {
+        padding: 0 !important;
+    }
+
 }
 
 @media(max-width:640px) { 
@@ -1059,6 +1140,13 @@
     .bannar-sidebar .c-m-message .msg-detail .cm-msg-box {
         padding-left: 65px;
     }
+    table.table.consumer-basic-table tbody tr th:first-child {
+        width: 50%;
+    }
+    table.table.consumer-basic-table tbody tr th:last-child {
+        width: 50%;
+        word-break: break-word;
+    }
 }
 @media(max-width:600px) { 
 	.responsive-menu li {
@@ -1075,12 +1163,7 @@
         text-align: center;
     }
     .responsive-menu li:first-child {
-        position: inherit;
-        left: inherit;
-        right: inherit;
-        top: inherit;
-        bottom: inherit;
-        width: 65%;
+        position: relative;
         padding: 0;
     }
     .main-container-sec {
@@ -1214,6 +1297,16 @@
     .about-tabs .abt-tbs-li a br {
         display: block;
     }
+    #content-wrapper {
+        padding: 135px 8px 18px;
+    }
+    #main-menu {
+        padding-top: 120px;
+    }
+    .custom-form .submit-btn {
+        min-width: 100%;
+        max-width: 375px;
+    }
 }
 @media(max-width:480px) {  
 	.theme-default #main-navbar .navbar-header a.navbar-brand img{
@@ -1245,8 +1338,9 @@
     .mme #main-navbar #main-menu-toggle {
         width: 50%;
     }
-    .mme #content-wrapper, .mme #main-navbar .navbar-inner {
-        left: 50%;
+
+    .mme #main-navbar .navbar-inner {
+        left: 40%;
     }
     .signup-form-page .login-width .signup-form-box .form-group .submit-btn {
         min-width: 100%;
@@ -1309,9 +1403,6 @@
 @media(max-width:380px) { 
     .theme-default #main-navbar .navbar-header a.navbar-brand img{
         width: 250px;
-    }
-    .responsive-menu li:first-child {
-        width: 60%;
     }
     .important-links .important-links-slide .item-link .title-link {
         line-height: 17px;
