@@ -1,0 +1,405 @@
+<div id="main-wrapper">
+  <app-header></app-header>
+  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  <div id="content-wrapper">
+    <div class="page-heading">New Service Connection</div>
+    <div class="billing-sec complaints-page">
+      <div class="row margin_top20">
+        <div class="col-sm-12">
+          <div class="service-box" *ngIf="showTrackingNo == true">
+            <div class="panel-body">
+              <div class="title">New Service Connection</div>
+              <div class="req-success-msg">
+                Thank You For Registering Your Complaint.
+              </div>
+              <div class="req-number">
+                Your complaint no. is: <span>{{ trackingNo }}</span>
+              </div>
+              <div class="team-contact">Our Team Will Contact You Shortly.</div>
+              <div class="text-center padding_top50">
+                Page will be redirect automatically after 30 second.
+              </div>
+            </div>
+          </div>
+          <div class="panel-body" *ngIf="showTrackingNo == false">
+            <div class="row">
+              <div
+                class="col-sm-6 col-sm-offset-3 profile-right-content padding_top50"
+              >
+                <form
+                  class="form top-label-form"
+                  [formGroup]="newServiceConnectionFrm"
+                  (ngSubmit)="submitNewServiceConnectionFrm()"
+                >
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>DISCOM Name*</label>
+                        <select
+                          required
+                          *ngIf="!userAccountsLoder && userAccounts.length > 0"
+                          formControlName="discomName"
+                          name="discomName"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select DISCOM Name</option>
+                          <option
+                            value="{{ user.account_number }}"
+                            *ngFor="let user of userAccounts"
+                            >{{ user.account_number }}</option
+                          >
+                        </select>
+                        <select
+                          required
+                          *ngIf="!userAccountsLoder && userAccounts.length == 0"
+                          formControlName="discomName"
+                          name="discomName"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select DISCOM Name</option>
+                        </select>
+                        <div *ngIf="userAccountsLoder" class="fieldLoding">
+                          Loding...
+                        </div>
+                        <div
+                          *ngIf="f.discomName.touched && f.discomName.invalid"
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.discomName.errors?.required"
+                            >DISCOM Name is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <!--  {{complaintCaseTypes }} -->
+                        <label>Division*</label>
+                        <select
+                          *ngIf="
+                            !complaintCaseTypeLoder &&
+                            complaintCaseTypes.length > 0
+                          "
+                          required
+                          formControlName="division"
+                          name="division"
+                          class="form-control"
+                          (change)="
+                            initnewServiceConnectionFrm(newServiceConnectionFrm.value.division)
+                          "
+                        >
+                          <option value="" selected>Select Division</option>
+                          <option
+                            value="{{ complaintCaseType.case_type }}"
+                            *ngFor="let complaintCaseType of complaintCaseTypes"
+                            >{{ complaintCaseType.case_type }}</option
+                          >
+                        </select>
+                        <select
+                          *ngIf="
+                            !complaintCaseTypeLoder &&
+                            complaintCaseTypes.length == 0
+                          "
+                          required
+                          formControlName="division"
+                          name="division"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select Division</option>
+                        </select>
+                        <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                          Loding...
+                        </div>
+                        <div *ngIf="f.division.touched && f.division.invalid">
+                          <span
+                            class="error-msg"
+                            *ngIf="f.division.errors?.required"
+                            >Division is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!-- {{billingData|json}} -->
+                    <div
+                      class="col-xs-12"
+                      *ngIf="newServiceConnectionFrm.value.caseType == 'Bill Related'"
+                    >
+                      <div class="form-group">
+                        <label>Bill Id*</label>
+                        <select
+                          required
+                          *ngIf="
+                            billingDataLoder == false &&
+                            isbillingDataFound == true
+                          "
+                          formControlName="billId"
+                          name="billId"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select Bill Id</option>
+                          <option
+                            value="{{ bill.receipt_no }}"
+                            *ngFor="let bill of billingData"
+                            >{{ bill.receipt_no }} ({{
+                              bill.meter_reading_date | date: "MMMM"
+                            }})</option
+                          >
+                        </select>
+                        <select
+                          required
+                          *ngIf="
+                            billingDataLoder == false &&
+                            isbillingDataFound == false
+                          "
+                          formControlName="billId"
+                          name="billId"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select Bill Id</option>
+                        </select>
+                        <div *ngIf="billingDataLoder">Loding...</div>
+                        <div *ngIf="f.billId.touched && f.billId.invalid">
+                          <span
+                            class="error-msg"
+                            *ngIf="f.billId.errors?.required"
+                            >Bill Id is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>SDO Office Name*</label>
+                        <select
+                          *ngIf="
+                            !complaintBillRelatedReasonLoder &&
+                            complaintBillRelatedReasons.length > 0
+                          "
+                          required
+                          formControlName="sdoOfficeName"
+                          name="sdoOfficeName"
+                          class="form-control"
+                        >
+                          <option value="" selected
+                            >Select SDO Office Name</option
+                          >
+                          <option
+                            value="{{ complaintBillRelatedReason.reason }}"
+                            *ngFor="
+                              let complaintBillRelatedReason of complaintBillRelatedReasons
+                            "
+                            >{{ complaintBillRelatedReason.reason }}</option
+                          >
+                        </select>
+                        <select
+                          *ngIf="
+                            !complaintBillRelatedReasonLoder &&
+                            complaintBillRelatedReasons.length == 0
+                          "
+                          required
+                          formControlName="sdoOfficeName"
+                          name="sdoOfficeName"
+                          class="form-control"
+                        >
+                          <option value="" selected
+                            >Select SDO Office Name</option
+                          >
+                        </select>
+                        <div
+                          *ngIf="complaintBillRelatedReasonLoder"
+                          class="fieldLoding"
+                          style="left: 93px;"
+                        >
+                          Loding...
+                        </div>
+                        <div
+                          *ngIf="
+                            f.sdoOfficeName.touched && f.sdoOfficeName.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.sdoOfficeName.errors?.required"
+                            >SDO Office Name is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>Consumer Type*</label>
+                        <select
+                          *ngIf="
+                            !complaintSupplyServiceRequestLoder &&
+                            complaintSupplyServiceRequests.length > 0
+                          "
+                          required
+                          formControlName="consumerType"
+                          name="consumerType"
+                          class="form-control"
+                        >
+                          <option value="" selected
+                            >Select Consumer Type</option
+                          >
+                          <option
+                            value="{{
+                              complaintSupplyServiceRequest.service_request
+                            }}"
+                            *ngFor="
+                              let complaintSupplyServiceRequest of complaintSupplyServiceRequests
+                            "
+                            >{{
+                              complaintSupplyServiceRequest.service_request
+                            }}</option
+                          >
+                        </select>
+                        <select
+                          *ngIf="
+                            !complaintSupplyServiceRequestLoder &&
+                            complaintSupplyServiceRequests.length == 0
+                          "
+                          required
+                          formControlName="consumerType"
+                          name="consumerType"
+                          class="form-control"
+                        >
+                          <option value="" selected
+                            >Select Consumer Type</option
+                          >
+                        </select>
+                        <div
+                          *ngIf="complaintSupplyServiceRequestLoder"
+                          class="fieldLoding"
+                        >
+                          Loding...
+                        </div>
+                        <div
+                          *ngIf="
+                            f.consumerType.touched && f.consumerType.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.consumerType.errors?.required"
+                          >
+                            Consumer Type is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>Load(KW)*</label>
+                        <select
+                          *ngIf="
+                            !complaintSupplyServiceRequestLoder &&
+                            complaintSupplyServiceRequests.length > 0
+                          "
+                          required
+                          formControlName="load"
+                          name="load"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select Load(KW)</option>
+                          <option
+                            value="{{
+                              complaintSupplyServiceRequest.service_request
+                            }}"
+                            *ngFor="
+                              let complaintSupplyServiceRequest of complaintSupplyServiceRequests
+                            "
+                            >{{
+                              complaintSupplyServiceRequest.service_request
+                            }}</option
+                          >
+                        </select>
+                        <select
+                          *ngIf="
+                            !complaintSupplyServiceRequestLoder &&
+                            complaintSupplyServiceRequests.length == 0
+                          "
+                          required
+                          formControlName="load"
+                          name="load"
+                          class="form-control"
+                        >
+                          <option value="" selected>Select Load(KW)</option>
+                        </select>
+                        <div
+                          *ngIf="complaintSupplyServiceRequestLoder"
+                          class="fieldLoding"
+                        >
+                          Loding...
+                        </div>
+                        <div *ngIf="f.load.touched && f.load.invalid">
+                          <span
+                            class="error-msg"
+                            *ngIf="f.load.errors?.required"
+                          >
+                            Load(KW) is required.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  <div
+                    class="form-group text-center no-margin-b"
+                    [ngClass]="{ 'pos-rel': submitComplaingLoder }"
+                  >
+                    <div
+                      class="spinner"
+                      *ngIf="submitComplaingLoder"
+                      style="top: 80%;"
+                    >
+                      <div class="bounce1"></div>
+                      <div class="bounce2"></div>
+                      <div class="bounce3"></div>
+                    </div>
+                    <button
+                      [disabled]="submitComplaingLoder == true"
+                      class="btn btn-primary submit-btn full-btn"
+                      type="submit"
+                    >
+                      submit
+                    </button>
+                  </div>
+                  <!-- {{newServiceConnectionFrm.value | json}} -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  
+        <div class="electricity-consumption-box">
+          <img src="../assets/images/electricity-icon.png" /> Your last month
+          consumption is <span>3250</span> units. Learn tips how to save
+          electricity.
+          <a href="#"
+            >Read more <img src="../assets/images/read-more-icon.png"
+          /></a>
+        </div>
+      </div>
+      <ul class="dash-box-list">
+        <li class="dash-box-li rows offer-li no-padding">
+          <div class="offer-section">
+            <div class="offer-content">
+              <img src="../assets/images/offer-icon.png" alt="" />
+              <div class="text-content">
+                We have a lot more to <a href="#">OFFER</a>. Choose from a wide
+                range of products
+              </div>
+              <a class="blue-btn" href="#">Explore</a>
+            </div>
+          </div>
+        </li>
+      </ul> -->
+    </div>
+
+    <div id="main-menu-bg"></div>
+  </div>
+  <app-footer></app-footer>
+</div>

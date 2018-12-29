@@ -12,7 +12,7 @@
             <div class="service-request-dtl">
               <div class="service-dtl-block no-padding-t">
                 <div class="row">
-                  <div class="col-xs-12">
+                  <div class="col-xs-6">
                     <div class="form-group">
                      <!--  {{serviceRequestDetails|json}} -->
                       <div class="dtl-status" *ngIf="serviceRequestDetails.status == 0">Status: <span class="status-box status-open">Open</span></div>
@@ -20,6 +20,12 @@
                       <div class="dtl-status" *ngIf="serviceRequestDetails.status == 2">Status: <span class="status-box status-pending">Pending</span></div>
                       <div class="dtl-status" *ngIf="serviceRequestDetails.status == 3">Status: <span class="status-box status-rejected">Rejected</span></div>
                       <div class="dtl-status" *ngIf="serviceRequestDetails.status == 4">Status: <span class="status-box status-closed">Closed</span></div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <label>Tracking Number</label>
+                      <div class="dtl-value">{{serviceRequestDetails.tracking_number}}</div>
                     </div>
                   </div>
                 </div>

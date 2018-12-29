@@ -39,7 +39,6 @@ import { CustomersServiceComponent } from './customers-service/customers-service
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { ConsumptionComponent } from './consumption/consumption.component';
 import { SettingsComponent } from './settings/settings.component';
-import { NewConnectionComponent } from './new-connection/new-connection.component';
 import { UsageComponent } from './usage/usage.component';
 import { NewsMediaComponent } from './news-media/news-media.component';
 import { TipsComponent } from './tips/tips.component';
@@ -71,11 +70,12 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
 import { ViewAllComplaintsComponent } from './view-all-complaints/view-all-complaints.component';
 import { DashboarRedirectComponent } from './dashboar-redirect/dashboar-redirect.component';
 import { ComplaintRequestDetailsComponent } from './complaint-request-details/complaint-request-details.component';
-
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { TouComponent } from './tou/tou.component';
 import { RechargeHistoryComponent } from './recharge-history/recharge-history.component';
+import { NewServiceConnectionComponent } from './new-service-connection/new-service-connection.component';
+
 @NgModule({
   declarations: [
     
@@ -98,7 +98,6 @@ import { RechargeHistoryComponent } from './recharge-history/recharge-history.co
     SitemapComponent,
     ConsumptionComponent,
     SettingsComponent,
-    NewConnectionComponent,
     UsageComponent,
     NewsMediaComponent,
     TipsComponent,
@@ -124,7 +123,9 @@ import { RechargeHistoryComponent } from './recharge-history/recharge-history.co
     DashboarRedirectComponent,
     ComplaintRequestDetailsComponent,
     TouComponent,
-    RechargeHistoryComponent
+    RechargeHistoryComponent,
+    NewServiceConnectionComponent
+
     
   ],
   imports: [
@@ -147,7 +148,6 @@ import { RechargeHistoryComponent } from './recharge-history/recharge-history.co
       {path:'sitemap',component: SitemapComponent},    
       {path:'consumption',component: ConsumptionComponent,canActivate:[AuthGuard]},
       {path:'settings',component: SettingsComponent},
-      {path:'new-connection',component: NewConnectionComponent},
       {path:'usage',component: UsageComponent},
       {path:'news-media',component: NewsMediaComponent},
       {path:'tips',component: TipsComponent}, 
@@ -167,9 +167,9 @@ import { RechargeHistoryComponent } from './recharge-history/recharge-history.co
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
-
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
       {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
+      {path:'new-service-connection',component:NewServiceConnectionComponent,canActivate:[AuthGuard]},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent},
