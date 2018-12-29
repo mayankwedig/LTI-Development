@@ -14,19 +14,11 @@
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="form-group">
-                      <div class="row">
-                          <div class="col-sm-6">
                       <div class="dtl-status" *ngIf="complaintsDetails.status == 0">Status: <span class="status-box status-open">Open</span></div>
                       <div class="dtl-status" *ngIf="complaintsDetails.status == 1">Status: <span class="status-box status-resolved">Resolved</span></div>
                       <div class="dtl-status" *ngIf="complaintsDetails.status == 2">Status: <span class="status-box status-pending">Pending</span></div>
                       <div class="dtl-status" *ngIf="complaintsDetails.status == 3">Status: <span class="status-box status-rejected">Rejected</span></div>
                       <div class="dtl-status" *ngIf="complaintsDetails.status == 4">Status: <span class="status-box status-closed">Closed</span></div>
-                      </div>
-                      <div class="col-sm-6">
-                          <label>Tracking Number</label>
-                          <div class="dtl-value">{{complaintsDetails.tracking_number}}</div>
-                      </div>
-                    </div>
                     </div>
                   </div>
                 </div>
