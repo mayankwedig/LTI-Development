@@ -1,3 +1,75 @@
-<p>
-  recharge-history works!
-</p>
+<div id="main-wrapper">
+  <app-header></app-header>
+  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  <div id="content-wrapper">
+    <div class="page-heading">
+       recharge history
+    </div>
+    <div class="rows margin_top10 padding_bottom10 no-padding-l no-padding-r">
+       <div class="panel-body">
+          <div class="rows">
+             <div class="pull-right present-balance">Present Balance <span><i class="fa fa-inr"></i>527</span></div>
+          </div>
+          <div class="table-wrapper no-padding">
+             <table class="fl-table tb-header table-fixed">
+                <thead>
+                   <tr>
+                      <th width="20%"><span class="center-pos">Recharge Amount</span></th>
+                      <th width="20%"><span class="center-pos">Recharge Date</span></th>
+                      <th width="20%"><span class="center-pos">Recharge Reference No.</span></th>
+                      <th width="20%"><span class="center-pos">Recharge Mode</span></th>
+                      <th width="20%"><span class="center-pos">Units Received</span></th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                      <td width="20%"><i class="fa fa-inr"></i> 1530</td>
+                      <td width="20%">28/12/2018</td>
+                      <td width="20%">152001</td>
+                      <td width="20%">Credit Card</td>
+                      <td width="20%">100</td>
+                   </tr>
+                   <tr>
+                      <td width="20%"><i class="fa fa-inr"></i> 1220</td>
+                      <td width="20%">28/11/2018</td>
+                      <td width="20%">100120</td>
+                      <td width="20%">Credit Card</td>
+                      <td width="20%">120</td>
+                   </tr>
+                   <tr>
+                      <td width="20%"><i class="fa fa-inr"></i> 1150</td>
+                      <td width="20%">28/10/2018</td>
+                      <td width="20%">152001</td>
+                      <td width="20%">Credit Card</td>
+                      <td width="20%">150</td>
+                   </tr>
+                   <tr>
+                      <td width="20%"><i class="fa fa-inr"></i> 1650</td>
+                      <td width="20%">28/09/2018</td>
+                      <td width="20%">450154</td>
+                      <td width="20%">Credit Card</td>
+                      <td width="20%">160</td>
+                   </tr>
+                   <tr>
+                      <td width="20%"><i class="fa fa-inr"></i> 1530</td>
+                      <td width="20%">28/08/2018</td>
+                      <td width="20%">220105</td>
+                      <td width="20%">Credit Card</td>
+                      <td width="20%">140</td>
+                   </tr>
+                   <tr>
+                      <td width="20%"><i class="fa fa-inr"></i> 1530</td>
+                      <td width="20%">28/07/2018</td>
+                      <td width="20%">120001</td>
+                      <td width="20%">Credit Card</td>
+                      <td width="20%">110</td>
+                   </tr>
+                </tbody>
+             </table>
+          </div>
+       </div>
+    </div>
+    <div id="main-menu-bg"></div>
+ </div>
+  <app-footer></app-footer>
+</div>
