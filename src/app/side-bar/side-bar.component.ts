@@ -84,6 +84,7 @@ export class SideBarComponent implements OnInit {
         this.accountLoder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
+            console.log(res.data_params)
             this.accountData = res.data_params;
             this.isAccountDataFound = true;
           } else {

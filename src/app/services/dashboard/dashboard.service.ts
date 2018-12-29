@@ -83,7 +83,11 @@ export class DashboardService {
     var body={"accountNumber":accountNumber,"userId":currentUser.userId}
     return this.DataService.getAll(this.SOAbilling, body,this.helpers.setHeaderData());
   }
-
+  getrechargeData(accountNumber){
+    var currentUser=this.auth.getCurrentUser();
+    var body={"accountNumber":accountNumber,"userId":currentUser.userId}
+    return this.DataService.getAll(this.SOAbilling, body,this.helpers.setHeaderData());
+  }
   getMonthlyGraphData(body, callback) { //monthly graph data
     var currentUser=this.auth.getCurrentUser();
     body["userId"]=currentUser.userId;
