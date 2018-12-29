@@ -7,11 +7,13 @@
          Good Morning Mr. Shukla
       </div>
     -->
-    <ul class="dash-box-list dash-top-block">
+    <ul class="dash-box-list">
       <li class="dash-box-li width-9">
         <div class="panel-body et-first-box">
           <div class="row">
+
             <div class="col-sm-4 col-xs-12 border-divider ">
+
               <div class="">
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
@@ -266,117 +268,113 @@
                   account button in order to verify and add your account or
                   contact . <br />
                 </div>
-                <div class="consumer-table-scroll">
-                  <table class="table consumer-basic-table" *ngIf="
-                      AccountDetailsFound == true && accountDetailsLoder == false
-                    ">
-                    <tbody class="consumer-tb">
-                      <tr class="consumer-tr">
-                        <td class="consumer-td" style="width: 45%; padding: 0px 15px;">
-                          <table width="100%">
-                            <tr>
-                              <th>Account Number</th>
-                              <th *ngIf="accountData.account_number == ''">-</th>
-                              <th *ngIf="accountData.account_number != ''">
-                                {{ accountData.account_number }}
-                              </th>
-                            </tr>
-                            <tr>
-                              <th>Name</th>
-                              <th *ngIf="accountData.account_name == ''">-</th>
-                              <th *ngIf="accountData.account_name != ''">
-                                {{ accountData.account_name }}
-                              </th>
-                            </tr>
-                            <tr>
-                              <th>Sanctioned Load</th>
-                              <th *ngIf="accountData.sanctioned_load != ''">
-                                {{ accountData.sanctioned_load }} KW
-                              </th>
-                              <th *ngIf="accountData.sanctioned_load == ''">-</th>
-                            </tr>
-                            <tr>
-                              <th>Supply Type</th>
-                              <th *ngIf="accountData.supply_type == ''">-</th>
-                              <th *ngIf="accountData.supply_type != ''">
-                                {{ accountData.supply_type }}
-                              </th>
-                            </tr>
-                            <tr>
-                              <th>Division</th>
-                              <th *ngIf="accountData.division == null">-</th>
-                              <th *ngIf="accountData.division != null">
-                                {{ accountData.division }}
-                              </th>
-                            </tr>
-                            <tr>
-                              <th>Sub Division</th>
-                              <th *ngIf="accountData.subdivision == null">-</th>
-                              <th *ngIf="accountData.subdivision != null">
-                                {{ accountData.subdivision }}
-                              </th>
-                            </tr>
-                            
-                          </table>
-                        </td>
-                        <td class="consumer-td" style="width: 55%; padding: 0px 15px 0 40px; border-left: 2px solid #f7ecec;">
-                          <table width="100%">
-                            <tr>
-                              <th>Mobile Number</th>
-                              <th *ngIf="accountData.mobile == ''">-</th>
-                              <th *ngIf="accountData.mobile != ''">
-                                {{ accountData.mobile }}
-                              </th>
-                            </tr>
-                            <tr>
-                              <th>Email ID</th>
-                              <th *ngIf="accountData.email == ''">-</th>
-                              <th *ngIf="accountData.email != ''">
-                                {{ accountData.email }}
-                              </th>
-                            </tr>
-                            <tr>
-                              <th>Bill Route</th>
-                              <th *ngIf="accountData.bill_route == null">-</th>
-                              <th *ngIf="accountData.bill_route != null">
-                                {{ accountData.bill_route }}
-                              </th>
-                            </tr>
-                            <tr>
-                                <th>Discom</th>
-                                <th *ngIf="accountData.discom == null">-</th>
-                                <th *ngIf="accountData.discom != null">
-                                  {{ accountData.discom }}
-                                </th>
-                              </tr>
-                            <!-- <tr>
-                              <th>Account Status</th>
-                              <th *ngIf="accountData.status == ''">-</th>
-                              <th *ngIf="accountData.status != ''">
-                                <span *ngIf="accountData.status == 1">Active</span>
-                                <span *ngIf="accountData.status != 1">Inactive</span>
-                              </th>
-                            </tr> -->
-                            <tr>
-                              <th>Premise Address</th>
-                              <th *ngIf="accountData.premise_address == ''">-</th>
-                              <th *ngIf="accountData.premise_address != ''">
-                                {{ accountData.premise_address }}
-                              </th>
-                            </tr>
-                            <tr>
-                              <th>Billing Address</th>
-                              <th *ngIf="accountData.billing_address == ''">-</th>
-                              <th *ngIf="accountData.billing_address != ''">
-                                {{ accountData.billing_address }}
-                              </th>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <table class="table consumer-basic-table" *ngIf="
+                    AccountDetailsFound == true && accountDetailsLoder == false
+                  ">
+                  <tr>
+                    <td style="width: 45%; padding: 0px 15px;">
+                      <table width="100%">
+                        <tr>
+                          <th>Account Number</th>
+                          <th *ngIf="accountData.account_number == ''">-</th>
+                          <th *ngIf="accountData.account_number != ''">
+                            {{ accountData.account_number }}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>Name</th>
+                          <th *ngIf="accountData.account_name == ''">-</th>
+                          <th *ngIf="accountData.account_name != ''">
+                            {{ accountData.account_name }}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>Sanctioned Load</th>
+                          <th *ngIf="accountData.sanctioned_load != ''">
+                            {{ accountData.sanctioned_load }} KW
+                          </th>
+                          <th *ngIf="accountData.sanctioned_load == ''">-</th>
+                        </tr>
+                        <tr>
+                          <th>Supply Type</th>
+                          <th *ngIf="accountData.supply_type == ''">-</th>
+                          <th *ngIf="accountData.supply_type != ''">
+                            {{ accountData.supply_type }}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>Division</th>
+                          <th *ngIf="accountData.division == null">-</th>
+                          <th *ngIf="accountData.division != null">
+                            {{ accountData.division }}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>Sub Division</th>
+                          <th *ngIf="accountData.subdivision == null">-</th>
+                          <th *ngIf="accountData.subdivision != null">
+                            {{ accountData.subdivision }}
+                          </th>
+                        </tr>
+                        
+                      </table>
+                    </td>
+                    <td style="width: 55%; padding: 0px 15px 0 40px; border-left: 2px solid #f7ecec;">
+                      <table width="100%">
+                        <tr>
+                          <th>Mobile Number</th>
+                          <th *ngIf="accountData.mobile == ''">-</th>
+                          <th *ngIf="accountData.mobile != ''">
+                            {{ accountData.mobile }}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>Email ID</th>
+                          <th *ngIf="accountData.email == ''">-</th>
+                          <th *ngIf="accountData.email != ''">
+                            {{ accountData.email }}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>Bill Route</th>
+                          <th *ngIf="accountData.bill_route == null">-</th>
+                          <th *ngIf="accountData.bill_route != null">
+                            {{ accountData.bill_route }}
+                          </th>
+                        </tr>
+                        <tr>
+                            <th>Discom</th>
+                            <th *ngIf="accountData.discom == null">-</th>
+                            <th *ngIf="accountData.discom != null">
+                              {{ accountData.discom }}
+                            </th>
+                          </tr>
+                        <!-- <tr>
+                          <th>Account Status</th>
+                          <th *ngIf="accountData.status == ''">-</th>
+                          <th *ngIf="accountData.status != ''">
+                            <span *ngIf="accountData.status == 1">Active</span>
+                            <span *ngIf="accountData.status != 1">Inactive</span>
+                          </th>
+                        </tr> -->
+                        <tr>
+                          <th>Premise Address</th>
+                          <th *ngIf="accountData.premise_address == ''">-</th>
+                          <th *ngIf="accountData.premise_address != ''">
+                            {{ accountData.premise_address }}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>Billing Address</th>
+                          <th *ngIf="accountData.billing_address == ''">-</th>
+                          <th *ngIf="accountData.billing_address != ''">
+                            {{ accountData.billing_address }}
+                          </th>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
             <div class="rows" *ngIf="accountDetailsLoder == true">
@@ -402,7 +400,8 @@
           </div>
           <div class="table-wrapper no-padding">
             <div class="dash-billing-scroll-hori">
-              <table class="fl-table tb-header table-fixed" *ngIf="isbillingDataFound == true && billingDataLoder == false">
+
+              <table class="fl-table tb-header table-fixed table-dashboard-billing" *ngIf="isbillingDataFound == true && billingDataLoder == false">
                 <thead>
                   <tr>
                     <th width="11%"><span class="center-pos">Meter Reading Date</span></th>
@@ -537,7 +536,7 @@
                       title="Track">Track</a>
                   </div>
                 </div>
-                <!-- Complaint sections Ends here -->
+                <!-- Complaint sections Endes here -->
               </div>
             </div>
           </div>
