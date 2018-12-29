@@ -4,8 +4,6 @@ import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
-import { WindowRefService } from "./../services/window-ref/window-ref.service";
-import { ToastrService } from "ngx-toastr";
 require("../../../node_modules/moment/min/moment.min.js");
 declare var moment: any;
 declare var $: any;
@@ -16,13 +14,12 @@ declare var $: any;
   styleUrls: ['./recharge-history.component.css']
 })
 export class RechargeHistoryComponent implements OnInit {
-  
   accountNumber: any = "";
   rechargeDataLoder: boolean = false;
   isrechargeDataFound: boolean = false;
   rechargeData: any = "";
   dispString: any = "";
-  
+  rechargechartData: any = [];
   constructor(
     private DashboardService: DashboardService,
     private activateRoute: ActivatedRoute,
@@ -36,8 +33,10 @@ export class RechargeHistoryComponent implements OnInit {
     this.accountNumber=accountTokenInfo[1]//account Number
     this.dispString = "Account No. ( " + this.accountNumber + " ) ";
     this.getrechargeData();
-  }
+    };
+
   getrechargeData() {
+    
     this.rechargeDataLoder = true;
     this.DashboardService.getrechargeData(this.accountNumber).subscribe(
       (response: any) => {
