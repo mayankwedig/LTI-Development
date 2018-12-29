@@ -5132,7 +5132,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     width: 100%;
 }
 .table-fixed tbody {
-    height: 200px;
+    max-height: 200px;
     overflow-y: auto;
     width: 100%;
 }
@@ -5183,6 +5183,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     background-color: rgb(7, 113, 215);  
     height: 10px;
 }
+
 /**28-12-2018**/
 .present-balance {
     font-size: 16px;
@@ -5199,4 +5200,20 @@ table.table.consumer-basic-table tbody tr th:last-child {
     font-size: 18px;
     vertical-align: 1px;
     margin-right: 3px;
+}
+.ngx-dropdown-container .ngx-dropdown-list-container ul.selected-items li{
+  background-color: #0571d7 !important;
+}
+.ngx-dropdown-container .ngx-dropdown-list-container .search-container input {
+  border-bottom: 1px solid #0571d7!important;
+}
+.ngx-dropdown-container .ngx-dropdown-button {
+    width: 100%;
+    min-height: 30px;
+    padding: 5px 20px 5px 20px !important;
+    background-color: #eeeeee !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+
 }

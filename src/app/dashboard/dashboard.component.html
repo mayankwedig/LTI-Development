@@ -392,63 +392,65 @@
             <div class="text-title">Billing Information</div>
           </div>
           <div class="table-wrapper no-padding">
-            <table class="fl-table tb-header table-fixed" *ngIf="isbillingDataFound == true && billingDataLoder == false">
-              <thead>
-                <tr>
-                  <th width="11%"><span class="center-pos">Meter Reading Date</span></th>
-                  <th width="9%"><span class="center-pos">Reading <br />
-                      <span style="font-size:11px;">(In KWH)</span></span></th>
-                  <th width="9%"><span class="center-pos">Consumption <br />
-                      <span style="font-size:11px;">(In KWH)</span></span></th>
-                  <th width="9%"><span class="center-pos">Number of Days</span></th>
-                  <th width="10%"><span class="center-pos">Total Bill Amount <i class="fa fa-inr" aria-hidden="true"></i></span></th>
-                  <th width="12%"><span class="center-pos">Due Date</span></th>
-                  <th width="10%"><span class="center-pos">Bill Paid
-                      <i class="fa fa-inr" aria-hidden="true"></i></span></th>
-                  <th width="10%"><span class="center-pos">Receipt No.</span></th>
-                  <th width="9%"><span class="center-pos">Payment Date</span></th>
-                  <th width="11%"><span class="center-pos">Download</span></th>
-                </tr>
-              </thead>
-              <!-- <perfect-scrollbar style="max-height: 400px;" [config]="scrollConfig"> -->
-              <tbody class="" *ngIf="isbillingDataFound == true && billingDataLoder == false">
-                <tr *ngFor="let billing of billingData">
-                  <td width="11%">
-                    {{ billing.meter_reading_date | date: "dd/MM/yyyy" }}
-                  </td>
-                  <td width="9%">{{ billing.meter_reading }}</td>
-                  <td width="9%">{{ billing.consumption_units }}</td>
-                  <td width="9%">{{ billing.numberOfDays }}</td>
-                  <td width="10%">
-                    &nbsp;{{
-                    billing.bill_amount
-                    }}
-                  </td>
-                  <td width="12%">
-                    {{ billing.due_date | date: "dd/MM/yyyy" }}
-                  </td>
-                  <td width="10%">
-                    <span *ngIf="billing.bill_paid != ''">{{billing.bill_paid}}</span>
-                    <span *ngIf="billing.bill_paid == ''">---</span>
-                  </td>
-                  <td width="10%">
-                    <span *ngIf="billing.receipt_no != ''">{{
-                      billing.receipt_no
-                      }}</span><span *ngIf="billing.receipt_no == ''">---</span>
-                  </td>
-                  <td width="10%">
-                    <span *ngIf="billing.payment_date != ''">{{
-                      billing.payment_date | date: "dd/MM/yyyy"
-                      }}</span><span *ngIf="billing.payment_date == ''">---</span>
-                  </td>
-                  <td width="10%">
-                    <a class="pdf-btn action-sm-btn" data-toggle="tooltip" data-placement="top" (click)="downloadPDFfile(billing.billUrl)"
-                      title="Download Bill PDF" style="cursor: pointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
-                  </td>
-                </tr>
-              </tbody>
-              <!--  </perfect-scrollbar> -->
-            </table>
+            <div class="dash-billing-scroll-hori">
+              <table class="fl-table tb-header table-fixed table-dashboard-billing" *ngIf="isbillingDataFound == true && billingDataLoder == false">
+                <thead>
+                  <tr>
+                    <th width="11%"><span class="center-pos">Meter Reading Date</span></th>
+                    <th width="9%"><span class="center-pos">Reading <br />
+                        <span style="font-size:11px;">(In KWH)</span></span></th>
+                    <th width="9%"><span class="center-pos">Consumption <br />
+                        <span style="font-size:11px;">(In KWH)</span></span></th>
+                    <th width="9%"><span class="center-pos">Number of Days</span></th>
+                    <th width="10%"><span class="center-pos">Total Bill Amount <i class="fa fa-inr" aria-hidden="true"></i></span></th>
+                    <th width="12%"><span class="center-pos">Due Date</span></th>
+                    <th width="10%"><span class="center-pos">Bill Paid
+                        <i class="fa fa-inr" aria-hidden="true"></i></span></th>
+                    <th width="10%"><span class="center-pos">Receipt No.</span></th>
+                    <th width="9%"><span class="center-pos">Payment Date</span></th>
+                    <th width="11%"><span class="center-pos">Download</span></th>
+                  </tr>
+                </thead>
+                <!-- <perfect-scrollbar style="max-height: 400px;" [config]="scrollConfig"> -->
+                <tbody class="" *ngIf="isbillingDataFound == true && billingDataLoder == false">
+                  <tr *ngFor="let billing of billingData">
+                    <td width="11%">
+                      {{ billing.meter_reading_date | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td width="9%">{{ billing.meter_reading }}</td>
+                    <td width="9%">{{ billing.consumption_units }}</td>
+                    <td width="9%">{{ billing.numberOfDays }}</td>
+                    <td width="10%">
+                      &nbsp;{{
+                      billing.bill_amount
+                      }}
+                    </td>
+                    <td width="12%">
+                      {{ billing.due_date | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td width="10%">
+                      <span *ngIf="billing.bill_paid != ''">{{billing.bill_paid}}</span>
+                      <span *ngIf="billing.bill_paid == ''">---</span>
+                    </td>
+                    <td width="10%">
+                      <span *ngIf="billing.receipt_no != ''">{{
+                        billing.receipt_no
+                        }}</span><span *ngIf="billing.receipt_no == ''">---</span>
+                    </td>
+                    <td width="10%">
+                      <span *ngIf="billing.payment_date != ''">{{
+                        billing.payment_date | date: "dd/MM/yyyy"
+                        }}</span><span *ngIf="billing.payment_date == ''">---</span>
+                    </td>
+                    <td width="10%">
+                      <a class="pdf-btn action-sm-btn" data-toggle="tooltip" data-placement="top" (click)="downloadPDFfile(billing.billUrl)"
+                        title="Download Bill PDF" style="cursor: pointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+                <!--  </perfect-scrollbar> -->
+              </table>
+            </div>
 
             <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isbillingDataFound == false && billingDataLoder == false">
               <img src="/assets/images/no_data.png" /> Currently no data found
@@ -526,7 +528,7 @@
                       title="Track">Track</a>
                   </div>
                 </div>
-                <!-- Complaint sections Ends here -->
+                <!-- Complaint sections Endes here -->
               </div>
             </div>
           </div>
