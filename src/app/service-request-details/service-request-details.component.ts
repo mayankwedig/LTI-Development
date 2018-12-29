@@ -96,7 +96,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
     });
   }
   getSerReqDtLoder: boolean = false;
-  serviceRequestDetails:any = [];
+  serviceRequestDetails = [];
   getServiceRequestDetails() {
     var requestData = {
       accountToken: btoa(this.accountNumber),
