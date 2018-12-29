@@ -1,17 +1,18 @@
 <div id="main-menu" role="navigation">
   <div id="main-menu-inner">
 
-      <div class="dropdown account-dropdown">
+      <div class="dropdown account-dropdown user-account-no">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ displayUserInfo }}
 					<span class="caret"></span></button>
-					<ul class="dropdown-menu" *ngIf="isAccountDataFound == true">
+  				<ul class="dropdown-menu" *ngIf="isAccountDataFound == true">
             <li *ngFor="let acc of accountData" [ngClass]="{'active': acc.account_number == accountNumber}"><a  style="cursor:pointer;" (click)="redirectoDashBoard(
 
-              acc.account_number,
-              acc.id
-            )">{{acc.account_number}}</a></li>
-      </ul>
-    </div>
+                acc.account_number,
+                acc.id
+              )">{{acc.account_number}}</a>
+            </li>
+        </ul>
+      </div>
     <ul class="navigation">
       <li
         id="li0"

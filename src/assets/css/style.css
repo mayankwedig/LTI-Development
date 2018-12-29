@@ -5215,3 +5215,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
 #content-wrapper .dash-box-list .dash-box-li.track-complain>.panel-body {
     min-height: 220px;
 }
+
+#content-wrapper .dash-box-list.dash-top-block .dash-box-li {
+    margin-top: 0; 
+}
