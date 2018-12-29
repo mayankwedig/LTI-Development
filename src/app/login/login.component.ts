@@ -134,7 +134,6 @@ export class LoginComponent {
               //fetching Account details for getting net metering Status
               this.redirectLoding = true; //redirecting loder
               this.Dashboard.getAccountDetails(accountId, (result: any) => {
-                console.log(result);
                 this.redirectLoding = false; //redirecting loder false
                 if (result.authCode == "200") { // if Success
                   is_net_metering = result.data_params.is_net_metering; //getting Net Metering
