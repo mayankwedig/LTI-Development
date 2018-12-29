@@ -71,16 +71,18 @@ export class DashboardComponent implements OnInit {
   selectedServiceReqNo:any="";
   showComplaintError=false;
   redirectoComplaintDetails() {
-    if(this.selectedComplaintNo != ""){
-    var serviceRequestId=btoa(this.selectedComplaintNo);
+
+    if(this.selectedComplaintNo != ""  && this.selectedComplaintNo != null  && this.selectedComplaintNo.length != 0){
+    var serviceRequestId=btoa(this.selectedComplaintNo[0].value);
     this.router.navigate(['/complaint-request-details'],{ queryParams: {  complaintReq: serviceRequestId } });
     }else{
       this.toastr.error("Please Select Complaint ID!", "failed!");
     }
   }
   redirectoRequestDetails() {
-    if(this.selectedServiceReqNo != ''){
-      var serviceRequestId=btoa(this.selectedServiceReqNo);
+
+    if(this.selectedServiceReqNo != '' && this.selectedServiceReqNo != null && this.selectedServiceReqNo.length != 0){
+      var serviceRequestId=btoa(this.selectedServiceReqNo[0].value);
     this.router.navigate(['/service-request-details'],{ queryParams: { serviceReq: serviceRequestId } });
     }else{
       this.toastr.error("Please Select Service Request ID!", "failed!");

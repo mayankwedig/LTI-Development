@@ -1,3 +1,59 @@
-<p>
-  recharge-history works!
-</p>
+<div id="main-wrapper">
+   <app-header></app-header>
+   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+   <div id="content-wrapper">
+      <div class="page-heading">Recharge History</div>
+      <div class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r">
+         <div class="panel-body" [ngClass]="{ dashboardManageAccount: rechargeDataLoder == true }">
+            <div class="table-wrapper no-padding">
+               
+               <table class="fl-table tb-header table-fixed" *ngIf="isrechargeDataFound == true && rechargeDataLoder == false">
+                  <thead>
+                     <tr>
+                        <th width="20%"><span class="center-pos">Recharge Amount</span></th>
+                        <th width="20%"><span class="center-pos">Recharge Date</span></th>
+                        <th width="20%"><span class="center-pos">Recharge Reference No.</span></th>
+                        <th width="20%"><span class="center-pos">Recharge Mode</span></th>
+                        <th width="20%"><span class="center-pos">Units Received</span></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let recharge of rechargeData">
+                        <td width="20%">
+                           {{ recharge.recharge_amount}}
+                        </td>
+                        <td width="20%">
+                           {{ recharge.recharge_date | date: "dd/MM/yyyy"}}
+                        </td>
+                        <td width="20%">
+                           {{ recharge.recharge_refno}}
+                        </td>
+                        <td width="20%">
+                           {{ recharge.recharge_mode}}
+                        </td>
+                        <td width="20%">
+                           {{ recharge.units_received}}
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+
+               <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isrechargeDataFound == false && rechargeDataLoder == false">
+                  <img src="/assets/images/no_data.png" /> Currently no data found in
+                  recharge history section.
+               </div>
+               <div *ngIf="rechargeDataLoder == true">
+                  <div class="spinner box-spinner" style="top: 35%;">
+                     <div class="bounce1"></div>
+                     <div class="bounce2"></div>
+                     <div class="bounce3"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div id="main-menu-bg"></div>
+   </div>
+   <app-footer></app-footer>
+</div>

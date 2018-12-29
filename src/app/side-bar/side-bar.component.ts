@@ -12,6 +12,7 @@ import { AppError } from "./../common/app-error";
 
 import { ToastrService } from "ngx-toastr";
 
+
 import * as $ from "jquery";
 @Component({
   selector: "app-side-bar",
@@ -40,6 +41,7 @@ export class SideBarComponent implements OnInit {
     private accountServices: ManageaccountService,
     private toastr: ToastrService,
     private Dashboard: DashboardService,
+   
   ) {}
   removeCss($event) {
     $("li").removeClass("openDropdown");
@@ -63,6 +65,7 @@ export class SideBarComponent implements OnInit {
           this.is_net_metering = true;
         }
       }
+      this.selectedAccountDetails();
     }
     var init = [];
     this.winRef.nativeWindow.PixelAdmin.start(init);
@@ -73,9 +76,26 @@ export class SideBarComponent implements OnInit {
       this.currentUrl="/complaint-request-details";
     }
     this.userData = this.auth.getCurrentUser();
-    this.getAccount("");
+    this.getAccounts("");
   }
-  getAccount(searchKeyWord) {
+  accountDetailsLoder:any=false;
+  AccountDetailsFound:any=false;
+  selectedAccountData:any="";
+  selectedAccountDetails() {
+    this.Dashboard.getAccountDetails(
+      this.accountNumber,
+      (result: any) => {
+        this.accountDetailsLoder = false;
+        if (result.authCode == "200") {
+          this.AccountDetailsFound = true;
+          this.selectedAccountData = result.data_params;
+        } else {
+          this.AccountDetailsFound = false;
+        }
+      }
+    );
+  }
+  getAccounts(searchKeyWord) {
     this.accountLoder = true;
 
     this.accountServices.getAccount(searchKeyWord).subscribe(

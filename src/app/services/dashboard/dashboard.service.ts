@@ -12,10 +12,8 @@ export class DashboardService {
   dailyGetDataAPI="users/dailyGetData";
   hourlyGetDataAPI="users/hourlyGetData";
   weeklyGetDataAPI="users/weeklyGetData";
-  
+  RechargeHistoryGetDataAPI ="users/BillingHistoryData";  
   getallYearGetDataAPI="users/allYearGetData";
-  
-
   monthlyGetDataAPI = "users/monthlyGetData";
   getCommanDasboardDataScalarApi = "users/commanDasboardDataScalar";
   energyTipsAPI="users/contentData";
@@ -83,7 +81,13 @@ export class DashboardService {
     var body={"accountNumber":accountNumber,"userId":currentUser.userId}
     return this.DataService.getAll(this.SOAbilling, body,this.helpers.setHeaderData());
   }
+  getrechargeData(accountNumber){
+    var currentUser=this.auth.getCurrentUser();
+    var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
+    return this.DataService.getAll(this.RechargeHistoryGetDataAPI, body,this.helpers.setHeaderData());
+  }
 
+ 
   getMonthlyGraphData(body, callback) { //monthly graph data
     var currentUser=this.auth.getCurrentUser();
     body["userId"]=currentUser.userId;
