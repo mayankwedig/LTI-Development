@@ -26,6 +26,8 @@ export class NewServiceConnectionComponent implements OnInit {
   complaintSupplyProblems = [];
   complaintSupplyServiceRequests = [];
 
+
+
   accountNumber = "";
   billingData = "";
   complaintSupplyProblemLoder: boolean = false;
@@ -36,10 +38,11 @@ export class NewServiceConnectionComponent implements OnInit {
   complaintBillRelatedReasonLoder: boolean = false;
   billingDataLoder: boolean = false;
   isbillingDataFound: boolean = false;
-
   showTrackingNo = false;
   trackingNo = "";
   showMainForm:boolean=false;
+
+  placeType:any=[];
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -68,6 +71,7 @@ export class NewServiceConnectionComponent implements OnInit {
     this.getComplaintSupplyServiceRequest();
     this.getBillingData();
     this.initnewServiceConnectionFrm(this.defautlSelectedCaseType);
+    this.placeType=[{"label":"Rural","value":"rural"},{"label":"Urban","value":"urban"}];
   }
   initnewServiceConnectionFrm(selectedCaseType) {
     var fields={
