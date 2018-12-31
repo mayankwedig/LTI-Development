@@ -11,7 +11,7 @@
       class="billing-sec profile-page "
       [ngClass]="{ 'profile-update-page': viewProfileBlock == false }"
     >
-      <div class="row margin_top20">
+      <div class="row">
         <div class="col-sm-12">
           <div class="panel-body" [ngClass]="{ loderHeight: loder == true }">
             <div class="spinner box-spinner" *ngIf="loder == true">
@@ -20,9 +20,9 @@
               <div class="bounce3"></div>
             </div>
             <div class="row" *ngIf="loder == false">
-              <div class="col-sm-6">
+              <div class="col-sm-6 profile-left-info">
                 <div class="row">
-                  <div class="col-sm-5">
+                  <div class="col-sm-5 col-xs-12">
                     <div class="profile-image">
                       <img
                         [src]="profile_image"
@@ -59,7 +59,7 @@
                       
                     </div>
                   </div>
-                  <div class="col-sm-7 profile-info">
+                  <div class="col-sm-7 col-xs-12 profile-info">
                     <div class="pro-name">
                       {{ profileData.first_name }} {{ profileData.last_name }}
                     </div>
@@ -67,7 +67,7 @@
                       Account No.
                       <span>{{accountNumber}}</span>
                     </div>
-                    <div class="text-center margin_top40">
+                    <div class="text-center profile-edit-block margin_top40">
                       <a
                         *ngIf="viewProfileBlock"
                         style="cursor:pointer"
@@ -78,7 +78,7 @@
                       >
                     </div>
                     <div
-                      class="text-center margin_top40"
+                      class="text-center margin_top40 profile-edit-block"
                       *ngIf="!viewProfileBlock"
                     >
                       <a

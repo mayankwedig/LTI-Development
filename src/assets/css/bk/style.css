@@ -1584,8 +1584,7 @@ body {
     width: 100%;
 }
 .profile-page .profile-right-content .consumer-detail li:first-child {
-    margin-bottom: 0;
-    min-height: 82px; 
+    margin-bottom: 40px; 
 }
 .profile-page .profile-right-content .consumer-detail li .lable-detail{
     float: left;
@@ -4656,7 +4655,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     border: none; 
 }
 .manage-account.billing-sec .table-wrapper .fl-table.tb-body {
-    max-height: 348px;
+    height: 348px;
     display: block;
 }
 
@@ -5147,11 +5146,11 @@ table.table.consumer-basic-table tbody tr th:last-child {
 }
 .table-fixed td {
     height: 50px;
-    padding: 0 5px !important;
+    padding: 0 !important;
 }
 .table-fixed th {
     height: 70px;
-    padding: 0 5px !important;
+    padding: 0 !important;
 }
 .table-fixed tbody td {
     float: left;
@@ -5183,25 +5182,30 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .table-fixed tbody::-webkit-scrollbar-thumb {  
     background-color: rgb(7, 113, 215);  
     height: 10px;
+
 }
-.ngx-dropdown-container .ngx-dropdown-list-container ul.selected-items {
-    margin: 0 !important;
+/**28-12-2018**/
+.present-balance {
+    font-size: 16px;
+    margin-top: -7px;
+    margin-bottom: 10px
 }
-.ngx-dropdown-container .ngx-dropdown-list-container ul.selected-items li {
-    background-color: #0571d7 !important;
+.present-balance span {
+    font-size: 22px;
+    font-weight: 600;
+    vertical-align: middle;
+    margin-left: 5px;
 }
-.ngx-dropdown-container .ngx-dropdown-list-container ul.available-items {
-    margin-top: 0 !important;
-    margin-bottom: 0; 
+.present-balance span .fa {
+    font-size: 18px;
+    vertical-align: 1px;
+    margin-right: 3px;
 }
-.ngx-dropdown-container .ngx-dropdown-list-container ul.available-items li{
-    border-bottom: 1px solid #eeeeee!important;
-    padding: 0 20px !important;
-    line-height: 28px !important;
-    text-align: left;
+.ngx-dropdown-container .ngx-dropdown-list-container ul.selected-items li{
+  background-color: #0571d7 !important;
 }
 .ngx-dropdown-container .ngx-dropdown-list-container .search-container input {
-    border-bottom: 1px solid #eeeeee!important;
+  border-bottom: 1px solid #0571d7!important;
 }
 .ngx-dropdown-container .ngx-dropdown-button {
     width: 100%;
@@ -5211,12 +5215,4 @@ table.table.consumer-basic-table tbody tr th:last-child {
     border: none !important;
     border-radius: 20px !important;
     font-size: 13px !important;
-}
-
-#content-wrapper .dash-box-list .dash-box-li.track-complain>.panel-body {
-    min-height: 220px;
-}
-
-#content-wrapper .dash-box-list.dash-top-block .dash-box-li {
-    margin-top: 0; 
 }
