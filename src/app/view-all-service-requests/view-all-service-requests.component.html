@@ -6,10 +6,10 @@
 				SERVICE REQUEST
 			</div>
 			<div class="service-request">
-				<div class="row margin_top20">
+				<div class="row margin_top10">
 					<div class="col-sm-12">
 						<div class="panel-body">
-							<div class="">
+							<div class="service-request-tb-scroll">
 								<div class="table-wrapper">
 								    <table class="fl-table service-request-table"  *ngIf="serviceRequestLoder == false && ServiceRequestFound == true">
 								        <thead>
@@ -26,7 +26,7 @@
 								        		<td>{{serviceRequest.tracking_number}}</td>
 														<td *ngIf="serviceRequest.created !='0000-00-00 00:00:00'">{{serviceRequest.created | date: "d/M/yyyy" }}</td>
 														<td *ngIf="serviceRequest.created =='0000-00-00 00:00:00'">-</td>
-								        		<td>{{serviceRequest.service_request_type}}</td>
+								        				<td>{{serviceRequest.service_request_type}}</td>
 														<td>
 															<span class="status-box status-open" *ngIf="serviceRequest.status == 0"> Open </span>
 															<span class="status-box status-pending" *ngIf="serviceRequest.status == 2">Pending</span>
