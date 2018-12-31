@@ -5220,3 +5220,20 @@ table.table.consumer-basic-table tbody tr th:last-child {
 #content-wrapper .dash-box-list.dash-top-block .dash-box-li {
     margin-top: 0; 
 }
+/**28-12-2018**/
+.present-balance {
+    font-size: 16px;
+    margin-top: -7px;
+    margin-bottom: 10px
+}
+.present-balance span {
+    font-size: 22px;
+    font-weight: 600;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+.present-balance span .fa {
+    font-size: 18px;
+    vertical-align: 1px;
+    margin-right: 3px;
+}
