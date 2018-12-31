@@ -66,14 +66,6 @@ export class ServiceRequestDetailsComponent implements OnInit {
 
     
   }
-
-
-
- 
-
-
-
-
   showAccountDetails(accNo) {
     this.accountDetailsLoder = true;
     this.DashboardService.getAccountDetails(accNo, (result: any) => {
@@ -96,7 +88,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
     });
   }
   getSerReqDtLoder: boolean = false;
-  serviceRequestDetails = [];
+  serviceRequestDetails:any= [];
   getServiceRequestDetails() {
     var requestData = {
       accountToken: btoa(this.accountNumber),

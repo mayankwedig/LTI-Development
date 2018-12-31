@@ -20,6 +20,7 @@ export class RechargeHistoryComponent implements OnInit {
   rechargeData: any = "";
   dispString: any = "";
   rechargechartData: any = [];
+  present_balance:any="";
   constructor(
     private DashboardService: DashboardService,
     private activateRoute: ActivatedRoute,
@@ -45,6 +46,7 @@ export class RechargeHistoryComponent implements OnInit {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.rechargeData = res.data_params;
+            this.present_balance=res.present_balance;
             this.isrechargeDataFound = true;
           } else {
             this.isrechargeDataFound = false;
