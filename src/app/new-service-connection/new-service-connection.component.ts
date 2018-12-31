@@ -4,7 +4,6 @@ import { HelpersService } from "./../services/helpers/helpers.service";
 import { ComplaintsService } from "./../services/complaints/complaints.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
@@ -18,7 +17,6 @@ import { AppError } from "./../common/app-error";
 export class NewServiceConnectionComponent implements OnInit {
   newServiceConnectionFrm: FormGroup;
   dispString: any = "";
-
   defautlSelectedCaseType: any = "Meter Related";
   userAccounts = [];
   complaintCaseTypes = [];
@@ -42,7 +40,7 @@ export class NewServiceConnectionComponent implements OnInit {
   trackingNo = "";
   showMainForm:boolean=false;
 
-  placeType:any=[];
+
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -51,6 +49,9 @@ export class NewServiceConnectionComponent implements OnInit {
     private AuthService: AuthService,
     private DashboardService: DashboardService
   ) {}
+
+
+ 
 
   ngOnInit() {
     if (this.helpers.getLocalStoragData("accountToken") != null) {
@@ -70,8 +71,8 @@ export class NewServiceConnectionComponent implements OnInit {
     this.getComplaintSupplyProblem();
     this.getComplaintSupplyServiceRequest();
     this.getBillingData();
+    this.getNewConnection();
     this.initnewServiceConnectionFrm(this.defautlSelectedCaseType);
-    this.placeType=[{"label":"Rural","value":"rural"},{"label":"Urban","value":"urban"}];
   }
   initnewServiceConnectionFrm(selectedCaseType) {
     var fields={
@@ -83,6 +84,7 @@ export class NewServiceConnectionComponent implements OnInit {
     };
     this.newServiceConnectionFrm = this.fb.group(fields);
   }
+
   getBillingData() {
     this.billingDataLoder = true;
     this.DashboardService.getBillingData(this.accountNumber).subscribe(
@@ -109,6 +111,35 @@ export class NewServiceConnectionComponent implements OnInit {
       }
     );
   }
+
+
+  getNewConnection() {
+    this.billingDataLoder = true;
+    this.DashboardService.getNewConnection(this.accountNumber).subscribe(
+      (response: any) => {
+        var res = response;
+        this.billingDataLoder = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.billingData = res.data_params;
+            this.isbillingDataFound = true;
+          } else {
+            this.isbillingDataFound = false;
+            this.billingData = "";
+          }
+        }
+      },
+      (error: AppError) => {
+        this.isbillingDataFound = false;
+        this.billingDataLoder = false;
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
+
   getUserAccounts() {
     this.userAccountsLoder = true;
     this.complaints.getAccounts().subscribe(

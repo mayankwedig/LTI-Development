@@ -32,8 +32,8 @@
                         <select required *ngIf="!userAccountsLoder && userAccounts.length > 0" formControlName="discomName"
                           name="discomName" class="form-control">
                           <option value="" selected>Select DISCOM Name</option>
-                          <option value="{{ user.account_number }}" *ngFor="let user of userAccounts">{{
-                            user.account_number }}</option>
+                          <option value="{{ user.discoms }}" *ngFor="let user of userAccounts">{{
+                            user.discoms }}</option>
                         </select>
                         <select required *ngIf="!userAccountsLoder && userAccounts.length == 0" formControlName="discomName"
                           name="discomName" class="form-control">
@@ -47,6 +47,8 @@
                         </div>
                       </div>
                     </div>
+
+                  
 
                     <div class="col-xs-12">
                       <div class="form-group">
@@ -226,7 +228,6 @@
             <div class="row">
               <div class="form-holder">
                 <form class="top-label-form" (ngSubmit)="submitServiceRequestFrm()">
-                  <!--<div class="border-block"></div>-->
                   <div class="heading-field">Name of Applicant</div>
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
@@ -319,8 +320,7 @@
                           <label>Address line 1
 
                           </label>
-                          <input type="text" required name="Address line 1
-" type="text" class="form-control"
+                          <input type="text" required name="Address line 1" type="text" class="form-control"
                             placeholder="Address line 1
                                                 " />
                         </div>
@@ -459,6 +459,7 @@
                             </div>
                           </div>
                         </div>
+
                           <div class="col-lg-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                               <label>Plot Size (in Sq mts)
@@ -515,12 +516,7 @@
                                   <option>Domestic
                                     </option>
                                 </select>
-                                <!-- <select *ngIf="
-                                   
-                                  "
-                                  required formControlName="division" name="division" class="form-control">
-                                  <option value="" selected>Select Division</option>
-                                </select> -->
+                                
                                 <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
                                   Loding...
                                 </div>
@@ -567,18 +563,19 @@
                                  
                                 <label>Place Type*</label>
                                 <select
-                                  required name="PlaceTypefdgdfg" class="form-control" 
+                                  required formControlName="Place Type" name="Place Type" class="form-control" 
                                   placeholder=" Place Type">
                                   <option value="" selected>Select Place Type</option>
 
-                                  <option value="{{p_type.value}}" *ngFor="let p_type of placeType">{{p_type.label}}
+                                  <option>Urban selection
                                     </option>
+                                    <option>Rural selection
+                                      </option>
                                    
                                 </select>
-                    
-                                
+                        
                                 <div>
-                                  <span class="error-msg">Place Type.</span>
+                                  
                                 </div>
                               </div>
                             </div> 
@@ -778,7 +775,7 @@
                             ">
                             Submit
                           </button>
-                          <!-- {{requestServicesFrm.value | json}} -->
+                         
                         </div>
                 </form>
               </div>
@@ -786,32 +783,7 @@
           </div>
         </div>
       </div>
-      <!--  
-        <div class="electricity-consumption-box">
-          <img src="../assets/images/electricity-icon.png" /> Your last month
-          consumption is <span>3250</span> units. Learn tips how to save
-          electricity.
-          <a href="#"
-            >Read more <img src="../assets/images/read-more-icon.png"
-          /></a>
-        </div>
-      </div>
-      <ul class="dash-box-list">
-        <li class="dash-box-li rows offer-li no-padding">
-          <div class="offer-section">
-            <div class="offer-content">
-              <img src="../assets/images/offer-icon.png" alt="" />
-              <div class="text-content">
-                We have a lot more to <a href="#">OFFER</a>. Choose from a wide
-                range of products
-              </div>
-              <a class="blue-btn" href="#">Explore</a>
-            </div>
-          </div>
-        </li>
-      </ul> -->
     </div>
-
     <div id="main-menu-bg"></div>
   </div>
   <app-footer></app-footer>
