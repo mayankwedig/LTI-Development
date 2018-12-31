@@ -86,7 +86,7 @@ export class ComplaintRequestDetailsComponent implements OnInit {
 
 
   getSerReqDtLoder: boolean = false;
-  complaintsDetails = [];
+  complaintsDetails :any= {};
   getComplaintRequestDetails() {
     var requestData = {
       accountToken: btoa(this.accountNumber),
@@ -101,13 +101,13 @@ export class ComplaintRequestDetailsComponent implements OnInit {
           if (res.authCode == "200" && res.status == true) {
             this.complaintsDetails = res.data_params;
           } else {
-            this.complaintsDetails = [];
+            this.complaintsDetails = {};
           }
         }
       },
       (error: AppError) => {
         this.getSerReqDtLoder = false;
-        this.complaintsDetails = [];
+        this.complaintsDetails = {};
         if (error instanceof BadInput) {
         } else {
           throw error;
