@@ -30,6 +30,10 @@ export class DashboardService {
   complaintListAPI="users/complaintList";
   serviceRequestListAPI="users/serviceRequestList";
 
+  masterDropDown="users/masterDropDown";   
+
+  
+
   ac_number=this.helpers.getLocalStoragData("account_number");//getting account number
   
   constructor(private DataService: DataService,private helpers:HelpersService,private auth:AuthService) {}
@@ -76,6 +80,14 @@ export class DashboardService {
        callback(result);
      });
   }
+
+   getNewConnection(accountNumber){
+    var currentUser=this.auth.getCurrentUser();
+    var accountData={"accountToken": btoa(accountNumber),"profileToken":btoa(currentUser.userId)};
+    return this.DataService.getAll(this.masterDropDown, accountData,this.helpers.setHeaderData())  
+    
+  }
+
   getBillingData(accountNumber){
     var currentUser=this.auth.getCurrentUser();
     var body={"accountNumber":accountNumber,"userId":currentUser.userId}
