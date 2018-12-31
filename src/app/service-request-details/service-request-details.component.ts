@@ -66,14 +66,6 @@ export class ServiceRequestDetailsComponent implements OnInit {
 
     
   }
-
-
-
- 
-
-
-
-
   showAccountDetails(accNo) {
     this.accountDetailsLoder = true;
     this.DashboardService.getAccountDetails(accNo, (result: any) => {
