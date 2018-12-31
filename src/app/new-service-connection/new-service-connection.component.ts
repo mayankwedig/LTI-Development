@@ -37,7 +37,7 @@ export class NewServiceConnectionComponent implements OnInit {
   billingDataLoder: boolean = false;
   isbillingDataFound: boolean = false;
 
-  showTrackingNo = false;
+  showTrackingNo:boolean = false;
   trackingNo = "";
   showMainForm:boolean=false;
   constructor(
