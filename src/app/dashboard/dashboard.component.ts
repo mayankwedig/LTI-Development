@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   
   /*******************Dropdown Configs**********************************/
   serviceReqDropDownconfig ={
-    displayKey:"description", //if objects array passed which key to be displayed defaults to description
+    displayKey:"label", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: "200px", //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     placeholder:'Select Service Request Tracking ID', // text to be displayed when no item is selected defaults to Select,
@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
   };
 
   complaintReqDropDownconfig ={
-    displayKey:"description", //if objects array passed which key to be displayed defaults to description
+    displayKey:"label", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: "200px", //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     placeholder:'Select Complaint Tracking ID', // text to be displayed when no item is selected defaults to Select,
@@ -242,7 +242,7 @@ export class DashboardComponent implements OnInit {
       if (result.authCode == "200" && result.data_params.length > 0) {
        /*  this.complaints = result.data_params; */
         result.data_params.forEach((eleme) => {
-          this.complaints.push(eleme.tracking_number);
+          this.complaints.push({"label":eleme.tracking_number,"value":eleme.id});
         });
         this.complaintsFound = true;
       } else {
@@ -260,7 +260,7 @@ export class DashboardComponent implements OnInit {
         this.serviceRequestLoder = false;
         if (result.authCode == "200" && result.data_params.length > 0) {
           result.data_params.forEach((eleme) => {
-            this.ServiceRequests.push(eleme.tracking_number);
+            this.ServiceRequests.push({"label":eleme.tracking_number,"value":eleme.id});
           });
          /*  this.ServiceRequests = result.data_params; */
           this.ServiceRequestFound = true;
