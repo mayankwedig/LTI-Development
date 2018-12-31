@@ -757,6 +757,7 @@
     }
     .recharge-history-table-scroll {
         overflow-x: auto;
+        clear:both;
     }
     .recharge-history-table-scroll .table-wrapper {
         width: 700px;
