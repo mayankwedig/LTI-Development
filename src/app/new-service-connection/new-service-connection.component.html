@@ -32,8 +32,8 @@
                         <select required *ngIf="!userAccountsLoder && userAccounts.length > 0" formControlName="discomName"
                           name="discomName" class="form-control">
                           <option value="" selected>Select DISCOM Name</option>
-                          <option value="{{ user.account_number }}" *ngFor="let user of userAccounts">{{
-                            user.account_number }}</option>
+                          <option value="{{ user.discoms }}" *ngFor="let user of userAccounts">{{
+                            user.discoms }}</option>
                         </select>
                         <select required *ngIf="!userAccountsLoder && userAccounts.length == 0" formControlName="discomName"
                           name="discomName" class="form-control">
@@ -47,6 +47,8 @@
                         </div>
                       </div>
                     </div>
+
+                  
 
                     <div class="col-xs-12">
                       <div class="form-group">
@@ -223,25 +225,248 @@
             </div>
           </div>
           <div class="panel-body" *ngIf="showTrackingNo == false && showMainForm == true">
-              <div class="row">
-                  <div class="form-holder">
-                      <form
-                        class="top-label-form"
-                        [formGroup]="requestServicesFrm"
-                        (ngSubmit)="submitServiceRequestFrm()"
-                      >
-        
-        
-                        <div class="border-block"></div>
-                         <div class="heading-field">Name of Applicant</div>
-                         <div class="row">
+            <div class="row">
+              <div class="form-holder">
+                <form class="top-label-form" (ngSubmit)="submitServiceRequestFrm()">
+                  <div class="heading-field">Name of Applicant</div>
+                  <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>First Name
+                        </label>
+                        <input type="text" required name="First Name" type="text" class="form-control" placeholder="Name" />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Last Name
+                        </label>
+                        <input type="text" required name="Last Name" type="text" class="form-control" placeholder="Last Name" />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Father's First Name
+                        </label>
+                        <input type="text" required name="Father's First Name" type="text" class="form-control"
+                          placeholder="Father's First Name
+                                  " />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Father's Last Name
+                        </label>
+                        <input type="text" required name="Father's Last Name" type="text" class="form-control"
+                          placeholder="Father's Last Name" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Husband's First Name
+
+                        </label>
+                        <input type="text" required name="Husband's First Name
+                                      "
+                          type="text" class="form-control" placeholder="Husband's First Name
+                                      " />
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Husband's Last Name
+
+                        </label>
+                        <input type="text" required name="Husband's Last Name
+                                        "
+                          type="text" class="form-control" placeholder="Husband's Last Name
+                                        " />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Mother's Maiden Name
+
+                        </label>
+                        <input type="text" required name="Mother's Maiden Name
+                                          "
+                          type="text" class="form-control" placeholder="Mother's Maiden Name
+                                          " />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Occupation
+
+                        </label>
+                        <input type="text" required name="Occupation
+                                            " type="text"
+                          class="form-control" placeholder="Occupation
+                                            " />
+                      </div>
+                    </div>
+                  </div>
+
+                    
+                    <div class="heading-field">Communication Address</div>
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label>Address line 1
+
+                          </label>
+                          <input type="text" required name="Address line 1" type="text" class="form-control"
+                            placeholder="Address line 1
+                                                " />
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label>Address line 2
+
+                          </label>
+                          <input type="text" required name="Address line 2
+                                                  "
+                            type="text" class="form-control" placeholder="Address line 2
+                                                  " />
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label>Address line 3
+                          </label>
+                          <input type="text" required name="Address line 3
+                                                    "
+                            type="text" class="form-control" placeholder="Address line 3
+                                                    " />
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label>Pin Code
+
+                          </label>
+                          <input type="text" required name="Pin Code
+                                                      "
+                            type="text" class="form-control" placeholder="Pin Code
+                                                      " />
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label>Mobile Number
+
+                          </label>
+                          <input type="text" required name="Mobile Number
+                                                        "
+                            type="text" class="form-control" placeholder="Mobile Number
+                                                        " />
+                        </div>
+                      </div>
+                    </div>
+
+                     
+                      <div class="heading-field">Installation Address</div>
+                      <div class="row">
+
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                          <div class="form-group">
+                            <label>Address line 1
+
+                            </label>
+                            <input type="text" required name="Address line 1
+              " type="text" class="form-control"
+                              placeholder="Address line 1
+                                                              " />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                          <div class="form-group">
+                            <label>Address line 2
+
+                            </label>
+                            <input type="text" required name="Address line 2
+                                                                "
+                              type="text" class="form-control" placeholder="Address line 2
+                                                                " />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                          <div class="form-group">
+                            <label>Address line 3
+                            </label>
+                            <input type="text" required name="Address line 3
+                                                                  "
+                              type="text" class="form-control" placeholder="Address line 3
+                                                                  " />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                          <div class="form-group">
+                            <label>Pin Code
+
+                            </label>
+                            <input type="text" required name="Pin Code
+                                                                    "
+                              type="text" class="form-control" placeholder="Pin Code
+                                                                    " />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                          <div class="form-group">
+                            <label>Mobile Number
+
+                            </label>
+                            <input type="text" required name="Mobile Number
+                                                                      "
+                              type="text" class="form-control" placeholder="Mobile Number
+                                                                      " />
+                          </div>
+                        </div>
+                       
+
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                          <div class="form-group">
+                            <!--  {{complaintCaseTypes }} -->
+                            <label>Is the permanent address same as installation address*</label>
+                            <select
+                              required formControlName="Is the permanent address same as installation address" name="Is the permanent address same as installation address" class="form-control">
+                              <option value="" selected>Select Is the permanent address same as installation address</option>
+                              <option>Yes
+                                </option>
+                                <option>NO
+                                  </option>
+                            </select>
+                            
+                            <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                              Loding...
+                            </div>
+                            <div *ngIf="f.division.touched && f.division.invalid">
+                              <span class="error-msg">Is the permanent address same as installation address.</span>
+                            </div>
+                          </div>
+                        </div>
+
                           <div class="col-lg-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                               <label>Plot Size (in Sq mts)
 
                               </label>
                               <input type="text" required name="Plot Size (in Sq mts)
-                        " type="text"
+                               " type="text"
                                 class="form-control" placeholder="Plot Size (in Sq mts)
                                                                         " />
                             </div>
@@ -277,26 +502,31 @@
                                 type="text" class="form-control" placeholder="Units (KW)" />
                             </div>
                           </div>
-                        </div>
+                        
                             
                           <!--Dropdown-->
                           
+                          <div class="col-lg-6 col-sm-6 col-xs-12">
+                              <div class="form-group">
+                                <!--  {{complaintCaseTypes }} -->
+                                <label>Purpose of Supply*</label>
+                                <select
+                                  required formControlName="Purpose of Supply" name="Purpose of Supply" class="form-control">
+                                  <option value="" selected>Select Purpose of Supply*</option>
+                                  <option>Domestic
+                                    </option>
+                                </select>
+                                
+                                <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                  Loding...
+                                </div>
+                                <div *ngIf="f.division.touched && f.division.invalid">
+                                  <span class="error-msg" *ngIf="f.division.errors?.required">Purpose of Supply.</span>
+                                </div>
+                              </div>
+                            </div> 
 
-                           <!-- <div class="form-group">
-                              <label>Purpose of Supply*</label>
-                              <select
-                          
-                                required
-                                name="Supply"
-                                class="form-control"
-                                (change)=""
-                                  
-                              >
-                                <option value="" selected>Select Purpose of Supply</option>
-                                <option></option
-                                >
-                            </div> -->
-                        
+                      
                             <div class="col-lg-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                               <label>Connection Point
@@ -325,349 +555,215 @@
                                 type="text" class="form-control" placeholder="Email ID" />
                             </div>
                           </div>
+
+
+
+                          <div class="col-lg-6 col-sm-6 col-xs-12">
+                              <div class="form-group">
+                                 
+                                <label>Place Type*</label>
+                                <select
+                                  required formControlName="Place Type" name="Place Type" class="form-control" 
+                                  placeholder=" Place Type">
+                                  <option value="" selected>Select Place Type</option>
+
+                                  <option>Urban selection
+                                    </option>
+                                    <option>Rural selection
+                                      </option>
+                                   
+                                </select>
+                        
+                                <div>
+                                  
+                                </div>
+                              </div>
+                            </div> 
+                         
                          
                           <div class="col-lg-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                              <label> Place Type
-                              </label>
-                              <input type="text" required name=" Place Type"
-                                type="text" class="form-control" placeholder=" Place Type" />
-                            </div>
-                          </div>
-                         
-                          <div class="col-lg-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                              <label>  Connection Type
-                              </label>
-                              <input type="text" required name="  Connection Type"
-                                type="text" class="form-control" placeholder="  Connection Type" />
-                            </div>
-                          </div>
+                              <div class="form-group">
+                                
+                                <label>Connection Type*</label>
+                                <select
+                          required formControlName="Connection Type" name="Connection Type" class="form-control" 
+                              placeholder=" Connection Type">
+                                  <option value="" selected>Select Connection Type</option>
+                                  <option>Post Paid selection
+                                    </option>
+                                    <option> Pre Paid selection
+                                      </option>
+                                </select>
+                            
+                                <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                  Loding...
+                                </div>
+                                <div *ngIf="f.division.touched && f.division.invalid">
+                                  <span class="error-msg" *ngIf="f.division.errors?.required">Connection Type.</span>
+                                </div>
+                              </div>
+                            </div> 
                           
-                          <div class="col-lg-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                              <label> Phase Type
-                              </label>
-                              <input type="text" required name=" Phase Type"
-                                type="text" class="form-control" placeholder=" Phase Type" />
-                            </div>
-                          </div>
+                            <div class="col-lg-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                  
+                                  <label>Phase Type*</label>
+                                  <select
+                            required formControlName="Phase Type" name="Phase Type" class="form-control" 
+                                placeholder=" Phase Type">
+                                    <option value="" selected>Select Phase Type</option>
+                                    <option>Single Phase selection
+                                      </option>
+                                      <option>Three Phase selection
+                                        </option>
+                                  </select>
+                              
+                                  <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                    Loding...
+                                  </div>
+                                  <div *ngIf="f.division.touched && f.division.invalid">
+                                    <span class="error-msg" *ngIf="f.division.errors?.required">Phase Type.</span>
+                                  </div>
+                                </div>
+                              </div> 
                           <!--yes No selection -->
-                          <!-- Do you want to give possession details? -->
+                         
+                          <div class="col-lg-6 col-sm-6 col-xs-12">
+                              <div class="form-group">
+                                <!--  {{complaintCaseTypes }} -->
+                                <label>Do you want to give possession details*</label>
+                                <select
+                                  required formControlName="Do you want to give possession details" name="Do you want to give possession details" class="form-control">
+                                  <option value="" selected>Select Do you want to give possession details</option>
+                                  <option>Yes
+                                    </option>
+                                    <option>NO
+                                      </option>
+                                </select>
+                                
+                                <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                  Loding...
+                                </div>
+                                <div *ngIf="f.division.touched && f.division.invalid">
+                                  <span class="error-msg">Do you want to give possession details.</span>
+                                </div>
+                              </div>
+                            </div>
+                          
 
                           <!--Dropdown-->
-                          <!-- Document for Identification -->
+                          
+                          <div class="col-lg-6 col-sm-6 col-xs-12">
+                              <div class="form-group">
+                                <!--  {{complaintCaseTypes }} -->
+                                <label>Document for Identification*</label>
+                                <select
+                                  required formControlName="Document for Identification" name="Document for Identification" class="form-control">
+                                  <option value="" selected>Select Document for Identification*</option>
+                                  <option>DL
+                                    </option>
+                                    <option>Pan Card
+                                      </option>
+                                      <option>Passport
+                                        </option>
+                                        <option>Ration Card
+                                          </option>
+                                          <option>UID
+                                            </option>
+                                            <option>Voter ID
+                                              </option>
+                                </select>
+                                
+                                <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                  Loding...
+                                </div>
+                                <div *ngIf="f.division.touched && f.division.invalid">
+                                  <span class="error-msg" *ngIf="f.division.errors?.required">Document for Identification.</span>
+                                </div>
+                              </div>
+                            </div> 
+                          </div>
 
                           <div class="heading-field">Enclosure Section</div>
                           <div class="row">
                             <!--Yes NO Selection-->
-                              <!-- NOC
-                              Owner Consent Letter
-                              Work Completion Certificate -->
-                              
+                            <div class="col-lg-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                  <!--  {{complaintCaseTypes }} -->
+                                  <label>NOC*</label>
+                                  <select
+                                    required formControlName="NOC" name="NOC" class="form-control">
+                                    <option value="" selected>Select NOC</option>
+                                    <option>Yes
+                                      </option>
+                                      <option>NO
+                                        </option>
+                                  </select>
+                                  
+                                  <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                    Loding...
+                                  </div>
+                                  <div *ngIf="f.division.touched && f.division.invalid">
+                                    <span class="error-msg">NOC.</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6 col-sm-6 col-xs-12">
+                                  <div class="form-group">
+                                    <!--  {{complaintCaseTypes }} -->
+                                    <label>Owner Consent Letter*</label>
+                                    <select
+                                      required formControlName="Owner Consent Letter" name="Owner Consent Letter" class="form-control">
+                                      <option value="" selected>Select Owner Consent Letter</option>
+                                      <option>Yes
+                                        </option>
+                                        <option>NO
+                                          </option>
+                                    </select>
+                                    
+                                    <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                      Loding...
+                                    </div>
+                                    <div *ngIf="f.division.touched && f.division.invalid">
+                                      <span class="error-msg">Owner Consent Letter.</span>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                      <!--  {{complaintCaseTypes }} -->
+                                      <label>Work Completion Certificate*</label>
+                                      <select
+                                        required formControlName="Work Completion Certificate" 
+                                        name="Work Completion Certificate" class="form-control">
+                                        <option value="" selected>Select Work Completion Certificate</option>
+                                        <option>Yes
+                                          </option>
+                                          <option>NO
+                                            </option>
+                                      </select>
+                                      
+                                      <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
+                                        Loding...
+                                      </div>
+                                      <div *ngIf="f.division.touched && f.division.invalid">
+                                        <span class="error-msg">Work Completion Certificate.</span>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                            
                               <div class="col-lg-6 col-sm-6 col-xs-12">
                                   <div class="form-group">
                                     <label> Captcha
                                     </label>
                                     <input type="text" required name=" Captcha"
-                                      type="text" class="form-control" placeholder=" Captcha" />
+                                      type="text" class="form-control" placeholder=" Captcha"/>
                                   </div>
                                 </div>
                               </div>
-
-
-
-                          
-
-
-
-
-
-
-
-
-
-
-
-                       
-                        <div class="border-block"></div>
-                        <!-- <div class="heading-field">Service request information</div> -->
-                        <!-- Permanent Disconnection -->
-                        <div class="border-none" *ngIf="
-                            requestServicesFrm.value.serviceRequestType ==
-                            'Permanent Disconnection Request'
-                          ">
-                          <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">Enclosed Identification Document<span class="red">*</span></label>
-                                <select required formControlName="enclosedIdentificationDocument" *ngIf="
-                                    !servReqEnclosedIdentifDocLoder &&
-                                    servReqEnclosedIdentifDocs.length > 0
-                                  "
-                                  name="enclosedIdentificationDocument" class="form-control" id="exampleFormControlSelect1">
-                                  <option value="">Select Enclosed Identification Document</option>
-                                  <option value="{{
-                                      servReqEnclosedIdentifDoc.enclosed_identification_documents
-                                    }}"
-                                    *ngFor="
-                                      let servReqEnclosedIdentifDoc of servReqEnclosedIdentifDocs
-                                    ">{{
-                                    servReqEnclosedIdentifDoc.enclosed_identification_documents
-                                    }}</option>
-                                </select>
-                                <select required formControlName="enclosedIdentificationDocument" *ngIf="
-                                  !servReqEnclosedIdentifDocLoder &&
-                                  servReqEnclosedIdentifDocs.length == 0
-                                "
-                                  name="enclosedIdentificationDocument" class="form-control" id="exampleFormControlSelect1">
-                                  <option value="">Select Enclosed Identification Document</option>
-                                </select>
-                                <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
-                                  Loding...
-                                </div>
-                                <div *ngIf="
-                                    f.enclosedIdentificationDocument.touched &&
-                                    f.enclosedIdentificationDocument.invalid
-                                  ">
-                                  <span class="error-msg" *ngIf="
-                                      f.enclosedIdentificationDocument.errors?.required
-                                    ">Enclosed
-                                    Identification Document is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Comments<span class="red">*</span></label>
-                                <textarea required formControlName="comments" name="comments" class="form-control" id="exampleFormControlTextarea1"
-                                  rows="6" placeholder="Add comments here"></textarea>
-                                <div *ngIf="f.comments.touched && f.comments.invalid">
-                                  <span class="error-msg" *ngIf="f.comments.errors?.required">Comments is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Permanent Disconnection Ends Here -->
-                        <!-- Load Change Request -->
-                        <div class="border-none" *ngIf="
-                            requestServicesFrm.value.serviceRequestType ==
-                            'Load Change Request'
-                          ">
-                          <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Load Unit
-                                  <!-- <span class="red">*</span> --></label>
-                                <input type="text" required formControlName="loadUnit" name="loadUnit" class="form-control"
-                                  id="exampleInputEmail1" placeholder="Load Unit" />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">New Load<span class="red">*</span></label>
-                                <input type="text" required formControlName="newLoad" name="newLoad" class="form-control"
-                                  id="exampleInputEmail1" placeholder="New Load" />
-                                <div *ngIf="f.newLoad.touched && f.newLoad.invalid">
-                                  <span class="error-msg" *ngIf="f.newLoad.errors?.required">New Load is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6 col-sm-6 hidden-xs"></div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Comments<span class="red">*</span></label>
-                                <textarea required formControlName="comments" name="comments" class="form-control" id="exampleFormControlTextarea1"
-                                  rows="6" placeholder="Add comments here"></textarea>
-                                <div *ngIf="f.comments.touched && f.comments.invalid">
-                                  <span class="error-msg" *ngIf="f.comments.errors?.required">Comments is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Load Change Request Ends Here -->
-                        <!-- Category Change Request -->
-                        <div class="border-none" *ngIf="
-                            requestServicesFrm.value.serviceRequestType ==
-                            'Category Change Request'
-                          ">
-                          <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Proposed Category<span class="red">*</span></label>
-                                <input type="text" required formControlName="proposedCategory" name="proposedCategory"
-                                  class="form-control" placeholder="Enter proposed category" />
-                                <div *ngIf="
-                                    f.proposedCategory.touched &&
-                                    f.proposedCategory.invalid
-                                  ">
-                                  <span class="error-msg" *ngIf="f.proposedCategory.errors?.required">Proposed Category
-                                    is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">Reason<span class="red">*</span></label>
-                                <input required formControlName="reason" name="reason" type="text" class="form-control"
-                                  id="exampleInputEmail1" placeholder="Enter reason" />
-                                <div *ngIf="f.reason.touched && f.reason.invalid">
-                                  <span class="error-msg" *ngIf="f.reason.errors?.required">Reason is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Proposed Supply Code<span class="red">*</span></label>
-                                <select *ngIf="
-                                  !ChangeReasonsLoder && changeReasons.length > 0
-                                "
-                                  formControlName="proposedSupplyCode" required name="proposedSupplyCode" class="form-control"
-                                  id="exampleFormControlSelect1">
-                                  <option value="" selected>Select Proposed Supply Code</option>
-                                  <option value="{{ changeReason.reason }}" *ngFor="let changeReason of changeReasons">{{
-                                    changeReason.reason }}</option>
-                                </select>
-                                <select *ngIf="
-                                  !ChangeReasonsLoder && changeReasons.length == 0
-                                "
-                                  formControlName="proposedSupplyCode" required name="proposedSupplyCode" class="form-control"
-                                  id="exampleFormControlSelect1">
-                                  <option value="" selected>Select Proposed Supply Code</option>
-                                </select>
-                                <div *ngIf="ChangeReasonsLoder" class="fieldLodingServiceReq">Loding...</div>
-                                <div *ngIf="f.proposedSupplyCode.touched && f.proposedSupplyCode.invalid">
-                                  <span class="error-msg" *ngIf="f.proposedSupplyCode.errors?.required">Proposed Supply
-                                    Code is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Comments<span class="red">*</span></label>
-                                <textarea type="text" required formControlName="comments" name="comments" class="form-control"
-                                  id="exampleFormControlTextarea1" rows="6" placeholder="Add comments here"></textarea>
-                                <div *ngIf="f.comments.touched && f.comments.invalid">
-                                  <span class="error-msg" *ngIf="f.comments.errors?.required">Comments is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Category Change Request Ends here -->
-                        <!-- Shifting of Meter -->
-                        <div class="border-none" *ngIf="
-                            requestServicesFrm.value.serviceRequestType ==
-                              'Shifting of Meter' ||
-                            requestServicesFrm.value.serviceRequestType ==
-                              'Meter Testing'
-                          ">
-                          <div class="row">
-                            <!-- <div class="col-lg-6 col-sm-6 hidden-xs"></div> -->
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Comments<span class="red">*</span></label>
-                                <textarea type="text" required formControlName="comments" name="comments" class="form-control"
-                                  id="exampleFormControlTextarea1" rows="6" placeholder="Add comments here"></textarea>
-                                <div *ngIf="f.comments.touched && f.comments.invalid">
-                                  <span class="error-msg" *ngIf="f.comments.errors?.required">Comments is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Shifting of Meter Ends here -->
-                        <!-- Transfer of Connection -->
-                        <div class="border-none" *ngIf="
-                            requestServicesFrm.value.serviceRequestType ==
-                            'Transfer of Connection'
-                          ">
-                          <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Applicant Name<span class="red">*</span></label>
-                                <input type="text" required formControlName="applicantName" name="applicantName" class="form-control"
-                                  placeholder="Applicant Name" />
-                                <div *ngIf="
-                                    f.applicantName.touched && f.applicantName.invalid
-                                  ">
-                                  <span class="error-msg" *ngIf="f.applicantName.errors?.required">Applicant Name is
-                                    required.</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">Enclosed Identification Document<span class="red">*</span></label>
-                                <select required formControlName="enclosedIdentificationDocument" name="enclosedIdentificationDocument"
-                                  class="form-control" *ngIf="
-                                    !servReqEnclosedIdentifDocLoder &&
-                                    servReqEnclosedIdentifDocs.length > 0
-                                  "
-                                  id="exampleFormControlSelect1">
-                                  <option value="">Select Enclosed Identification Document</option>
-                                  <option value="{{
-                                      servReqEnclosedIdentifDoc.enclosed_identification_documents
-                                    }}"
-                                    *ngFor="
-                                      let servReqEnclosedIdentifDoc of servReqEnclosedIdentifDocs
-                                    ">{{
-                                    servReqEnclosedIdentifDoc.enclosed_identification_documents
-                                    }}</option>
-                                </select>
-                                <select required formControlName="enclosedIdentificationDocument" name="enclosedIdentificationDocument"
-                                  class="form-control" *ngIf="
-                                    !servReqEnclosedIdentifDocLoder &&
-                                    servReqEnclosedIdentifDocs.length == 0
-                                  "
-                                  id="exampleFormControlSelect1">
-                                  <option value="">Select Enclosed Identification Document</option>
-                                </select>
-                                <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
-                                  Loding...
-                                </div>
-                                <div *ngIf="
-                                    f.enclosedIdentificationDocument.touched &&
-                                    f.enclosedIdentificationDocument.invalid
-                                  ">
-                                  <span class="error-msg" *ngIf="
-                                      f.enclosedIdentificationDocument.errors?.required
-                                    ">Enclosed
-                                    Identification Document is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">House Number<span class="red">*</span></label>
-                                <input required type="text" formControlName="houseNumber" name="houseNumber" class="form-control"
-                                  id="exampleInputEmail1" placeholder="Enter House Number" />
-                                <div *ngIf="f.houseNumber.touched && f.houseNumber.invalid">
-                                  <span class="error-msg" *ngIf="f.houseNumber.errors?.required">House Number is
-                                    required.</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Comments<span class="red">*</span></label>
-                                <textarea type="text" required formControlName="comments" name="comments" class="form-control"
-                                  id="exampleFormControlTextarea1" rows="6" placeholder="Add comments here"></textarea>
-                                <div *ngIf="f.comments.touched && f.comments.invalid">
-                                  <span class="error-msg" *ngIf="f.comments.errors?.required">Comments is required.</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         <!-- Transfer of Connection ends here -->
                         <div class="form-group border-none" [ngClass]="{ 'pos-rel': submitServiceRequestLoder }">
                           <div class="spinner" *ngIf="submitServiceRequestLoder" style="top: 80%;">
@@ -679,7 +775,7 @@
                             ">
                             Submit
                           </button>
-                          <!-- {{requestServicesFrm.value | json}} -->
+                         
                         </div>
                 </form>
               </div>
@@ -687,32 +783,7 @@
           </div>
         </div>
       </div>
-      <!--  
-        <div class="electricity-consumption-box">
-          <img src="../assets/images/electricity-icon.png" /> Your last month
-          consumption is <span>3250</span> units. Learn tips how to save
-          electricity.
-          <a href="#"
-            >Read more <img src="../assets/images/read-more-icon.png"
-          /></a>
-        </div>
-      </div>
-      <ul class="dash-box-list">
-        <li class="dash-box-li rows offer-li no-padding">
-          <div class="offer-section">
-            <div class="offer-content">
-              <img src="../assets/images/offer-icon.png" alt="" />
-              <div class="text-content">
-                We have a lot more to <a href="#">OFFER</a>. Choose from a wide
-                range of products
-              </div>
-              <a class="blue-btn" href="#">Explore</a>
-            </div>
-          </div>
-        </li>
-      </ul> -->
     </div>
-
     <div id="main-menu-bg"></div>
   </div>
   <app-footer></app-footer>

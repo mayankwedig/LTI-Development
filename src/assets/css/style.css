@@ -5224,14 +5224,13 @@ table.table.consumer-basic-table tbody tr th:last-child {
     font-size: 16px;
     margin-top: -7px;
     margin-bottom: 10px;
-}
+
 .present-balance span {
     font-size: 22px;
     font-weight: 600;
     vertical-align: middle;
     margin-left: 5px;
 }
-
 .view-all-complaints {
     width: 100%;
     float: left;
@@ -5240,5 +5239,10 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .tou-filter {
     margin-right: 20px;
     margin-bottom: 20px;
-    margin-top: 20px;  
+    margin-top: 20px; 
+  }
+.present-balance span .fa {
+    font-size: 18px;
+    vertical-align: 1px;
+    margin-right: 3px;
 }

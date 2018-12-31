@@ -7,25 +7,26 @@
                   <div class="panel-body" [ngClass]="{ dashboardManageAccount: rechargeDataLoder == true }">
 
                         <div class="rows">
-                              <div class="pull-right present-balance">Present Balance <span><i class="fa fa-inr"></i>{{present_balance}}</span></div>
+                              <div class="pull-right present-balance">Units Remaining <span>{{present_balance}}<span style="font-size:15px;">KWH</span></span>&nbsp;&nbsp;&nbsp;Present Balance <span><i class="fa fa-inr"></i>{{present_balance}}</span></div>
                         </div>
                         <div class="recharge-history-table-scroll">
                               <div class="table-wrapper no-padding">
-
                                     <table class="fl-table tb-header table-fixed" *ngIf="isrechargeDataFound == true && rechargeDataLoder == false">
                                           <thead>
                                                 <tr>
-                                                      <th width="20%"><span class="center-pos">Recharge Amount</span></th>
+                                                      <th width="20%"><span class="center-pos">Recharge Amount <i class="fa fa-inr"></i></span></th>
                                                       <th width="20%"><span class="center-pos">Recharge Date</span></th>
                                                       <th width="20%"><span class="center-pos">Recharge Reference No.</span></th>
                                                       <th width="20%"><span class="center-pos">Recharge Mode</span></th>
-                                                      <th width="20%"><span class="center-pos">Units Received</span></th>
+                                                      <th width="20%"><span class="center-pos">Units Received</span><br />
+                                                            <span style="font-size:11px;">(In KWH)</span></th>
+                                                     
                                                 </tr>
                                           </thead>
                                           <tbody>
                                                 <tr *ngFor="let recharge of rechargeData">
                                                       <td width="20%">
-                                                            <i class="fa fa-inr"></i>
+                                                            
                                                             {{ recharge.recharge_amount}}
                                                       </td>
                                                       <td width="20%">
@@ -44,7 +45,6 @@
                                           </tbody>
                                     </table>
 
-
                                     <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isrechargeDataFound == false && rechargeDataLoder == false">
                                           <img src="/assets/images/no_data.png" /> Currently no data found in
                                           recharge history section.
@@ -61,7 +61,6 @@
                   </div>
             </div>
       </div>
-
       <div id="main-menu-bg"></div>
 <app-footer></app-footer>
 </div>
