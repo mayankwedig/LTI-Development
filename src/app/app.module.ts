@@ -76,6 +76,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { TouComponent } from './tou/tou.component';
 import { RechargeHistoryComponent } from './recharge-history/recharge-history.component';
 import { NewServiceConnectionComponent } from './new-service-connection/new-service-connection.component';
+/* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
   declarations: [
     
@@ -186,6 +187,7 @@ import { NewServiceConnectionComponent } from './new-service-connection/new-serv
     NgxLoadingModule.forRoot({}),
     NgxMyDatePickerModule.forRoot(),
     SelectDropDownModule
+    /* NgxCaptchaModule */
   ],
   providers: [
     WindowRefService,

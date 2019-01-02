@@ -38,7 +38,6 @@ export class HelpersService {
     }
     callBack(value);
   }
-
   daysInMonth(month, year) {
     let response = {};
     return new Promise((resolve, reject) => {
