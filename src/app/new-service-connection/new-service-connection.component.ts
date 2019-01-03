@@ -141,6 +141,7 @@ export class NewServiceConnectionComponent implements OnInit {
     this.discomNameLoader = true;
     var header = {
       supplyType: "discoms"
+      
     };
     this.newConnectionRequestService.getMasterData(header).subscribe(
       (response: any) => {

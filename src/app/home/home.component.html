@@ -8,23 +8,35 @@
 					<home-page-slider [content]="sliderContent"></home-page-slider>
 				 </div>
 			  </div>
+
+   
+
 			  <div class="col-sm-12 col-md-3 no-padding-l">
 				 <div class="bannar-sidebar">
 					<div class="latest-update">
 					   <div class="box-title">
 						  <span class="title-icon"><img src="../assets/images/bill-icon.png" alt=""></span>
 						  <div class="text-title">latest updates</div>
-					   </div>
+						</div>
+
+						{{LatestNews}}	
 					   <div class="marquee-slide">
-						   <marquee behavior="scroll" direction="up" style="height: 100%">
-							  <ul>
+							<marquee behavior="scroll" direction="up" style="height: 100%">
+							
+								 <ul>
+											<li *ngFor="let News of LatestNews">{{News.LatestNews}}</li>
+			
+									</ul>
+									
+									
+							  <!-- <ul>
 								 <li>The largest electric power  transmission utility in state sector  in India</li>
 								 <li>660 EHV substations</li>
 								 <li>46217.90 Ckt. kms of Transmission</li>
 								 <li>123846.5 MVA Transformation capacity</li>
 								 <li>5508 MVAR Reactive Power  Compensation</li>
 								 <li>123846.5 MVA Transformation capacity</li>
-							  </ul>
+							  </ul> -->
 						   </marquee>
 						</div>
 					</div>

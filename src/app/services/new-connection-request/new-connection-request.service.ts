@@ -25,6 +25,26 @@ export class NewConnectionRequest {
       "POST"
     );
   }
+
+
+  // getlatestData(header) {
+  //   return this.data.getAll(
+  //     this.masterDropDownAPI,
+  //     header,
+  //     this.helper.setHeaderData(),
+  //     "GET"
+  //   );
+  // }
+
+
+
+
+  getlatestData(header){
+    alert("tesdfs");
+     return this.data.getAll(this.masterDropDownAPI, header,this.helper.setHeaderData(),"POST");
+  }
+
+
   getDivisions(header) {
     return this.data.getAll(
       this.dropdownDataAPI,
