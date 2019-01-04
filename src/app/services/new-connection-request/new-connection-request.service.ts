@@ -17,6 +17,8 @@ export class NewConnectionRequest {
     private auth: AuthService,
     private helper: HelpersService
   ) {}
+
+
   getMasterData(header) {
     return this.data.getAll(
       this.masterDropDownAPI,
@@ -25,19 +27,6 @@ export class NewConnectionRequest {
       "POST"
     );
   }
-
-
-  // getlatestData(header) {
-  //   return this.data.getAll(
-  //     this.masterDropDownAPI,
-  //     header,
-  //     this.helper.setHeaderData(),
-  //     "GET"
-  //   );
-  // }
-
-
-
 
   getlatestData(header){
     alert("tesdfs");

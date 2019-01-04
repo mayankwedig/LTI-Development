@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
 
 
   latestnewsLoader: boolean = false;
-  latestnewsFound: false;
-  LatestNews = [];
+  latestnewsFound:boolean = false;
+  LatestNews:any= [];
 
   constructor(
     private newConnectionRequestService: NewConnectionRequest
@@ -35,19 +35,16 @@ export class HomeComponent implements OnInit {
   }
 
   GetlatestData() {
-   
     this.latestnewsLoader = true;
     var header = {
       supplyType: "latest_news"
     };
     this.newConnectionRequestService.getlatestData(header).subscribe(
       (response: any) => {
-        console.log(response);
         this.latestnewsLoader = false;
         var res = response;
         if (res.authCode) {
           if (res.data_params.length > 0) {
-           
             this.LatestNews = res.data_params;
           } else {
             this.LatestNews = [];
