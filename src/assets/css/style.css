@@ -5332,3 +5332,12 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .notification-table tr:last-child td {
     border-bottom: none; 
 }
+
+.view-all-link a {
+        display: block;
+    text-align: center;
+    background: #ffffff !important;
+    color: #0770d7;
+    text-transform: uppercase;
+    border-top: solid 1px #d9edff;
+}
