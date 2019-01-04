@@ -76,7 +76,6 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { TouComponent } from './tou/tou.component';
 import { RechargeHistoryComponent } from './recharge-history/recharge-history.component';
 import { NewServiceConnectionComponent } from './new-service-connection/new-service-connection.component';
-import { NotificationListComponent } from './notification-list/notification-list.component';
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
   declarations: [
@@ -126,8 +125,7 @@ import { NotificationListComponent } from './notification-list/notification-list
     ComplaintRequestDetailsComponent,
     TouComponent,
     RechargeHistoryComponent,
-    NewServiceConnectionComponent,
-    NotificationListComponent
+    NewServiceConnectionComponent
   ],
   imports: [
     BrowserModule,
@@ -175,8 +173,6 @@ import { NotificationListComponent } from './notification-list/notification-list
       {path:'new-service-connection',component:NewServiceConnectionComponent,canActivate:[AuthGuard]},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
-      {path:'notification-list',component:NotificationListComponent,canActivate:[AuthGuard]},
-
       {path:'**',component: PageNotFoundComponent},
       
       

@@ -15,17 +15,26 @@
 					   <div class="box-title">
 						  <span class="title-icon"><img src="../assets/images/bill-icon.png" alt=""></span>
 						  <div class="text-title">latest updates</div>
+<<<<<<< HEAD
 						</div>
 
-				
+							<!-- {{latestNews}} -->
+							
 					   <div class="marquee-slide">
-							<marquee behavior="scroll" direction="up" style="height: 100%">
-									<!-- <ul>
-											<li *ngFor="let News of LatestNews">{{News.LatestNews}}</li>
-			
-									</ul> -->
-									
-									
+							
+									<app-latest-news-marquee [latestNews]="latestNews"></app-latest-news-marquee>
+							
+							
+						   <!-- <marquee behavior="scroll" direction="up" style="height: 100%" >
+								<ul>
+									<li *ngFor="let item of latestNews">{{item.name}}</li>
+								 </ul>
+						   </marquee> -->
+
+=======
+					   </div>
+					   <div class="marquee-slide">
+						   <marquee behavior="scroll" direction="up" style="height: 100%">
 							  <ul>
 								 <li>The largest electric power  transmission utility in state sector  in India</li>
 								 <li>660 EHV substations</li>
@@ -35,6 +44,7 @@
 								 <li>123846.5 MVA Transformation capacity</li>
 							  </ul>
 						   </marquee>
+>>>>>>> parent of 336b2d9fc... Marquee
 						</div>
 					</div>
 					<div class="c-m-message">

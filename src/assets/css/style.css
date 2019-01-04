@@ -1896,22 +1896,24 @@ body {
     float: left;
     width: 100%;
     padding-top: 15px;
+    overflow: hidden;
+    height: 87%;
+    position: relative;
+    margin-top: 7px;
 }
 .bannar-sidebar .latest-update .marquee-slide ul {
     padding: 0 0 0 13px;
     margin: 0;
     list-style: none;
 }
-.bannar-sidebar .latest-update .marquee-slide ul li{/*
-    float: left;
-    width: 100%;
-    list-style: none;*/
+.bannar-sidebar .latest-update .marquee-slide ul li{
     position: relative;
     font-size: 16px;
     color: #ffffff;
     margin-bottom: 15px;
     font-weight: 300;
     padding-left: 32px;
+    list-style: none;
 }
 .bannar-sidebar .latest-update .marquee-slide ul li:before{
     position: absolute;
@@ -4986,7 +4988,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     margin-top: 0;
 }
 /**20-12-2018**/
-.service-request-dtl.dashboardManageAccount {
+.service-request-dtl {
     padding: 20px 115px;
 }
 .service-dtl-block {
@@ -5341,3 +5343,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     text-transform: uppercase;
     border-top: solid 1px #d9edff;
 }
+/*
+.marquee-slide .scroll {
+    height: auto !important;
+}*/
