@@ -10,10 +10,21 @@ import { AuthService } from '../authService/auth.service';
 })
 export class ProfileService {
 
-  constructor(private data:DataService,private auth:AuthService,private helper:HelpersService) { }
   getProfileUrl="users/getProfile";
   updateProfileUrl="users/updateProfile";
   updateProfileImageUrl="users/updateProfileImage";
+  getNotificationWithLimitAPI="users/getNotificationWithLimit";
+  getNotificationWithoutLimitAPI="users/getNotificationWithoutLimit";
+  
+
+
+
+  constructor(
+    private data:DataService,
+    private auth:AuthService,
+    private helper:HelpersService) { }
+
+
   getProfile(accountNumber){
     var currentUser=this.auth.getCurrentUser();
     var body={"profileToken":btoa(currentUser.userId),"accountToken":btoa(accountNumber)};
@@ -29,4 +40,26 @@ export class ProfileService {
     data_object["profileToken"]=btoa(currentUser.userId);
     return this.data.create(this.updateProfileImageUrl,data_object,this.helper.setHeaderData());
   }
+
+
+
+  // getnotificationData(header){
+  //   var currentUser=this.auth.getCurrentUser();
+  //    return this.data.getAll(this.getNotificationWithLimitAPI, header,this.helper.setHeaderData());
+  // }
+
+  getnotificationData(){
+    var currentUser=this.auth.getCurrentUser();
+    return this.data.getAll(this.getNotificationWithLimitAPI,this.helper.setHeaderData())  
+    
+  }
+
+  getnotificationwithoutData(){
+    var currentUser=this.auth.getCurrentUser();
+    return this.data.getAll(this.getNotificationWithoutLimitAPI,this.helper.setHeaderData())  
+    
+  }
+
 }
+
+

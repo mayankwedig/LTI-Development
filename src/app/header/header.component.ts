@@ -5,11 +5,10 @@ import { HelpersService } from './../services/helpers/helpers.service';
 import { Component, OnInit,AfterViewInit } from '@angular/core';
 import {AuthService} from '../services/authService/auth.service';
 import { DataService } from '../services/data.service';
-import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
-
-
 declare var $: any;
 require('../../assets/js/owl.carousel.js');
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,12 +16,26 @@ require('../../assets/js/owl.carousel.js');
 })
 export class HeaderComponent implements OnInit,AfterViewInit {
 
-  constructor(public auth:AuthService,public dataservice:DataService,private helpers:HelpersService,private profile:ProfileService) { }
   dashboardDataApiUrl='users/getUserData'
   userName
   userEmail
   accountNumber=""
+
+  NotificationsLoader:boolean=false
+  notificationsdata:any=[];
+  notificationfound:boolean=false
+
+  constructor(
+    public auth:AuthService,
+    public dataservice:DataService,
+    private helpers:HelpersService,
+    private profile:ProfileService) { }
+  
+
   ngOnInit() {
+
+    this.getnotificationData();
+    
     let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
     if (accountToken != null) {
       // If not null
@@ -83,6 +96,56 @@ export class HeaderComponent implements OnInit,AfterViewInit {
         size: '15px'
       });
 	})
+  }
+
+
+  // getnotificationData() {
+  //   console.log("getnotificationData");
+  //   this.NotificationsLoader = true;
+  //   this.profile.getnotificationData(header).subscribe(
+  //     (response: any) => {
+  //       this.NotificationsLoader = false;
+  //       var res = response;
+  //       if (res.authCode) {
+  //         if (res.data_params.length > 0) {
+  //           this.notificationsdata = res.data_params;
+  //         } else {
+  //           this.notificationsdata = [];
+  //         }
+  //       }
+  //     },
+  //     error => {
+  //       this.NotificationsLoader = false;
+  //       this.notificationsdata = [];
+  //       throw error;
+  //     }
+  //   );
+  // }
+
+
+  getnotificationData() {
+    this.NotificationsLoader = true;
+    this.profile.getnotificationData().subscribe(
+      (response: any) => {
+        var res = response;
+        this.NotificationsLoader = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.notificationsdata = res.data_params;
+          } else {
+            
+            this.notificationsdata = "";
+          }
+        }
+      },
+      (error: AppError) => {
+        this.NotificationsLoader = false;
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
   }
  
   

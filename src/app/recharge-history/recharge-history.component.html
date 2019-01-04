@@ -7,7 +7,9 @@
                   <div class="panel-body" [ngClass]="{ dashboardManageAccount: rechargeDataLoder == true }">
 
                         <div class="rows">
-                              <div class="pull-right present-balance">Units Remaining <span>{{present_balance}}<span style="font-size:15px;">KWH</span></span>&nbsp;&nbsp;&nbsp;Present Balance <span><i class="fa fa-inr"></i>{{present_balance}}</span></div>
+                              <div class="pull-right present-balance">Units Remaining <span>{{present_balance}}<span
+                                                style="font-size:15px;">KWH</span></span>&nbsp;&nbsp;&nbsp;Present
+                                    Balance <span><i class="fa fa-inr"></i>{{present_balance}}</span></div>
                         </div>
                         <div class="recharge-history-table-scroll">
                               <div class="table-wrapper no-padding">
@@ -20,13 +22,13 @@
                                                       <th width="20%"><span class="center-pos">Recharge Mode</span></th>
                                                       <th width="20%"><span class="center-pos">Units Received</span><br />
                                                             <span style="font-size:11px;">(In KWH)</span></th>
-                                                     
+
                                                 </tr>
                                           </thead>
                                           <tbody>
                                                 <tr *ngFor="let recharge of rechargeData">
                                                       <td width="20%">
-                                                            
+
                                                             {{ recharge.recharge_amount}}
                                                       </td>
                                                       <td width="20%">
@@ -62,5 +64,5 @@
             </div>
       </div>
       <div id="main-menu-bg"></div>
-<app-footer></app-footer>
+      <app-footer></app-footer>
 </div>
