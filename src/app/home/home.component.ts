@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NewConnectionRequest } from "./../services/new-connection-request/new-connection-request.service";
-
+import {HomeService} from '../services/home/home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,58 +7,42 @@ import { NewConnectionRequest } from "./../services/new-connection-request/new-c
 })
 export class HomeComponent implements OnInit {
   sliderContent=[{
-        "image":"../assets/images/main-slide1.jpg",
-         "desc":"Changing The Power<br> That Changes<br> The World"
-     },{
-       "image":"../assets/images/main-slide2.jpg",
-       "desc":"Changing The Power<br> That Changes<br> The World"
-   },{
-     "image":"../assets/images/main-slide3.jpg",
-     "desc":"Changing The Power<br> That Changes<br> The World"
-   }];
-
-
-
-  latestnewsLoader: boolean = false;
-  latestnewsFound:boolean = false;
-  LatestNews:any= [];
-
-  constructor(
-    private newConnectionRequestService: NewConnectionRequest
-  ) { }
-
-  ngOnInit() {
-
-    this.GetlatestData();
-
-  }
-
-  GetlatestData() {
-    this.latestnewsLoader = true;
+      "image":"../assets/images/main-slide1.jpg",
+      "desc":"Changing The Power<br> That Changes<br> The World"
+      },{
+        "image":"../assets/images/main-slide2.jpg",
+        "desc":"Changing The Power<br> That Changes<br> The World"
+    },{
+      "image":"../assets/images/main-slide3.jpg",
+      "desc":"Changing The Power<br> That Changes<br> The World"
+}];
+constructor(private homeService:HomeService) {  this.getLatestNews();}
+latestNewsLoader:boolean=false;
+latestNews:any=[];
+  ngOnInit() {this.getLatestNews();}
+  getLatestNews() {
+    this.latestNewsLoader = true;
     var header = {
-      supplyType: "latest_news"
+      "supplyType": "latest_news"
+      
     };
-    this.newConnectionRequestService.getlatestData(header).subscribe(
+    this.homeService.getMasterData(header).subscribe(
       (response: any) => {
-        this.latestnewsLoader = false;
+        this.latestNewsLoader = false;
         var res = response;
         if (res.authCode) {
-          if (res.data_params.length > 0) {
-            this.LatestNews = res.data_params;
+          if (res.authCode == "200" && res.status == true) {
+            this.latestNews = res.data_params;
           } else {
-            this.LatestNews = [];
+            this.latestNews = [];
           }
         }
       },
       error => {
-        this.latestnewsLoader = false;
-        this.LatestNews = [];
+        this.latestNewsLoader = false;
+        this.latestNews = [];
         throw error;
       }
     );
   }
-
-
-
-
 }

@@ -120,20 +120,14 @@
            </li>
            <li class="nav-icon-btn nav-icon-btn-danger dropdown" *ngIf="auth.isLoggedIn()">
             <a  class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
-            <span class="label-notification"></span>
+            <span class="label-notification">5</span>
             <span class="title-icon header-notification"><img src="../assets/images/notification-icon-white.png" alt=""></span>
             <span class="small-screen-text">Notifications</span>
             </a>
             <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
              <span class="ddl-icon-arrow"><img src="../assets/images/ddl-icon.png" alt=""></span>
-             <a  class="notifications-link">notifications <span></span></a>
+             <a  class="notifications-link">notifications <span>5</span></a>
              <div class="notifications-list" id="main-navbar-notifications">
-                <div class="notification" *ngFor="let notification of notificationsdata">
-                 <div class="notification-description">{{notification.title}}</div>
-                </div>
-                <!-- <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
                 <div class="notification">
                  <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
                 </div>
@@ -151,8 +145,12 @@
                 </div>
                 <div class="notification">
                  <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div> -->
-                <div class="view-all-link"><a href="notification-list">View All</a>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <div class="notification">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
                 </div>
              </div>
             </div>
