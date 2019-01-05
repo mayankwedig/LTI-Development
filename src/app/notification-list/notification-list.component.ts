@@ -1,10 +1,12 @@
+import { NotificationsService } from './../services/notifications/notifications.service';
 import { HelpersService } from './../services/helpers/helpers.service';
 import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { AuthService } from "../services/authService/auth.service";
 import { DataService } from '../services/data.service';
-import { ProfileService } from './../services/profile/profile.service';
+
+
 
 
 require("../../../node_modules/moment/min/moment.min.js");
@@ -20,50 +22,51 @@ declare var $: any;
 
 export class NotificationListComponent implements OnInit {
 
-  NotificationsLoader:boolean=false
-  notificationsdata:any=[];
+  notificationLoder:boolean=false
+  notifications:any=[];
   notificationfound:boolean=false
+  isnotificationFound:boolean=false;
 
   constructor(
     public auth:AuthService,
     public dataservice:DataService,
     private helpers:HelpersService,
-    private profile:ProfileService
+    private notificationsService:NotificationsService
   ) { }
 
   ngOnInit() {
 
 
-    this.getnotificationwithoutData();
+    this.getAllNotifications();
   };
-
-    getnotificationwithoutData() {
-      this.NotificationsLoader = true;
-      this.profile.getnotificationwithoutData().subscribe(
-        (response: any) => {
-          var res = response;
-          this.NotificationsLoader = false;
-          if (res.authCode) {
-            if (res.authCode == "200" && res.status == true) {
-              this.notificationsdata = res.data_params;
-              
-              this.notificationfound = true;
-            } else {
-              this.notificationfound = false;
-              this.notificationsdata = "";
-            }
-          }
-        },
-        (error: AppError) => {
-          this.notificationfound = false;
-          this.NotificationsLoader = false;
-          if (error instanceof BadInput) {
-          } else {
-            throw error;
-          }
-        }
-      );
-    }
+  getAllNotifications(){
+    var limited=false;
+    this.notificationsService.getNotifications(limited).subscribe(
+     (response: any) => {
+       var res = response;
+       this.notificationLoder = false;
+       if (res.authCode) {
+         if (res.authCode == "200" && res.status == true) {
+           this.notifications = res.data_params;
+           this.isnotificationFound=true;
+         } else {
+           this.notifications = [];
+           this.isnotificationFound=false;
+         }
+       }
+     },
+     (error: AppError) => {
+      this.isnotificationFound=false; 
+      this.notificationLoder = false;
+       this.notifications = [];
+       if (error instanceof BadInput) {
+       } else {
+         throw error;
+       }
+     }
+   );
+  }
+  
 
 
   }

@@ -1,3 +1,4 @@
+import { NotificationsService } from './../services/notifications/notifications.service';
 import { BadInput } from './../common/bad-input';
 import { AppError } from './../common/app-error';
 import { ProfileService } from './../services/profile/profile.service';
@@ -6,6 +7,7 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import {AuthService} from '../services/authService/auth.service';
 import { DataService } from '../services/data.service';
 import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
+
 
 
 declare var $: any;
@@ -17,11 +19,15 @@ require('../../assets/js/owl.carousel.js');
 })
 export class HeaderComponent implements OnInit,AfterViewInit {
 
-  constructor(public auth:AuthService,public dataservice:DataService,private helpers:HelpersService,private profile:ProfileService) { }
+  constructor(public notificationsService:NotificationsService,public auth:AuthService,public dataservice:DataService,private helpers:HelpersService,private profile:ProfileService) { }
   dashboardDataApiUrl='users/getUserData'
   userName
   userEmail
   accountNumber=""
+  notificationLoder:boolean=true;
+  notifications:any=[];
+  totalNotifications:any=0;
+  hideTotalNotification:boolean=true;
   ngOnInit() {
     let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
     if (accountToken != null) {
@@ -49,6 +55,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
       
      
     }
+    this.getLimitedNotifications();
   }
   loderLoder=false;
   profile_image:any="../assets/images/placeholder-man-grid-240x268.png";
@@ -84,8 +91,37 @@ export class HeaderComponent implements OnInit,AfterViewInit {
       });
 	})
   }
- 
   
+ getLimitedNotifications(){
+   var limited=true;
+   this.notificationsService.getNotifications(limited).subscribe(
+    (response: any) => {
+      var res = response;
+      this.notificationLoder = false;
+      if (res.authCode) {
+        if (res.authCode == "200" && res.status == true) {
+          this.totalNotifications=res.data_params.length;
+          this.hideTotalNotification=false;
+          this.notifications = res.data_params;
+        } else {
+          this.notifications = [];
+        }
+      }
+    },
+    (error: AppError) => {
+      this.notificationLoder = false;
+      this.notifications = [];
+      if (error instanceof BadInput) {
+      } else {
+        throw error;
+      }
+    }
+  );
+ }
+ funcHideNotification(){
+   this.hideTotalNotification=true;
+ }
+ 
 
   logout(){
     this.auth.logout()
