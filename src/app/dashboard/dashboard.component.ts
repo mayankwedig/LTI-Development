@@ -144,6 +144,10 @@ export class DashboardComponent implements OnInit {
   ServiceRequests: any = [];
   ServiceRequestFound: boolean = false;
 
+  alertData = []
+  alertDataLoader: boolean = false;
+  isAlertDataFound: boolean = false;
+
   ngOnInit() {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
@@ -350,6 +354,7 @@ export class DashboardComponent implements OnInit {
     this.showMonthlyBillingGraphData();
     this.getcomplaints();
     this.getServiceRequest();
+    this.getAlertData();
   }
   showYtdData() {
     this.yesterDayConsumptionLoder = true;
@@ -492,4 +497,37 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
+
+  getAlertData() {
+    console.log("called");
+    this.alertDataLoader = true;
+    this.DashboardService.getAlertData(this.accountNumber).subscribe(
+      (response: any) => {
+        var res = response;
+        this.alertDataLoader = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.alertData = res.data_params;
+            this.isAlertDataFound = true;
+          } else {
+            this.isAlertDataFound = false;
+            this.alertData = [];
+          }
+        }
+      },
+      (error: AppError) => {
+        this.isAlertDataFound = false;
+        this.alertDataLoader = false;
+        this.alertData = [];
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
+
+
+
+
 }

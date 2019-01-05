@@ -5,9 +5,9 @@
           <div class="page-heading text-center">Notification</div>
           <div class="panel-body" [ngClass]="{dashboardManageAccount:NotificationsLoader == true }">
           
-                                <div class="notifaction-block">
-                                    <div class="notifaction-box">
-                                      <table cellspacing="0" cellpadding="0"  width="100%"  class="notification-table" 
+            <div class="notifaction-block">
+                  <div class="notifaction-box">
+                    <table cellspacing="0" cellpadding="0"  width="100%"  class="notification-table" 
                                       *ngIf="notificationfound == true && NotificationsLoader == false">
                                           <tr *ngFor="let notification of notificationsdata">
                                               <td width="20%">
