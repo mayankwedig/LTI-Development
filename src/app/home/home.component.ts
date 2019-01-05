@@ -19,7 +19,20 @@ export class HomeComponent implements OnInit {
 constructor(private homeService:HomeService) {  this.getLatestNews();}
 latestNewsLoader:boolean=false;
 latestNews:any=[];
-  ngOnInit() {this.getLatestNews();}
+ministerLoader:boolean=false;
+ministermsg:any=[];
+impLinkLoader:boolean=false;
+impLinks:any=[];
+// impLinks:any=[{
+//   "id":4,
+//   "title":"LG",
+//   "link":"https://www.lg.com/common",
+//   "icon":"header-large-logo_1545139062.png",
+//   "status":"active",
+//   "created":"2018-12-18T13:17:42.000Z",
+//   "modified":"2018-12-18T13:17:42.000Z"
+//   }];
+  ngOnInit() {this.getLatestNews();this.getMinisterMessage();this.getImportantLink();}
   getLatestNews() {
     this.latestNewsLoader = true;
     var header = {
@@ -45,4 +58,55 @@ latestNews:any=[];
       }
     );
   }
+  ministerDataFound:boolean=false;
+  getMinisterMessage() {
+    this.ministerLoader = true;
+    
+    this.homeService.getMinisterdata().subscribe(
+      (response: any) => {
+        this.ministerLoader = false;
+        var res = response;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+           
+            this.ministermsg = res.data_params;
+            this.ministerDataFound=true;
+          } else {
+            this.ministermsg = [];
+            this.ministerDataFound=false;
+          }
+        }
+      },
+      error => {
+        this.ministerDataFound=false;
+        this.ministerLoader = false;
+        this.ministermsg = [];
+        throw error;
+      }
+    );
+  }
+
+
+  getImportantLink() {
+    this.impLinkLoader = true;
+    this.homeService.getImportantLink().subscribe(
+      (response: any) => {
+        this.impLinkLoader = false;
+        var res = response;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+             this.impLinks = res.data_params;
+          } else {
+            this.impLinks = [];
+          }
+        }
+      },
+      error => {
+        this.impLinkLoader = true;
+        this.impLinks = [];
+        throw error;
+      }
+    );
+  }
+
 }

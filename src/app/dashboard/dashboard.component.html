@@ -125,7 +125,7 @@
                   <span class="title-icon"><img src="assets/images/notification-icon-white.png" alt="" /></span>
                   <div class="text-title">alert & notifications</div>
                 </div>
-                <ul class="notification-listing">
+                <ul class="notification-listing" *ngIf="isAlertDataFound == true && alertDataLoader == false">
                     <li *ngFor ="let alerts of alertData">
                         <img *ngIf ="alerts.type == 'billing'" src="assets/images/rupee-icon-hover.png" alt="" />
                        
@@ -140,6 +140,18 @@
                       </li>
                  
                 </ul>
+                <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="
+                isAlertDataFound == false && alertDataLoader == false
+                  ">
+                  <img src="/assets/images/no_data.png" /> Currently there is no alerts found.
+                </div>
+                <div class="rows" *ngIf="alertDataLoader == true" [ngClass]="{alertLoderHeight: alertDataLoader == true}">
+                    <div class="spinner box-spinner">
+                      <div class="bounce1"></div>
+                      <div class="bounce2"></div>
+                      <div class="bounce3"></div>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>

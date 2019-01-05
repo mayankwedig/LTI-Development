@@ -1,38 +1,12 @@
 <div class="owl-carousel owl-theme important-links-slide">
-    <div class="item">
-     <a class="item-link" href="#">
-      <span><i class="fa fa-mobile"></i></span>
-      <div class="title-link">Mobile Registration</div>
+    <!-- {{impLinks |json}} -->
+    <div class="item" *ngFor ="let impLink of impLinks" >
+     <a class="item-link" href="">
+            <span><img src='../../assets/images/{{impLink.icon}}' alt="{{impLink.title}}" ></span>      
+             <div class="title-link">{{impLink.title}}</div>
+     
      </a>
     </div>
-    <div class="item">
-     <a class="item-link" href="#">
-      <span><i class="fa fa-globe"></i></span>
-      <div class="title-link">Website Directory</div>
-     </a>
-    </div>
-    <div class="item">
-     <a class="item-link" href="#">
-      <span><i class="fa fa-user"></i></span>
-      <div class="title-link">Contacts Directory</div>
-     </a>
-    </div>
-    <div class="item">
-     <a class="item-link" href="#">
-      <span><i class="fa fa-android"></i></span>
-      <div class="title-link">Android App</div>
-     </a>
-    </div>
-    <div class="item">
-     <a class="item-link" href="#">
-      <span><i class="fa fa-apple"></i></span>
-      <div class="title-link">iOS App</div>
-     </a>
-    </div>
-    <div class="item">
-     <a class="item-link" href="#">
-      <span><i class="fa fa-apple"></i></span>
-      <div class="title-link">iOS App</div>
-     </a>
-    </div>
+    
+    
  </div>

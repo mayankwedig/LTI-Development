@@ -38,31 +38,31 @@ export class NotificationListComponent implements OnInit {
   };
 
     getnotificationwithoutData() {
-      this.NotificationsLoader = true;
-      this.profile.getnotificationwithoutData().subscribe(
-        (response: any) => {
-          var res = response;
-          this.NotificationsLoader = false;
-          if (res.authCode) {
-            if (res.authCode == "200" && res.status == true) {
-              this.notificationsdata = res.data_params;
+      // this.NotificationsLoader = true;
+      // this.profile.getnotificationwithoutData().subscribe(
+      //   (response: any) => {
+      //     var res = response;
+      //     this.NotificationsLoader = false;
+      //     if (res.authCode) {
+      //       if (res.authCode == "200" && res.status == true) {
+      //         this.notificationsdata = res.data_params;
               
-              this.notificationfound = true;
-            } else {
-              this.notificationfound = false;
-              this.notificationsdata = "";
-            }
-          }
-        },
-        (error: AppError) => {
-          this.notificationfound = false;
-          this.NotificationsLoader = false;
-          if (error instanceof BadInput) {
-          } else {
-            throw error;
-          }
-        }
-      );
+      //         this.notificationfound = true;
+      //       } else {
+      //         this.notificationfound = false;
+      //         this.notificationsdata = "";
+      //       }
+      //     }
+      //   },
+      //   (error: AppError) => {
+      //     this.notificationfound = false;
+      //     this.NotificationsLoader = false;
+      //     // if (error instanceof BadInput) {
+      //     } else {
+      //       throw error;
+      //     }
+      //   }
+      // );
     }
 
 
