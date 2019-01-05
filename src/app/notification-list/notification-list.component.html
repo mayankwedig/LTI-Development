@@ -5,9 +5,9 @@
           <div class="page-heading text-center">Notification</div>
           <div class="panel-body" [ngClass]="{dashboardManageAccount:NotificationsLoader == true }">
           
-                                <div class="notifaction-block">
-                                    <div class="notifaction-box">
-                                      <table cellspacing="0" cellpadding="0" border="0" width="100%"  class="notification-table" 
+            <div class="notifaction-block">
+                  <div class="notifaction-box">
+                    <table cellspacing="0" cellpadding="0" border="0" width="100%"  class="notification-table" 
                                       *ngIf="notificationfound == true && NotificationsLoader == false">
                                           <tr *ngFor="let notification of notificationsdata">
                                               <td width="20%">
@@ -43,7 +43,7 @@
                                           <td class="time">19:50</td>
                                           <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
                                         </tr> -->
-                                      </table>
+                                </table>
                                    
 
                             <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="notificationfound == false && NotificationsLoader == false">
@@ -63,6 +63,6 @@
 					
 					</div>
 				</div>
-		    </div>
+		    
     <app-footer></app-footer>
     

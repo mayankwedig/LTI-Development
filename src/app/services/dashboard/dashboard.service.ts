@@ -31,6 +31,7 @@ export class DashboardService {
   serviceRequestListAPI="users/serviceRequestList";
 
   masterDropDown="users/masterDropDown";   
+  alertnotification="users/getAlerts";   
 
   
 
@@ -206,6 +207,13 @@ export class DashboardService {
       }
     );
   }
+
+  getAlertData(accountNumber){
+    console.log("--->>>" + accountNumber)
+    var currentUser=this.auth.getCurrentUser();
+    var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
+    return this.DataService.getAll(this.alertnotification, body,this.helpers.setHeaderData());
+   }
  
   setBody(body) {
     var bodyData = {};
