@@ -76,6 +76,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { TouComponent } from './tou/tou.component';
 import { RechargeHistoryComponent } from './recharge-history/recharge-history.component';
 import { NewServiceConnectionComponent } from './new-service-connection/new-service-connection.component';
+import {HomeService} from './services/home/home.service';
+import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marquee.component';
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
   declarations: [
@@ -125,7 +127,8 @@ import { NewServiceConnectionComponent } from './new-service-connection/new-serv
     ComplaintRequestDetailsComponent,
     TouComponent,
     RechargeHistoryComponent,
-    NewServiceConnectionComponent
+    NewServiceConnectionComponent,
+    LatestNewsMarqueeComponent
   ],
   imports: [
     BrowserModule,
@@ -203,7 +206,8 @@ import { NewServiceConnectionComponent } from './new-service-connection/new-serv
     ComplaintsService,
     SerivceRequestService,
     NetMeteringService,
-    SignupOtpVerificationService
+    SignupOtpVerificationService,
+    HomeService
   ],
   bootstrap: [AppComponent]
 })
