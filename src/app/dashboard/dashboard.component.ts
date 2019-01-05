@@ -499,7 +499,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getAlertData() {
-    console.log("called");
+    
     this.alertDataLoader = true;
     this.DashboardService.getAlertData(this.accountNumber).subscribe(
       (response: any) => {

@@ -8,7 +8,9 @@ export class HomeService {
 
   constructor(private data:DataService,private helper: HelpersService) { }
   masterDropDownAPI = "users/masterDropDown";
-  
+  ministermessageAPI = "users/cmMessage";
+  importantlinkAPI = "users/importantLink";
+
   getMasterData(header) {
    /*console.log(header);*/
     return this.data.getAll(
@@ -17,5 +19,13 @@ export class HomeService {
       '',
       "POST"
     );
+  }
+
+  getMinisterdata() {    
+     return this.data.getAll(this.ministermessageAPI,'',"POST");
+   }
+
+   getImportantLink() {    
+    return this.data.getAll(this.importantlinkAPI,'',"POST");
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit, Input } from '@angular/core';
 declare var $: any;
 require('../../assets/js/owl.carousel.js');
 
@@ -8,7 +8,8 @@ require('../../assets/js/owl.carousel.js');
   styleUrls: ['./home-imp-link-slider.component.css']
 })
 export class HomeImpLinkSliderComponent implements OnInit,AfterViewInit {
-
+	@Input('impLinks') impLinks:any;
+	
   constructor() { }
 
   ngOnInit() {
