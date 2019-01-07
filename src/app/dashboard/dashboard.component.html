@@ -2,24 +2,16 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <!--
-      <div class="page-heading">
-         Good Morning Mr. Shukla
-      </div>
-    -->
     <ul class="dash-box-list dash-top-block">
       <li class="dash-box-li width-9">
         <div class="panel-body et-first-box">
           <div class="row">
-
             <div class="col-sm-4 col-xs-12 border-divider ">
-
               <div class="">
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
                   <div class="text-title">YESTERDAY'S CONSUMPTION</div>
                 </div>
-
                 <div *ngIf="!yesterDayConsumptionLoder" class="amount">
                   {{ yesterdayReading }}&nbsp;<span>KWH</span>
                 </div>
@@ -61,7 +53,6 @@
               <div class="amount cmr-amount">
                 {{ onDemandReadData | number: "3.2" }}
                 <span *ngIf="onDemandReadData != ''">KWH</span> &nbsp;
-
                 <a *ngIf="onDemandReadLoder == false && showGetReadButton == true" (click)="getOnDemandRead()" style="cursor:pointer;"
                   class="blue-btn pay-now-btn">Get Read</a>
 

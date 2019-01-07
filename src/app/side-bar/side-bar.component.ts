@@ -59,10 +59,10 @@ export class SideBarComponent implements OnInit {
       if (accountTokenInfo[0] == this.auth.getCurrentUser().userId) {
           this.accountNumber=accountTokenInfo[1];
         // if token of current user
-        if (parseInt(accountTokenInfo[2]) == 0) {
-          this.is_net_metering = false;
-        } else {
+        if (parseInt(accountTokenInfo[2]) == 1) {
           this.is_net_metering = true;
+        } else {
+          this.is_net_metering = false;
         }
       }
       this.selectedAccountDetails();

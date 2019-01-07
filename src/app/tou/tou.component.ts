@@ -151,16 +151,16 @@ export class TouComponent implements OnInit {
                 hour: i,
                 consumption: item.consumption
               };
-              if (i == 1) {
+              if (item.tou == 'TOD1') {
                 Data["lineColor"] = "#09b4aa";
               }
-              if (i == 6) {
+              if (item.tou == 'TOD2') {
                 Data["lineColor"] = "#febe00";
               }
-              if (i == 12) {
+              if (item.tou == 'TOD3') {
                 Data["lineColor"] = "#493ba5";
               }
-              if (i == 18) {
+              if (item.tou == 'TOD4') {
                 Data["lineColor"] = "#ff1db1";
               }
               gData.push(Data);

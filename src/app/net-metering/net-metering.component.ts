@@ -122,7 +122,8 @@ export class NetMeteringComponent implements OnInit {
     let gData = [];
     let generationData = [];
     if (this.chartToShow == "hourly") {
-      body = { "account_number": this.accountNumber, "reference_dateTime": this.selectedDate, "displayMode": "NMBH" }
+      var reference_dateTime=this.dispSelectedYear+'-'+SelectedDate[1]+'-'+this.dispSelectedDay;
+      body = { "account_number": this.accountNumber, "reference_dateTime": reference_dateTime, "displayMode": "NMBH" }
       this.NetMetering.getNetMeteringGraphData(body, (result: any) => {
         this.loder = false;
 
@@ -134,7 +135,7 @@ export class NetMeteringComponent implements OnInit {
             dataSort.sort(function (a, b) {
               return a._id - b._id;
             });
-
+            
             dataSort.map(function (item) {
               gData.push(item.consumption);
               generationData.push(item.generation);

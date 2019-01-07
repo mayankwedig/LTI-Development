@@ -78,4 +78,26 @@ export class HelpersService {
   clearLocalStorateData(sessionName: string) {
     localStorage.removeItem(sessionName);
   }
+  lat12Monts(){ // This function is using for Consumption graph on Dash board.
+    return new Promise((resolve,reject)=>{
+      var lat12MOn=[];
+    var theMonths = new Array("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
+    var today = new Date();
+    var aMonth = today.getMonth()+1;
+    var i;
+    for (i=0; i<12; i++) {
+      lat12MOn.push(theMonths[aMonth])
+     /*  console.log(theMonths[aMonth]); //here you can do whatever you want... */
+        aMonth++;
+        if (aMonth > 11) {
+            aMonth = 0;
+        }
+    }
+    if(lat12MOn.length > 0){
+      resolve(lat12MOn);
+    }else{
+      reject(false);
+    }
+    });
+  }
 }

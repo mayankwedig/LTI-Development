@@ -13,6 +13,8 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { promise } from "protractor";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { resolve } from "url";
+import { reject } from "q";
 
 require("../../../node_modules/moment/min/moment.min.js");
 declare var $: any;
@@ -335,7 +337,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
   downloadPDFfile(PDFURL){
     this.WindowRef.nativeWindow.open(PDFURL, "popup");
 
@@ -405,26 +406,18 @@ export class DashboardComponent implements OnInit {
         dataSort.map(function(item) {
           gData.push(item.consumption);
         });
-        this.consumptionlabels.push(
-          "JAN",
-          "FEB",
-          "MAR",
-          "APR",
-          "MAY",
-          "JUN",
-          "JUL",
-          "AUG",
-          "SEP",
-          "OCT",
-          "NOV",
-          "DEC"
-        );
-        this.consumptionchartData = [
-          {
-            label: "Consumption",
-            data: gData
-          }
-        ];
+        this.helpers.lat12Monts().then(response =>{ // getting last 12 months from current date.
+          this.consumptionlabels=response;
+          this.consumptionchartData = [
+            {
+              label: "Consumption",
+              data: gData
+            }
+          ];
+        },error=>{
+          console.log("Error occured...!");
+        });
+        console.log(this.consumptionlabels);
       }
     });
   }
