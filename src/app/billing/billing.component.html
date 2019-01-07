@@ -15,18 +15,29 @@
             class="fl-table tb-header"
             *ngIf="isbillingDataFound == true && billingDataLoder == false"
           >
-          <thead>
+            <thead>
               <tr>
                 <th width="11%">Meter Reading Date</th>
-                <th width="11%">Reading <br/> 
-                <span style="font-size:11px;">(In KWH)</span></th>
-                <th width="11%">Consumption <br/>
-                <span style="font-size:11px;">(In KWH)</span></th>
+                <th width="11%">
+                  Reading <br />
+                  <span style="font-size:11px;">(In KWH)</span>
+                </th>
+                <th width="11%">
+                  Consumption <br />
+                  <span style="font-size:11px;">(In KWH)</span>
+                </th>
                 <th width="11%">Number of Days</th>
-                <th width="10%">Total Bill Amount <br/><i class="fa fa-inr" aria-hidden="true"></i></th>
+                <th width="10%">
+                  Total Bill Amount <br /><i
+                    class="fa fa-inr"
+                    aria-hidden="true"
+                  ></i>
+                </th>
                 <th width="6%">Due Date</th>
-                <th width="10%">Bill Paid  <br/>
-                 <i class="fa fa-inr" aria-hidden="true"></i></th>
+                <th width="10%">
+                  Bill Paid <br />
+                  <i class="fa fa-inr" aria-hidden="true"></i>
+                </th>
                 <th width="10%">Receipt No.</th>
                 <th width="10%">Payment Date</th>
                 <th width="10%">Download</th>
@@ -37,7 +48,7 @@
             class="fl-table tb-body"
             *ngIf="isbillingDataFound == true && billingDataLoder == false"
           >
-          <tbody>
+            <tbody>
               <tr *ngFor="let billing of billingData">
                 <td width="11%">
                   {{ billing.meter_reading_date | date: "dd/MM/yyyy" }}
@@ -45,17 +56,13 @@
                 <td width="11%">{{ billing.meter_reading }}</td>
                 <td width="11%">{{ billing.consumption_units }}</td>
                 <td width="11%">{{ billing.numberOfDays }}</td>
+                <td width="10%">&nbsp;{{ billing.bill_amount }}</td>
+                <td width="6%">{{ billing.due_date | date: "dd/MM/yyyy" }}</td>
                 <td width="10%">
-                  &nbsp;{{
-                    billing.bill_amount
-                  }}
-                </td>
-                <td width="6%">
-                  {{ billing.due_date | date: "dd/MM/yyyy" }}
-                </td>
-                <td width="10%">
-                  <span *ngIf="billing.bill_paid != ''">{{billing.bill_paid}}</span>
-                      <span *ngIf="billing.bill_paid == ''">---</span>
+                  <span *ngIf="billing.bill_paid != ''">{{
+                    billing.bill_paid
+                  }}</span>
+                  <span *ngIf="billing.bill_paid == ''">---</span>
                 </td>
                 <td width="10%">
                   <span *ngIf="billing.receipt_no != ''">{{
@@ -72,11 +79,11 @@
                 <td width="10%">
                   <a
                     class="pdf-btn action-sm-btn"
-
                     data-toggle="tooltip"
                     data-placement="top"
                     (click)="downloadPDFfile(billing.billUrl)"
-                    title="Download Bill PDF" style="cursor: pointer"
+                    title="Download Bill PDF"
+                    style="cursor: pointer"
                     ><i class="fa fa-file-pdf-o" aria-hidden="true"></i
                   ></a>
                 </td>
@@ -91,8 +98,8 @@
           >
             <img src="/assets/images/no_data.png" /> Currently no data found in
             billing section.
-		  </div>
-		  <div  *ngIf="billingDataLoder == true" >
+          </div>
+          <div *ngIf="billingDataLoder == true">
             <div class="spinner box-spinner" style="top: 25%;">
               <div class="bounce1"></div>
               <div class="bounce2"></div>
@@ -110,7 +117,6 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="page-heading">Billing history</div>
-              
             </div>
             <!-- <div class="week-month-btn-sec pull-right">
                 <a style="cursor: pointer;" (click)="showchart('Weekly')" title="Weekly" class="blue-btn">Weekly</a>
@@ -127,38 +133,44 @@
           </div>
         </div>
         <div class="panel-body">
-         <!--  <div class="pull-right lti-ddl">
+          <!--  <div class="pull-right lti-ddl">
             <a href="#">
               <div class="download-circle">
                 <img src="images/download.png" />
               </div>
             </a>
           </div> -->
-          
+
           <div class="row margin_top40">
             <div class="col-sm-12">
-              <div class="panel-body " [ngClass]="{dashboardManageAccount: graphLoader == true}">
-                  <div   *ngIf="graphLoader == true">
-                      <div class="spinner box-spinner" >
-                        <div class="bounce1"></div>
-                        <div class="bounce2"></div>
-                        <div class="bounce3"></div>
-                      </div>
-                    </div>
-                 <div class="graph-container modal-graph-label" *ngIf="graphLoader != true">
-                    <div class="label-left">Units <span>(Rs)</span></div>
-                  <canvas
-                  baseChart
-                  [chartType]="'bar'"
-                  [datasets]="billingchartData"
-                  [labels]="billinglabels"
-                  [options]="billingchartOptions"
-                  [legend]="true"
-                  [colors]="billingcolors"
-                  (chartClick)="goToBilling($event, 2)"
+              <div
+                class="panel-body "
+                [ngClass]="{ dashboardManageAccount: graphLoader == true }"
+              >
+                <div *ngIf="graphLoader == true">
+                  <div class="spinner box-spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+                </div>
+                <div
+                  class="graph-container modal-graph-label"
+                  *ngIf="graphLoader != true"
                 >
-                </canvas>
-                <div class="label-bottom" >Months</div>
+                  <div class="label-left">Units <span>(Rs)</span></div>
+                  <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="billingchartData"
+                    [labels]="billinglabels"
+                    [options]="billingchartOptions"
+                    [legend]="true"
+                    [colors]="billingcolors"
+                    (chartClick)="goToBilling($event, 2)"
+                  >
+                  </canvas>
+                  <div class="label-bottom">Months</div>
                 </div>
               </div>
             </div>

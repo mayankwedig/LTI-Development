@@ -1,3 +1,5 @@
+import { NotificationListComponent } from './notification-list/notification-list.component';
+import { NotificationsService } from './services/notifications/notifications.service';
 import { SignupOtpVerificationService } from './services/signup-otp-verification/signup-otp-verification.service';
 import { NetMeteringService } from './services/net-metering/net-metering.service';
 import { SerivceRequestService } from './services/service-request/serivce-request.service';
@@ -78,6 +80,9 @@ import { RechargeHistoryComponent } from './recharge-history/recharge-history.co
 import { NewServiceConnectionComponent } from './new-service-connection/new-service-connection.component';
 import {HomeService} from './services/home/home.service';
 import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marquee.component';
+
+import { MomentModule } from 'ngx-moment';
+
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
   declarations: [
@@ -128,7 +133,8 @@ import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marq
     TouComponent,
     RechargeHistoryComponent,
     NewServiceConnectionComponent,
-    LatestNewsMarqueeComponent
+    LatestNewsMarqueeComponent,
+    NotificationListComponent
   ],
   imports: [
     BrowserModule,
@@ -176,7 +182,8 @@ import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marq
       {path:'new-service-connection',component:NewServiceConnectionComponent,canActivate:[AuthGuard]},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
-      {path:'**',component: PageNotFoundComponent},
+      {path:'notifications',component:NotificationListComponent,canActivate:[AuthGuard]},
+      {path:'**',component: PageNotFoundComponent}
       
       
     ]),ToastrModule.forRoot({
@@ -189,7 +196,8 @@ import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marq
     BrowserAnimationsModule,
     NgxLoadingModule.forRoot({}),
     NgxMyDatePickerModule.forRoot(),
-    SelectDropDownModule
+    SelectDropDownModule,
+    MomentModule
     /* NgxCaptchaModule */
   ],
   providers: [
@@ -207,7 +215,8 @@ import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marq
     SerivceRequestService,
     NetMeteringService,
     SignupOtpVerificationService,
-    HomeService
+    HomeService,
+    NotificationsService
   ],
   bootstrap: [AppComponent]
 })

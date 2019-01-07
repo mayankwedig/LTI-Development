@@ -58,3 +58,6 @@ li{
 .ngx-dropdown-container .ngx-dropdown-list-container .search-container input {
   border-bottom: 1px solid #0571d7!important;
 }
+.NotificationLoaderBlock{
+  min-height: 15em;
+}

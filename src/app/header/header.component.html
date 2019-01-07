@@ -17,15 +17,19 @@
        </li> -->
            <li class="nav-icon-btn nav-icon-btn-danger dropdown" *ngIf="auth.isLoggedIn()">
             <a  class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
-            <span class="label-notification">5</span>
-            <span class="title-icon header-notification"><img src="../assets/images/notification-icon-white.png" alt=""></span>
+            <span class="label-notification" *ngIf="hideTotalNotification == false">{{totalNotifications}}</span>
+            <span class="title-icon header-notification" title="View notifications" style="cursor:pointer;" (click)="funcHideNotification()"><img src="../assets/images/notification-icon-white.png" alt=""></span>
             <span class="small-screen-text">Notifications</span>
             </a>
             <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
              <span class="ddl-icon-arrow"><img src="../assets/images/ddl-icon.png" alt=""></span>
-             <a  class="notifications-link">notifications <span>5</span></a>
+             <a  class="notifications-link">notifications <span>{{totalNotifications}}</span></a>
              <div class="notifications-list" id="main-navbar-notifications">
-                <div class="notification">
+              
+                <div class="notification" *ngFor="let nofication of notifications">
+                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                </div>
+                <!-- <div class="notification">
                  <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
                 </div>
                 <div class="notification">
@@ -45,16 +49,13 @@
                 </div>
                 <div class="notification">
                  <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
+                </div> -->
              </div>
             </div>
            </li>
            <li class="nav-icon-btn nav-icon-btn-danger dropdown tollfree-dropdown">
             <a href="#notifications" class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
-            <span class="title-icon header-notification"><img src="../assets/images/call-white-icon.png" alt=""></span>
+            <span class="title-icon header-notification" title="View notifications" style="cursor:pointer;"><img src="../assets/images/call-white-icon.png" alt=""></span>
             <span class="small-screen-text">Notifications</span>
             </a>
             <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
@@ -120,44 +121,27 @@
            </li>
            <li class="nav-icon-btn nav-icon-btn-danger dropdown" *ngIf="auth.isLoggedIn()">
             <a  class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
-            <span class="label-notification">5</span>
-            <span class="title-icon header-notification"><img src="../assets/images/notification-icon-white.png" alt=""></span>
+            <span class="label-notification" *ngIf="hideTotalNotification == false">{{totalNotifications}}</span>
+            <span class="title-icon header-notification" title="View notifications" style="cursor:pointer;" (click)="funcHideNotification()"><img src="../assets/images/notification-icon-white.png" alt=""></span>
             <span class="small-screen-text">Notifications</span>
             </a>
-            <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
-             <span class="ddl-icon-arrow"><img src="../assets/images/ddl-icon.png" alt=""></span>
-             <a  class="notifications-link">notifications <span>5</span></a>
+            <div class="dropdown-menu widget-notifications no-padding" style="width: 300px; cursor: pointer;">
+             <span class="ddl-icon-arrow" style="cursor: pointer;"><img src="../assets/images/ddl-icon.png" alt="Notifications" title="Notifications"></span>
+             <a  class="notifications-link">notifications <span>{{totalNotifications}}</span></a>
+            <!--  {{notifications|json}} -->
              <div class="notifications-list" id="main-navbar-notifications">
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
+                <div class="notification" *ngFor="let item of notifications" >
+                 <div class="notification-description">{{item.title}}</div>
                 </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
-                <div class="notification">
-                 <div class="notification-description">Mahapareshan Samachar June - July 2018.  pdf</div>
-                </div>
+             </div>
+             <div class="view-all-notification-link">
+                <a [routerLink]="['/notifications']" routerLinkActive="router-link-active"  title="View all notifications"> View all</a>
              </div>
             </div>
            </li>
            <li class="nav-icon-btn nav-icon-btn-danger dropdown tollfree-dropdown">
             <a href="#notifications" class="dropdown-toggle no-padding-t notifications-icon" data-toggle="dropdown">
-            <span class="title-icon header-notification"><img src="../assets/images/call-white-icon.png" alt=""></span>
+            <span class="title-icon header-notification" title="View notifications" style="cursor:pointer;"><img src="../assets/images/call-white-icon.png" alt=""></span>
             <span class="small-screen-text">Notifications</span>
             </a>
             <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">

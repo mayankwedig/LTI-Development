@@ -1,43 +1,67 @@
-<div id="main-wrapper" class="no-sidebar">
-    <app-header></app-header>
-    <div id="content-wrapper">
-				<div class="container"></div>
-          <div class="page-heading text-center">Notification</div>
-          <div class="panel-body" [ngClass]="{dashboardManageAccount:NotificationsLoader == true }">
-          
-            <div class="notifaction-block">
-                  <div class="notifaction-box">
-                    <table cellspacing="0" cellpadding="0"  width="100%"  class="notification-table" 
-                                      *ngIf="notificationfound == true && NotificationsLoader == false">
-                                          <tr *ngFor="let notification of notificationsdata">
-                                              <td width="20%">
 
-                                                    {{ notification.created}}
-                                              </td>
-                                              <td width="80%">
 
-                                                  {{ notification.title}}
-                                            </td>
-                                        </tr>
-                                      </table>
-                                   
-
-                                  <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="notificationfound == false && NotificationsLoader == false">
-                                        <img src="/assets/images/no_data.png" /> Currently no data found in
-                                        Notifications section.
-                                  </div>
-                            <div *ngIf="NotificationsLoader == true">
-                                  <div class="spinner box-spinner" style="top: 35%;">
-                                        <div class="bounce1"></div>
-                                        <div class="bounce2"></div>
-                                        <div class="bounce3"></div>
-                                  </div>
-                            </div>
+    <div id="main-wrapper" class="no-sidebar">
+            <app-header></app-header>
+      <div class="main-container-sec notifaction-page">
+        <div class="container">
+          <div class="main-heading text-center">Notifaction</div>
+          <div class="notifaction-block"  >
+            <div class="notifaction-box" [ngClass]="{ NotificationLoaderBlock: notificationLoder == true }">
+                        <div
+                        style="margin-top: 2;"
+                        class="text-center font-12  field_not_found"
+                        *ngIf="isnotificationFound == false && notificationLoder == false"
+                      >
+                        <img src="/assets/images/no_data.png" /> Currently no new notification(s) found in
+                        this section.
                       </div>
-                </div>
-              </div>
-					
-					</div>
-				</div>
+              <table
+                cellspacing="0"
+                cellpadding="0"
+                border="0"
+                width="100%"
+                class="notification-table"
+                *ngIf="isnotificationFound == true && notificationLoder == false"
+              >
+                <tr *ngFor="let notification of notifications">
+                  <td class="time">{{notification.created | amTimeAgo}}</td>
+                  <td class="">{{notification.title}}</td>
+                </tr>
+               <!--  <tr>
+                  <td class="time">19:50</td>
+                  <td class="">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s
+                  </td>
+                </tr>
+                <tr>
+                  <td class="time">10:52</td>
+                  <td class="">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s
+                  </td>
+                </tr>
+                <tr>
+                  <td class="time">19:50</td>
+                  <td class="">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s
+                  </td>
+                </tr> -->
+              </table>
+              <div *ngIf="notificationLoder == true">
+                        <div class="spinner box-spinner">
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>
+                      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <app-footer></app-footer>
-    
