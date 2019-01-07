@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
     <div id="main-wrapper" class="no-sidebar">
             <app-header></app-header>
       <div class="main-container-sec notifaction-page">
@@ -58,6 +59,49 @@
                           <div class="bounce2"></div>
                           <div class="bounce3"></div>
                         </div>
+=======
+                                                  {{ notification.title}}
+                                            </td>
+                                        </tr>
+                                        <!-- <tr *ngFor="let notification of notificationsdata">
+                                            <td width="20%">
+
+                                                  {{ notification.created}}
+                                            </td>
+                                            <td width="80%">
+
+                                                {{ notification.title}}
+                                          </td>
+                                      </tr>
+                                      <tr *ngFor="let notification of notificationsdata">
+                                          <td width="20%">
+
+                                                {{ notification.created}}
+                                          </td>
+                                          <td width="80%">
+
+                                              {{ notification.title}}
+                                        </td>
+                                    </tr> -->
+                                        <!-- <tr>
+                                          <td class="time">19:50</td>
+                                          <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                                        </tr> -->
+                                      </table>
+                                   
+
+                                  <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="notificationfound == false && NotificationsLoader == false">
+                                        <img src="/assets/images/no_data.png" /> Currently no data found in
+                                        Notifications section.
+                                  </div>
+                            <div *ngIf="NotificationsLoader == true">
+                                  <div class="spinner box-spinner" style="top: 35%;">
+                                        <div class="bounce1"></div>
+                                        <div class="bounce2"></div>
+                                        <div class="bounce3"></div>
+                                  </div>
+                            </div>
+>>>>>>> parent of 6c7f4d06c... footer changes
                       </div>
             </div>
           </div>
