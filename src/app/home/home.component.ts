@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {HomeService} from '../services/home/home.service';
+
+require('../../assets/js/owl.carousel.js');
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
   sliderContent=[{
       "image":"../assets/images/main-slide1.jpg",
       "desc":"Changing The Power<br> That Changes<br> The World"
@@ -23,16 +25,8 @@ ministerLoader:boolean=false;
 ministermsg:any=[];
 impLinkLoader:boolean=false;
 impLinks:any=[];
-// impLinks:any=[{
-//   "id":4,
-//   "title":"LG",
-//   "link":"https://www.lg.com/common",
-//   "icon":"header-large-logo_1545139062.png",
-//   "status":"active",
-//   "created":"2018-12-18T13:17:42.000Z",
-//   "modified":"2018-12-18T13:17:42.000Z"
-//   }];
   ngOnInit() {this.getLatestNews();this.getMinisterMessage();this.getImportantLink();}
+  
   getLatestNews() {
     this.latestNewsLoader = true;
     var header = {
@@ -102,7 +96,7 @@ impLinks:any=[];
         }
       },
       error => {
-        this.impLinkLoader = true;
+        this.impLinkLoader = false;
         this.impLinks = [];
         throw error;
       }
