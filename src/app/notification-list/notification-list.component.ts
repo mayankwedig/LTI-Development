@@ -5,10 +5,6 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { AuthService } from "../services/authService/auth.service";
 import { DataService } from '../services/data.service';
-
-
-
-
 require("../../../node_modules/moment/min/moment.min.js");
 
 declare var moment: any;
@@ -36,9 +32,9 @@ export class NotificationListComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.getAllNotifications();
   };
+  
   getAllNotifications(){
     var limited=false;
     this.notificationsService.getNotifications(limited).subscribe(
@@ -66,9 +62,6 @@ export class NotificationListComponent implements OnInit {
      }
    );
   }
-  
-
-
   }
 
 

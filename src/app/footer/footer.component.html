@@ -45,17 +45,23 @@
 		   </ul>
 		   <ul class="need-help-ul">
 			  <li class="title-heading">Need Help?</li>
+
+			  <form  class="form top-label-form" 
+			  [formGroup]="need_help">
 			  <li>
 				 <textarea name="" rows="3" placeholder="Start type here for service, support, billing, consumption and complaints."></textarea>
 			  </li>
+
 			  <li>
 				 <button class="btn btn-primary submit-btn">Submit</button>
+				
 				 <div class="btn-group">
 					<button type="button" class="btn facebook"><i class="menu-icon fa fa-facebook"></i></button>
 					<button type="button" class="btn twitter"><i class="menu-icon fa fa-twitter"></i></button>
 					<button type="button" class="btn google-plus"><i class="menu-icon fa fa-google-plus"></i></button>
 				 </div>
 			  </li>
+			</form>
 		   </ul>
 		</div>
 	 </footer>
