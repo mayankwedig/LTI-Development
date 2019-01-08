@@ -10,16 +10,22 @@
 
 			<div class="col-sm-12 col-md-3 no-padding-l">
 				<div class="bannar-sidebar">
-					<div class="latest-update">
+					<div class="latest-update" *ngIf="latestNewsLoader == false">
 						<div class="box-title">
 							<span class="title-icon"><img src="../assets/images/bill-icon.png" alt=""></span>
 							<div class="text-title">latest updates</div>
 						</div>
-
-
 						<div class="marquee-slide">
 							<app-latest-news-marquee [latestNews]="latestNews"></app-latest-news-marquee>
 						</div>
+						<div class="rows" *ngIf="latestNewsLoader == true">
+							<div class="spinner box-spinner latest-spin">
+								<div class="bounce1"></div>
+								<div class="bounce2"></div>
+								<div class="bounce3"></div>
+							</div>
+						</div>
+
 					</div>
 					<div class="c-m-message" *ngIf="ministerLoader == false && ministerDataFound == true ">
 

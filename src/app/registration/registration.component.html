@@ -74,9 +74,16 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <input required formControlName="mobile" name="mobile" type="tel" class="form-control"
-                          placeholder="Mobile No." />
+                          placeholder="Mobile No." pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" />
+
+                          
                         <div *ngIf="f.mobile.touched && f.mobile.invalid">
                           <span class="error-msg" *ngIf="f.mobile.errors?.required">Mobile number is required.</span>
+                          <span
+                            class="error-msg"
+                            *ngIf="f.mobile.errors?.pattern"
+                            >Please enter valid mobile number.</span
+                          >
                         </div>
                       </div>
                     </div>
