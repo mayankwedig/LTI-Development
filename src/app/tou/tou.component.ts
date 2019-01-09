@@ -156,9 +156,6 @@ export class TouComponent implements OnInit {
                 consumption: item.consumption
               };
               var labels={};
-                if(i < 2){
-                  item.tou='TOD2';
-                }
               if (item.tou == 'TOD1') {
                 Data["lineColor"] = "#09b4aa";
                 labels["color"]=Data["lineColor"];
