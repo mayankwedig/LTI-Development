@@ -3958,6 +3958,7 @@ body {
 }
 .consumption-canvas {
     padding-left: 20px;
+    position: relative;
 }
 .energy-title {
     margin-bottom: 3px;
@@ -4795,7 +4796,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
 }
 .field_not_found{
     clear:both;
-    color:#969494;
+    color:#a4a4a5;
     display:block;
     float:left;
     font-weight:300;
@@ -4803,7 +4804,9 @@ table.table.consumer-basic-table tbody tr th:last-child {
     padding:3px;
     width:92%;
     font-family:'Roboto', sans-serif;
-    font-size:13px !important;
+   /*  font-size:13px !important; */
+    font-size: 15px !important;
+    font-weight: bold;
 }
 .title-min-height {
     min-height: 50px;

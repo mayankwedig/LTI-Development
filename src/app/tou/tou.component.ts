@@ -62,6 +62,7 @@ export class TouComponent implements OnInit {
     },
     showTodayBtn: false
   };
+  touLabels:any=[];
   ngAfterViewInit() {
     setTimeout(() => {
     this.loder  = true;
@@ -128,6 +129,9 @@ export class TouComponent implements OnInit {
     let body = {};
     let gData = [];
     let generationData = [];
+    let touLabels=[];
+    let tous=["TOD1","TOD2","TOD3","TOD4"];
+    this.touLabels=[];
     if (this.chartToShow == "hourly") {
       body = {
         account_number: this.accountNumber,
@@ -151,22 +155,51 @@ export class TouComponent implements OnInit {
                 hour: i,
                 consumption: item.consumption
               };
+              var labels={};
+                if(i < 2){
+                  item.tou='TOD2';
+                }
               if (item.tou == 'TOD1') {
                 Data["lineColor"] = "#09b4aa";
+                labels["color"]=Data["lineColor"];
+                labels["label"]=item.tou;
+                touLabels.push(labels);
               }
               if (item.tou == 'TOD2') {
                 Data["lineColor"] = "#febe00";
+                labels["color"]=Data["lineColor"];
+                labels["label"]=item.tou;
+                touLabels.push(labels);
               }
               if (item.tou == 'TOD3') {
                 Data["lineColor"] = "#493ba5";
+                labels["color"]=Data["lineColor"];
+                labels["label"]=item.tou;
+                touLabels.push(labels);
               }
               if (item.tou == 'TOD4') {
                 Data["lineColor"] = "#ff1db1";
+                labels["color"]=Data["lineColor"];
+                labels["label"]=item.tou;
+                touLabels.push(labels);
               }
+             
               gData.push(Data);
               i++;
+              
             });
+
+           /*  tous.forEach(element => {
+
+                  touLabels.forEach(tods=>{
+                  if(element == tods.label){ //tou1 == tou1
+                  }
+                });
+            }); */
+           /*  this.touLabels=touLabels; */
+           
             $(".showChart").css("display", "block");
+           
             this.ngZone.runOutsideAngular(() => {
               /* Chart code */
               let chart = am4core.create("chartdiv", am4charts.XYChart);

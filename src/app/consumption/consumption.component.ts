@@ -379,9 +379,9 @@ export class ConsumptionComponent implements OnInit {
       let gData = [];
       let body = {
         account_number: this.accountNumber,
-        year: parseInt(this.selected_year)
+        year: parseInt(this.selected_year),
       };
-      this.dashboard.getMonthlyGraphData(body, (result: any) => {
+      this.dashboard.getConsuGraphData(body, (result: any) => {
         this.loder = false;
         // Get Yearly Data
         if (result != null && result.authCode != "100") {
@@ -393,6 +393,21 @@ export class ConsumptionComponent implements OnInit {
           dataSort.map(function(item) {
             gData.push(item.consumption);
           });
+          /* this.helpers.lat12Monts().then(
+            response => {
+              // getting last 12 months from current date.
+              this.consumptionlabels = response;
+              this.consumptionchartData = [
+                {
+                  label: "Consumption for " + this.selected_year,
+                  data: gData
+                }
+              ];
+            },
+            error => {
+              console.log("Error occured...!");
+            }
+          ); */
           this.consumptionlabels.push(
             "JAN",
             "FEB",

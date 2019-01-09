@@ -110,6 +110,15 @@ export class DashboardService {
       }
     );
   }
+   getConsuGraphData(body, callback) { //monthly graph data
+    var currentUser=this.auth.getCurrentUser();
+    body["userId"]=currentUser.userId;
+    this.DataService.getAll("users/monthlyGetDataConsumptionSection", body,this.helpers.setHeaderData()).subscribe(
+      (result: any) => {
+        callback(result);
+      }
+    );
+  }
   getMonthlyGraphDataBilling(body, callback) { //monthly graph data
     var currentUser=this.auth.getCurrentUser();
     body["userId"]=currentUser.userId;

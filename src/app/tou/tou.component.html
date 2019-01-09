@@ -29,10 +29,24 @@
         >
           <div class="graph-container modal-graph-label showChart" style="display: none;">
             <div class="label-left">Units <span>(KWH)</span></div>
+              <!-- <div class="rows"> 
+                
+                <ul class="tou-label" *ngIf="touLabels.length > 0">
+                  <li *ngFor="let label of touLabels">
+                    <span class="color-box" style="background:#635b5b"></span>
+                    {{label.label}}
+                  </li>
+                  <li>
+                      <span class="color-box" style="background: #635b5b"></span>
+                    TOU1
+                  </li>
+                </ul>
+              </div> -->
             <div class="consumption-canvas">
               <div id="chartdiv"></div>
+              <div class="label-bottom" *ngIf="chartToShow == 'hourly'" style="position: relative;top: -6px;">Hours</div>
             </div>
-            <div class="label-bottom" *ngIf="chartToShow == 'hourly'" style="position: relative;top: -35px;">Hours</div>
+            
           </div>
 					<div class="rows" *ngIf="loder == true ">
 						<div class="spinner box-spinner">

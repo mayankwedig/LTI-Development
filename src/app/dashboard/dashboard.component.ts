@@ -345,6 +345,7 @@ export class DashboardComponent implements OnInit {
       (response: any) => {
         if (response.authCode == "200") {
           this.WindowRef.nativeWindow.open(response.data_params, "popup");
+
           //this.toastr.success("Excel downloaded successfully", "Success!");
         } else {
           //this.toastr.error("Something went wrong!", "failed!");
@@ -355,6 +356,7 @@ export class DashboardComponent implements OnInit {
 
   downloadPDFfile(PDFURL) {
     this.WindowRef.nativeWindow.open(PDFURL, "popup");
+
     // this.toastr.success("PDF downloaded successfully", "Success!");
   }
 
