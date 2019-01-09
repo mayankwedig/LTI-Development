@@ -17,6 +17,7 @@ import { resolve } from "url";
 import { reject } from "q";
 
 require("../../../node_modules/moment/min/moment.min.js");
+
 declare var $: any;
 declare var moment: any;
 
@@ -43,58 +44,64 @@ export class DashboardComponent implements OnInit {
     private WindowRef: WindowRefService,
     private toastr: ToastrService
   ) {}
-  
+
   /*******************Dropdown Configs**********************************/
-  serviceReqDropDownconfig ={
-    displayKey:"label", //if objects array passed which key to be displayed defaults to description
-    search:true, //true/false for the search functionlity defaults to false,
+  serviceReqDropDownconfig = {
+    displayKey: "label", //if objects array passed which key to be displayed defaults to description
+    search: true, //true/false for the search functionlity defaults to false,
     height: "200px", //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
-    placeholder:'Select Service Request Tracking ID', // text to be displayed when no item is selected defaults to Select,
-    customComparator: ()=>{}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
-   /*  limitTo: options.length,  */// a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
-    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
-    noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
-    searchPlaceholder:'Search Serivce Request Tracking ID' // label thats displayed in search input
+    placeholder: "Select Service Request Tracking ID", // text to be displayed when no item is selected defaults to Select,
+    customComparator: () => {}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case, // a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
+    /*  limitTo: options.length,  */ moreText: "more", // text to be displayed whenmore than one items are selected like Option 1 + 5 more
+    noResultsFound: "No results found!", // text to be displayed when no items are found while searching
+    searchPlaceholder: "Search Serivce Request Tracking ID" // label thats displayed in search input
   };
 
-  complaintReqDropDownconfig ={
-    displayKey:"label", //if objects array passed which key to be displayed defaults to description
-    search:true, //true/false for the search functionlity defaults to false,
+  complaintReqDropDownconfig = {
+    displayKey: "label", //if objects array passed which key to be displayed defaults to description
+    search: true, //true/false for the search functionlity defaults to false,
     height: "200px", //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
-    placeholder:'Select Complaint Tracking ID', // text to be displayed when no item is selected defaults to Select,
-    customComparator: ()=>{}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
-   /*  limitTo: options.length,  */// a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
-    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
-    noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
-    searchPlaceholder:'Search Complaint Tracking ID' // label thats displayed in search input
+    placeholder: "Select Complaint Tracking ID", // text to be displayed when no item is selected defaults to Select,
+    customComparator: () => {}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case, // a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
+    /*  limitTo: options.length,  */ moreText: "more", // text to be displayed whenmore than one items are selected like Option 1 + 5 more
+    noResultsFound: "No results found!", // text to be displayed when no items are found while searching
+    searchPlaceholder: "Search Complaint Tracking ID" // label thats displayed in search input
   };
 
-  selectedComplaintNo:any="";
-  selectedServiceReqNo:any="";
-  showComplaintError=false;
+  selectedComplaintNo: any = "";
+  selectedServiceReqNo: any = "";
+  showComplaintError = false;
   redirectoComplaintDetails() {
-
-    if(this.selectedComplaintNo != ""  && this.selectedComplaintNo != null  && this.selectedComplaintNo.length != 0){
-    var serviceRequestId=btoa(this.selectedComplaintNo[0].value);
-    this.router.navigate(['/complaint-request-details'],{ queryParams: {  complaintReq: serviceRequestId } });
-    }else{
+    if (
+      this.selectedComplaintNo != "" &&
+      this.selectedComplaintNo != null &&
+      this.selectedComplaintNo.length != 0
+    ) {
+      var serviceRequestId = btoa(this.selectedComplaintNo[0].value);
+      this.router.navigate(["/complaint-request-details"], {
+        queryParams: { complaintReq: serviceRequestId }
+      });
+    } else {
       this.toastr.error("Please Select Complaint ID!", "failed!");
     }
   }
   redirectoRequestDetails() {
-
-    if(this.selectedServiceReqNo != '' && this.selectedServiceReqNo != null && this.selectedServiceReqNo.length != 0){
-      var serviceRequestId=btoa(this.selectedServiceReqNo[0].value);
-    this.router.navigate(['/service-request-details'],{ queryParams: { serviceReq: serviceRequestId } });
-    }else{
+    if (
+      this.selectedServiceReqNo != "" &&
+      this.selectedServiceReqNo != null &&
+      this.selectedServiceReqNo.length != 0
+    ) {
+      var serviceRequestId = btoa(this.selectedServiceReqNo[0].value);
+      this.router.navigate(["/service-request-details"], {
+        queryParams: { serviceReq: serviceRequestId }
+      });
+    } else {
       this.toastr.error("Please Select Service Request ID!", "failed!");
     }
-    
   }
 
-/***********************End Dropdown Configs**********************************/
-   
-    
+  /***********************End Dropdown Configs**********************************/
+
   // static readonly DATE_FMT = 'dd/MMM/yyyy';
   private dateVal: Date = new Date();
   // year
@@ -131,7 +138,7 @@ export class DashboardComponent implements OnInit {
   AccountDetailsFound = false;
   accountDetailsLoder = false;
   accountData: any = "";
-  showGetReadButton:boolean = true;
+  showGetReadButton: boolean = true;
   energyTips = "";
   energyTipsFound = false;
   billingDataLoder: boolean = false;
@@ -146,7 +153,7 @@ export class DashboardComponent implements OnInit {
   ServiceRequests: any = [];
   ServiceRequestFound: boolean = false;
 
-  alertData = []
+  alertData = [];
   alertDataLoader: boolean = false;
   isAlertDataFound: boolean = false;
 
@@ -211,7 +218,7 @@ export class DashboardComponent implements OnInit {
   }
   //changes by Rajesh nair
   getOnDemandRead() {
-    this.showGetReadButton =false;
+    this.showGetReadButton = false;
     this.currentTime = moment().format("Do MMM, YYYY hh:mm A	");
     this.onDemandReadLoder = true;
     this.DashboardService.getOnDemandRead(this.accountNumber, (result: any) => {
@@ -246,9 +253,12 @@ export class DashboardComponent implements OnInit {
     this.DashboardService.getcomplaints(this.accountNumber, (result: any) => {
       this.complaintsLoder = false;
       if (result.authCode == "200" && result.data_params.length > 0) {
-       /*  this.complaints = result.data_params; */
-        result.data_params.forEach((eleme) => {
-          this.complaints.push({"label":eleme.tracking_number,"value":eleme.id});
+        /*  this.complaints = result.data_params; */
+        result.data_params.forEach(eleme => {
+          this.complaints.push({
+            label: eleme.tracking_number,
+            value: eleme.id
+          });
         });
         this.complaintsFound = true;
       } else {
@@ -265,10 +275,13 @@ export class DashboardComponent implements OnInit {
       (result: any) => {
         this.serviceRequestLoder = false;
         if (result.authCode == "200" && result.data_params.length > 0) {
-          result.data_params.forEach((eleme) => {
-            this.ServiceRequests.push({"label":eleme.tracking_number,"value":eleme.id});
+          result.data_params.forEach(eleme => {
+            this.ServiceRequests.push({
+              label: eleme.tracking_number,
+              value: eleme.id
+            });
           });
-         /*  this.ServiceRequests = result.data_params; */
+          /*  this.ServiceRequests = result.data_params; */
           this.ServiceRequestFound = true;
         } else {
           this.ServiceRequests = "";
@@ -320,31 +333,30 @@ export class DashboardComponent implements OnInit {
     });
   }
   downloadGraphExcelConsumption() {
-    var excelBillingYearlyDataAPI="users/excelYearlyData";
+    var excelBillingYearlyDataAPI = "users/excelYearlyData";
     var data = {
       account_number: this.accountNumber,
       year: parseInt(this.currentYear)
     };
 
-    this.DashboardService.downloadGraphExcel(excelBillingYearlyDataAPI,data, (response: any) => {
-      if (response.authCode == "200") {
-        this.WindowRef.nativeWindow.open(response.data_params, "popup");
-
-        //this.toastr.success("Excel downloaded successfully", "Success!");
-      } else {
-        //this.toastr.error("Something went wrong!", "failed!");
+    this.DashboardService.downloadGraphExcel(
+      excelBillingYearlyDataAPI,
+      data,
+      (response: any) => {
+        if (response.authCode == "200") {
+          this.WindowRef.nativeWindow.open(response.data_params, "popup");
+          //this.toastr.success("Excel downloaded successfully", "Success!");
+        } else {
+          //this.toastr.error("Something went wrong!", "failed!");
+        }
       }
-    });
+    );
   }
 
-  downloadPDFfile(PDFURL){
+  downloadPDFfile(PDFURL) {
     this.WindowRef.nativeWindow.open(PDFURL, "popup");
-
     // this.toastr.success("PDF downloaded successfully", "Success!");
-
   }
-
-
 
   getDashboardData() {
     this.showYtdData();
@@ -378,7 +390,6 @@ export class DashboardComponent implements OnInit {
       this.accountNumber,
       (result: any) => {
         this.accountDetailsLoder = false;
-        /* var dsfdsf={"data_params":{"profileId":6,"mobile":"7877129295","first_name":"","last_name":"","username":"amans11s11","email":"amancooljpr222@gmail.com","area":"","id":1,"user_id":6,"account_number":"699991234","account_name":"amans11s11","billing_address":"Bhagwant Das Rd, Opposite Secretariat, Rambagh, Jaipur, Rajasthan 302005","billing_amount":20.36,"billing_due_date":"2018-11-15T07:22:15.000Z","ebill":2,"mobilebill":1,"account_type":1,"status":1,"premise_address":"","sanctioned_load":0,"supply_type":1,"division":null,"subdivision":null,"bill_route":null}}; */
         if (result.authCode == "200") {
           this.AccountDetailsFound = true;
           this.accountData = result.data_params;
@@ -406,18 +417,22 @@ export class DashboardComponent implements OnInit {
         dataSort.map(function(item) {
           gData.push(item.consumption);
         });
-        this.helpers.lat12Monts().then(response =>{ // getting last 12 months from current date.
-          this.consumptionlabels=response;
-          this.consumptionchartData = [
-            {
-              label: "Consumption",
-              data: gData
-            }
-          ];
-        },error=>{
-          console.log("Error occured...!");
-        });
-        console.log(this.consumptionlabels);
+        this.helpers.lat12Monts().then(
+          response => {
+            // getting last 12 months from current date.
+            this.consumptionlabels = response;
+            this.consumptionchartData = [
+              {
+                label: "Consumption",
+                data: gData
+              }
+            ];
+          },
+          error => {
+            console.log("Error occured...!");
+          }
+        );
+       /*  console.log(this.consumptionlabels); */
       }
     });
   }
@@ -468,6 +483,7 @@ export class DashboardComponent implements OnInit {
     data.forEach(item => {
       this.helpers.getMonth(item._model.label).then(result => {
         var month = result;
+        console.log(month);
         this.router.navigate(["/consumption"], {
           queryParams: { consumption: btoa(month + ":" + item._model.label) }
         });
@@ -492,7 +508,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getAlertData() {
-    
     this.alertDataLoader = true;
     this.DashboardService.getAlertData(this.accountNumber).subscribe(
       (response: any) => {
@@ -519,8 +534,4 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-
-
-
-
 }

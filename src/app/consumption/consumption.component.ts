@@ -38,7 +38,7 @@ export class ConsumptionComponent implements OnInit {
   consumptiondaychartData: any = "";
   consumptiondaycolors: any = "";
   selectedDay: any = "";
-  consumptionHourlycolors:any="";
+  consumptionHourlycolors: any = "";
   accountNumber: any = "";
   month_name: any = "";
   loder: any = false;
@@ -46,8 +46,11 @@ export class ConsumptionComponent implements OnInit {
   chartType = "bar";
   chartToShow = "daily";
   dispString = "";
-  selected_year:any="";
+  selected_year: any = "";
   ngOnInit() {
+    this.currentYear = moment().format("YYYY");
+    this.currentMonth = moment().format("MMM");
+
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
@@ -60,13 +63,17 @@ export class ConsumptionComponent implements OnInit {
       this.getselectedGraphData = this.getselectedGraphData.split(":");
       this.selected_month = this.getselectedGraphData[0]; // month
       this.month_name = this.getselectedGraphData[1]; //  Month Name
+      if (parseInt(this.selected_month) > parseInt(moment().format("M"))) {
+        // if Selected month is grater current month
+        this.currentYear = moment()
+          .subtract(1, "year")
+          .format("YYYY"); //set current year to previous year.
+      }
       this.isMonthSelected = this.selected_month != "" ? true : false;
     } else {
       this.isMonthSelected = false;
     }
-    
-    this.currentYear = moment().format("YYYY");
-    this.currentMonth = moment().format("MMM");
+
     this.initChartConfig();
     if (this.isMonthSelected) {
       this.showchart(this.chartToShow);
@@ -77,101 +84,119 @@ export class ConsumptionComponent implements OnInit {
 
   // new changes By chandni  22/12/2018
   downloadGraphExcelConsumption() {
-    var excelBillingYearlyDataAPI="users/excelYearlyData"; 
+    var excelBillingYearlyDataAPI = "users/excelYearlyData";
     var requestParams = {
       account_number: this.accountNumber,
       year: parseInt(this.selected_year)
     };
 
-    this.dashboard.downloadGraphExcel(excelBillingYearlyDataAPI,requestParams, (response: any) => { //Monthly Consumption
-      if (response.authCode == "200") {
-        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+    this.dashboard.downloadGraphExcel(
+      excelBillingYearlyDataAPI,
+      requestParams,
+      (response: any) => {
+        //Monthly Consumption
+        if (response.authCode == "200") {
+          this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        // this.toastr.success("Excel downloaded successfully", "Success!");
-      } else {
-        // this.toastr.error("Something went wrong!", "failed!");
+          // this.toastr.success("Excel downloaded successfully", "Success!");
+        } else {
+          // this.toastr.error("Something went wrong!", "failed!");
+        }
       }
-    });
+    );
   }
 
-
   downloadAllYesrExcelConsumption() {
-    var excelAllYearConsumption="users/excelAllYearConsumption";
+    var excelAllYearConsumption = "users/excelAllYearConsumption";
     var requestParams = {
       account_number: this.accountNumber
     };
 
-    this.dashboard.downloadGraphExcel(excelAllYearConsumption,requestParams, (response: any) => { //Yearly Consumption
-      if (response.authCode == "200") {
-        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+    this.dashboard.downloadGraphExcel(
+      excelAllYearConsumption,
+      requestParams,
+      (response: any) => {
+        //Yearly Consumption
+        if (response.authCode == "200") {
+          this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        // this.toastr.success("Excel downloaded successfully", "Success!");
-      } else {
-        // this.toastr.error("Something went wrong!", "failed!");
+          // this.toastr.success("Excel downloaded successfully", "Success!");
+        } else {
+          // this.toastr.error("Something went wrong!", "failed!");
+        }
       }
-    });
+    );
   }
 
-  
-
-
   downloadAllDailyExcelConsumption() {
-    var excelDailyData="users/excelDailyData";
+    var excelDailyData = "users/excelDailyData";
     var requestParams = {
       account_number: this.accountNumber,
       year: parseInt(this.selected_year),
-      month : parseInt(this.selected_month)
+      month: parseInt(this.selected_month)
     };
-    this.dashboard.downloadGraphExcel(excelDailyData,requestParams, (response: any) => { //Daily Consumption
-      if (response.authCode == "200") {
-        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+    this.dashboard.downloadGraphExcel(
+      excelDailyData,
+      requestParams,
+      (response: any) => {
+        //Daily Consumption
+        if (response.authCode == "200") {
+          this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        // this.toastr.success("Excel downloaded successfully", "Success!");
-      } else {
-        // this.toastr.error("Something went wrong!", "failed!");
+          // this.toastr.success("Excel downloaded successfully", "Success!");
+        } else {
+          // this.toastr.error("Something went wrong!", "failed!");
+        }
       }
-    });
+    );
   }
 
   downloadAllWeeklyExcelConsumption() {
-    var excelWeeklyData="users/excelWeeklyData";
+    var excelWeeklyData = "users/excelWeeklyData";
     var requestParams = {
       account_number: this.accountNumber,
       year: parseInt(this.selected_year),
-      month : parseInt(this.selected_month)
+      month: parseInt(this.selected_month)
     };
-    this.dashboard.downloadGraphExcel(excelWeeklyData,requestParams, (response: any) => { //Weekly Consumption
-      if (response.authCode == "200") {
-        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+    this.dashboard.downloadGraphExcel(
+      excelWeeklyData,
+      requestParams,
+      (response: any) => {
+        //Weekly Consumption
+        if (response.authCode == "200") {
+          this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        // this.toastr.success("Excel downloaded successfully", "Success!");
-      } else {
-        // this.toastr.error("Something went wrong!", "failed!");
+          // this.toastr.success("Excel downloaded successfully", "Success!");
+        } else {
+          // this.toastr.error("Something went wrong!", "failed!");
+        }
       }
-    });
+    );
   }
-  
-   
+
   downloadAllHourlyExcelConsumption() {
-    var excelHourlyData="users/excelHourlyData";
+    var excelHourlyData = "users/excelHourlyData";
     var requestParams = {
       account_number: this.accountNumber,
       year: parseInt(this.selected_year),
-      month : parseInt(this.selected_month),
+      month: parseInt(this.selected_month),
       day: parseInt(this.selectedDay)
     };
-    this.dashboard.downloadGraphExcel(excelHourlyData,requestParams, (response: any) => { //Hourly Consumption
-      if (response.authCode == "200") {
-        this.WindowRef.nativeWindow.open(response.data_params, "popup");
+    this.dashboard.downloadGraphExcel(
+      excelHourlyData,
+      requestParams,
+      (response: any) => {
+        //Hourly Consumption
+        if (response.authCode == "200") {
+          this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        // this.toastr.success("Excel downloaded successfully", "Success!");
-      } else {
-        // this.toastr.error("Something went wrong!", "failed!");
+          // this.toastr.success("Excel downloaded successfully", "Success!");
+        } else {
+          // this.toastr.error("Something went wrong!", "failed!");
+        }
       }
-    });
+    );
   }
-
-
 
   backToDashBoard() {
     this.router.navigate(["/dashboard"]);
@@ -197,7 +222,8 @@ export class ConsumptionComponent implements OnInit {
     this.consumptionlabels = [];
     let body = {};
     let gData = [];
-    this.selected_year = this.selected_year == "" ? this.currentYear: this.selected_year;
+    this.selected_year =
+      this.selected_year == "" ? this.currentYear : this.selected_year;
     if (this.chartToShow == "daily") {
       body = {
         account_number: this.accountNumber,
@@ -316,7 +342,7 @@ export class ConsumptionComponent implements OnInit {
         }
       });
     } else if (this.chartToShow == "yearly") {
-      var consumptionLbl=[];
+      var consumptionLbl = [];
       body = {
         account_number: this.accountNumber
       };
@@ -332,11 +358,10 @@ export class ConsumptionComponent implements OnInit {
               gData.push(item.consumption);
               consumptionLbl.push(item.year);
             });
-            this.consumptionlabels=consumptionLbl;
+            this.consumptionlabels = consumptionLbl;
             this.consumptionchartData = [
               {
-                label:
-                  " Yearly Consumption",
+                label: " Yearly Consumption",
                 data: gData,
                 fill: false,
                 borderWidth: 2
@@ -350,7 +375,6 @@ export class ConsumptionComponent implements OnInit {
         }
       });
     } else if (this.chartToShow == "monthly") {
-      
       let data = [];
       let gData = [];
       let body = {
@@ -385,13 +409,13 @@ export class ConsumptionComponent implements OnInit {
           );
           this.consumptionchartData = [
             {
-              label: "Consumption for "+this.selected_year,
+              label: "Consumption for " + this.selected_year,
               data: gData
             }
           ];
         }
       });
-    }else {
+    } else {
       body = {
         account_number: this.accountNumber,
         month: parseInt(this.selected_month),
@@ -423,7 +447,7 @@ export class ConsumptionComponent implements OnInit {
       });
     }
   }
- 
+
   openChartOnClick(event, reqType) {
     if (reqType === "hourly") {
       var data = event.active;
@@ -431,23 +455,22 @@ export class ConsumptionComponent implements OnInit {
         this.selectedDay = item._model.label;
       });
       this.showchart(reqType);
-    }else if (reqType === "monthly") {
+    } else if (reqType === "monthly") {
       var data = event.active;
       data.forEach(item => {
-        this.selected_year=item._model.label;
+        this.selected_year = item._model.label;
       });
       this.showchart(reqType);
-    }else if (reqType === "daily") {
+    } else if (reqType === "daily") {
       data = event.active;
       data.forEach(item => {
         this.helpers.getMonth(item._model.label).then(result => {
-          var month=result;
-          this.selected_month=month;
-          this.month_name=item._model.label;
+          var month = result;
+          this.selected_month = month;
+          this.month_name = item._model.label;
           this.showchart(reqType);
         });
       });
-        
     } else {
       return false;
     }
@@ -486,18 +509,18 @@ export class ConsumptionComponent implements OnInit {
     // CHART COLOR.
     this.consumptionmonthcolors = [
       {
-        backgroundColor: "rgba(81, 164, 242, 1)",
-      
+        backgroundColor: "rgba(81, 164, 242, 1)"
       }
     ];
-    this.consumptionHourlycolors =  [
+    this.consumptionHourlycolors = [
       {
         backgroundColor: "#3482cc",
-        borderColor: "#0571d7",
+        borderColor: "#0571d7"
       },
-      { // dark grey
-        backgroundColor: '#3cbaaa',
-        borderColor: "#3cba9f",
+      {
+        // dark grey
+        backgroundColor: "#3cbaaa",
+        borderColor: "#3cba9f"
       }
     ];
 
@@ -521,7 +544,6 @@ export class ConsumptionComponent implements OnInit {
       }
     ];
   }
-
 }
 /* [
   {

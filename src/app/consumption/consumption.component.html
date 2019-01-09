@@ -3,7 +3,7 @@
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
     <div class="page-heading ">consumption Details</div>
-    <div class="rows consumptionDesktopBackButton">
+    <div class="rows consumptionDesktopBackButton" style="margin-bottom:15px;">
        <div class="week-month-btn-sec pull-right">
           <a style="cursor: pointer;" (click)="showchart('daily')" title="Weekly" class="blue-btn" *ngIf="chartToShow == 'hourly' || chartToShow == 'Weekly'" >Daily</a>
 
