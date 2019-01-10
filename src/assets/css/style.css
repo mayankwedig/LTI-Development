@@ -3958,7 +3958,7 @@ body {
 }
 .consumption-canvas {
     padding-left: 20px;
-    position: relative;
+   /*  position: relative; */
 }
 .energy-title {
     margin-bottom: 3px;

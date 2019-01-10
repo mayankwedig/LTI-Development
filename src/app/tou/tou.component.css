@@ -16,3 +16,9 @@ height: 10px;
 display:inline-block;
 margin-right: 5px;
 }
+.touHours {
+    position: absolute;
+    bottom: 11px;
+    width: 100%;
+    text-align: center;
+}
