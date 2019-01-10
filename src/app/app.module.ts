@@ -175,10 +175,8 @@ import { MomentModule } from 'ngx-moment';
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
       {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
-
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
       {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
-
       {path:'new-service-connection',component:NewServiceConnectionComponent,canActivate:[AuthGuard]},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
