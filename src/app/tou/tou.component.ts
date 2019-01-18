@@ -8,6 +8,8 @@ import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { INgxMyDpOptions, IMyDateModel } from "ngx-mydatepicker";
 import { ErrorHandler, Inject, NgZone } from "@angular/core";
+import { BadInput } from "./../common/bad-input";
+import { AppError } from "./../common/app-error";
 require("../../../node_modules/moment/min/moment.min.js");
 
 /* Chart Lib Imports */
@@ -31,7 +33,7 @@ export class TouComponent implements OnInit {
   constructor(
     private dataservice: DataService,
     private activateRoute: ActivatedRoute,
-    private dashboard: DashboardService,
+    private DashboardService: DashboardService,
     private helpers: HelpersService,
     private router: Router,
     private NetMetering: NetMeteringService,
@@ -45,13 +47,16 @@ export class TouComponent implements OnInit {
   accountNumber: any = "";
   month_name: any = "";
   loder: any = false;
-  isDataFound = false;
+  isDataloader:boolean=false;
+  isDataFound:boolean = false;
   chartType = "line";
   chartToShow = "hourly";
   dispString = "";
   selectedDate = "";
   selectedDay = "";
   selected_year = "";
+
+  toudata: any = "";
   selectedDateCalc: any = "";
   myOptions: INgxMyDpOptions = {
     dateFormat: "dd/mm/yyyy", 
@@ -89,6 +94,7 @@ export class TouComponent implements OnInit {
     ).format("DD");
     this.selected_year = this.currentYear;
     this.setCalanderData();
+    
   }
   setCalanderData() {
     this.selectedDateCalc = {
@@ -107,6 +113,41 @@ export class TouComponent implements OnInit {
       "/" +
       this.selectedDateCalc.date.day;
   }
+
+
+  
+  getTouData(body) {
+    var SelectedDate = this.selectedDate.split("/");
+    this.toudata=[];
+    this.isDataloader = true;
+    this.DashboardService.getTouData(body).subscribe(
+      (response: any) => {
+        var res = response;
+        this.isDataloader = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.toudata = res.data_params;
+            this.isDataFound = true;
+          } else {
+            this.isDataFound = false;
+            this.toudata = "";
+          }
+        }
+      },
+      (error: AppError) => {
+        this.isDataFound = false;
+        this.isDataloader = false;
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
+
+
+
+
   onDateChanged($event) {
     if ($event.jsdate != null) {
       this.selectedDate = moment($event.jsdate).format("YYYY/MM/DD");
@@ -118,8 +159,15 @@ export class TouComponent implements OnInit {
   dispSelectedYear = "";
   dispSelectedMonth = "";
   dispSelectedDay = "";
+  
   genrateGraph() {
     $(".showChart").css("display", "none");
+    var tousColor={
+      TOD1 :  "#09b4aa",
+      TOD2 :"#febe00",
+      TOD3 : "#493ba5",
+      TOD4 : "#ff1db1"
+    };
     var SelectedDate = this.selectedDate.split("/");
     this.dispSelectedYear = SelectedDate[0];
     this.dispSelectedMonth = moment(SelectedDate[1]).format("MMMM");
@@ -130,7 +178,7 @@ export class TouComponent implements OnInit {
     let gData = [];
     let generationData = [];
     let touLabels=[];
-    let tous=["TOD1","TOD2","TOD3","TOD4"];
+   
     this.touLabels=[];
     if (this.chartToShow == "hourly") {
       body = {
@@ -139,10 +187,9 @@ export class TouComponent implements OnInit {
         year: parseInt(SelectedDate[0]),
         day: parseInt(SelectedDate[2])
       };
-      this.dashboard.getHourlyGraphData(body, (result: any) => {
+      this.DashboardService.getHourlyGraphData(body, (result: any) => {
         this.loder = false;
         if (result != null && result.status) {
-         /*  console.log(result); */
           data = result.data_params;
           this.isDataFound = true;
           if (data.length > 0) {
@@ -157,19 +204,35 @@ export class TouComponent implements OnInit {
                 consumption: item.consumption
               };
               var labels={};
-              if (item.tou == 'TOD1') {
-                Data["lineColor"] = "#09b4aa";
+                if(item.tou != null){
+                  Data["lineColor"] = tousColor[item.tou];
+                  labels["color"]=Data["lineColor"];
+                  labels["label"]=item.tou;
+                  touLabels.push(labels);
+                }else{
+                  Data["lineColor"] = tousColor['TOD1'];
+                  labels["color"]=Data["lineColor"];
+                  labels["label"]='TOD1';
+                  touLabels.push(labels);
+                }
+            
+                /* Data["lineColor"] = this.tousColor[item.tou];
+                labels["color"]=Data["lineColor"];
+                labels["label"]=item.tou;
+                touLabels.push(labels); */
+            /*   if (item.tou == this.tousColor.TOD1) {
+                Data["lineColor"] = this.tousColor.TOD1;
                 labels["color"]=Data["lineColor"];
                 labels["label"]=item.tou;
                 touLabels.push(labels);
               }
-              if (item.tou == 'TOD2') {
-                Data["lineColor"] = "#febe00";
+              if (item.tou ==  this.tousColor.TOD2) {
+                Data["lineColor"] =  this.tousColor.TOD2;
                 labels["color"]=Data["lineColor"];
                 labels["label"]=item.tou;
                 touLabels.push(labels);
               }
-              if (item.tou == 'TOD3') {
+              if (item.tou == this.tousColor.TOD3) {
                 Data["lineColor"] = "#493ba5";
                 labels["color"]=Data["lineColor"];
                 labels["label"]=item.tou;
@@ -180,7 +243,7 @@ export class TouComponent implements OnInit {
                 labels["color"]=Data["lineColor"];
                 labels["label"]=item.tou;
                 touLabels.push(labels);
-              }
+              } */
              
               gData.push(Data);
               i++;
@@ -244,9 +307,11 @@ export class TouComponent implements OnInit {
               chart.scrollbarX = new am4core.Scrollbar(); // uncomment if Bottom scroll bar is needed.
     chart.scrollbarX.parent = chart.bottomAxesContainer;
             });
+            this.getTouData(body);
           } else {
             this.isDataFound = false;
           }
+        
         } else {
           this.isDataFound = false;
         }

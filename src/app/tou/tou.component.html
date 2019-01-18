@@ -22,14 +22,12 @@
             </div>
           </div>
         </div>
-          <div class="page-heading text-center margin_top20" style="color:#635b5b;">TOU as on {{dispSelectedMonth}} {{dispSelectedDay}}, {{dispSelectedYear}}</div>
-        <div
-          class="panel-body"
-          [ngClass]="{ touLoader: loder == true }"
-        >
+        <div class="page-heading text-center margin_top20" style="color:#635b5b;">TOU as on {{dispSelectedMonth}}
+          {{dispSelectedDay}}, {{dispSelectedYear}}</div>
+        <div class="panel-body" [ngClass]="{ touLoader: loder == true }">
           <div class="graph-container modal-graph-label showChart" style="display: none;">
             <div class="label-left">Units <span>(KWH)</span></div>
-              <!-- <div class="rows"> 
+            <!-- <div class="rows"> 
                 
                 <ul class="tou-label" *ngIf="touLabels.length > 0">
                   <li *ngFor="let label of touLabels">
@@ -46,21 +44,63 @@
               <div id="chartdiv"></div>
               <div class="label-bottom touHours" *ngIf="chartToShow == 'hourly'">Hours</div>
             </div>
-            
+
           </div>
-					<div class="rows" *ngIf="loder == true ">
-						<div class="spinner box-spinner">
-							<div class="bounce1"></div>
-							<div class="bounce2"></div>
-							<div class="bounce3"></div>
-						</div>
-					</div>
-					<div  class="text-center font-12  field_not_found" *ngIf="isDataFound == false && loder == false">
-							<img src="/assets/images/no_data.png" /> Currently no data found for consumption details. <br />
-					 </div>
-				</div>
+          <div class="rows" *ngIf="loder == true ">
+            <div class="spinner box-spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+          </div>
+          <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isDataFound == false && loder == false">
+            <img src="/assets/images/no_data.png" />Currently no data found for tou section. <br />
+          </div>
+          <div class="table-wrapper no-padding margin_top20">
+                <table class="fl-table tb-header"
+                *ngIf="isDataFound == true && isDataloader == false">
+                    <thead>
+                        <tr>
+            
+                            <th width="50%">
+                                TOU
+                            </th>
+                            <th width="50%">
+                                Consumption <br />
+                                <span style="font-size:11px;">(In KWH)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <table class="fl-table tb-body"
+                *ngIf="isDataFound == true && isDataloader == false">
+                    <tbody>
+                        <tr *ngFor="let tou of toudata">
+                            <td width="50%" >
+                             {{tou._id}}
+                            </td>
+                            <td width="50%">{{tou.total}}</td>
+            
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isDataFound == false && isDataloader == false">
+                    <img src="/assets/images/no_data.png" /> Currently no data found in
+                    Tou tabular section.
+                </div>
+                <div *ngIf="isDataloader == true">
+                    <div class="spinner box-spinner" style="top: 25%;">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
+    
     <div id="main-menu-bg"></div>
   </div>
   <app-footer></app-footer>
