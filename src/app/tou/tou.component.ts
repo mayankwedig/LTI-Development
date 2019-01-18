@@ -54,7 +54,7 @@ export class TouComponent implements OnInit {
   selected_year = "";
   selectedDateCalc: any = "";
   myOptions: INgxMyDpOptions = {
-    dateFormat: "dd/mm/yyyy",
+    dateFormat: "dd/mm/yyyy", 
     disableSince: {
       year: parseInt(moment().format("YYYY")),
       month: parseInt(moment().format("MM")),
@@ -94,7 +94,7 @@ export class TouComponent implements OnInit {
     this.selectedDateCalc = {
       date: {
         year: parseInt(this.selected_year),
-        month: moment().format("MM"),
+        month: moment().format("M"),
         day: moment()
           .subtract(1, "days")
           .format("DD")
@@ -141,7 +141,8 @@ export class TouComponent implements OnInit {
       };
       this.dashboard.getHourlyGraphData(body, (result: any) => {
         this.loder = false;
-        if (result != null) {
+        if (result != null && result.status) {
+         /*  console.log(result); */
           data = result.data_params;
           this.isDataFound = true;
           if (data.length > 0) {
