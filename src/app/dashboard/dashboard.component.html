@@ -124,7 +124,7 @@
                         <img *ngIf ="alerts.type == 'info'" src="assets/images/save-icon.png" alt="" />
                         <img *ngIf ="alerts.type == 'announcement'" src="assets/images/loud-icon.png" alt="" />
                         <div>
-                            {{alerts.alertText}}
+                            {{alerts.alertText}} - {{alerts.eventCreateDateTime | date: "dd/MM/yyyy"}}
                             <a *ngIf ="alerts.type == 'billing'" class="blue-btn pay-now-btn" href="#">Pay Now</a>
                           </div>
                         

@@ -62,8 +62,13 @@ export class TouComponent implements OnInit {
     dateFormat: "dd/mm/yyyy", 
     disableSince: {
       year: parseInt(moment().format("YYYY")),
-      month: parseInt(moment().format("MM")),
+      month: parseInt(moment().format("M")),
       day: parseInt(moment().format("DD"))
+    },
+    disableUntil:{
+      year: 2018,
+      month: 5,
+      day: 31
     },
     showTodayBtn: false
   };
@@ -74,6 +79,8 @@ export class TouComponent implements OnInit {
     this.genrateGraph();
   })
   }
+  tabularDataloader:boolean= false;
+  isTabularDataFound:boolean=false;
   ngOnInit() {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
@@ -114,29 +121,29 @@ export class TouComponent implements OnInit {
       this.selectedDateCalc.date.day;
   }
 
-
+  
   
   getTouData(body) {
     var SelectedDate = this.selectedDate.split("/");
     this.toudata=[];
-    this.isDataloader = true;
+    this.tabularDataloader = true;
     this.DashboardService.getTouData(body).subscribe(
       (response: any) => {
         var res = response;
-        this.isDataloader = false;
+        this.tabularDataloader = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.toudata = res.data_params;
-            this.isDataFound = true;
+            this.isTabularDataFound = true;
           } else {
-            this.isDataFound = false;
+            this.isTabularDataFound = false;
             this.toudata = "";
           }
         }
       },
       (error: AppError) => {
-        this.isDataFound = false;
-        this.isDataloader = false;
+        this.isTabularDataFound = false;
+        this.tabularDataloader = false;
         if (error instanceof BadInput) {
         } else {
           throw error;
@@ -161,6 +168,8 @@ export class TouComponent implements OnInit {
   dispSelectedDay = "";
   
   genrateGraph() {
+  this.tabularDataloader=false;
+  this.isTabularDataFound=false;
     $(".showChart").css("display", "none");
     var tousColor={
       TOD1 :  "#09b4aa",
@@ -309,10 +318,12 @@ export class TouComponent implements OnInit {
             });
             this.getTouData(body);
           } else {
+            $(".showChart").css("display", "none");
             this.isDataFound = false;
           }
         
         } else {
+          $(".showChart").css("display", "none");
           this.isDataFound = false;
         }
       });

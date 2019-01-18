@@ -54,11 +54,11 @@
             </div>
           </div>
           <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isDataFound == false && loder == false">
-            <img src="/assets/images/no_data.png" />Currently no data found for tou section. <br />
+            <img src="/assets/images/no_data.png" />Currently no data found for tou. <br />
           </div>
           <div class="table-wrapper no-padding margin_top20">
                 <table class="fl-table tb-header"
-                *ngIf="isDataFound == true && isDataloader == false">
+                *ngIf="isTabularDataFound == true && tabularDataloader == false">
                     <thead>
                         <tr>
             
@@ -73,7 +73,7 @@
                     </thead>
                 </table>
                 <table class="fl-table tb-body"
-                *ngIf="isDataFound == true && isDataloader == false">
+                *ngIf="isTabularDataFound == true && tabularDataloader == false">
                     <tbody>
                         <tr *ngFor="let tou of toudata">
                             <td width="50%" >
@@ -85,11 +85,10 @@
                     </tbody>
                 </table>
             
-                <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isDataFound == false && isDataloader == false">
-                    <img src="/assets/images/no_data.png" /> Currently no data found in
-                    Tou tabular section.
+                <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isTabularDataFound == false && tabularDataloader == false">
+                    <img src="/assets/images/no_data.png" />Currently no data tabular data found.
                 </div>
-                <div *ngIf="isDataloader == true">
+                <div *ngIf="tabularDataloader == true">
                     <div class="spinner box-spinner" style="top: 25%;">
                         <div class="bounce1"></div>
                         <div class="bounce2"></div>
