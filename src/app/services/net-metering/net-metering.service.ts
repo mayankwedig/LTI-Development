@@ -6,7 +6,8 @@ import { AuthService } from '../authService/auth.service';
 @Injectable()
 export class NetMeteringService {
   
- 
+  netMeteringTabularDataAPI="users/netMeterSum";
+  
   SOAnetmeterfromurlsAPI="users/SOAnetmeterfromurls";
   constructor(private DataService: DataService,private helpers:HelpersService,private auth:AuthService) {}
   
@@ -18,6 +19,11 @@ export class NetMeteringService {
         callback(result);
       }
     );
+  }
+  getNetMeteringTabularData(body){
+    var currentUser=this.auth.getCurrentUser();
+    body["userId"]=currentUser.userId;
+    return this.DataService.getAll(this.netMeteringTabularDataAPI, body,this.helpers.setHeaderData());
   }
 
   

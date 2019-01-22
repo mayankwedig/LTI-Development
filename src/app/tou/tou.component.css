@@ -22,3 +22,11 @@ margin-right: 5px;
     width: 100%;
     text-align: center;
 }
+.touTabularColour{
+    width: 15px;
+    height: 15px;
+    background-color: #09b4aa;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: -2px;
+}
