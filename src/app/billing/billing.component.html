@@ -12,42 +12,37 @@
       >
         <div class="table-wrapper no-padding">
           <table
-            class="fl-table tb-header"
+            class="fl-table table-fixed tb-header"
             *ngIf="isbillingDataFound == true && billingDataLoder == false"
           >
             <thead>
               <tr>
-                <th width="11%">Meter Reading Date</th>
+                <th width="11%"><span class="center-pos">Meter Reading Date</span></th>
                 <th width="11%">
-                  Reading <br />
-                  <span style="font-size:11px;">(In KWH)</span>
+                  <span class="center-pos">Reading <br />
+                  <span style="font-size:11px;">(In KWH)</span></span>
                 </th>
                 <th width="11%">
-                  Consumption <br />
-                  <span style="font-size:11px;">(In KWH)</span>
+                  <span class="center-pos">Consumption <br />
+                  <span style="font-size:11px;">(In KWH)</span></span>
                 </th>
-                <th width="11%">Number of Days</th>
+                <th width="6%"><span class="center-pos">Number of Days</span></th>
                 <th width="10%">
-                  Total Bill Amount <br /><i
+                  <span class="center-pos">Total Bill Amount <br /><i
                     class="fa fa-inr"
                     aria-hidden="true"
-                  ></i>
+                  ></i></span>
                 </th>
-                <th width="6%">Due Date</th>
+                <th width="11%"><span class="center-pos">Due Date</span></th>
                 <th width="10%">
-                  Bill Paid <br />
-                  <i class="fa fa-inr" aria-hidden="true"></i>
+                  <span class="center-pos">Bill Paid <br />
+                  <i class="fa fa-inr" aria-hidden="true"></i></span>
                 </th>
-                <th width="10%">Receipt No.</th>
-                <th width="10%">Payment Date</th>
-                <th width="10%">Download</th>
+                <th width="10%"><span class="center-pos">Receipt No.</span></th>
+                <th width="10%"><span class="center-pos">Payment Date</span></th>
+                <th width="10%"><span class="center-pos">Download</span></th>
               </tr>
             </thead>
-          </table>
-          <table
-            class="fl-table tb-body"
-            *ngIf="isbillingDataFound == true && billingDataLoder == false"
-          >
             <tbody>
               <tr *ngFor="let billing of billingData">
                 <td width="11%">
@@ -55,9 +50,9 @@
                 </td>
                 <td width="11%">{{ billing.meter_reading }}</td>
                 <td width="11%">{{ billing.consumption_units }}</td>
-                <td width="11%">{{ billing.numberOfDays }}</td>
+                <td width="6%">{{ billing.numberOfDays }}</td>
                 <td width="10%">&nbsp;{{ billing.bill_amount }}</td>
-                <td width="6%">{{ billing.due_date | date: "dd/MM/yyyy" }}</td>
+                <td width="11%">{{ billing.due_date | date: "dd/MM/yyyy" }}</td>
                 <td width="10%">
                   <span *ngIf="billing.bill_paid != ''">{{
                     billing.bill_paid
