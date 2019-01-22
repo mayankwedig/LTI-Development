@@ -210,6 +210,79 @@ export class ConsumptionComponent implements OnInit {
     }
     this.genrateGraph();
   }
+  consumptionchartHourlyOpts:any=[];
+  initChartConfig() {
+    this.consumptionchartOptions = {
+      responsive: true
+    };
+    this.consumptionchartHourlyOpts = {
+      responsive: true 
+    };
+    //consumption chart year options
+    this.consumptionlabels = [];
+    this.consumptionchartData = [
+      {
+        label: "Consumption",
+        data: []
+      }
+    ];
+    this.consumptioncolors = [
+      {
+        backgroundColor: "rgba(81, 164, 242, 1)"
+      }
+    ];
+
+    //consumption chart month options
+    this.consumptionmonthchartOptions = {
+      responsive: true // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
+    };
+
+    // STATIC DATA FOR THE CHART IN JSON FORMAT.
+    this.consumptionchartData = [
+      {
+        label: "Consumption",
+        data: []
+      }
+    ];
+    this.consumptionlabels = [];
+    // CHART COLOR.
+    this.consumptionmonthcolors = [
+      {
+        backgroundColor: "rgba(81, 164, 242, 1)"
+      }
+    ];
+    this.consumptionHourlycolors = [
+      {
+        backgroundColor: "#3482cc",
+        borderColor: "#0571d7"
+      },
+      {
+        // dark grey
+        backgroundColor: "#3cbaaa",
+        borderColor: "#3cba9f"
+      }
+    ];
+
+    //consumption chart days options
+    this.consumptiondaychartOptions = {
+      responsive: true,
+      spanGaps: true
+    };
+    this.consumptiondaylabels = [];
+    this.consumptiondaychartData = [
+      {
+        label: "Consumption",
+        data: [],
+        fill: false,
+        borderWidth: 2
+      }
+    ];
+    this.consumptiondaycolors = [
+      {
+        backgroundColor: "rgba(81, 164, 242, 1)"
+      }
+    ];
+  }
   genrateGraph() {
     this.consumptionchartData = [
       {
@@ -281,7 +354,7 @@ export class ConsumptionComponent implements OnInit {
       };
       this.dashboard.getHourlyGraphData(body, (result: any) => {
         this.loder = false;
-
+        var VoltageData=[];
         if (result != null) {
           data = result.data_params;
           this.isDataFound = true;
@@ -293,6 +366,7 @@ export class ConsumptionComponent implements OnInit {
 
             dataSort.map(function(item) {
               gData.push(item.consumption);
+              VoltageData.push(item.voltage);
             });
             this.consumptionlabels.push(
               "1",
@@ -320,6 +394,26 @@ export class ConsumptionComponent implements OnInit {
               "23",
               "24"
             );
+            this.consumptionchartHourlyOpts = {
+              responsive: true,
+              tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                      console.log(tooltipItem.index);
+                        var label = /* data.datasets[tooltipItem.datasetIndex].label || */ 'Consumption:'+tooltipItem.yLabel+"  Voltage:"+VoltageData[tooltipItem.index];
+        
+                        /* if (label) {
+                            label += '\\n';
+                        } */
+                       /*  label += Math.round(tooltipItem.yLabel * 100) / 100;
+                        label+=" Voltage : "+Math.round((parseInt(VoltageData[tooltipItem.index])) * 100) / 100; */
+                        return label;
+                    }
+                }
+            
+            }
+            
+            };
             this.consumptionchartData = [
               {
                 label:
@@ -329,9 +423,10 @@ export class ConsumptionComponent implements OnInit {
                   this.selectedDay +
                   ", " +
                   this.selected_year,
+                  
                 data: gData,
                 fill: false,
-                borderWidth: 2
+                borderWidth: 2,
               }
             ];
           } else {
@@ -490,75 +585,7 @@ export class ConsumptionComponent implements OnInit {
       return false;
     }
   }
-  initChartConfig() {
-    this.consumptionchartOptions = {
-      responsive: true
-    };
-    //consumption chart year options
-    this.consumptionlabels = [];
-    this.consumptionchartData = [
-      {
-        label: "Consumption",
-        data: []
-      }
-    ];
-    this.consumptioncolors = [
-      {
-        backgroundColor: "rgba(81, 164, 242, 1)"
-      }
-    ];
-
-    //consumption chart month options
-    this.consumptionmonthchartOptions = {
-      responsive: true // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
-    };
-
-    // STATIC DATA FOR THE CHART IN JSON FORMAT.
-    this.consumptionchartData = [
-      {
-        label: "Consumption",
-        data: []
-      }
-    ];
-    this.consumptionlabels = [];
-    // CHART COLOR.
-    this.consumptionmonthcolors = [
-      {
-        backgroundColor: "rgba(81, 164, 242, 1)"
-      }
-    ];
-    this.consumptionHourlycolors = [
-      {
-        backgroundColor: "#3482cc",
-        borderColor: "#0571d7"
-      },
-      {
-        // dark grey
-        backgroundColor: "#3cbaaa",
-        borderColor: "#3cba9f"
-      }
-    ];
-
-    //consumption chart days options
-    this.consumptiondaychartOptions = {
-      responsive: true,
-      spanGaps: true
-    };
-    this.consumptiondaylabels = [];
-    this.consumptiondaychartData = [
-      {
-        label: "Consumption",
-        data: [],
-        fill: false,
-        borderWidth: 2
-      }
-    ];
-    this.consumptiondaycolors = [
-      {
-        backgroundColor: "rgba(81, 164, 242, 1)"
-      }
-    ];
-  }
+  
 }
 /* [
   {

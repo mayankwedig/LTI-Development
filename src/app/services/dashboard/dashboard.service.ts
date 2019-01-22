@@ -33,7 +33,7 @@ export class DashboardService {
   masterDropDown="users/masterDropDown";   
   alertnotification="users/getAlerts";   
 
-  
+   TouAPI="users/touHourly";
 
   ac_number=this.helpers.getLocalStoragData("account_number");//getting account number
   
@@ -94,6 +94,14 @@ export class DashboardService {
     var body={"accountNumber":accountNumber,"userId":currentUser.userId}
     return this.DataService.getAll(this.SOAbilling, body,this.helpers.setHeaderData());
   }
+
+
+  getTouData(body){
+    var currentUser=this.auth.getCurrentUser();
+    body["userId"]=currentUser.userId;
+    return this.DataService.getAll(this.TouAPI, body,this.helpers.setHeaderData());
+  }
+
   getrechargeData(accountNumber){
     var currentUser=this.auth.getCurrentUser();
     var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
