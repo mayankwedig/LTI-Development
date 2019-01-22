@@ -276,3 +276,85 @@
   </div>
   <app-footer></app-footer>
 </div>
+<div 
+class="modal fade topVerification-modal" 
+id="topVerification-frm" 
+tabindex="-1" 
+role="dialog" aria-labelledby="myLargeModalLabel"
+    >
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="gridSystemModalLabel">OTP Verification</h4>
+            <div class="box-title">
+              <div class="text-title text-transform-none" style="margin-top: 15px;">
+                OTP has been sent to your registered mobile number and
+                email. please enter it below to verify.
+              </div>
+            </div>
+            <form
+              class="form  custom-form"
+              [formGroup]="OtpVerificationFrm"
+              (ngSubmit)="verifyOtp()"
+            >
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                      <input
+                      required
+                      formControlName="verifyOtp"
+                      name="verifyOtp"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter OTP"
+                    />
+
+                    <div
+                      *ngIf="
+                        OtpVerificationFields.verifyOtp.touched &&
+                        OtpVerificationFields.verifyOtp.invalid
+                      "
+                    >
+                      <span
+                        class="error-msg"
+                        *ngIf="OtpVerificationFields.verifyOtp.errors?.required"
+                        >OTP is required.</span
+                      >
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div
+                        class="form-group text-center no-margin-b"
+                        [ngClass]="{ 'pos-rel': Otoploder }"
+                      >
+                        <div class="spinner" *ngIf="Otoploder">
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>
+                        <button
+                          class="btn btn-primary submit-btn"
+                          [disabled]="!OtpVerificationFrm.valid  || Otoploder == true"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

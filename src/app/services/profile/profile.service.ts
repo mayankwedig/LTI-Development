@@ -14,6 +14,7 @@ export class ProfileService {
   getProfileUrl="users/getProfile";
   updateProfileUrl="users/updateProfile";
   updateProfileImageUrl="users/updateProfileImage";
+  profileUpdateOTPAPI='users/profileUpdateOTP';
   getProfile(accountNumber){
     var currentUser=this.auth.getCurrentUser();
     var body={"profileToken":btoa(currentUser.userId),"accountToken":btoa(accountNumber)};
@@ -28,5 +29,10 @@ export class ProfileService {
     var currentUser=this.auth.getCurrentUser();
     data_object["profileToken"]=btoa(currentUser.userId);
     return this.data.create(this.updateProfileImageUrl,data_object,this.helper.setHeaderData());
+  }
+  verifyMobileNumber(data_object){
+    var currentUser=this.auth.getCurrentUser();
+    var body={"profileToken":btoa(currentUser.userId),"accountToken":btoa(data_object.accountNumber),"mobile":data_object.mobileNumber};
+    return this.data.create(this.profileUpdateOTPAPI,body,this.helper.setHeaderData());
   }
 }
