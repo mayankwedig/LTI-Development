@@ -2,15 +2,14 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <div class="page-heading ">TOU</div>
+    <div class="page-heading ">Consumption Estimator</div>
     <div class="billing-sec margin_top10 padding_bottom10 ">
       <div class="panel ">
-        <div class="row">
+        <!--  <div class="row">
           <div
             class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-right tou-filter"
           >
             <div class="input-group">
-              <!--  (focus)="dp.clearDate()" -->
               <input
                 class="form-control"
                 style="float:none"
@@ -40,13 +39,12 @@
               </span>
             </div>
           </div>
-        </div>
+        </div> -->
         <div
           class="page-heading text-center margin_top20"
           style="color:#635b5b;"
-        >
-          TOU as on {{ dispSelectedMonth }} {{ dispSelectedDay }},
-          {{ dispSelectedYear }}
+        > Estimated Consumption as on {{ dispSelectedMonth }}
+          {{ dispSelectedDay }}, {{ dispSelectedYear }}
         </div>
         <div class="panel-body" [ngClass]="{ touLoader: loder == true }">
           <div
@@ -56,13 +54,14 @@
             <div class="label-left">Units <span>(KWH)</span></div>
             <div class="consumption-canvas pos-rel">
               <div id="chartdiv"></div>
-              <div
-                class="label-bottom touHours"
-                *ngIf="chartToShow == 'hourly'"
-              >
-                Hours
+              <div class="label-bottom touHours">
+                Days
               </div>
             </div>
+          </div>
+          <div class="rows" *ngIf="isDataFound == true && loder == false">
+            <div class="averageText">Estimated Month Consumption : {{estimatedMonthConsumption}}</div>
+            <div class="averageText">Daily average Consumption:{{daily_avg_consumption}}</div>
           </div>
           <div class="rows" *ngIf="loder == true">
             <div class="spinner box-spinner">
@@ -76,60 +75,11 @@
             class="text-center font-12  field_not_found"
             *ngIf="isDataFound == false && loder == false"
           >
+         
             <img src="/assets/images/no_data.png" />Currently no data found in
             this section <br />
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="rows margin_top10 padding_bottom10 no-padding-l no-padding-r">
-      <div
-        class="panel-body"
-        [ngClass]="{ dashboardManageAccount: tabularDataloader == true }"
-      >
-        <div class="table-wrapper no-padding">
-          <table
-            class="fl-table tb-header table-fixed"
-            *ngIf="isTabularDataFound == true && tabularDataloader == false"
-          >
-            <thead>
-              <tr>
-                <th width="50%"><span class="center-pos">TOU</span></th>
-                <th width="50%">
-                  <span class="center-pos">Total Consumption</span><br />
-                  <span style="font-size:11px;">(In KWH)</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let tou of toudata">
-                <td width="50%">
-                  {{ tou._id }}
-                  <div
-                    [style.background-color]="getTourColour(tou._id)"
-                    class="touTabularColour"
-                  ></div>
-                  <!--  [style.background-color]="{{tousColor[tou._id]}}" -->
-                </td>
-                <td width="50%">{{ tou.total }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div
-            style="margin-top: 2;"
-            class="text-center font-12  field_not_found"
-            *ngIf="isTabularDataFound == false && tabularDataloader == false"
-          >
-            <img src="/assets/images/no_data.png" /> Currently no data found in
-            this section.
-          </div>
-          <div *ngIf="tabularDataloader == true">
-            <div class="spinner box-spinner" style="top: 71%;">
-              <div class="bounce1"></div>
-              <div class="bounce2"></div>
-              <div class="bounce3"></div>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

@@ -1,45 +1,72 @@
 <div id="main-menu" role="navigation">
   <div id="main-menu-inner">
     <div class="dropdown account-dropdown user-account-no">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      <button
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+      >
         {{ displayUserInfo }} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" *ngIf="isAccountDataFound == true">
-        <li *ngFor="let acc of accountData" [ngClass]="{ active: acc.account_number == accountNumber }">
-          <a style="cursor:pointer;" (click)="redirectoDashBoard(acc.account_number, acc.id)">{{ acc.account_number }}</a>
+        <li
+          *ngFor="let acc of accountData"
+          [ngClass]="{ active: acc.account_number == accountNumber }"
+        >
+          <a
+            style="cursor:pointer;"
+            (click)="redirectoDashBoard(acc.account_number, acc.id)"
+            >{{ acc.account_number }}</a
+          >
         </li>
       </ul>
     </div>
     <ul class="navigation">
-      <li id="li0" [ngClass]="{
+      <li
+        id="li0"
+        [ngClass]="{
           openDropdown:
             currentUrl == '/manageaccount' || currentUrl == '/addaccount'
         }"
-        (click)="removeCss($event)">
+        (click)="removeCss($event)"
+      >
         <a routerLink="/manageaccount">
           <div class="menu-icons i-user"></div>
           <span class="mm-text" id="0">accounts</span>
         </a>
       </li>
-      <li id="li1" [ngClass]="{ openDropdown: currentUrl == '/dashboard' }" (click)="removeCss($event)">
+      <li
+        id="li1"
+        [ngClass]="{ openDropdown: currentUrl == '/dashboard' }"
+        (click)="removeCss($event)"
+      >
         <a class="" routerLink="/dashboard">
           <div class="menu-icons i-dashboard"></div>
           <span class="mm-text" id="1">Dashboard</span>
         </a>
       </li>
-      <li class="m-dropdown mm-dropdown" id="li2" [ngClass]="{
+      <li
+        class="m-dropdown mm-dropdown"
+        id="li2"
+        [ngClass]="{
           openDropdown:
             currentUrl == '/profile' || currentUrl == '/update-profile'
         }"
-        (click)="removeCss($event)">
+        (click)="removeCss($event)"
+      >
         <a href="javascript:void(0);">
           <div class="menu-icons i-settings"></div>
           <span class="mm-text" id="2">Manage Profile</span>
         </a>
         <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
-            <a tabindex="-1" routerLink="/profile" routerLinkActive="DropdownActive" [routerLinkActiveOptions]="{ exact: true }"><span
-                class="mm-text">Profile</span></a>
+            <a
+              tabindex="-1"
+              routerLink="/profile"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">Profile</span></a
+            >
           </li>
         </ul>
       </li>
@@ -49,85 +76,148 @@
           <span class="mm-text" id="3">Consumptions</span>
         </a>
       </li>
-      <li id="li4" [ngClass]="{ openDropdown: currentUrl == '/billing' }" *ngIf="selectedAccountData.isPrepaid == 'No'">
+      <li
+        id="li4"
+        [ngClass]="{ openDropdown: currentUrl == '/billing' }"
+        *ngIf="selectedAccountData.isPrepaid == 'No'"
+      >
         <a routerLink="/billing">
           <div class="menu-icons i-rupee"></div>
           <span class="mm-text" id="4">Billing</span>
         </a>
       </li>
-      <li id="li5" [ngClass]="{ openDropdown: currentUrl == '/recharge-history' }" *ngIf="selectedAccountData.isPrepaid == 'Yes'">
+      <li
+        id="li5"
+        [ngClass]="{ openDropdown: currentUrl == '/recharge-history' }"
+        *ngIf="selectedAccountData.isPrepaid == 'Yes'"
+      >
         <a class="" routerLink="/recharge-history">
           <div class="menu-icons i-rupee"></div>
           <span class="mm-text" id="5">Recharge-History</span>
         </a>
       </li>
-      <li class="m-dropdown mm-dropdown" id="li6" [ngClass]="{
+      <li
+        class="m-dropdown mm-dropdown"
+        id="li6"
+        [ngClass]="{
           openDropdown:
             currentUrl == '/service-request' ||
             currentUrl == '/view-all-service-request' ||
             currentUrl == '/service-request-details' ||
             currentUrl == '/new-service-connection'
         }"
-        (click)="removeCss($event)">
-
+        (click)="removeCss($event)"
+      >
         <a href="javascript:void(0);">
           <div class="menu-icons i-service-request"></div>
           <span class="mm-text" id="6">Service Requests</span>
         </a>
         <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
-            <a tabindex="-1" routerLink="/new-service-connection" routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"><span class="mm-text">New Service Connection</span></a>
+            <a
+              tabindex="-1"
+              routerLink="/new-service-connection"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">New Service Connection</span></a
+            >
           </li>
           <li>
-            <a tabindex="-1" routerLink="/view-all-service-request" routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"><span class="mm-text">View Serivce Requests</span></a>
+            <a
+              tabindex="-1"
+              routerLink="/view-all-service-request"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">View Serivce Requests</span></a
+            >
           </li>
           <li>
-            <a tabindex="-1" routerLink="/service-request" routerLinkActive="DropdownActive" [routerLinkActiveOptions]="{ exact: true }"><span
-                class="mm-text">Register Service Requests</span></a>
+            <a
+              tabindex="-1"
+              routerLink="/service-request"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">Register Service Requests</span></a
+            >
           </li>
         </ul>
       </li>
-      <li class="m-dropdown mm-dropdown" id="li7" [ngClass]="{
+      <li
+        class="m-dropdown mm-dropdown"
+        id="li7"
+        [ngClass]="{
           openDropdown:
             currentUrl == '/complaints' ||
             currentUrl == '/view-all-complaints' ||
             currentUrl == '/complaint-request-details'
         }"
-        (click)="removeCss($event)">
+        (click)="removeCss($event)"
+      >
         <a href="javascript:void(0);">
           <div class="menu-icons i-complaints"></div>
           <span class="mm-text" id="7">Complaints</span>
         </a>
         <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
-            <a tabindex="-1" routerLink="/view-all-complaints" routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"><span class="mm-text">View complaints</span></a>
+            <a
+              tabindex="-1"
+              routerLink="/view-all-complaints"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">View complaints</span></a
+            >
           </li>
           <li>
-            <a tabindex="-1" routerLink="/complaints" routerLinkActive="DropdownActive" [routerLinkActiveOptions]="{ exact: true }"><span
-                class="mm-text">Register Complaint</span></a>
+            <a
+              tabindex="-1"
+              routerLink="/complaints"
+              routerLinkActive="DropdownActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span class="mm-text">Register Complaint</span></a
+            >
           </li>
         </ul>
       </li>
-      <li id="li8" *ngIf="is_net_metering" [ngClass]="{ openDropdown: currentUrl == '/net-metering' }" (click)="removeCss($event)">
-
+      <li
+        id="li8"
+        *ngIf="is_net_metering"
+        [ngClass]="{ openDropdown: currentUrl == '/net-metering' }"
+        (click)="removeCss($event)"
+      >
         <a class="" routerLink="/net-metering">
           <div class="menu-icons i-consumptions"></div>
           <span class="mm-text" id="8">Net Metering</span>
         </a>
       </li>
-      <li id="li9" [ngClass]="{ openDropdown: currentUrl == '/tou' }" (click)="removeCss($event)">
+      <li
+        id="li9"
+        [ngClass]="{ openDropdown: currentUrl == '/tou' }"
+        (click)="removeCss($event)"
+      >
         <a class="" routerLink="/tou">
           <div class="menu-icons i-tou"></div>
           <span class="mm-text" id="9">TOU</span>
         </a>
       </li>
-      <li id="li10" [ngClass]="{ openDropdown: currentUrl == '/notifications' }" (click)="removeCss($event)">
+      
+      <li
+        id="li10"
+        [ngClass]="{ openDropdown: currentUrl == '/notifications' }"
+        (click)="removeCss($event)"
+      >
         <a class="" routerlink="/notifications">
           <div class="menu-icons i-notifications"></div>
           <span class="mm-text" id="9">Notifications</span>
+        </a>
+      </li>
+      <li
+        id="li11"
+        [ngClass]="{ openDropdown: currentUrl == '/consumption-estimator' }"
+        (click)="removeCss($event)"
+      >
+        <a class="" routerLink="/consumption-estimator">
+          <div class="menu-icons i-consumptions"></div>
+          <span class="mm-text" id="11">Consumption Estimator</span>
         </a>
       </li>
     </ul>

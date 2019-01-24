@@ -101,6 +101,7 @@ export class DashboardService {
     body["userId"]=currentUser.userId;
     return this.DataService.getAll(this.TouAPI, body,this.helpers.setHeaderData());
   }
+  
 
   getrechargeData(accountNumber){
     var currentUser=this.auth.getCurrentUser();
@@ -170,7 +171,9 @@ export class DashboardService {
       (result: any) => {
         callback(result);
       }
-    );
+    ,(error:any) => {
+      callback(error);
+    });
   }
   getYearlyConsumptionGetData(body, callback) { //dail graph data
     var currentUser=this.auth.getCurrentUser();
