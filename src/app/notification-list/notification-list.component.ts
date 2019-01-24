@@ -22,7 +22,8 @@ export class NotificationListComponent implements OnInit {
   notifications:any=[];
   notificationfound:boolean=false
   isnotificationFound:boolean=false;
-
+  accountNumber:any="";
+  dispString:any="";
   constructor(
     public auth:AuthService,
     public dataservice:DataService,
