@@ -41,7 +41,7 @@
           </div>
         </div> -->
         <div
-          class="page-heading text-center margin_top20"
+          class="page-heading text-center margin_top50 margin_bottom20"
           style="color:#635b5b;"
         > Estimated Consumption as on {{ dispSelectedMonth }}
           {{ dispSelectedDay }}, {{ dispSelectedYear }}
@@ -59,9 +59,9 @@
               </div>
             </div>
           </div>
-          <div class="rows" *ngIf="isDataFound == true && loder == false">
-            <div class="averageText">Estimated Month Consumption : {{estimatedMonthConsumption}}</div>
-            <div class="averageText">Daily average Consumption:{{daily_avg_consumption}}</div>
+          <div class="rows estimator-avg-text" *ngIf="isDataFound == true && loder == false">
+            <div class="averageText">Average consumption for <span>Jan 2019</span><strong>{{estimatedMonthConsumption}} <span class="kwh-text-black">KWH</span></strong></div>
+            <div class="averageText">Estimated consumption based on average consumption for Jan 2019 <strong>{{daily_avg_consumption}} <span class="kwh-text-black">KWH</span></strong></div>
           </div>
           <div class="rows" *ngIf="loder == true">
             <div class="spinner box-spinner">
