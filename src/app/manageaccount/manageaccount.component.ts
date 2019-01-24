@@ -1,3 +1,4 @@
+import { WindowRefService } from './../services/window-ref/window-ref.service';
 import { SignupOtpVerificationService } from "./../services/signup-otp-verification/signup-otp-verification.service";
 import { LoginService } from "./../services/login/login.service";
 import { DashboardService } from "./../services/dashboard/dashboard.service";
@@ -45,7 +46,8 @@ export class ManageaccountComponent implements OnInit {
     private Dashboard: DashboardService,
     private login: LoginService,
     private ValidateAccountNumber: ValidateAccountNumberService,
-    private OtpVeriyService: SignupOtpVerificationService
+    private OtpVeriyService: SignupOtpVerificationService,
+    private WindowRef:WindowRefService
   ) {}
   ngOnInit() {
     var UserData = this.login.getUserData();
@@ -316,7 +318,29 @@ export class ManageaccountComponent implements OnInit {
     backdropBorderRadius: "3px"
   };
   /** Redirection Loder Ends Here*/
-
+  redirectoPaymentPage(accountId, userId) {
+    this.WindowRef.nativeWindow.open('https://paytm.com/', "popup");
+    /* this.redirectLoding = true; // make loder true
+    var userId = this.auth.getCurrentUser().userId;
+    var is_net_metering = 0;
+   
+    this.Dashboard.getAccountDetails(accountId, (result: any) => {
+      this.redirectLoding = false;
+      if (result.authCode == "200") {
+        is_net_metering = result.data_params.is_net_metering;
+        this.helper.setLocalStoragData(
+          "accountToken",
+          btoa(userId + ":" + accountId + ":" + is_net_metering)
+        ); // set new account access token.
+      } else {
+        this.helper.setLocalStoragData(
+          "accountToken",
+          btoa(userId + ":" + accountId + ":" + 0)
+        ); // set new account access token.
+      }
+      this.router.navigate(["/dashboard"]); //redirect user to dashboard.
+    }); */
+  }
   redirectoDashBoard(accountId, userId) {
     this.redirectLoding = true; // make loder true
     var userId = this.auth.getCurrentUser().userId;

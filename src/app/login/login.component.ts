@@ -1,3 +1,4 @@
+import { SignupService } from "./../services/signup/signup.service";
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { Component } from "@angular/core";
@@ -41,13 +42,46 @@ export class LoginComponent {
   loder: boolean = false;
   loginFrm: FormGroup;
   forgotPassFrm: FormGroup;
+
+  questionsList1 = [];
+  questionsList2 = [];
+
+  questionsList1Loader = false;
+  questionsList2Loader = false;
+
   get f() {
     return this.loginFrm.controls;
   }
   get forgotPassFields() {
     return this.forgotPassFrm.controls;
   }
+  fechQuestionList(quesType) {
+    if (quesType == "1") {
+      this.questionsList1Loader = true;
+    } else {
+      this.questionsList2Loader = true;
+    }
 
+    this.SignupService.getQuestionList("users/questionList", {
+      types: quesType
+    }).subscribe((response: any) => {
+      if (quesType == "1") {
+        this.questionsList1Loader = false;
+      } else {
+        this.questionsList2Loader = false;
+      }
+      var res = response;
+      if (res.authCode == "200") {
+        if (quesType == "1") {
+          this.questionsList1 = res.data_params;
+        } else {
+          this.questionsList2 = res.data_params;
+        }
+      } else {
+        this.toastr.error(res.msg, "Failed!");
+      }
+    });
+  }
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
@@ -55,10 +89,14 @@ export class LoginComponent {
     private Dashboard: DashboardService,
     private helper: HelpersService,
     private loginService: LoginService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private SignupService: SignupService,
+    private helpers: HelpersService
   ) {
     this.initLoginFrm();
     this.initForgotFormFrm();
+    this.fechQuestionList("1");
+    this.fechQuestionList("2");
   }
   initLoginFrm() {
     this.loginFrm = this.fb.group({
@@ -67,17 +105,97 @@ export class LoginComponent {
     });
   }
   initForgotFormFrm() {
-    this.forgotPassFrm = this.fb.group({
-      email: ["", Validators.required]
-    });
+    var fields = {
+      email: [""],
+      email1: [""],
+      questionsList1: [""],
+      questionsList2: [""],
+      ansques1: [""],
+      ansques2: [""]
+    };
+    this.forgotPassFrm = this.fb.group(fields);
   }
-  forgotPassFunction() {
+
+  errorFlags: any = {
+    email: false,
+    email1: false,
+    questionsList1: false,
+    questionsList2: false,
+    ansques1: false,
+    ansques2: false
+  };
+  setErrorFlags() {
+    this.errorFlags.email = false;
+    this.errorFlags.email1 = false;
+    this.errorFlags.questionsList1 = false;
+    this.errorFlags.questionsList2 = false;
+    this.errorFlags.ansques1 = false;
+    this.errorFlags.ansques2 = false;
+  }
+  validateForgotPasswordFrm() {
+    this.forgotPassFrm = this.helpers.markAsTouched(this.forgotPassFrm);
+    var APIUrl = "users/forgotPassword";
+    this.setErrorFlags(); // Setting Error Flags default to false
+    if (this.forgotPassFrm.value.email != "") {
+      // only user-email/user-ID selected
+      this.forgotPassword(this.forgotPassFrm.value, APIUrl);
+    } else {
+      if (this.forgotPassFrm.value.email1 != "") {
+        // user-email/user-ID/mobile selected
+        var errorExists = false;
+        if (this.forgotPassFrm.value.questionsList1 == "") {
+          // check if ques1 not blank
+          this.errorFlags.questionsList1 = true;
+          errorExists = true;
+        }
+        if (this.forgotPassFrm.value.questionsList2 == "") {
+          // check if questionsList2 not blank
+          this.errorFlags.questionsList2 = true;
+          errorExists = true;
+        }
+        if (this.forgotPassFrm.value.ansques1 == "") {
+          // check if ansques1 not blank
+          this.errorFlags.ansques1 = true;
+          errorExists = true;
+        }
+        if (this.forgotPassFrm.value.ansques2 == "") {
+          // check if ansques2 not blank
+          this.errorFlags.ansques2 = true;
+          errorExists = true;
+        }
+        if (errorExists == false) {
+          // if no error
+          APIUrl = "users/forgotPasswordWithSecuirityQuestion";
+          this.forgotPassword(this.forgotPassFrm.value, APIUrl);
+        } else {
+          this.toastr.error("Please fill required field.", "Failed");
+        }
+      } else {
+        this.errorFlags.email = true;
+        this.errorFlags.email1 = true;
+        this.toastr.error("Please fill at least one required field.", "Failed");
+      }
+    }
+  }
+  forgotPassword(data, apiUrl) {
+    var forgotPassData = {};
+    if (data.email != "") {
+      forgotPassData = { email: data.email };
+    } else {
+      forgotPassData = {
+        email: data.email1,
+        question1: data.questionsList1,
+        answer1: data.ansques1,
+        question2: data.questionsList2,
+        answer2: data.ansques2
+      };
+    }
     this.loder = true;
-    const forgotPassData = this.forgotPassFrm.value;
     this.loginService
-      .forgotPassService("users/forgotPassword", forgotPassData)
+      .forgotPassService(apiUrl, forgotPassData)
       .subscribe((response: any) => {
         this.loder = false;
+        this.initForgotFormFrm();
         var res = response;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
@@ -85,7 +203,6 @@ export class LoginComponent {
             var OtpVerificationToken = this.loginService.getOtpVerificationSession();
 
             if (OtpVerificationToken != null) {
-              /*   console.log("Test"); */
               this.toastr.success(res.msg, "Verification is successful!");
               this.router.navigate(["/otp-verification"]);
             }
@@ -93,26 +210,30 @@ export class LoginComponent {
             this.toastr.error(res.msg, "Failed!");
           }
         }
+      },(error)=>{
+        this.initForgotFormFrm();
+        this.loder = false;
+        this.toastr.error("Something went wrong,Please try again later", "Failed!");
       });
   }
-   /** Redirection Loder*/
-   redirectLoding = false;
-   PrimaryWhite = "#16689e";
-   SecondaryGrey = "#ffffff";
-   PrimaryRed = "#dd0031";
-   SecondaryBlue = "#006ddd";
-   public primaryColour = this.PrimaryWhite;
-   public secondaryColour = this.SecondaryGrey;
-   public coloursEnabled = false;
- 
-   public config = {
-     primaryColour: this.primaryColour,
-     secondaryColour: this.secondaryColour,
-     tertiaryColour: this.primaryColour,
-     backdropBorderRadius: "3px"
-   };
-   /** Redirection Loder Ends Here*/
- 
+  /** Redirection Loder*/
+  redirectLoding = false;
+  PrimaryWhite = "#16689e";
+  SecondaryGrey = "#ffffff";
+  PrimaryRed = "#dd0031";
+  SecondaryBlue = "#006ddd";
+  public primaryColour = this.PrimaryWhite;
+  public secondaryColour = this.SecondaryGrey;
+  public coloursEnabled = false;
+
+  public config = {
+    primaryColour: this.primaryColour,
+    secondaryColour: this.secondaryColour,
+    tertiaryColour: this.primaryColour,
+    backdropBorderRadius: "3px"
+  };
+  /** Redirection Loder Ends Here*/
+
   login() {
     // login funtion goes here
     const loginData = this.loginFrm.value;
@@ -127,7 +248,8 @@ export class LoginComponent {
             this.toastr.success(res.msg, "Success!");
             let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
             var UserData = this.loginService.getUserData();
-            if (UserData.numberOfAccounts == 1) { // If user has single Account
+            if (UserData.numberOfAccounts == 1) {
+              // If user has single Account
               var userId = UserData.userId; //get user Id
               var accountId = UserData.accountNumber; //get Account Id
               var is_net_metering = 0; // Set Default Net Metering Status
@@ -135,7 +257,8 @@ export class LoginComponent {
               this.redirectLoding = true; //redirecting loder
               this.Dashboard.getAccountDetails(accountId, (result: any) => {
                 this.redirectLoding = false; //redirecting loder false
-                if (result.authCode == "200") { // if Success
+                if (result.authCode == "200") {
+                  // if Success
                   is_net_metering = result.data_params.is_net_metering; //getting Net Metering
                   this.helper.setLocalStoragData(
                     "accountToken",
@@ -147,10 +270,9 @@ export class LoginComponent {
                     btoa(userId + ":" + accountId + ":" + 0)
                   ); // set new account access token.
                 }
-                 //redirect user to dashboard.
-                 this.router.navigate([returnUrl || "/dashboard"]);
+                //redirect user to dashboard.
+                this.router.navigate([returnUrl || "/dashboard"]);
               });
-              
             } else {
               this.router.navigate([returnUrl || "/manageaccount"]);
             }

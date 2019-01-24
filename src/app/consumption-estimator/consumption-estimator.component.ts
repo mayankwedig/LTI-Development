@@ -176,8 +176,9 @@ export class ConsumptionEstimatorComponent implements OnInit {
           consumption: item.consumption
         };
         var currDay = parseInt(moment().format("DD"));
+       /*  console.log(currDay,item.day,item.day >= currDay); */
         if (item.day >= currDay) {
-          Data["dashLength"] = 8;
+          Data["dashLength"] = 4;
           Data["alpha"] = 0.4; //Data["lineColor"];
         }
         gData.push(Data);

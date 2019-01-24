@@ -86,14 +86,77 @@
                 <div class="box-title">
                   <div class="text-title">Forgot Password</div>
                 </div>
-                <form class="form no-padding" [formGroup]="forgotPassFrm" (ngSubmit)="forgotPassFunction()">
+                <form class="form no-padding" [formGroup]="forgotPassFrm" (ngSubmit)="validateForgotPasswordFrm()">
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input required formControlName="email"  name="email" type="text" class="form-control" placeholder="User ID / Email / Mobile" >
-                          <div *ngIf="forgotPassFields.email.touched && forgotPassFields.email.invalid">
-                            <span class="error-msg" *ngIf="forgotPassFields.email.errors?.required">User ID / Email / Mobile is required.</span>
+                        <input  formControlName="email"  name="email" type="text" class="form-control" placeholder="User ID / Email" >
+                          <div *ngIf="errorFlags.email">
+                            <span class="error-msg">User ID / Email is required.</span>
                           </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="orClass">OR</div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input  formControlName="email1"  name="email1" type="text" class="form-control" placeholder="User ID / Email / Mobile" >
+                        <div *ngIf="errorFlags.email1">
+                          <span class="error-msg">User ID / Email / Mobile is required.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <select  formControlName="questionsList1" name="questionsList1" class="form-control">
+                          <option value="">Select security question 1</option>
+                          <option *ngFor="let ques of questionsList1" [value]="ques.id">{{ques.questions}}</option>
+                        </select>
+                        <div *ngIf="errorFlags.questionsList1">
+                          <span class="error-msg">Security question 1 is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input  formControlName="ansques1" name="ansques1" type="text" class="form-control"
+                          placeholder="Answer 1" />
+                        <div *ngIf="errorFlags.ansques1">
+                          <span class="error-msg" >Answer 1 is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <select  formControlName="questionsList2" name="questionsList2" class="form-control">
+                          <option value="">Select security question 2</option>
+                          <option *ngFor="let ques of questionsList2" [value]="ques.id">{{ques.questions}}</option>
+                        </select>
+                        <div *ngIf="errorFlags.questionsList2">
+                          <span class="error-msg">Security Question 2 is required</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input  name="ansques2" formControlName="ansques2" type="text" class="form-control"
+                          placeholder="Answer 2" />
+                        <div *ngIf="errorFlags.ansques2">
+                          <span class="error-msg">Answer 2 is required</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -105,7 +168,7 @@
                               <div class="bounce2"></div>
                               <div class="bounce3"></div>
                             </div>
-                        <button class="btn btn-primary submit-btn" [disabled]="!forgotPassFrm.valid">Submit</button>
+                        <button class="btn btn-primary submit-btn"  [disabled]="loder">Submit</button>
                       </div>
                     </div>
                   </div>

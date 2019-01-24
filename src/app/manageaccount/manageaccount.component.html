@@ -132,10 +132,16 @@
                           <td width="15%">
                             <a
                               class="blue-btn action-sm-btn"
-                              href="#"
+                              (click)="
+                              redirectoPaymentPage(
+                                account.account_number,
+                                account.id
+                              )
+                            "
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Pay Bill"
+                              style="cursor: pointer;"
                               ><i class="fa fa-credit-card"></i></a
                             ><a
                               class="blue-btn edit-btn action-sm-btn"
