@@ -82,6 +82,7 @@ import {HomeService} from './services/home/home.service';
 import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marquee.component';
 
 import { MomentModule } from 'ngx-moment';
+import { ConsumptionEstimatorComponent } from './consumption-estimator/consumption-estimator.component';
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
@@ -134,7 +135,8 @@ import { MomentModule } from 'ngx-moment';
     RechargeHistoryComponent,
     NewServiceConnectionComponent,
     LatestNewsMarqueeComponent,
-    NotificationListComponent
+    NotificationListComponent,
+    ConsumptionEstimatorComponent
   ],
   imports: [
     BrowserModule,
@@ -181,6 +183,7 @@ import { MomentModule } from 'ngx-moment';
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
       {path:'notifications',component:NotificationListComponent,canActivate:[AuthGuard]},
+      {path:'consumption-estimator',component:ConsumptionEstimatorComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent}
       
       
