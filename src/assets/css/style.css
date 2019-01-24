@@ -5402,7 +5402,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     font-weight: 500;
 }
 .estimator-avg-text {
-    padding: 80px 30px 30px 50px;
+    padding: 40px 30px 20px 50px;
 }
 .tab-section.blue-tabs{
     padding: 0px;
@@ -5473,4 +5473,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .common-notification-lists li span.notification-texts:before, 
 .common-notification-lists li span.notification-texts:after{
     display: none;
+}
+.modal-graph-label .consumption-canvas .label-bottom{
+    margin-top: 50px;
 }
