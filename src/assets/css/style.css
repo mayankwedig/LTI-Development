@@ -5454,6 +5454,13 @@ table.table.consumer-basic-table tbody tr th:last-child {
     text-align: center;
     line-height: 32px;
 }
+.common-notification-lists.notify-tab-list li:before{
+    background: url(../images/blue-notification-ic.png);
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 32px;
+}
 .common-notification-lists li .notification-texts {
     float: left;
     padding: 15px 15px 15px 15px;
@@ -5477,3 +5484,75 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .modal-graph-label .consumption-canvas .label-bottom{
     margin-top: 50px;
 }
+
+/*pagination*/
+span.page-link:before,span.page-link:after{
+    display:none;
+}
+.pagination>li>a, .pagination>li>span{
+    border:0px;
+}
+.pagination{  
+margin:40px auto;
+}
+.pagination>li>a, .pagination>li>span{
+    width:auto;
+}
+.page-link.next,.page-link.prev{    
+    width: auto;
+    border: 1px solid #9b9b9b;
+    border-radius: 0px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 10px;
+}
+    .theme-default .pagination>li.active>a, .theme-default .pagination>li.active>a:focus, .theme-default .pagination>li.active>a:hover, .theme-default .pagination>li.active>span {
+    background: #1d89cf;
+    border-color: #1d89cf;
+    width: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
+    background:#ffffff;
+    border-color: #1d89cf;
+}
+.pagination>li>a, .pagination>li>span{
+    margin:0px;
+}
+.theme-default .pagination>li.active>a, .theme-default .pagination>li.active>a:focus, .theme-default .pagination>li.active>a:hover, .theme-default .pagination>li.active>span {
+    background: #0571d7;
+    border-color: #0571d7;
+    }
+
+    .page-link.dots{
+        font-size:20px;
+        line-height:1;
+    }
+    nav.pagi{
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    display: block;
+    }
+    .common-notification-lists li:last-child{
+        border-bottom:0px;
+    }
+
+    @media(max-width:600px){
+        .theme-default .blue-tabs .nav.nav-tabs li a{
+            padding:15px 50px;
+        }
+        .theme-default .blue-tabs .nav.nav-tabs li {
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+}
+.theme-default .blue-tabs .nav.nav-tabs li.active:last-child{
+    border-bottom:4px solid #1d89cf;
+    }}

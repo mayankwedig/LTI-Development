@@ -111,7 +111,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="notification-list-2">
                        <div class="notifaction-block">
-                          <table cellspacing="0" cellpadding="0" border="0" width="100%" class="notification-table">
+                          <!-- <table cellspacing="0" cellpadding="0" border="0" width="100%" class="notification-table">
                             <tbody><tr>
                               <td class="time">08:52</td>
                               <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
@@ -128,11 +128,79 @@
                               <td class="time">21:50</td>
                               <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
                             </tr>
-                          </tbody></table>
+                          </tbody></table> -->
+                          <ul class="common-notification-lists notify-tab-list">
+                            <li>
+                              <span class="notification-texts">
+                                Your account <strong>823749</strong> bill due on 26 Jan. 2019 
+                              </span>
+                              <a href="" class="blue-btn">
+                                Pay Now
+                              </a>
+                              <span class="notification-date">
+                                22 Jan 2019
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Power voltage in your area on 23 Dec. 2018
+                              </span>
+                              <span class="notification-date">
+                                20 Jan 2019
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Your service request status for load change has been accepted.
+                              </span>
+                              <span class="notification-date">
+                                18 Dec 2018
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Tips on how to save energy and help have the world
+                              </span>
+                              <span class="notification-date">
+                                18 Dec 2018
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Power voltage in your area on 23 Sep. 2018 
+                              </span>
+                              <span class="notification-date">
+                                23 Oct 2018
+                              </span>
+                            </li>
+                          </ul>
                       </div>
                     </div>
                 </div>
             </div>
+                <nav aria-label="..." class="pagi hide">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <span class="page-link prev"><img src="/assets/images/prev-arrow.png"></span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link dots" href="#">...</a></li>
+                    <li class="page-item active">
+                      <span class="page-link">
+                        3
+                        <span class="sr-only">(current)</span>
+                      </span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                    <li class="page-item"><a class="page-link dots" href="#">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#">29</a></li>
+                    <li class="page-item">
+                      <a class="page-link next" href="#"><img src="/assets/images/next-arrow.png"></a>
+                    </li>
+                  </ul>
+                </nav>
                 <div *ngIf="notificationLoder == true">
                           <div class="spinner box-spinner">
                             <div class="bounce1"></div>
