@@ -82,6 +82,20 @@ export class LoginComponent {
       }
     });
   }
+  splitFunction(){
+    var str='mayak.mourya@wedigtech.com';
+    var splitedString=str.split("@");
+    var stingToProcess=splitedString[0];
+      console.log( str.split("@"));
+      console.log(stingToProcess);
+      console.log(stingToProcess.length);
+     /*  console.log(JSON.parse("[" + stingToProcess + "]")); */
+      var stars='';
+      /* for(var i=0; i<=stingToProcess.length-3;i++){
+        stars+='*';
+      } */
+      console.log(stars);
+  }
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
