@@ -31,6 +31,10 @@ export class NotificationListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
+    let accountTokenInfo = accountToken.split(":");
+    this.accountNumber = accountTokenInfo[1]; //account Number
+    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
 
     this.getAllNotifications();
   };

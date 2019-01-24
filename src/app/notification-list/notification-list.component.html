@@ -1,67 +1,128 @@
-
-
-    <div id="main-wrapper" class="no-sidebar">
-            <app-header></app-header>
-      <div class="main-container-sec notifaction-page">
-        <div class="container">
-          <div class="main-heading text-center">Notifaction</div>
-          <div class="notifaction-block"  >
-            <div class="notifaction-box" [ngClass]="{ NotificationLoaderBlock: notificationLoder == true }">
-                        <div
-                        style="margin-top: 2;"
-                        class="text-center font-12  field_not_found"
-                        *ngIf="isnotificationFound == false && notificationLoder == false"
-                      >
-                        <img src="/assets/images/no_data.png" /> Currently no new notification(s) found in
-                        this section.
-                      </div>
-              <table
-                cellspacing="0"
-                cellpadding="0"
-                border="0"
-                width="100%"
-                class="notification-table"
-                *ngIf="isnotificationFound == true && notificationLoder == false"
-              >
-                <tr *ngFor="let notification of notifications">
-                  <td class="time">{{notification.created | amTimeAgo}}</td>
-                  <td class="">{{notification.title}}</td>
-                </tr>
-               <!--  <tr>
-                  <td class="time">19:50</td>
-                  <td class="">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s
-                  </td>
-                </tr>
-                <tr>
-                  <td class="time">10:52</td>
-                  <td class="">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s
-                  </td>
-                </tr>
-                <tr>
-                  <td class="time">19:50</td>
-                  <td class="">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s
-                  </td>
-                </tr> -->
-              </table>
-              <div *ngIf="notificationLoder == true">
-                        <div class="spinner box-spinner">
-                          <div class="bounce1"></div>
-                          <div class="bounce2"></div>
-                          <div class="bounce3"></div>
+<div id="main-wrapper">
+  <app-header></app-header>
+  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  <div id="content-wrapper">
+    <div class="notifaction-page">
+            <div class="page-heading ">Notifaction</div>
+            <div class="notifaction-block"  >
+              <div class="notifaction-box" [ngClass]="{ NotificationLoaderBlock: notificationLoder == true }">
+                <div
+                          style="margin-top: 2;"
+                          class="text-center font-12  field_not_found"
+                          *ngIf="isnotificationFound == false && notificationLoder == false"
+                        >
+                          <img src="/assets/images/no_data.png" /> Currently no new notification(s) found in
+                          this section.
                         </div>
+                <table
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  width="100%"
+                  class="notification-table"
+                  *ngIf="isnotificationFound == true && notificationLoder == false"
+                >
+                  <tr *ngFor="let notification of notifications">
+                    <td class="time">{{notification.created | amTimeAgo}}</td>
+                    <td class="">{{notification.title}}</td>
+                  </tr>
+                 <!--  <tr>
+                    <td class="time">19:50</td>
+                    <td class="">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="time">10:52</td>
+                    <td class="">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="time">19:50</td>
+                    <td class="">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s
+                    </td>
+                  </tr> -->
+                </table>
+                <div class="tab-section rows">
+        <ul class="nav nav-tabs blue-tabs" role="tablist">
+                    <li role="presentation" class="active abt-tbs-li">
+                      <a class="v-m-tab" href="#notification-list-1" aria-controls="notification-list-1" role="tab" data-toggle="tab">
+                        ALert Notification
+                      </a>
+                    </li>
+                    <li role="presentation" class="abt-tbs-li">
+                      <a class="dir-tab" href="#notification-list-2" aria-controls="notification-list-2" role="tab" data-toggle="tab">
+                        Notification 
+                      </a>
+                    </li>
+                    
+                </ul>                
+                <div class="tab-content rows abt-tab-container">
+                    <div role="tabpanel" class="tab-pane active" id="notification-list-1">
+                       <div class="notifaction-block">
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%" class="notification-table">
+                            <tbody><tr>
+                              <td class="time">10:52</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                            <tr>
+                              <td class="time">19:50</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                            <tr>
+                              <td class="time">10:52</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                            <tr>
+                              <td class="time">19:50</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                          </tbody></table>
                       </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="notification-list-2">
+                       <div class="notifaction-block">
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%" class="notification-table">
+                            <tbody><tr>
+                              <td class="time">08:52</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                            <tr>
+                              <td class="time">07:50</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                            <tr>
+                              <td class="time">11:52</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                            <tr>
+                              <td class="time">21:50</td>
+                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                            </tr>
+                          </tbody></table>
+                      </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+                <div *ngIf="notificationLoder == true">
+                          <div class="spinner box-spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                          </div>
+                        </div>
+              </div>
+            </div>
     </div>
-    <app-footer></app-footer>
+    </div>
+    <div id="main-menu-bg"></div>
+  </div>
+<app-footer></app-footer>

@@ -5260,15 +5260,13 @@ table.table.consumer-basic-table tbody tr th:last-child {
 
 }
 /**03-01-2019**/
-.notifaction-page {
+/*.notifaction-page {
     margin: 95px 0 20px;
     min-height: 70vh;
-}
+}*/
 .notifaction-page .main-heading {
     margin-bottom: 10px;
 }
-
-
 .notifaction-block {
     position: relative;
     width: 100%;
@@ -5357,4 +5355,23 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .important-spiner {
     top: 50%;
     z-index: 99;
+}
+
+/*22-01-2019*/
+.theme-default .nav-tabs.blue-tabs li a {
+    background: #fff;
+    color: #0770d7;
+    border-radius: 0px;
+    border: 1px solid #0770d7;
+    margin: 0px;
+}
+.theme-default .nav-tabs.blue-tabs li.active a, 
+.theme-default .nav-tabs.blue-tabs li a:hover, 
+.theme-default .nav-tabs.blue-tabs li a:focus{
+    background: #0770d7;
+    color: #fff;
+    border: 1px solid transparent;
+}
+.notification-table tr td.time {
+    background: rgba(238, 238, 238, 0.64);
 }
