@@ -3,8 +3,8 @@
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
     <div class="notifaction-page">
-            <div class="page-heading ">Notifaction</div>
-            <div class="notifaction-block"  >
+            <div class="page-heading">Notifaction</div>
+            <div class="notifaction-block margin_top20">
               <div class="notifaction-box" [ngClass]="{ NotificationLoaderBlock: notificationLoder == true }">
                 <div
                           style="margin-top: 2;"
@@ -14,7 +14,7 @@
                           <img src="/assets/images/no_data.png" /> Currently no new notification(s) found in
                           this section.
                         </div>
-                <table
+                <!-- <table
                   cellspacing="0"
                   cellpadding="0"
                   border="0"
@@ -26,41 +26,17 @@
                     <td class="time">{{notification.created | amTimeAgo}}</td>
                     <td class="">{{notification.title}}</td>
                   </tr>
-                 <!--  <tr>
-                    <td class="time">19:50</td>
-                    <td class="">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="time">10:52</td>
-                    <td class="">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="time">19:50</td>
-                    <td class="">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s
-                    </td>
-                  </tr> -->
-                </table>
-                <div class="tab-section rows">
-        <ul class="nav nav-tabs blue-tabs" role="tablist">
+                </table> -->
+                <div class="tab-section rows blue-tabs">
+        <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active abt-tbs-li">
                       <a class="v-m-tab" href="#notification-list-1" aria-controls="notification-list-1" role="tab" data-toggle="tab">
-                        ALert Notification
+                        ALerts
                       </a>
                     </li>
                     <li role="presentation" class="abt-tbs-li">
                       <a class="dir-tab" href="#notification-list-2" aria-controls="notification-list-2" role="tab" data-toggle="tab">
-                        Notification 
+                        Notifications 
                       </a>
                     </li>
                     
@@ -68,10 +44,10 @@
                 <div class="tab-content rows abt-tab-container">
                     <div role="tabpanel" class="tab-pane active" id="notification-list-1">
                        <div class="notifaction-block">
-                          <table cellspacing="0" cellpadding="0" border="0" width="100%" class="notification-table">
+                          <!-- <table cellspacing="0" cellpadding="0" border="0" width="100%" class="notification-table">
                             <tbody><tr>
-                              <td class="time">10:52</td>
                               <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                              <td class="time">22 Jan 2019</td>
                             </tr>
                             <tr>
                               <td class="time">19:50</td>
@@ -85,7 +61,52 @@
                               <td class="time">19:50</td>
                               <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
                             </tr>
-                          </tbody></table>
+                          </tbody></table> -->
+                          <ul class="common-notification-lists alerts-tab-list">
+                            <li>
+                              <span class="notification-texts">
+                                Your account <strong>823749</strong> bill due on 26 Jan. 2019 
+                              </span>
+                              <a href="" class="blue-btn">
+                                Pay Now
+                              </a>
+                              <span class="notification-date">
+                                22 Jan 2019
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Power voltage in your area on 23 Dec. 2018
+                              </span>
+                              <span class="notification-date">
+                                20 Jan 2019
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Your service request status for load change has been accepted.
+                              </span>
+                              <span class="notification-date">
+                                18 Dec 2018
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Tips on how to save energy and help have the world
+                              </span>
+                              <span class="notification-date">
+                                18 Dec 2018
+                              </span>
+                            </li>
+                            <li>
+                              <span class="notification-texts">
+                                Power voltage in your area on 23 Sep. 2018 
+                              </span>
+                              <span class="notification-date">
+                                23 Oct 2018
+                              </span>
+                            </li>
+                          </ul>
                       </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="notification-list-2">

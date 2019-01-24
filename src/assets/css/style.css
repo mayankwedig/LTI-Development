@@ -5358,20 +5358,119 @@ table.table.consumer-basic-table tbody tr th:last-child {
 }
 
 /*22-01-2019*/
-.theme-default .nav-tabs.blue-tabs li a {
+.theme-default .nav-tabs .blue-tabs li a {
     background: #fff;
     color: #0770d7;
     border-radius: 0px;
     border: 1px solid #0770d7;
     margin: 0px;
 }
-.theme-default .nav-tabs.blue-tabs li.active a, 
-.theme-default .nav-tabs.blue-tabs li a:hover, 
-.theme-default .nav-tabs.blue-tabs li a:focus{
+.theme-default .nav-tabs .blue-tabs li.active a, 
+.theme-default .nav-tabs .blue-tabs li a:hover, 
+.theme-default .nav-tabs .blue-tabs li a:focus{
     background: #0770d7;
     color: #fff;
     border: 1px solid transparent;
 }
 .notification-table tr td.time {
     background: rgba(238, 238, 238, 0.64);
+}
+
+
+/*24-01-2019*/
+.estimator-avg-text .averageText[_ngcontent-c2] {
+    float: left;
+    margin: 0px;
+    padding: 0px 60px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #323232;
+}
+.estimator-avg-text .averageText:first-child{
+    padding-left: 0px;
+    border-right: 1px solid #c3c3c3;
+}
+.estimator-avg-text .averageText strong {
+    display: block;
+    color: #2a67d5;
+    font-size: 24px;
+    font-weight: 500;
+}   
+.kwh-text-black {
+    color: #323232;
+    font-size: 18px;
+    font-weight: 500;
+}
+.estimator-avg-text {
+    padding: 80px 30px 30px 50px;
+}
+.tab-section.blue-tabs{
+    padding: 0px;
+    border: 1px solid #dfdfdf;
+    border-top: 0px;
+}
+.theme-default .blue-tabs .nav.nav-tabs {
+    background: #2a67d5;
+    border: 0px;
+}
+.theme-default .blue-tabs .nav.nav-tabs li {
+    margin: 0px;
+}
+.theme-default .blue-tabs .nav.nav-tabs li a {
+    border: 0px;
+    border-top: 3px solid transparent;
+    background: #2a67d5;
+    color: #a7baea;
+    margin: 0px;
+    padding: 15PX 70PX;
+    font-size: 16px;
+}
+.theme-default .blue-tabs .nav.nav-tabs li.active a{
+    background: #fff;
+    color: #2a67d5;   
+    border-top: 3px solid #2a67d5;
+}
+.common-notification-lists{
+    padding: 0px 15px;
+}
+.common-notification-lists li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    float: left;
+    padding: 0px 15px;
+    border-bottom: 1px solid #ededed;
+}
+.common-notification-lists li:before{
+    position: absolute;
+    left: 0px;
+    top: 15px;
+    content: '';
+}
+.common-notification-lists.alerts-tab-list li:before{
+    background: url(../images/alert-notificartion-ic.png);
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 32px;
+}
+.common-notification-lists li .notification-texts {
+    float: left;
+    padding: 15px 15px 15px 15px;
+    font-size: 16px;
+}
+.common-notification-lists li .blue-btn{
+    margin: 7px 0px 15px 20px;
+}
+.common-notification-lists li .notification-date {
+    float: right;
+    padding: 15px;
+    padding-right: 0px;
+    font-style: italic;
+}
+.common-notification-lists li span.notification-date:before, 
+.common-notification-lists li span.notification-date:after,
+.common-notification-lists li span.notification-texts:before, 
+.common-notification-lists li span.notification-texts:after{
+    display: none;
 }
