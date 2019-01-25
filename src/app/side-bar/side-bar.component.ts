@@ -44,9 +44,13 @@ export class SideBarComponent implements OnInit {
    
   ) {}
   removeCss($event) {
+   /*  alert("TEst"); */
+
     $("li").removeClass("openDropdown");
+    
     var target: any = event.target || event.srcElement || event.currentTarget;
     var value: any = target.id;
+    
     $("#li" + value).addClass("openDropdown");
   }
 

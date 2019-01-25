@@ -5447,12 +5447,16 @@ table.table.consumer-basic-table tbody tr th:last-child {
     top: 15px;
     content: '';
 }
+.common-notification-lists li img{
+    margin-right: 10px;
+}
 .common-notification-lists.alerts-tab-list li:before{
     background: url(../images/alert-notificartion-ic.png);
     width: 18px;
     height: 18px;
     text-align: center;
     line-height: 32px;
+    display: none;
 }
 .common-notification-lists.notify-tab-list li:before{
     background: url(../images/blue-notification-ic.png);
@@ -5465,6 +5469,8 @@ table.table.consumer-basic-table tbody tr th:last-child {
     float: left;
     padding: 15px 15px 15px 15px;
     font-size: 16px;
+    display: flex;
+    align-items: center;
 }
 .common-notification-lists li .blue-btn{
     margin: 7px 0px 15px 20px;
