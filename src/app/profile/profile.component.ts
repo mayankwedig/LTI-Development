@@ -225,6 +225,10 @@ export class ProfileComponent implements OnInit {
     $(".topVerification-modal").addClass("in");
     $(".topVerification-modal").css("display", "block");
   }
+  Otoploder:boolean=false;
+  verifyOtp(){
+    
+  }
   /* verifyOtp() {
     const verifyOtpData = this.OtpVerificationFrm.value;
     var verifiedAccountNumber = this.helper.getLocalStoragData(

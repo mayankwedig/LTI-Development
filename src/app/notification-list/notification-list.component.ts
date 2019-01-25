@@ -1,3 +1,4 @@
+import { DashboardService } from './../services/dashboard/dashboard.service';
 import { NotificationsService } from './../services/notifications/notifications.service';
 import { HelpersService } from './../services/helpers/helpers.service';
 import { Component, OnInit } from "@angular/core";
@@ -28,7 +29,8 @@ export class NotificationListComponent implements OnInit {
     public auth:AuthService,
     public dataservice:DataService,
     private helpers:HelpersService,
-    private notificationsService:NotificationsService
+    private notificationsService:NotificationsService,
+    private DashboardService:DashboardService
   ) { }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class NotificationListComponent implements OnInit {
     this.dispString = "Account No. ( " + this.accountNumber + " ) ";
 
     this.getAllNotifications();
+    this.getAlertData();
   };
   
   getAllNotifications(){
@@ -67,6 +70,37 @@ export class NotificationListComponent implements OnInit {
      }
    );
   }
+  alertData = [];
+  alertDataLoader: boolean = false;
+  isAlertDataFound: boolean = false;
+  getAlertData() {
+    this.alertDataLoader = true;
+    this.DashboardService.getAlertData(this.accountNumber).subscribe(
+      (response: any) => {
+        var res = response;
+        this.alertDataLoader = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.alertData = res.data_params;
+            this.isAlertDataFound = true;
+          } else {
+            this.isAlertDataFound = false;
+            this.alertData = [];
+          }
+        }
+      },
+      (error: AppError) => {
+        this.isAlertDataFound = false;
+        this.alertDataLoader = false;
+        this.alertData = [];
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
+  
   }
 
 
