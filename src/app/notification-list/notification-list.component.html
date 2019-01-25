@@ -85,13 +85,12 @@
                     *ngIf="isAlertDataFound == true && alertDataLoader == false"
                   >
                   <li *ngFor="let alerts of alertData">
-                      <img *ngIf ="alerts.type == 'billing'" src="assets/images/rupee-icon-hover.png" alt="" />
-                       
+                      <span class="notification-texts">
+                        <img *ngIf ="alerts.type == 'billing'" src="assets/images/rupee-icon-hover.png" alt="" />
                       <img *ngIf ="alerts.type == 'peak_load'" src="assets/images/power-icon.png" alt="" />
                       <img *ngIf ="alerts.type == 'info'" src="assets/images/save-icon.png" alt="" />
-                      <img *ngIf ="alerts.type == 'announcement'" src="assets/images/loud-icon.png" alt="" />
-                      <span class="notification-texts">
-                          {{ alerts.alertText }} 
+                      <img *ngIf ="alerts.type == 'announcement'" src="assets/images/loud-icon.png" alt="" />  
+                        {{ alerts.alertText }} 
                       </span>
                       <a href="" class="blue-btn" *ngIf ="alerts.type == 'billing'">
                         Pay Now

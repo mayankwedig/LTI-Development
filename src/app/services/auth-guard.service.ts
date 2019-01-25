@@ -25,6 +25,7 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(route, state: RouterStateSnapshot) {
+    console.log(state.url); 
     if (state.url == "/registration") {
       //if registration page
       let otpVerifiedAccEmail = this.helpers.getLocalStoragData("otpVerifiedAccEmail"); // cehck if account token is exists
@@ -239,7 +240,35 @@ export class AuthGuard implements CanActivate {
         });
         return false;
       }
-    } else {
+    }else if (state.url == "/notifications") {
+      // for other page pages
+      if (this.auth.isLoggedIn()) {
+        // if user is logged in ?
+        let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
+        if (accountToken == null) {
+          this.toastr.warning("Please select account number", ""); // prompt msg
+          // if not
+          this.router.navigate(["/manageaccount"]); // redirect user to manage account
+          return true;
+        } else {
+          // else account token found then
+          let accountTokenInfo = atob(accountToken).split(":");
+          if (accountTokenInfo[0] != this.auth.getCurrentUser().userId) {
+            this.toastr.warning("Please select account number", ""); // prompt msg
+            // check if account token not belongs to current user
+            this.router.navigate(["/manageaccount"]); // redirect user to manage account
+            return true;
+          } else {
+            return true; // if yes
+          }
+        }
+      } else {
+        this.router.navigate(["/login"], {
+          queryParams: { returnUrl: state.url }
+        });
+        return false;
+      }
+    }  else {
       // for other page pages
       if (this.auth.isLoggedIn()) return true;
       this.router.navigate(["/login"], {
