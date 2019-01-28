@@ -13,7 +13,7 @@
 					<div class="latest-update" *ngIf="latestNewsLoader == false">
 						<div class="box-title">
 							<span class="title-icon"><img src="../assets/images/bill-icon.png" alt=""></span>
-							<div class="text-title">latest updates</div>
+							<div class="text-title">{{'latestupdates' | translate}}</div>
 						</div>
 						<div class="marquee-slide">
 							<app-latest-news-marquee [latestNews]="latestNews"></app-latest-news-marquee>
@@ -31,7 +31,7 @@
 
 						<div class="box-title">
 							<span class="title-icon"><img src="../assets/images/msg-icon.png" alt=""></span>
-							<div class="text-title">Chief Minister message</div>
+							<div class="text-title">{{'chiefministermessage'|translate}}</div>
 						</div>
 
 						<div class="msg-detail">
