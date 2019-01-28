@@ -9,27 +9,7 @@
           class="notifaction-box"
           [ngClass]="{ NotificationLoaderBlock: notificationLoder == true }"
         >
-          <div
-            style="margin-top: 2;"
-            class="text-center font-12  field_not_found"
-            *ngIf="isnotificationFound == false && notificationLoder == false"
-          >
-            <img src="/assets/images/no_data.png" /> Currently no new
-            notification(s) found in this section.
-          </div>
-          <!-- <table
-                  cellspacing="0"
-                  cellpadding="0"
-                  border="0"
-                  width="100%"
-                  class="notification-table"
-                  *ngIf="isnotificationFound == true && notificationLoder == false"
-                >
-                  <tr *ngFor="let notification of notifications">
-                    <td class="time">{{notification.created | amTimeAgo}}</td>
-                    <td class="">{{notification.title}}</td>
-                  </tr>
-                </table> -->
+          
           <div class="tab-section rows blue-tabs">
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active abt-tbs-li">
@@ -62,24 +42,7 @@
                 id="notification-list-1"
               >
                 <div class="notifaction-block">
-                  <!-- <table cellspacing="0" cellpadding="0" border="0" width="100%" class="notification-table">
-                            <tbody><tr>
-                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                              <td class="time">22 Jan 2019</td>
-                            </tr>
-                            <tr>
-                              <td class="time">19:50</td>
-                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                            </tr>
-                            <tr>
-                              <td class="time">10:52</td>
-                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                            </tr>
-                            <tr>
-                              <td class="time">19:50</td>
-                              <td class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                            </tr>
-                          </tbody></table> -->
+               
                   <ul
                     class="common-notification-lists alerts-tab-list"
                     *ngIf="isAlertDataFound == true && alertDataLoader == false"

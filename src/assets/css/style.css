@@ -5433,6 +5433,12 @@ table.table.consumer-basic-table tbody tr th:last-child {
 .common-notification-lists{
     padding: 0px 15px;
 }
+.common-notification-lists.alerts-tab-list{
+    padding: 0px 0px;
+}
+.common-notification-lists.alerts-tab-list li{
+    padding-left:0px;
+}
 .common-notification-lists li {
     position: relative;
     list-style: none;
