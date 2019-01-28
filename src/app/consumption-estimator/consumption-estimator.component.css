@@ -5,3 +5,39 @@
     margin-top: 5px;
     margin-left: 58px;
 }
+
+/*responsive*/
+
+@media(max-width:1386px){
+.estimator-avg-text .averageText{
+    float: left;
+    margin: 0px;
+    padding: 0px 20px;
+    font-weight: 400;
+    font-size: 12px;
+    min-width: 30%;
+    max-width: 50%;
+    color: #323232;
+}
+}
+@media(max-width:680px){
+	.estimator-avg-text .averageText[_ngcontent-c2] {
+    float: left;
+    margin: 0px;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0;
+    color: #323232;
+    width:100%;
+    max-width:100%;
+}
+.estimator-avg-text .averageText:first-child {
+    padding-left: 0px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #c3c3c3;
+    border-right:0px
+}
+}
