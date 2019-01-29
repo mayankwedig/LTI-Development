@@ -786,6 +786,9 @@
     }
 }
 @media(max-width:767px) { 
+    .common-notification-lists li .notification-texts{
+        font-size: 15px;
+    }
     .navbar .nav-icon-btn>a .badge, 
     .navbar .nav-icon-btn>a .label, 
     .navbar .nav-icon-btn>a .small-screen-text {
@@ -1428,6 +1431,12 @@
     }
 }
 @media(max-width:480px) {  
+    .common-notification-lists li .notification-texts{
+        width: 100%;
+    }
+    .common-notification-lists li .notification-date{
+        padding-top: 0px;
+    }
 	.theme-default #main-navbar .navbar-header a.navbar-brand img{
         width: 300px;
     }
