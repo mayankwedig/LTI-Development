@@ -57,7 +57,8 @@ export class TranslationService {
         and:"एवं",
         support:"",
         faqs:"पूछे जाने वाले प्रश्न",
-        needhelp:"मदद चाहिए"
+        needhelp:"मदद चाहिए",
+        uppcl:"उत्तर प्रदेश पावर कारपोरेशन लिमिटेड"
       }
     },
     eng: {
@@ -103,7 +104,8 @@ export class TranslationService {
         and:"&",
         support:"Support",
         faqs:"FAQs",
-        needhelp:"Need Help"
+        needhelp:"Need Help",
+        uppcl:"UPPCL"
       }
     }
   };
