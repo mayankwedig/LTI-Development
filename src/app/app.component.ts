@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   public ngOnInit(){
     var init = [];
     init.push(function () {
-     
+       
       });
      this.winRef.nativeWindow.PixelAdmin.start(init);
   }

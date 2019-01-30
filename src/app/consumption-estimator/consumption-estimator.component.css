@@ -3,7 +3,9 @@
     font-size: 15px;
     text-align: left;
     margin-top: 5px;
-    margin-left: 58px;
+    margin-left: 0;
+    float: left;
+    width: 50%;
 }
 
 /*responsive*/
@@ -11,33 +13,31 @@
 @media(max-width:1386px){
 .estimator-avg-text .averageText{
     float: left;
-    margin: 0px;
-    padding: 0px 20px;
-    font-weight: 400;
-    font-size: 12px;
-    min-width: 30%;
-    max-width: 50%;
-    color: #323232;
+    font-size: 14px;
 }
+}
+@media(max-width: 991px){
+    .estimator-avg-text{
+        width: 100% !important;
+    }
+    .estimator-avg-text .averageText{
+        width: 100%;
+        padding: 15px 0px;
+        border-bottom: 1px solid #ccc;
+        border-right: 0px;
+    }
+    .estimator-avg-text .averageText:last-child{
+        border: 0px;
+    }
 }
 @media(max-width:680px){
 	.estimator-avg-text .averageText[_ngcontent-c2] {
-    float: left;
-    margin: 0px;
-    font-weight: 400;
-    font-size: 16px;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 0;
-    color: #323232;
-    width:100%;
-    max-width:100%;
-}
-.estimator-avg-text .averageText:first-child {
-    padding-left: 0px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #c3c3c3;
-    border-right:0px
-}
+        font-size: 14px;
+    }
+    .estimator-avg-text .averageText:first-child {
+        padding-left: 0px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #c3c3c3;
+        border-right:0px
+    }
 }

@@ -1,3 +1,4 @@
+import { WindowRefService } from './../services/window-ref/window-ref.service';
 import { NotificationsService } from './../services/notifications/notifications.service';
 import { BadInput } from './../common/bad-input';
 import { AppError } from './../common/app-error';
@@ -7,6 +8,7 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import {AuthService} from '../services/authService/auth.service';
 import { DataService } from '../services/data.service';
 import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
+import { Router } from '@angular/router';
 
 
 
@@ -19,7 +21,7 @@ require('../../assets/js/owl.carousel.js');
 })
 export class HeaderComponent implements OnInit,AfterViewInit {
 
-  constructor(public notificationsService:NotificationsService,public auth:AuthService,public dataservice:DataService,private helpers:HelpersService,private profile:ProfileService) { }
+  constructor(private winRef: WindowRefService,public router: Router, public notificationsService:NotificationsService,public auth:AuthService,public dataservice:DataService,private helpers:HelpersService,private profile:ProfileService) { }
   dashboardDataApiUrl='users/getUserData'
   userName
   userEmail
@@ -28,7 +30,13 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   notifications:any=[];
   totalNotifications:any=0;
   hideTotalNotification:boolean=true;
+  selected_lang="eng";//localStorage.getItem("selected_lag"); 
   ngOnInit() {
+    if(localStorage.getItem('selected_lag') == null){
+      localStorage.setItem("selected_lag",this.selected_lang);
+    }else{
+      this.selected_lang=localStorage.getItem('selected_lag');
+    }
     let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
     if (accountToken != null) {
       // If not null
@@ -59,6 +67,23 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   }
   loderLoder=false;
   profile_image:any="../assets/images/placeholder-man-grid-240x268.png";
+  changeLang(changeLang){
+    localStorage.setItem("selected_lag",changeLang);
+    /* this.ngOnInit(); */
+    this.onRefresh();
+  }
+  onRefresh() {
+   
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;};
+  
+    let currentUrl = this.router.url;
+    this.winRef.nativeWindow.location=currentUrl;
+    /* this.router.navigateByUrl(currentUrl)
+      .then(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      }); */
+    }
   getProfile() {
     this.loderLoder = true;
     this.profile.getProfile(this.accountNumber).subscribe(

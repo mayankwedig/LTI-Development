@@ -1,3 +1,4 @@
+import { TranslationService } from 'src/app/services/translation/translation.service';
 import { NotificationListComponent } from './notification-list/notification-list.component';
 import { NotificationsService } from './services/notifications/notifications.service';
 import { SignupOtpVerificationService } from './services/signup-otp-verification/signup-otp-verification.service';
@@ -83,7 +84,8 @@ import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marq
 
 import { MomentModule } from 'ngx-moment';
 import { ConsumptionEstimatorComponent } from './consumption-estimator/consumption-estimator.component';
-
+import { TranslatePipe } from '../app/common/translate/translate.pipe';
+ 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
   declarations: [
@@ -136,7 +138,8 @@ import { ConsumptionEstimatorComponent } from './consumption-estimator/consumpti
     NewServiceConnectionComponent,
     LatestNewsMarqueeComponent,
     NotificationListComponent,
-    ConsumptionEstimatorComponent
+    ConsumptionEstimatorComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -217,7 +220,8 @@ import { ConsumptionEstimatorComponent } from './consumption-estimator/consumpti
     NetMeteringService,
     SignupOtpVerificationService,
     HomeService,
-    NotificationsService
+    NotificationsService,
+    TranslationService
   ],
   bootstrap: [AppComponent]
 })
