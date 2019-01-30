@@ -5572,3 +5572,126 @@ margin:40px auto;
 .theme-default .blue-tabs .nav.nav-tabs li.active:last-child{
     border-bottom:4px solid #1d89cf;
     }}
+/**18-01-2019**/
+.payment-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.payment-info ul li {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8px 0;
+}
+.payment-info .lable-detail {
+    font-size: 15px;
+    color: #0571d7;
+    font-weight: 500;
+    display: inline-block;
+    width: 40%;
+}
+.payment-info .detail {
+    font-size: 15px;
+    color: #323232;
+}
+
+
+/*25-01-2018*/
+
+/*downloads*/
+.download-panel{padding:30px;}
+#main-wrapper.pdl-0{padding-left:0px;}
+#content-wrapper .page-heading.pdl-0{padding-left:0px;}
+.download-list-box{height:420px;border:1px solid #dfdfdf;margin-bottom:40px;}
+.download-list-box .header{height:50px;background-color:#2a67d5;color:#ffffff;font-size:16px;display:flex;align-items:center;}
+.download-list-box .header,.download-list-box .content-body{padding:0px 15px;}
+.download-list-box .content-body{overflow:auto;height:370px;}
+.download-list-box .content-body ul li a{
+    background-image:url(../images/left-arrow.png);
+    background-repeat:no-repeat;
+    background-position:left center;
+    display: block;
+    padding: 15px 0px;
+    color:#535353;
+    font-size:16px;
+    border-bottom:1px solid #ededed;
+    padding-left:30px;
+}
+.download-list-box .content-body ul li:last-child a{border-bottom:0px;}
+.download-list-box .content-body ul{margin-bottom:0px;list-style-type:none;padding:0px}
+.download-list-box .content-body ul li a:hover{background-color:#f8f8f8;background-position:left 15px center;padding-left:45px;color:#2a67d5;}
+.download-list-box .content-body::-webkit-scrollbar {  width: 6px;  }  
+.download-list-box .content-body::-webkit-scrollbar-track {background-color: rgba(7, 113, 215, 0.5);  }
+.download-list-box .content-body::-webkit-scrollbar-thumb {  background-color: rgb(7, 113, 215);  height: 10px;}
+
+/*bil-pay*/
+.bil-pay-panel input{border:1px solid #e1e1e1;height:40px;padding:15px;max-width:150px}
+.bil-pay-panel label{padding-right:15px;display:flex;align-items:center;margin-bottom:0px;font-weight:500;min-width:120px;white-space:nowrap;}
+.bil-pay-panel label.min{min-width:90px;}
+.bil-pay-panel button{margin:0px 15px;}
+.bil-pay-panel .form-group{display:flex;margin-bottom:30px;flex-wrap: wrap;}
+.bil-pay-panel .form-group.top{margin-bottom:60px;}
+.bil-pay-panel .center{display:flex;justify-content:center;}
+#content-wrapper .dash-box-list .dash-box-li.pd-0{padding:0px;}
+
+@media(max-width:1199px){
+    .bil-pay-panel .center{justify-content:flex-start;}
+    .bil-pay-panel label.min{min-width:120px;}
+    .bil-pay-panel .blue-btn{margin:0px}
+    .bil-pay-panel .form-group.top  .blue-btn{margin:0px 15px;}
+}
+@media(max-width:767px){
+    .bil-pay-panel .form-group{flex-direction:column;}
+    .bil-pay-panel input{max-width:100%;width:100%;}
+    .bil-pay-panel .form-group{width:100%}
+    .bil-pay-panel .form-group.top .blue-btn {margin: 15px 0px;}
+    .bil-pay-panel .form-group.top {margin-bottom: 20px;}
+    .bil-pay-panel label{margin-bottom:5px;}
+}
+@media(max-width:1500px) and (min-width:1376px){
+    .bil-pay-panel .form-group{flex-direction:column;}
+
+}
+
+/*---------------------------------------------*/
+
+
+/*30-01-2018*/
+.download-list-box{
+    float: left;
+    width: 100%;
+}
+.search-result-heading{
+    text-transform: initial !important;
+    padding-bottom: 30px;
+    padding-left: 0px !important;
+}
+.search-result-panel .download-list-box {
+    height: 264px;
+}
+.search-result-panel .download-list-box .content-body{
+    height: 213px;
+}
+.download-list-box .content-body ul li a{
+    transition: all .3s;
+}
+@media(max-width: 767px){
+.download-list-box .content-body ul li a {
+    font-size: 14px;
+    padding: 10px;
+    padding-right: 0px;
+    padding-left: 20px;
+}
+.search-result-panel .download-list-box {
+    height: 220px;
+}
+.search-result-panel .download-list-box .content-body{
+    height: 169px;
+}
+}
+@media(max-width: 480px){
+    .download-list-box .content-body ul li a{
+        font-size: 13px;
+    }
+}

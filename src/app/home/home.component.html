@@ -53,8 +53,7 @@
 						</div>
 					</div>
 					<div style="margin-top: 66px;" class="text-center font-12  field_not_found" *ngIf="ministerLoader == false && ministerDataFound == false">
-						<img src="../assets/images/no_data.png" /> Currently no data
-						found for this section.
+						<img src="../assets/images/no_data.png" />{{'datanotfound'|translate}}
 					</div>
 					<div class="rows" *ngIf="ministerLoader == true">
 						<div class="spinner box-spinner" style="top: 135%;">

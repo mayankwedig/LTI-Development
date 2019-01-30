@@ -1,11 +1,11 @@
 <div id="main-wrapper" class="no-sidebar">
-    <app-header></app-header>
-    <div class="main-container-sec signup-form-page">
-        <div class="row login-table blue-tabs-relative">
-            <div class="col-sm-8">
-                <div class="main-slide-bar">
-                    <home-page-slider [content]="sliderContent"></home-page-slider>
-                    <!-- <div class="blue-tabs-sec">
+  <app-header></app-header>
+  <div class="main-container-sec signup-form-page">
+    <div class="row login-table blue-tabs-relative">
+      <div class="col-sm-8">
+        <div class="main-slide-bar">
+          <home-page-slider [content]="sliderContent"></home-page-slider>
+          <!-- <div class="blue-tabs-sec">
                         <ul class="menu-listing">
                             <li>
                                 <a class="credit-card-icon" href="JavaScript:Void(0);">
@@ -34,59 +34,91 @@
                             </li>
                         </ul>
                     </div> -->
-                </div>
-            </div>
-           
-            <div class="col-sm-4">
-                <div class="login-signup-bottom-sec">
-                    <div class="right-sec signup-form-page login-form login-width">
-                        <div class="right-sec-inner-sec">
-                            <div class="right-sec-inner signup-form-box">
-                                <div class="box-title">
-                                    <div class="text-title text-transform-none">Please enter your Account Number.</div>
-                                </div>
-                                <form class="form no-padding" [formGroup]="accountVerificationFrm" (ngSubmit)="validateAccountNumber()">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <input 
-                                                    required 
-                                                    formControlName="account_number" 
-                                                    name="account_number" 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    placeholder="Account Number OR Bill Number" />
-                                                    <div *ngIf="f.account_number.touched && f.account_number.invalid ">
-                                                        <span class="error-msg" *ngIf="f.account_number.errors?.required">Account Number OR Bill Number is required.</span>
-                                                      </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="form-group text-center no-margin-b" [ngClass]="{'pos-rel': loder}">
-                                                    <div class="spinner" *ngIf="loder">
-                                                            <div class="bounce1"></div>
-                                                            <div class="bounce2"></div>
-                                                            <div class="bounce3"></div>
-                                                          </div>
-                                                          <button class="btn btn-primary submit-btn" [disabled]="!accountVerificationFrm.valid">Next</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="dont-account">Already have an account <a class=""  routerLink="/login">Login</a></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="login-signup-bottom-sec">
+          <div class="right-sec signup-form-page login-form login-width">
+            <div class="right-sec-inner-sec">
+              <div class="right-sec-inner signup-form-box">
+                <div class="box-title">
+                  <div class="text-title text-transform-none">
+                    {{ "pleaseenteryouraccountno" | translate }}
+                  </div>
+                </div>
+                <form
+                  class="form no-padding"
+                  [formGroup]="accountVerificationFrm"
+                  (ngSubmit)="validateAccountNumber()"
+                >
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input
+                          required
+                          formControlName="account_number"
+                          name="account_number"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{ 'accountnumber' | translate }} {{
+                            'or' | translate
+                          }} {{ 'billnumber' | translate }}"
+                        />
+                        <div
+                          *ngIf="
+                            f.account_number.touched && f.account_number.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.account_number.errors?.required"
+                            >{{ "accountnumber" | translate }}
+                            {{ "or" | translate }}
+                            {{ "billnumber" | translate }}
+                            {{ "required" | translate }}.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div
+                        class="form-group text-center no-margin-b"
+                        [ngClass]="{ 'pos-rel': loder }"
+                      >
+                        <div class="spinner" *ngIf="loder">
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>
+                        <button
+                          class="btn btn-primary submit-btn"
+                          [disabled]="!accountVerificationFrm.valid"
+                        >
+                          {{ "next" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="dont-account">
+                        {{ "alreadyhaveaccount" | translate }}
+                        <a class="" routerLink="/login">{{
+                          "login" | translate
+                        }}</a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <app-footer></app-footer>

@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {HomeService} from '../services/home/home.service';
 
 require('../../assets/js/owl.carousel.js');
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
