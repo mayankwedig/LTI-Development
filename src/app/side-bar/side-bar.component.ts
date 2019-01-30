@@ -43,7 +43,8 @@ export class SideBarComponent implements OnInit {
     private Dashboard: DashboardService,
    
   ) {}
-  removeCss($event) {
+  // changes By chandni only $ remove
+  removeCss(event) {
    /*  alert("TEst"); */
 
     $("li").removeClass("openDropdown");
