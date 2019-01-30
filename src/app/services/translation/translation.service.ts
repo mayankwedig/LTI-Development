@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 export class TranslationSet {
   public languange: string;
   public values: { [key: string]: string } = {};
-}
+} 
 
 export class TranslationService {
   public languages = ["hi", "eng"];
