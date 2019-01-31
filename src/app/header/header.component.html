@@ -125,7 +125,7 @@
         </div>
       </li>
       <li class="download-menu">
-        <a  routerLink="/download" 
+        <a  routerLink="/downloads" 
           ><span class="download"
             ><img src="../assets/images/download.png" alt=""/></span
         ></a>
@@ -376,10 +376,10 @@
             </ul> -->
             </li>
             <li class="download-menu">
-              <a title="Forms download" style="cursor: pointer;"  routerLink="/download"
-                ><span class="download"
-                  ><img src="../assets/images/download.png" alt=""/></span
-              ></a>
+              <a title="Forms download" style="cursor: pointer;"  routerLink="/downloads"
+                >
+                <span class="download"><img src="../assets/images/download.png" alt=""/></span>
+              </a>
             </li>
             <li class="dropdown" *ngIf="auth.isLoggedIn()">
               <a class="dropdown-toggle user-menu" data-toggle="dropdown">
@@ -430,7 +430,7 @@
                 class="login-btn blue-btn"
                 routerLink="/account-verification"
                 routerLinkActive="active"
-              >{{'signup'|translate}}
+              >{{'doregisteration'|translate}}
                 
               </button>
             </li>

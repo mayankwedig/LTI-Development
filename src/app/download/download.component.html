@@ -1,143 +1,53 @@
 <div id="main-wrapper" class="no-sidebar">
-  	<app-header></app-header>
-	  <div id="content-wrapper">
-		<div class="page-heading pdl-0">
-				Downloads
-		</div>
-    <div class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r">
+  <app-header></app-header>
+  <div id="content-wrapper">
+    <div class="page-heading pdl-0">{{'downloads'|translate}}</div>
+    <div
+      class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r"
+    >
       <div class="panel-body download-panel">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="download-list-box">
-              <div class="header">
-                Madhyanchal Vidyut Vitaran Nigam Limited - Application Forms
-              </div>
-              <div class="content-body">
-                <ul>
-                  <li>
-                    <a href="">Requisition of Supply Of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Disconnection</a>
-                  </li>
-                  <li>
-                    <a href="">Requisition of Temporary Supply of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Enhancement / Reduction of Contract Demand</a>
-                  </li>
-                  <li>
-                    <a href="">Change of Category</a>
-                  </li>
-                  <li>
-                    <a href="">Transfer of connection / mutation of name</a>
-                  </li>
-                  <li>
-                    <a href="">Meter Related Complaints or Testing of Meter</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div class="row" *ngIf="downloadsLoader == true">
+          <div class="spinner box-spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
           </div>
-          <div class="col-sm-6">
-            <div class="download-list-box">
-              <div class="header">
-                Pashchimanchal Vidyut Vitaran Nigam Limited - Application Forms
-              </div>
-              <div class="content-body">
-                <ul>
-                  <li>
-                    <a href="">Requisition of Supply Of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Disconnection</a>
-                  </li>
-                  <li>
-                    <a href="">Requisition of Temporary Supply of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Enhancement / Reduction of Contract Demand</a>
-                  </li>
-                  <li>
-                    <a href="">Change of Category</a>
-                  </li>
-                  <li>
-                    <a href="">Transfer of connection / mutation of name</a>
-                  </li>
-                  <li>
-                    <a href="">Meter Related Complaints or Testing of Meter</a>
+        </div>
+        <div
+          class="row"
+          *ngIf="downloadsLoader == false && downloadsDataFound == true"
+        >
+          <div class="col-sm-6" *ngFor="let data of downloadsdData">
+            <div class="download-list-box" *ngIf="data.status == 'active'">
+              <div class="header">{{ data.title }}</div>
+              <div class="content-body" *ngIf="data.download.length > 0">
+                <ul *ngFor="let dData of data.download">
+                  <li *ngIf="dData.status == 'active'">
+                    <a [href]="dData.uploaded_file" target="_blank">{{dData.title}}</a>
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="download-list-box">
-              <div class="header">
-                Dakshinanchal Vidyut Vitaran Nigam Limited - Application Forms
-              </div>
-              <div class="content-body">
-                <ul>
-                  <li>
-                    <a href="">Requisition of Supply Of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Disconnection</a>
-                  </li>
-                  <li>
-                    <a href="">Requisition of Temporary Supply of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Enhancement / Reduction of Contract Demand</a>
-                  </li>
-                  <li>
-                    <a href="">Change of Category</a>
-                  </li>
-                  <li>
-                    <a href="">Transfer of connection / mutation of name</a>
-                  </li>
-                  <li>
-                    <a href="">Meter Related Complaints or Testing of Meter</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="download-list-box">
-              <div class="header">
-                Purvanchal Vidyut Vitaran Nigam Limited - Application Forms
-              </div>
-              <div class="content-body">
-                <ul>
-                  <li>
-                    <a href="">Requisition of Supply Of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Disconnection</a>
-                  </li>
-                  <li>
-                    <a href="">Requisition of Temporary Supply of Energy</a>
-                  </li>
-                  <li>
-                    <a href="">Enhancement / Reduction of Contract Demand</a>
-                  </li>
-                  <li>
-                    <a href="">Change of Category</a>
-                  </li>
-                  <li>
-                    <a href="">Transfer of connection / mutation of name</a>
-                  </li>
-                  <li>
-                    <a href="">Meter Related Complaints or Testing of Meter</a>
-                  </li>
-                </ul>
+              <div class="content-body" *ngIf="data.download.length == 0">
+                <div
+                  class="text-center font-12  field_not_found"
+                  style="margin-top: 70px;"
+                >
+                  <img src="/assets/images/no_data.png" />{{'datanotfound'|translate}} <br />
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="row"
+          *ngIf="downloadsLoader == false && downloadsDataFound == false"
+        >
+          <div class="text-center font-12  field_not_found">
+            <img src="/assets/images/no_data.png" />{{'datanotfound'|translate}}<br />
+          </div>
+        </div>
       </div>
     </div>
-	</div>
+  </div>
 </div>
- <app-footer></app-footer>
+<app-footer></app-footer>
