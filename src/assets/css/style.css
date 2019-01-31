@@ -944,6 +944,9 @@ body {
  .theme-default #main-menu .navigation li a .i-complaints:after{
  	background:url(../images/complaints.png) no-repeat;
  }
+ .theme-default #main-menu .navigation li a .i-logout:after{
+    background:url(../images/logout-icon.png) no-repeat;
+ }
 
  .theme-default #main-menu .navigation li a .i-tou:after{
     background:url(../images/clock-off.png) no-repeat;
@@ -988,6 +991,11 @@ body {
  .theme-default #main-menu .navigation li a:hover .i-complaints:after,
  .theme-default #main-menu .navigation li.active a .i-complaints:after{
  	background:url(../images/complaints-hover.png) no-repeat;
+ }
+
+.theme-default #main-menu .navigation li a:hover .i-logout:after,
+.theme-default #main-menu .navigation li.active a .i-logout:after{
+    background:url(../images/logout-icon-hover.png) no-repeat;
  }
 
  .theme-default #main-menu .navigation li a:hover .i-tou:after,

@@ -46,7 +46,7 @@
         </a>
       </li>
       <li
-        class="m-dropdown mm-dropdown"
+        
         id="li2"
         [ngClass]="{
           openDropdown:
@@ -54,21 +54,21 @@
         }"
         (click)="removeCss($event)"
       >
-        <a href="javascript:void(0);">
+        <a  routerLink="/profile" >
           <div class="menu-icons i-settings"></div>
           <span class="mm-text" id="2">Manage Profile</span>
         </a>
-        <ul class="mmc-dropdown-delay animated fadeInLeft">
+        <!-- <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
             <a
               tabindex="-1"
-              routerLink="/profile"
+             
               routerLinkActive="DropdownActive"
               [routerLinkActiveOptions]="{ exact: true }"
               ><span class="mm-text">Profile</span></a
             >
           </li>
-        </ul>
+        </ul> -->
       </li>
       <li id="li3" [ngClass]="{ openDropdown: currentUrl == '/consumption' }">
         <a routerLink="/consumption">
@@ -220,6 +220,16 @@
           <span class="mm-text" id="11">Consumption Estimator</span>
         </a>
       </li>
+
+     <!--Changes By chandni-->
+      <li id="li12" [ngClass]="{ openDropdown: currentUrl == '/logout' }"
+      (click)="removeCss(event)">
+        <a href="JavaScript:Void(#);" (click)="logout()">
+            <div class="menu-icons i-logout"></div>
+            <span class="mm-text" id="12">Log Out</span>
+        </a>
+      </li>
+
     </ul>
   </div>
 </div>
