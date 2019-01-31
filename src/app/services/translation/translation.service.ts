@@ -94,6 +94,7 @@ export class TranslationService {
         accountnumber:"खाता संख्या",
         billnumber:"बिल संख्या",
         next:"आगे",
+        pleaseentervalidmobilenumber:"कृपया मान्य मोबाइल नंबर दर्ज करें"
       }
     },
     eng: {
@@ -114,7 +115,7 @@ export class TranslationService {
         account:"Account",
         logout:"Log Out",
         login:"Login",
-        signup:"Signup",
+        signup:"Sign-up",
         ourmission:"Our Mission",
         knowmore:"Know More",
         ourvision:"Our Vision",
@@ -181,7 +182,8 @@ export class TranslationService {
         pleaseenteryouraccountno:"Please enter your Account Number.",
         accountnumber:"Account Number",
         billnumber:"Bill Number",
-        next:"Next"
+        next:"Next",
+        pleaseentervalidmobilenumber:"Please enter valid mobile number."
       }
     }
   };

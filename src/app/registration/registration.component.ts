@@ -66,7 +66,7 @@ export class RegistrationComponent implements OnInit {
       let otpVerifiedAccountNumber= this.helpers.getLocalStoragData("otpVerifiedAccountNumber");
       this.otpVerifiedAcInfo={"email":otpVerifiedAccEmail,"mobile":otpVerifiedAccMobileNo,"account_number":otpVerifiedAccountNumber};
       this.initRegistrationFrm();
-      this.clearOtpVerifiedAccountInfoSession();
+     /*  this.clearOtpVerifiedAccountInfoSession(); */
       this.fechQuestionList("1");
       this.fechQuestionList("2");
   }
