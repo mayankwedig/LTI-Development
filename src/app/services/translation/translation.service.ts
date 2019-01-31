@@ -2,24 +2,12 @@ import { DataService } from './../data.service';
 import { Injectable } from "@angular/core";
 
 @Injectable()
-export class TranslationSet {
-  public languange: string;
-  public values: { [key: string]: string } = {};
-} 
 
 export class TranslationService {
   public languages = ["hi", "eng"];
-  
   public language = localStorage.getItem("selected_lag");
-  /* constructor(private DataService:DataService) {
-    this.DataService.getAll("users/langJSON","","","GET").subscribe((result:any)=>{
-      console.log(result);
-    },(error)=>{
 
-    });
-  } */
-  /* constructor(private DataService:DataService) {} */
-  private dictionary: { [key: string]: TranslationSet } = {
+  private dictionary:any = {
     hi: {
       languange: "hi",
       values: {
@@ -197,10 +185,22 @@ export class TranslationService {
       }
     }
   };
-
   
+  constructor(private DataService:DataService) {
+    this.getTranslation();
+  }
+  getTranslation(){
+  this.DataService.getAll("users/langJSON","","","GET").subscribe((result:any)=>{
+    if(result.authCode == 200 && result.status == true){
+      
+        /* this.dictionary=result.data_params; */
+    }
+  },(error)=>{
 
-  translate(key: string): string {
+  });
+ } 
+ 
+ translate(key: string): string {
     if (this.dictionary[this.language] != null) {
       if (this.dictionary[this.language].values[key] !== undefined) {
         return this.dictionary[this.language].values[key];
