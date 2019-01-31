@@ -15,6 +15,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { resolve } from "url";
 import { reject } from "q";
+import { TranslationService } from "../services/translation/translation.service";
+
 
 require("../../../node_modules/moment/min/moment.min.js");
 
@@ -42,7 +44,8 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private WindowRef: WindowRefService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translationServices: TranslationService
   ) {}
 
   /*******************Dropdown Configs**********************************/
@@ -161,7 +164,8 @@ export class DashboardComponent implements OnInit {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+   
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.currentDate = moment().format("Do MMM YY");
     this.currentYear = moment().format("YYYY");

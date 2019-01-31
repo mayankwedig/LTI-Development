@@ -32,7 +32,7 @@
       >
         <a routerLink="/manageaccount">
           <div class="menu-icons i-user"></div>
-          <span class="mm-text" id="0">accounts</span>
+          <span class="mm-text" id="0">{{'account'| translate}}</span>
         </a>
       </li>
       <li
@@ -42,7 +42,7 @@
       >
         <a class="" routerLink="/dashboard">
           <div class="menu-icons i-dashboard"></div>
-          <span class="mm-text" id="1">Dashboard</span>
+          <span class="mm-text" id="1">{{"manageprofile" | translate}}</span>
         </a>
       </li>
       <li
@@ -56,7 +56,7 @@
       >
         <a  routerLink="/profile" >
           <div class="menu-icons i-settings"></div>
-          <span class="mm-text" id="2">Manage Profile</span>
+          <span class="mm-text" id="2">{{"dashboard" | translate}}</span>
         </a>
         <!-- <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
@@ -73,7 +73,7 @@
       <li id="li3" [ngClass]="{ openDropdown: currentUrl == '/consumption' }">
         <a routerLink="/consumption">
           <div class="menu-icons i-consumptions"></div>
-          <span class="mm-text" id="3">Consumptions</span>
+          <span class="mm-text" id="3">{{"consumption" | translate}}</span>
         </a>
       </li>
       <li
@@ -83,7 +83,7 @@
       >
         <a routerLink="/billing">
           <div class="menu-icons i-rupee"></div>
-          <span class="mm-text" id="4">Billing</span>
+          <span class="mm-text" id="4">{{"billing" | translate}}</span>
         </a>
       </li>
       <li
@@ -110,7 +110,7 @@
       >
         <a href="javascript:void(0);">
           <div class="menu-icons i-service-request"></div>
-          <span class="mm-text" id="6">Service Requests</span>
+          <span class="mm-text" id="6">{{'servicerequests'| translate}}</span>
         </a>
         <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
@@ -119,7 +119,7 @@
               routerLink="/new-service-connection"
               routerLinkActive="DropdownActive"
               [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">New Service Connection</span></a
+              ><span class="mm-text">{{'newserviceconnection' | translate}}</span></a
             >
           </li>
           <li>
@@ -128,7 +128,7 @@
               routerLink="/view-all-service-request"
               routerLinkActive="DropdownActive"
               [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">View Serivce Requests</span></a
+              ><span class="mm-text">{{'viewservicerequest' | translate}}</span></a
             >
           </li>
           <li>
@@ -137,7 +137,7 @@
               routerLink="/service-request"
               routerLinkActive="DropdownActive"
               [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">Register Service Requests</span></a
+              ><span class="mm-text">{{'registerservicerequests' | translate}}</span></a
             >
           </li>
         </ul>
@@ -155,7 +155,7 @@
       >
         <a href="javascript:void(0);">
           <div class="menu-icons i-complaints"></div>
-          <span class="mm-text" id="7">Complaints</span>
+          <span class="mm-text" id="7">{{'complaints'| translate}}</span>
         </a>
         <ul class="mmc-dropdown-delay animated fadeInLeft">
           <li>
@@ -164,7 +164,7 @@
               routerLink="/view-all-complaints"
               routerLinkActive="DropdownActive"
               [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">View complaints</span></a
+              ><span class="mm-text">{{'viewcomplaints' | translate}}</span></a
             >
           </li>
           <li>
@@ -173,7 +173,7 @@
               routerLink="/complaints"
               routerLinkActive="DropdownActive"
               [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">Register Complaint</span></a
+              ><span class="mm-text">{{'registercomplaint'|translate}}</span></a
             >
           </li>
         </ul>
@@ -186,7 +186,7 @@
       >
         <a class="" routerLink="/net-metering">
           <div class="menu-icons i-consumptions"></div>
-          <span class="mm-text" id="8">Net Metering</span>
+          <span class="mm-text" id="8">{{'netmetering' | translate}}</span>
         </a>
       </li>
       <li
@@ -196,7 +196,7 @@
       >
         <a class="" routerLink="/tou">
           <div class="menu-icons i-tou"></div>
-          <span class="mm-text" id="9">TOU</span>
+          <span class="mm-text" id="9">{{'tou' | translate}}</span>
         </a>
       </li>
       <!-- {{currentUrl}} -->
@@ -207,7 +207,7 @@
       >
         <a class="" routerLink="/notifications">
           <div class="menu-icons i-notifications"></div>
-          <span class="mm-text" id="10">Notifications</span>
+          <span class="mm-text" id="10">{{'notifications' | translate}}</span>
         </a>
       </li>
       <li
@@ -217,7 +217,7 @@
       >
         <a class="" routerLink="/consumption-estimator">
           <div class="menu-icons i-consumptions"></div>
-          <span class="mm-text" id="11">Consumption Estimator</span>
+          <span class="mm-text" id="11">{{'consumptionestimator' | translate}}</span>
         </a>
       </li>
 
@@ -226,7 +226,7 @@
       (click)="removeCss(event)">
         <a href="JavaScript:Void(#);" (click)="logout()">
             <div class="menu-icons i-logout"></div>
-            <span class="mm-text" id="12">Log Out</span>
+            <span class="mm-text" id="12">{{'logout' | translate}}</span>
         </a>
       </li>
 

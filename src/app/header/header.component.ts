@@ -22,6 +22,7 @@ require('../../assets/js/owl.carousel.js');
 export class HeaderComponent implements OnInit,AfterViewInit {
 
   constructor(private winRef: WindowRefService,public router: Router, public notificationsService:NotificationsService,public auth:AuthService,public dataservice:DataService,private helpers:HelpersService,private profile:ProfileService) { }
+  searchKeyWord="";
   dashboardDataApiUrl='users/getUserData'
   userName
   userEmail
@@ -31,7 +32,21 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   totalNotifications:any=0;
   hideTotalNotification:boolean=true;
   selected_lang="eng";//localStorage.getItem("selected_lag"); 
+  doSearch(){
+    if(this.searchKeyWord != ""){
+      if(localStorage.getItem('search') != null){
+          localStorage.removeItem('search');
+      }
+      localStorage.setItem("search",this.searchKeyWord);
+      this.router.navigate(["/search"]);
+    }
+  }
   ngOnInit() {
+    if(localStorage.getItem('search') != null){
+      this.searchKeyWord=localStorage.getItem('search');
+    }else{
+      this.searchKeyWord="";
+    }
     if(localStorage.getItem('selected_lag') == null){
       localStorage.setItem("selected_lag",this.selected_lang);
     }else{
