@@ -5403,7 +5403,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
 }
 .estimator-avg-text {
     padding: 40px 0px 20px 50px;
-    width: 80% !important;
+    width: 85% !important;
 }
 .estimator-avg-text .averageText:nth-child(2){
     padding-right: 0px;
