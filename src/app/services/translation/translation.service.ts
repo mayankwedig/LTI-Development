@@ -6,8 +6,7 @@ import { Injectable } from "@angular/core";
 export class TranslationService {
   public languages = ["hi", "eng"];
   public language = localStorage.getItem("selected_lag");
-
-  private dictionary:any = {
+   localDictionery={
     hi: {
       languange: "hi",
       values: {
@@ -106,15 +105,22 @@ export class TranslationService {
         view:"देखें",
         viewcomplaints:"शिकायतें देखें",
         registercomplaint:"शिकायत दर्ज करें",
-        yesterdayconsumptions:"कल का उपभोग",
-        cumulativeconsumption:"संचयी उपभोग",
         search:"खोज",
         doSearch:"खोज करो",
         modules:"मॉड्यूल",
         searchresultsfor:"खोज परिणाम",
-        content:"सामग्री"
-
-
+        content:"सामग्री",
+        getread:"मीटर रीडिंग देखें", 
+        "Yesterdays Consumption":"कल का उपभोग",
+        "Cumulative Consumption":"संचयी उपभोग",
+        "Current Meter Reading":"वर्तमान मीटर रीडिंग",
+        "alert & notifications":"  अलर्ट और सूचनाएं",
+        "Pay Now": "अब भुगतान करें",
+        "Your Consumption - Last 12 Months":"आपका उपभोग - अंतिम 12 महीने",
+        "Your Billing - Last 12 Months":"आपकी बिलिंग - अंतिम 12 महीने ",
+        "Click on any bar above to view more details of respective month":"संबंधित माह के अधिक विवरण देखने के लिए ऊपर किसी भी पट्टी पर क्लिक करें",
+        "Units":"इकाई",
+        "Unlinked":"लिंक रद्द"
       }
     },
     eng: {
@@ -215,16 +221,28 @@ export class TranslationService {
         view:"View",
         viewcomplaints:"View complaints",
         registercomplaint:"Register complaint",
-        yesterdayconsumptions:"YESTERDAY'S CONSUMPTION",
-        cumulativeconsumption:"Cumulative Consumption",
         search:"Search",
         doSearch:"Search",
         modules:"Modules",
         searchresultsfor:"Search results for",
-        content:"Content"
+        content:"Content",
+        "Current Meter Reading":"Current Meter Reading",
+        getread:"Get Read",
+        "Yesterdays Consumption":"YESTERDAY'S CONSUMPTION",
+        "Cumulative Consumption":"Cumulative Consumption",
+        "alert & notifications":"alert & notifications",
+        "Pay Now":"Pay Now",
+        "Your Consumption - Last 12 Months" : "Your Consumption - Last 12 Months",
+        "Your Billing - Last 12 Months":"Your Billing - Last 12 Months",
+        "Click on any bar above to view more details of respective month":"Click on any bar above to view more details of respective month",
+        "Units":"Units",
+        "Unlinked":"Unlinked"//new start here
+        
       }
     }
   };
+  private dictionary:any = this.localDictionery;
+ 
   
   constructor(private DataService:DataService) {
     this.getTranslation();
@@ -233,7 +251,7 @@ export class TranslationService {
   this.DataService.getAll("users/langJSON","","","GET").subscribe((result:any)=>{
     if(result.authCode == 200 && result.status == true){
       
-        /* this.dictionary=result.data_params; */
+        this.dictionary=result.data_params;
     }
   },(error)=>{
 
@@ -245,7 +263,11 @@ export class TranslationService {
       if (this.dictionary[this.language].values[key] !== undefined) {
         return this.dictionary[this.language].values[key];
       } else {
-        return key;
+        if (this.localDictionery[this.language].values[key] !== undefined) {
+          return this.localDictionery[this.language].values[key];
+        } else {
+          return key;
+        }
       }
     } else {
       return key;

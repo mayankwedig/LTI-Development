@@ -182,7 +182,7 @@ export class DashboardComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.consumptionchartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];
@@ -205,7 +205,7 @@ export class DashboardComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.billingchartData = [
       {
-        label: "Billing",
+        label: this.translationServices.translate("Billing"),
         data: []
       }
     ];
@@ -228,12 +228,9 @@ export class DashboardComponent implements OnInit {
     this.DashboardService.getOnDemandRead(this.accountNumber, (result: any) => {
       this.onDemandReadLoder = false;
       if (result.authCode == "200") {
-        var data = result.data_params;
-
-        var latestConsumption = data.latestConsumption;
-        //this.onDemandReadData=latestConsumption; // Yesterday's Consumption.
+        this.onDemandReadData=result.data_params; // Yesterday's Consumption.
         /* var myNumber = Math.floor(Math.random()*7); */
-        this.onDemandReadData = 20 * 5 + 30 + Math.floor(Math.random() * 7);
+       /*  this.onDemandReadData = 20 * 5 + 30 + Math.floor(Math.random() * 7); */
       } else {
         this.onDemandReadData = "";
       }
@@ -429,7 +426,7 @@ export class DashboardComponent implements OnInit {
             this.consumptionlabels = response;
             this.consumptionchartData = [
               {
-                label: "Consumption",
+                label: this.translationServices.translate("Consumption"),
                 data: gData
               }
             ];
@@ -476,7 +473,7 @@ export class DashboardComponent implements OnInit {
         );
         this.billingchartData = [
           {
-            label: "Billing",
+            label: this.translationServices.translate("Billing"),
             data: gData
           }
         ];
