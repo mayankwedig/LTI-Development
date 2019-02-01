@@ -40,7 +40,7 @@
         [ngClass]="{ openDropdown: currentUrl == '/dashboard' }"
         (click)="removeCss($event)"
       >
-        <a class="" routerLink="/profile">
+        <a class="" routerLink="/dashboard">
           <div class="menu-icons i-dashboard"></div>
           <span class="mm-text" id="1">{{"dashboard" | translate}}</span>
         </a>
@@ -54,7 +54,7 @@
         }"
         (click)="removeCss($event)"
       >
-        <a  routerLink="/dashboard" >
+        <a  routerLink="/profile" >
           <div class="menu-icons i-settings"></div>
           <span class="mm-text" id="2">{{"manage profile" | translate}}</span>
         </a>

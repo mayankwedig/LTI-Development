@@ -11,6 +11,7 @@ import { CustomValidationsService } from "./../services/custom-validations/custo
 import {environment} from "./../../environments/environment";
 
 declare var $: any;
+declare var _googCsa:any;
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -35,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   advertiseDataLoader:boolean =false;
   isAdvertiseDataFound: boolean = false;
-  advertisementproData =[];
+  advertisementproData:any=[];
   adimagurl=environment.adimageUrl;
 
 
@@ -339,7 +340,9 @@ export class ProfileComponent implements OnInit {
         this.advertiseDataLoader = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
+           
             this.advertisementproData = res.data_params;
+            console.log(this.advertisementproData[0].type);
             console.log(this.advertisementproData);
             this.isAdvertiseDataFound = true;
           } else {

@@ -23,6 +23,7 @@ require("../../assets/js/ads.js");
 
 declare var $: any;
 declare var moment: any;
+declare var _googCsa:any;
 
 
 @Component({
@@ -572,7 +573,7 @@ export class DashboardComponent implements OnInit {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.advertisementData = res.data_params;
-            console.log(this.advertisementData);
+           /*  console.log(this.advertisementData); */
             this.isAdvertDataFound = true;
           } else {
             this.isAdvertDataFound = false;
