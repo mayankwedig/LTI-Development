@@ -1,5 +1,5 @@
 <div id="main-wrapper" class="no-sidebar">
-    <ngx-loading
+  <ngx-loading
     [show]="redirectLoding"
     [config]="{
       primaryColour: primaryColour,
@@ -7,7 +7,7 @@
       tertiaryColour: primaryColour,
       backdropBorderRadius: '3px'
     }"
-></ngx-loading>
+  ></ngx-loading>
   <app-header></app-header>
   <div class="main-container-sec signup-form-page">
     <div class="row login-table blue-tabs-relative">
@@ -22,16 +22,26 @@
             <div class="right-sec-inner-sec">
               <div class="right-sec-inner signup-form-box">
                 <div class="box-title">
-                  <div class="text-title">login</div>
+                  <div class="text-title">{{ "login" | translate }}</div>
                 </div>
                 <form [formGroup]="loginFrm" (ngSubmit)="login()">
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input required formControlName="user_name" name="user_name" type="text" class="form-control"
-                          placeholder="User Id">
+                        <input
+                          required
+                          formControlName="user_name"
+                          name="user_name"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{ translateText('userId') }}"
+                        />
                         <div *ngIf="f.user_name.touched && f.user_name.invalid">
-                          <span class="error-msg" *ngIf="f.user_name.errors?.required">User Id is required.</span>
+                          <span
+                            class="error-msg"
+                            *ngIf="f.user_name.errors?.required"
+                            >{{ "userIdReq" | translate }}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -39,10 +49,20 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input required formControlName="password" type="password" name="password" class="form-control"
-                          placeholder="Password">
+                        <input
+                          required
+                          formControlName="password"
+                          type="password"
+                          name="password"
+                          class="form-control"
+                          placeholder="{{ translateText('password') }}"
+                        />
                         <div *ngIf="f.password.touched && f.password.invalid">
-                          <span class="error-msg" *ngIf="f.password.errors?.required">Password is required</span>
+                          <span
+                            class="error-msg"
+                            *ngIf="f.password.errors?.required"
+                            >{{ "passwordReq" | translate }}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -50,26 +70,46 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group text-right">
-                        <div class="f-text"><a (click)="showForgotPass()" style="cursor: pointer" >Forgot Password?</a></div>
+                        <div class="f-text">
+                          <a
+                            (click)="showForgotPass()"
+                            style="cursor: pointer"
+                            >{{ "forgotpassword" | translate }}</a
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <div class="form-group text-center no-margin-b" [ngClass]="{'pos-rel': loder}">
+                      <div
+                        class="form-group text-center no-margin-b"
+                        [ngClass]="{ 'pos-rel': loder }"
+                      >
                         <div class="spinner" *ngIf="loder">
                           <div class="bounce1"></div>
                           <div class="bounce2"></div>
                           <div class="bounce3"></div>
                         </div>
-                        
-                        <button class="btn btn-primary submit-btn" type="submit" [disabled]="!loginFrm.valid">login</button>
+
+                        <button
+                          class="btn btn-primary submit-btn"
+                          type="submit"
+                          [disabled]="!loginFrm.valid"
+                        >
+                          {{ "login" | translate }}
+                        </button>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <div class="dont-account">Don’t have account? <a class="" routerLink="/account-verification">Signup</a></div>
+                      <div class="dont-account">
+                        {{ "donthaveaccount" | translate }}
+                        <a class="" routerLink="/account-verification">{{
+                          "doregisteration" | translate
+                        }}</a>
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -78,36 +118,54 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4"  style="display:none;" id="forgotPass">
+      <div class="col-sm-4" style="display:none;" id="forgotPass">
         <div class="login-signup-bottom-sec">
           <div class="right-sec signup-form-page login-form login-width">
             <div class="right-sec-inner-sec">
               <div class="right-sec-inner signup-form-box">
                 <div class="box-title">
-                  <div class="text-title">Forgot Password</div>
+                  <div class="text-title">{{'forgotpassword'|translate}}</div>
                 </div>
-                <form class="form no-padding" [formGroup]="forgotPassFrm" (ngSubmit)="validateForgotPasswordFrm()">
+                <form
+                  class="form no-padding"
+                  [formGroup]="forgotPassFrm"
+                  (ngSubmit)="validateForgotPasswordFrm()"
+                >
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input  formControlName="email"  name="email" type="text" class="form-control" placeholder="User ID / Email" >
-                          <div *ngIf="errorFlags.email">
-                            <span class="error-msg">User ID / Email is required.</span>
-                          </div>
+                        <input
+                          formControlName="email"
+                          name="email"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{'userId'|translate}} / {{'email'|translate}}"
+                        />
+                        <div *ngIf="errorFlags.email">
+                          <span class="error-msg"
+                            >{{'userId'|translate}} / {{'email'|translate}} {{'required'|translate}}.</span
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-12">
-                      <div class="orClass">OR</div>
-                    </div>
+                    <div class="col-sm-12"><div class="orClass">{{'or'|translate}}</div></div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input  formControlName="email1"  name="email1" type="text" class="form-control" placeholder="User ID / Email / Mobile" >
+                        <input
+                          formControlName="email1"
+                          name="email1"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}}"
+                        />
                         <div *ngIf="errorFlags.email1">
-                          <span class="error-msg">User ID / Email / Mobile is required.</span>
+                          <span class="error-msg"
+                            >{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}} {{'required'|translate}}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -115,12 +173,22 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <select  formControlName="questionsList1" name="questionsList1" class="form-control">
-                          <option value="">Select security question 1</option>
-                          <option *ngFor="let ques of questionsList1" [value]="ques.id">{{ques.questions}}</option>
+                        <select
+                          formControlName="questionsList1"
+                          name="questionsList1"
+                          class="form-control"
+                        >
+                          <option value="">{{'selectsecurityquestions'|translate}}</option>
+                          <option
+                            *ngFor="let ques of questionsList1"
+                            [value]="ques.id"
+                            >{{ ques.questions }}</option
+                          >
                         </select>
                         <div *ngIf="errorFlags.questionsList1">
-                          <span class="error-msg">Security question 1 is required</span>
+                          <span class="error-msg"
+                            >{{'securityquestion'|translate}} 1 {{'required'|translate}}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -128,10 +196,15 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input  formControlName="ansques1" name="ansques1" type="text" class="form-control"
-                          placeholder="Answer 1" />
+                        <input
+                          formControlName="ansques1"
+                          name="ansques1"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{'answer'|translate}} 1"
+                        />
                         <div *ngIf="errorFlags.ansques1">
-                          <span class="error-msg" >Answer 1 is required</span>
+                          <span class="error-msg">{{'answer'|translate}} 1 {{'required'|translate}}</span>
                         </div>
                       </div>
                     </div>
@@ -139,12 +212,22 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <select  formControlName="questionsList2" name="questionsList2" class="form-control">
-                          <option value="">Select security question 2</option>
-                          <option *ngFor="let ques of questionsList2" [value]="ques.id">{{ques.questions}}</option>
+                        <select
+                          formControlName="questionsList2"
+                          name="questionsList2"
+                          class="form-control"
+                        >
+                          <option value="">{{'selectsecurityquestions'|translate}}</option>
+                          <option
+                            *ngFor="let ques of questionsList2"
+                            [value]="ques.id"
+                            >{{ ques.questions }}</option
+                          >
                         </select>
                         <div *ngIf="errorFlags.questionsList2">
-                          <span class="error-msg">Security Question 2 is required</span>
+                          <span class="error-msg"
+                            >{{'securityquestion'|translate}} 2 {{'required'|translate}}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -152,31 +235,47 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input  name="ansques2" formControlName="ansques2" type="text" class="form-control"
-                          placeholder="Answer 2" />
+                        <input
+                          name="ansques2"
+                          formControlName="ansques2"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{'answer'|translate}} 2"
+                        />
                         <div *ngIf="errorFlags.ansques2">
-                          <span class="error-msg">Answer 2 is required</span>
+                          <span class="error-msg">{{'answer'|translate}} 2 {{'required'|translate}}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <div class="form-group text-center no-margin-b" [ngClass]="{'pos-rel': loder}">
-                          <div class="spinner" *ngIf="loder">
-                              <div class="bounce1"></div>
-                              <div class="bounce2"></div>
-                              <div class="bounce3"></div>
-                            </div>
-                        <button class="btn btn-primary submit-btn"  [disabled]="loder">Submit</button>
+                      <div
+                        class="form-group text-center no-margin-b"
+                        [ngClass]="{ 'pos-rel': loder }"
+                      >
+                        <div class="spinner" *ngIf="loder">
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>
+                        <button
+                          class="btn btn-primary submit-btn"
+                          [disabled]="loder"
+                        >
+                        {{'submit'|translate}}
+                        </button>
                       </div>
                     </div>
                   </div>
-                  
                 </form>
                 <div class="col-sm-12" style="margin-top: 30px;">
                   <div class="form-group text-right">
-                    <div class="f-text"><a (click)="showLogin()" style="cursor: pointer;" >  Back to login</a></div>
+                    <div class="f-text">
+                      <a (click)="showLogin()" style="cursor: pointer;">
+                        {{'backtologin'|translate}}</a
+                      >
+                    </div>
                   </div>
                 </div>
               </div>

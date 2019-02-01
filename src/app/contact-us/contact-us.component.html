@@ -11,7 +11,7 @@
 	    </div>
      	<div class="main-page-wrapper">
      		<div class="container">
-	     		<div class="main-heading">Contact</div>
+	     		<div class="main-heading">{{'contact'|translate}}</div>
 	     		<div class="contact-table">
 		     		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 		     			<tr>
@@ -91,56 +91,26 @@
 		    </div>
 		    <div class="important-links">
 		      <div class="title">
-		        Important Links
+							{{'importantlinks'|translate}}
 		      </div>
 		      <div class="row">
 		        <div class="col-sm-10 col-sm-offset-1">
-		          <div class="owl-carousel owl-theme important-links-slide">
-		              <div class="item">
-		                <a class="item-link" href="#">
-		                  <span><i class="fa fa-mobile"></i></span>
-		                  <div class="title-link">Mobile Registration</div>
-		                </a>
-		              </div>
-		              <div class="item">
-		                <a class="item-link" href="#">
-		                  <span><i class="fa fa-globe"></i></span>
-		                  <div class="title-link">Website Directory</div>
-		                </a>
-		              </div>
-		              <div class="item">
-		                <a class="item-link" href="#">
-		                  <span><i class="fa fa-user"></i></span>
-		                  <div class="title-link">Contacts Directory</div>
-		                </a>
-		              </div>
-		              <div class="item">
-		                <a class="item-link" href="#">
-		                  <span><i class="fa fa-android"></i></span>
-		                  <div class="title-link">Android App</div>
-		                </a>
-		              </div>
-		              <div class="item">
-		                <a class="item-link" href="#">
-		                  <span><i class="fa fa-apple"></i></span>
-		                  <div class="title-link">iOS App</div>
-		                </a>
-		            </div>
-		            <div class="item">
-		                <a class="item-link" href="#">
-		                  <span><i class="fa fa-apple"></i></span>
-		                  <div class="title-link">iOS App</div>
-		                </a>
-		            </div>
-		          </div>
+								<div class="rows impLinkLoderMargin" *ngIf="impLinkLoader == true">
+										<div class="spinner box-spinner important-spiner" >
+											<div class="bounce1"></div>
+											<div class="bounce2"></div>
+											<div class="bounce3"></div>
+										</div>
+									 </div>
+								<home-imp-link-slider [impLinks]="impLinks" *ngIf="impLinkLoader == false && impLinks.length > 0"></home-imp-link-slider>
 		        </div>
 		      </div>
 		    </div>
-		    <div class="container">
+		    <!-- <div class="container">
 	            <div class="energy-conservation">
 	              <div class="content">Energy conservation, a key to sustainable development</div> <a href="" class="pull-right">View more <img alt="" src="assets/images/blue-right-arrow.png"></a>
 	            </div>
-	        </div>
+	        </div> -->
 			<app-disclamider></app-disclamider>
      	</div>
   	</div>

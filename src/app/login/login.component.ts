@@ -9,6 +9,7 @@ import { ToastrService } from "ngx-toastr";
 import { Router, ActivatedRoute } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { LoginService } from "../services/login/login.service";
+import { TranslationService } from "../services/translation/translation.service";
 
 declare var $: any;
 @Component({
@@ -105,12 +106,20 @@ export class LoginComponent {
     private loginService: LoginService,
     private route: ActivatedRoute,
     private SignupService: SignupService,
-    private helpers: HelpersService
+    private helpers: HelpersService,
+    private _translate:TranslationService
   ) {
     this.initLoginFrm();
     this.initForgotFormFrm();
     this.fechQuestionList("1");
     this.fechQuestionList("2");
+  }
+ /*  translat_text={
+    "UserId":this._translate.translate("UserId"),
+  } */
+  translateText(key){
+     /*  console.log(this._translate.translate(key)); */
+    return this._translate.translate(key);
   }
   initLoginFrm() {
     this.loginFrm = this.fb.group({

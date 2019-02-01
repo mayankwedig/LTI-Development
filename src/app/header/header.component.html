@@ -125,13 +125,34 @@
         </div>
       </li>
       <li class="download-menu">
-        <a
+        <a  routerLink="/downloads" 
           ><span class="download"
             ><img src="../assets/images/download.png" alt=""/></span
         ></a>
       </li>
 
-      <li class="dropdown user-account" *ngIf="auth.isLoggedIn()">
+
+           <li class="dropdown user-account" *ngIf="auth.isLoggedIn()">
+            <a  class="dropdown-toggle user-menu" data-toggle="dropdown">
+              <img src="../assets/images/1.jpg" alt="">
+              <div class="name-email">
+                <span>{{userName}}</span>
+                <div class="email-acccount" *ngIf="userEmail != ''">{{userEmail}} <i class="fa fa-angle-down"></i></div>
+              </div>
+            </a>
+            <ul class="dropdown-menu user-info-menu">
+              <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="cursor: pointer;"><span class="label label-warning pull-right">{{'new'|translate}}</span>{{'manageprofile' | translate}}</a></li>
+              <li><a ><span class="badge badge-primary pull-right">{{'new'|translate}}</span>{{'account'|translate}}</a></li>
+              <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
+              <li class="divider"></li>
+              <li><a href="JavaScript:Void(#);" (click)="logout()"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+            </ul>
+            </li>
+     </ul>
+     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
+     <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
+
+      <!-- <li class="dropdown user-account" *ngIf="auth.isLoggedIn()">
         <a class="dropdown-toggle user-menu" data-toggle="dropdown">
           <img src="../assets/images/1.jpg" alt="" />
           <div class="name-email">
@@ -156,8 +177,8 @@
               >{{'account'|translate}}</a
             >
           </li>
-          <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
-          <li class="divider"></li>
+           <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
+          <!-- <li class="divider"></li>
           <li>
             <a href="JavaScript:Void(#);" (click)="logout()"
               ><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;{{'logout'|translate}}</a
@@ -177,7 +198,8 @@
     <div
       id="main-navbar-collapse"
       class="collapse navbar-collapse main-navbar-collapse"
-    >
+    > -->
+
       <div>
         <div class="right clearfix">
           <ul class="nav navbar-nav pull-right right-navbar-nav">
@@ -330,14 +352,34 @@
                     <span>DVVNL</span>
                     <div class="notification-description">+1800-180-3023</div>
                   </div>
+                  <div class="notification">
+                    <span>1-Common Complaint No.</span>
+                    <div class="notification-description">9454400330</div>
+                  </div>
+                  <div class="notification">
+                    <span>2-Common Complaint No.</span>
+                    <div class="notification-description">9454401200</div>
+                  </div>
+                  <div class="notification">
+                    <span>3-Common Complaint No.</span>
+                    <div class="notification-description">9454401980</div>
+                  </div>
                 </div>
               </div>
+            
+            <!-- <ul class="dropdown-menu user-info-menu">
+              <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Manage Profile</a></li>
+              <li><a routerLink="/manageaccount" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Accounts</a></li> -->
+              <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
+              <!-- <li class="divider"></li>
+              <li><a href="JavaScript:Void(#);" (click)="logout()"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+            </ul> -->
             </li>
             <li class="download-menu">
-              <a title="Forms download" style="cursor: pointer;"
-                ><span class="download"
-                  ><img src="../assets/images/download.png" alt=""/></span
-              ></a>
+              <a title="Forms download" style="cursor: pointer;"  routerLink="/downloads"
+                >
+                <span class="download"><img src="../assets/images/download.png" alt=""/></span>
+              </a>
             </li>
             <li class="dropdown" *ngIf="auth.isLoggedIn()">
               <a class="dropdown-toggle user-menu" data-toggle="dropdown">
@@ -356,7 +398,7 @@
                     routerLink="/profile"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
-                    >{{'profile'|translate}}</a
+                    >{{'manageprofile'|translate}}</a
                   >
                 </li>
                 <li>
@@ -388,7 +430,7 @@
                 class="login-btn blue-btn"
                 routerLink="/account-verification"
                 routerLinkActive="active"
-              >{{'signup'|translate}}
+              >{{'doregisteration'|translate}}
                 
               </button>
             </li>
@@ -396,12 +438,12 @@
               <button class="login-btn blue-btn" (click)="auth.logout()"  routerLinkActive="active" >Logout</button>
              </li> -->
           </ul>
-          <!-- <div class="header-search-bar">
+          <div class="header-search-bar">
             <form class="navbar-form">
-             <input type="text" class="form-control" placeholder="Search">
-             <a class="blue-search-btn" >Search</a>
+             <input name="search" type="text" [(ngModel)]="searchKeyWord" #ngModel class="form-control" placeholder="Search">
+             <a class="blue-search-btn" (click)="doSearch()" style="cursor: pointer;">{{'doSearch' | translate}}</a>
             </form>
-           </div> -->
+           </div>
         </div>
       </div>
     </div>

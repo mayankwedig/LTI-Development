@@ -10,7 +10,7 @@
               <div class="">
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
-                  <div class="text-title">YESTERDAY'S CONSUMPTION</div>
+                  <div class="text-title">{{'yesterdayconsumptions' | translate}}</div>
                 </div>
                 <div *ngIf="!yesterDayConsumptionLoder" class="amount">
                   {{ yesterdayReading }}&nbsp;<span>KWH</span>
@@ -29,7 +29,7 @@
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
                   <div class="text-title">
-                    Cumulative Consumption ({{ currentYear }})
+                    {{'cumulativeconsumption' | translate}} ({{ currentYear }})
                   </div>
                 </div>
                 <div class="amount" *ngIf="!yesterDayConsumptionLoder">

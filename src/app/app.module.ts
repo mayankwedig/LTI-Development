@@ -1,4 +1,4 @@
-import { TranslationService } from 'src/app/services/translation/translation.service';
+
 import { NotificationListComponent } from './notification-list/notification-list.component';
 import { NotificationsService } from './services/notifications/notifications.service';
 import { SignupOtpVerificationService } from './services/signup-otp-verification/signup-otp-verification.service';
@@ -85,7 +85,9 @@ import {LatestNewsMarqueeComponent} from './latest-news-marquee/latest-news-marq
 import { MomentModule } from 'ngx-moment';
 import { ConsumptionEstimatorComponent } from './consumption-estimator/consumption-estimator.component';
 import { TranslatePipe } from '../app/common/translate/translate.pipe';
+import { SearchComponent } from './search/search.component';
  
+import { TranslationService } from 'src/app/services/translation/translation.service';
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
   declarations: [
@@ -139,7 +141,8 @@ import { TranslatePipe } from '../app/common/translate/translate.pipe';
     LatestNewsMarqueeComponent,
     NotificationListComponent,
     ConsumptionEstimatorComponent,
-    TranslatePipe
+    TranslatePipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -161,13 +164,14 @@ import { TranslatePipe } from '../app/common/translate/translate.pipe';
       {path:'sitemap',component: SitemapComponent},    
       {path:'consumption',component: ConsumptionComponent,canActivate:[AuthGuard]},
       {path:'settings',component: SettingsComponent},
+      {path:'search',component: SearchComponent},
       {path:'usage',component: UsageComponent},
       {path:'news-media',component: NewsMediaComponent},
       {path:'tips',component: TipsComponent}, 
       {path:'important-links',component: ImportantLinksComponent},
       {path:'profile',component: ProfileComponent,canActivate:[AuthGuard]},
       {path:'manageaccount',component: ManageaccountComponent,canActivate:[AuthGuard]},
-      {path:'download',component: DownloadComponent},
+      {path:'downloads',component: DownloadComponent},
       {path:'request-track',component: RequesttrackComponent},
       {path:'billing',component: BillingComponent,canActivate:[AuthGuard]},
       {path:'otp-verification',component: OtpVerificationComponent,canActivate:[AuthGuard]}, 
@@ -187,6 +191,7 @@ import { TranslatePipe } from '../app/common/translate/translate.pipe';
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
       {path:'notifications',component:NotificationListComponent,canActivate:[AuthGuard]},
       {path:'consumption-estimator',component:ConsumptionEstimatorComponent,canActivate:[AuthGuard]},
+      
       {path:'**',component: PageNotFoundComponent}
       
       
