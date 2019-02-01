@@ -5703,3 +5703,15 @@ margin:40px auto;
         font-size: 13px;
     }
 }
+.image-ads {
+    width: 100%;
+    float: left;
+}
+.image-ads img {
+    width: 100%;
+    display: block;
+}
+.iframe-ads {
+    width: 100%;
+    float: left;
+}

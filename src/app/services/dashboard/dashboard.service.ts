@@ -32,7 +32,7 @@ export class DashboardService {
 
   masterDropDown="users/masterDropDown";   
   alertnotification="users/getAlerts";   
-
+  advertisementapi="users/advertisement"; 
    TouAPI="users/touHourly";
 
   ac_number=this.helpers.getLocalStoragData("account_number");//getting account number
@@ -234,7 +234,22 @@ export class DashboardService {
     var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
     return this.DataService.getAll(this.alertnotification, body,this.helpers.setHeaderData());
    }
- 
+
+
+   getAdvertisementData(){
+    console.log("--->>>" )
+  //  var currentUser=this.auth.getCurrentUser();
+    //var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
+    var body={'slug':"about-us"};
+    return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
+   }
+
+   getAdvertisementproData(){
+    console.log("--->>>" )
+      var body={'slug':"home"};
+      return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
+     }
+
   setBody(body) {
     var bodyData = {};
     if (body != null && body.reqtype == 1) {

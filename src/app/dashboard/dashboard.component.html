@@ -605,20 +605,32 @@
         </div>
       </li>
     </ul>
-    <ul class="dash-box-list">
+
+
+    <ul class="dash-box-list" >
       <li class="dash-box-li rows offer-li">
-        <div class="offer-section">
-          <div class="offer-content">
-            <img src="assets/images/offer-icon.png" alt="" />
-            <div class="text-content">
-              We have a lot more to <a href="#">OFFER</a>. Choose from a wide
-              range of products
-            </div>
-            <a class="blue-btn" href="#">Explore</a>
-          </div>
+       
+        <div class="offer-section" >                
+            <div class="text-content" *ngIf ="advertisementData[0].type == 'text'">  
+                {{advertisementData[0].add_val}}     
+            </div>  
+            <div class="image-ads" *ngIf ="advertisementData[0].type == 'image'">
+                <!-- <img src="/assets/images/SNP_3094702_en_v0 - Copy.png" alt="" /> -->
+                <img src="{{adimagurl}}{{id}}/{{add_val}}" alt="" />
+            </div>  
+            <div class="iframe-ads" *ngIf ="advertisementData[0].type == 'google_ad'">
+              {{advertisementData[0].add_val}} 
+                              
+            </div>     
         </div>
+       
       </li>
     </ul>
+
+
+
+
+
     <div id="main-menu-bg"></div>
   </div>
     <app-footer></app-footer>

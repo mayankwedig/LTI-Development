@@ -4,9 +4,12 @@ import { ProfileService } from "./../services/profile/profile.service";
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
+import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { AuthService } from "../services/authService/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CustomValidationsService } from "./../services/custom-validations/custom-validations.service";
+import {environment} from "./../../environments/environment";
+
 declare var $: any;
 @Component({
   selector: "app-profile",
@@ -29,6 +32,13 @@ export class ProfileComponent implements OnInit {
   invalidImageIssue: boolean = false;
   dispString: any = "";
   oldMobileNo: any = "";
+
+  advertiseDataLoader:boolean =false;
+  isAdvertiseDataFound: boolean = false;
+  advertisementproData =[];
+  adimagurl=environment.adimageUrl;
+
+
   public OtpVerificationFrm: FormGroup;
   get OtpVerificationFields() {
     return this.OtpVerificationFrm.controls;
@@ -42,6 +52,7 @@ export class ProfileComponent implements OnInit {
     private profile: ProfileService,
     private toastr: ToastrService,
     private auth: AuthService,
+    private DashboardService: DashboardService,
     private fb: FormBuilder,
     private CustomValidations: CustomValidationsService,
     private helpers: HelpersService
@@ -117,6 +128,8 @@ export class ProfileComponent implements OnInit {
     );
   }
   ngOnInit() {
+    console.log(this.adimagurl +'3/8214_horse1_1546077856.jpg');
+   
     this.currentUserData = this.auth.getCurrentUser();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
@@ -124,6 +137,7 @@ export class ProfileComponent implements OnInit {
     this.getProfile();
     this.initRegistrationFrm(this.profileData);
     this.initOtpVerificationForm();
+    this.getadvertisementprofileData();
   }
 
   get f() {
@@ -297,4 +311,39 @@ export class ProfileComponent implements OnInit {
       this.initAddaccFrm();
     }
   } */
+
+
+
+
+  getadvertisementprofileData() {
+    this.advertiseDataLoader = true;
+    this.DashboardService.getAdvertisementproData().subscribe(
+      (response: any) => {
+        var res = response;
+        this.advertiseDataLoader = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.advertisementproData = res.data_params;
+            console.log(this.advertisementproData);
+            this.isAdvertiseDataFound = true;
+          } else {
+            this.isAdvertiseDataFound = false;
+            this.advertisementproData = [];
+          }
+        }
+      },
+      (error: AppError) => {
+        this.isAdvertiseDataFound = false;
+        this.advertiseDataLoader = false;
+        this.advertisementproData = [];
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
+
+
+
 }
