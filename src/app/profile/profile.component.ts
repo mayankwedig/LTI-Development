@@ -138,6 +138,23 @@ export class ProfileComponent implements OnInit {
     this.initRegistrationFrm(this.profileData);
     this.initOtpVerificationForm();
     this.getadvertisementprofileData();
+
+
+    var pageOptions = {
+      "pubId": "pub-9616389000213823", // Make sure this the correct client ID!
+      "query": "hotels",
+      "adPage": 1
+    };
+  
+    var adblock1 = {
+      "container": "afscontainer1",
+      "width": "100%",
+      "number": 2
+    };
+  
+    _googCsa('ads', pageOptions, adblock1);
+
+
   }
 
   get f() {

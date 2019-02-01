@@ -257,19 +257,23 @@
         </div>
       </div>
 
+
       <ul class="dash-box-list" >
           <li class="dash-box-li rows offer-li">
            
             <div class="offer-section" >                
                 <div class="text-content" *ngIf ="advertisementproData[0].type == 'text'">  
-                    {{advertisementproData[0].slug}}     
+                    {{advertisementproData[0].add_val}}     
                 </div>  
                 <div class="image-ads" *ngIf ="advertisementproData[0].type == 'image'">
                     <!-- <img src="/assets/images/SNP_3094702_en_v0 - Copy.png" alt="" /> -->
-                    <img src="{{adimagurl}}{{id}}/{{add_val}}" alt="" />
+                    <img src="{{adimagurl}}{{advertisementproData[0].add_val}}"/>
+                    <!-- {{advertisementproData[0].add_val}}  -->
                 </div>  
                 <div class="iframe-ads" *ngIf ="advertisementproData[0].type == 'google_ad'">
-                    <img src="/assets/images/SNP_3094702_en_v0 - Copy.png" alt="" />               
+                  <!-- {{advertisementproData[0].add_val}}  -->
+                  <div id='afscontainer1'></div>
+                                  
                 </div>     
             </div>
            

@@ -15,11 +15,15 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { resolve } from "url";
 import { reject } from "q";
+import { TranslationService } from "../services/translation/translation.service";
+import {environment} from "./../../environments/environment";
 
 require("../../../node_modules/moment/min/moment.min.js");
+require("../../assets/js/ads.js");
 
 declare var $: any;
 declare var moment: any;
+// declare var siteurl: '192.168.1.3/lti_admin/data/ads/';
 
 @Component({
   selector: "app-dashboard",
@@ -42,9 +46,10 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private WindowRef: WindowRefService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translationServices: TranslationService
   ) {}
-
+  adimagurl=environment.adimageUrl;
   /*******************Dropdown Configs**********************************/
   serviceReqDropDownconfig = {
     displayKey: "label", //if objects array passed which key to be displayed defaults to description
@@ -164,7 +169,8 @@ export class DashboardComponent implements OnInit {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+   
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.currentDate = moment().format("Do MMM YY");
     this.currentYear = moment().format("YYYY");
@@ -185,6 +191,22 @@ export class DashboardComponent implements OnInit {
         data: []
       }
     ];
+
+    var pageOptions = {
+      "pubId": "pub-9616389000213823", // Make sure this the correct client ID!
+      "query": "hotels",
+      "adPage": 1
+    };
+  
+    var adblock1 = {
+      "container": "afscontainer1",
+      "width": "100%",
+      "number": 2
+    };
+  
+    _googCsa('ads', pageOptions, adblock1);
+
+
     // CHART COLOR.
     this.consumptioncolors = [
       // { // 1st Year.

@@ -94,6 +94,27 @@ export class TranslationService {
         accountnumber:"खाता संख्या",
         billnumber:"बिल संख्या",
         next:"आगे",
+        pleaseentervalidmobilenumber:"कृपया मान्य मोबाइल नंबर दर्ज करें",
+        manageprofile:"प्रोफाइल प्रबंधन",
+        billing:"बिलिंग",
+        netmetering:"निर्धारित पैमाइश",
+        tou:"टीओयु",
+        consumptionestimator:"उपभोग अनुमानक",
+        newserviceconnection:"नई सेवा कनेक्शन",
+        viewservicerequest:"सेवा अनुरोध देखें",
+        registerservicerequests:"सेवा अनुरोध पंजीकृत करें",
+        view:"देखें",
+        viewcomplaints:"शिकायतें देखें",
+        registercomplaint:"शिकायत दर्ज करें",
+        yesterdayconsumptions:"कल का उपभोग",
+        cumulativeconsumption:"संचयी उपभोग",
+        search:"खोज",
+        doSearch:"खोज करो",
+        modules:"मॉड्यूल",
+        searchresultsfor:"खोज परिणाम",
+        content:"सामग्री"
+
+
       }
     },
     eng: {
@@ -114,7 +135,7 @@ export class TranslationService {
         account:"Account",
         logout:"Log Out",
         login:"Login",
-        signup:"Signup",
+        signup:"Sign-up",
         ourmission:"Our Mission",
         knowmore:"Know More",
         ourvision:"Our Vision",
@@ -181,7 +202,26 @@ export class TranslationService {
         pleaseenteryouraccountno:"Please enter your Account Number.",
         accountnumber:"Account Number",
         billnumber:"Bill Number",
-        next:"Next"
+        next:"Next",
+        pleaseentervalidmobilenumber:"Please enter valid mobile number.",
+        manageprofile:"Manage Profile",
+        billing:"Billing",
+        netmetering:"Net Metering",
+        tou:"TOU",
+        consumptionestimator:"Consumption Estimator",
+        newserviceconnection:"New Service Connection",
+        viewservicerequest:"View Service Request",
+        registerservicerequests:"Register Service Requests",
+        view:"View",
+        viewcomplaints:"View complaints",
+        registercomplaint:"Register complaint",
+        yesterdayconsumptions:"YESTERDAY'S CONSUMPTION",
+        cumulativeconsumption:"Cumulative Consumption",
+        search:"Search",
+        doSearch:"Search",
+        modules:"Modules",
+        searchresultsfor:"Search results for",
+        content:"Content"
       }
     }
   };

@@ -88,10 +88,14 @@ import { TranslatePipe } from '../app/common/translate/translate.pipe';
 import { SearchComponent } from './search/search.component';
  
 import { TranslationService } from 'src/app/services/translation/translation.service';
+
+import { AdsenseModule } from 'ng2-adsense';
+
+
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
 @NgModule({
   declarations: [
-    
+
     AppComponent,
     HomeComponent,
     SideBarComponent,
@@ -145,6 +149,13 @@ import { TranslationService } from 'src/app/services/translation/translation.ser
     SearchComponent
   ],
   imports: [
+
+    CommonModule,       
+        AdsenseModule.forRoot({
+        adClient: 'ca-pub-1234567899876543', //replace with your client from google adsense
+        adSlot: 1234567891 //replace with your slot from google adsense
+      }),
+
     BrowserModule,
     DataTableModule,
     MatTabsModule,
@@ -232,3 +243,6 @@ import { TranslationService } from 'src/app/services/translation/translation.ser
 })
 export class AppModule { }
   
+
+
+

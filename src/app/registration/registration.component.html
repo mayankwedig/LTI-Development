@@ -43,91 +43,198 @@
             <div class="right-sec-inner-sec">
               <div class="right-sec-inner signup-form-box">
                 <div class="box-title">
-                  <div class="text-title">Signup</div>
+                  <div class="text-title">{{ "signup" | translate }}</div>
                 </div>
-                <form class="form no-padding signup-option-step2" [formGroup]="signupFrm" (ngSubmit)="signUp()">
+                <form
+                  class="form no-padding signup-option-step2"
+                  [formGroup]="signupFrm"
+                  (ngSubmit)="signUp()"
+                >
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input required formControlName="username" name="username" type="text" class="form-control"
-                          placeholder="User ID" />
-                        <div *ngIf="f.username.touched && f.username.invalid ">
-                          <span class="error-msg" *ngIf="f.username.errors?.required">User Id is required.</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <input required formControlName="email" name="email" type="text" class="form-control"
-                          placeholder="Email Address" />
-
-                        <div *ngIf="f.email.touched && f.email.errors && f.email.invalid">
-                          <span class="error-msg" *ngIf="f.email.invalid && !f.email.errors?.required"> Email address
-                            is invalid.</span>
-                          <span class="error-msg" *ngIf="f.email.errors?.required">Email address is required.</span>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <input required formControlName="mobile" name="mobile" type="tel" class="form-control"
-                          placeholder="Mobile No." pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" />
-
-                          
-                        <div *ngIf="f.mobile.touched && f.mobile.invalid">
-                          <span class="error-msg" *ngIf="f.mobile.errors?.required">Mobile number is required.</span>
+                        <input
+                          required
+                          formControlName="username"
+                          name="username"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{ 'userId' | translate }}"
+                        />
+                        <div *ngIf="f.username.touched && f.username.invalid">
                           <span
                             class="error-msg"
-                            *ngIf="f.mobile.errors?.pattern"
-                            >Please enter valid mobile number.</span
+                            *ngIf="f.username.errors?.required"
+                            >{{ "userId" | translate }}
+                            {{ "required" | translate }}</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input
+                          required
+                          formControlName="email"
+                          name="email"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{ 'email' | translate }}"
+                        />
+
+                        <div
+                          *ngIf="
+                            f.email.touched && f.email.errors && f.email.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.email.invalid && !f.email.errors?.required"
+                          >
+                            {{ "email" | translate }}
+                            {{ "invalid" | translate }}</span
+                          >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.email.errors?.required"
+                            >{{ "email" | translate }}
+                            {{ "required" | translate }}</span
                           >
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="form-hint"> <span style="color:red"> <strong>Note:</strong> </span> Conform with our Strong Password policy, you are 
-                      required to use a sufficiently strong password. Password must contain more than 8 characters, 1 upper case letter, and 1 special character.</div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input
+                          required
+                          formControlName="mobile"
+                          name="mobile"
+                          type="tel"
+                          class="form-control"
+                          placeholder="{{ 'mobilenumber' | translate }}"
+                          pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
+                        />
+
+                        <div *ngIf="f.mobile.touched && f.mobile.invalid">
+                          <span
+                            class="error-msg"
+                            *ngIf="f.mobile.errors?.required"
+                            >{{ "mobilenumber" | translate }}
+                            {{ "required" | translate }}</span
+                          >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.mobile.errors?.pattern"
+                            >{{
+                              "pleaseentervalidmobilenumber" | translate
+                            }}</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-hint">
+                      <span style="color:red">
+                        <strong>{{ "note" | translate }}:</strong>
+                      </span>
+                      {{ "passwordpolicy" | translate }}
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
-                          
-                        <input required formControlName="password" name="password" type="Password" class="form-control"
-                          placeholder="Password" /> 
+                        <input
+                          required
+                          formControlName="password"
+                          name="password"
+                          type="Password"
+                          class="form-control"
+                          placeholder="{{ 'password' | translate }}"
+                        />
                         <div *ngIf="f.password.touched && f.password.invalid">
-                          <span class="error-msg" *ngIf="f.password.errors?.required">Password is required</span>
-                          <span class="error-msg" *ngIf="!f.password.errors?.patterns && f.password.value != ''">Invalid Password</span>
-                          
+                          <span
+                            class="error-msg"
+                            *ngIf="f.password.errors?.required"
+                            >{{ "password" | translate }}
+                            {{ "required" | translate }}</span
+                          >
+                          <span
+                            class="error-msg"
+                            *ngIf="
+                              !f.password.errors?.patterns &&
+                              f.password.value != ''
+                            "
+                            >{{ "invalid" | translate }}
+                            {{ "password" | translate }}</span
+                          >
                         </div>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <input required formControlName="cpassword" name="cpassword" type="Password" class="form-control"
-                          placeholder="Confirm Password" />
+                        <input
+                          required
+                          formControlName="cpassword"
+                          name="cpassword"
+                          type="Password"
+                          class="form-control"
+                          placeholder="{{ 'confirmpassword' | translate }}"
+                        />
                         <div *ngIf="f.cpassword.touched && f.cpassword.invalid">
-                          <span class="error-msg" *ngIf="f.cpassword.errors?.required">Confirm password is required</span>
+                          <span
+                            class="error-msg"
+                            *ngIf="f.cpassword.errors?.required"
+                            >{{ "password" | translate }}
+                            {{ "required" | translate }}</span
+                          >
                         </div>
-                        <div *ngIf="(signupFrm.hasError('notSame')) && (f.cpassword.touched && f.password.touched && f.cpassword.value != '')">
-                          <span class="error-msg">Password and confirm password do not match</span>
+                        <div
+                          *ngIf="
+                            signupFrm.hasError('notSame') &&
+                            (f.cpassword.touched &&
+                              f.password.touched &&
+                              f.cpassword.value != '')
+                          "
+                        >
+                          <span class="error-msg">{{
+                            "passwordconfirmpasswordnotmatch" | translate
+                          }}</span>
                         </div>
                       </div>
                     </div>
-                    
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <select required formControlName="questionsList1" name="questionsList1" class="form-control">
-                          <option value="">Select security question 1</option>
-                          <option *ngFor="let ques of questionsList1" [value]="ques.id">{{ques.questions}}</option>
+                        <select
+                          required
+                          formControlName="questionsList1"
+                          name="questionsList1"
+                          class="form-control"
+                        >
+                          <option value="">{{
+                            "selectsecurityquestions" | translate
+                          }}</option>
+                          <option
+                            *ngFor="let ques of questionsList1"
+                            [value]="ques.id"
+                            >{{ ques.questions }}</option
+                          >
                         </select>
-                        <div *ngIf="f.questionsList1.touched && f.questionsList1.invalid">
-                          <span class="error-msg" *ngIf="f.questionsList1.errors?.required">Security question 1 is required</span>
+                        <div
+                          *ngIf="
+                            f.questionsList1.touched && f.questionsList1.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.questionsList1.errors?.required"
+                            >{{ "securityquestion" | translate }} 1
+                            {{ "required" | translate }}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -135,10 +242,21 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input required formControlName="ansques1" name="ansques1" type="text" class="form-control"
-                          placeholder="Answer 1" />
+                        <input
+                          required
+                          formControlName="ansques1"
+                          name="ansques1"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{ 'answer' | translate }} 1"
+                        />
                         <div *ngIf="f.ansques1.touched && f.ansques1.invalid">
-                          <span class="error-msg" *ngIf="f.ansques1.errors?.required">Answer 1 is required</span>
+                          <span
+                            class="error-msg"
+                            *ngIf="f.ansques1.errors?.required"
+                            >{{ "answer" | translate }} 1
+                            {{ "required" | translate }}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -146,12 +264,32 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <select required formControlName="questionsList2" name="questionsList2" class="form-control">
-                          <option value="">Select security question 2</option>
-                          <option *ngFor="let ques of questionsList2" [value]="ques.id">{{ques.questions}}</option>
+                        <select
+                          required
+                          formControlName="questionsList2"
+                          name="questionsList2"
+                          class="form-control"
+                        >
+                          <option value="">{{
+                            "selectsecurityquestions" | translate
+                          }}</option>
+                          <option
+                            *ngFor="let ques of questionsList2"
+                            [value]="ques.id"
+                            >{{ ques.questions }}</option
+                          >
                         </select>
-                        <div *ngIf="f.questionsList2.touched && f.questionsList2.invalid">
-                          <span class="error-msg" *ngIf="f.questionsList2.errors?.required">Security Question 2 is required</span>
+                        <div
+                          *ngIf="
+                            f.questionsList2.touched && f.questionsList2.invalid
+                          "
+                        >
+                          <span
+                            class="error-msg"
+                            *ngIf="f.questionsList2.errors?.required"
+                            >{{ "securityquestion" | translate }} 2
+                            {{ "required" | translate }}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -159,10 +297,21 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <input required name="ansques2" formControlName="ansques2" type="text" class="form-control"
-                          placeholder="Answer 2" />
+                        <input
+                          required
+                          name="ansques2"
+                          formControlName="ansques2"
+                          type="text"
+                          class="form-control"
+                          placeholder="{{ 'answer' | translate }} 2"
+                        />
                         <div *ngIf="f.ansques2.touched && f.ansques2.invalid">
-                          <span class="error-msg" *ngIf="f.ansques2.errors?.required">Answer 2 is required</span>
+                          <span
+                            class="error-msg"
+                            *ngIf="f.ansques2.errors?.required"
+                            >{{ "answer" | translate }} 2
+                            {{ "required" | translate }}</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -179,20 +328,33 @@
                                 </div> -->
                   <div class="row">
                     <div class="col-sm-12">
-                      <div class="form-group text-center no-margin-b" [ngClass]="{'pos-rel': loder}">
-                      <!--   {{signupFrm.value | json}} -->
+                      <div
+                        class="form-group text-center no-margin-b"
+                        [ngClass]="{ 'pos-rel': loder }"
+                      >
+                        <!--   {{signupFrm.value | json}} -->
                         <div class="spinner" *ngIf="loder">
                           <div class="bounce1"></div>
                           <div class="bounce2"></div>
                           <div class="bounce3"></div>
                         </div>
-                        <button class="btn btn-primary submit-btn" type="submit" [disabled]="!signupFrm.valid">SUBMIT</button>
+                        <button
+                          class="btn btn-primary submit-btn"
+                          type="submit"
+                          [disabled]="!signupFrm.valid"
+                        >
+                          {{ "submit" | translate }}
+                        </button>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <div class="dont-account">Already have an account <a class="" routerLink="/login">Login</a>
+                      <div class="dont-account">
+                        {{ "alreadyhaveaccount" | translate }}
+                        <a class="" routerLink="/login">{{
+                          "login" | translate
+                        }}</a>
                       </div>
                     </div>
                   </div>

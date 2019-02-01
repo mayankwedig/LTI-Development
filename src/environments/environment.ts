@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  adimageUrl:"http://192.168.1.3/lti_admin/data/ads/"
+  adimageUrl:"http://192.168.1.3/lti_admin/data/ads/3/"
 };
 
 /*
