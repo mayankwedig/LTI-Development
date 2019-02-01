@@ -128,7 +128,6 @@ export class ProfileComponent implements OnInit {
     );
   }
   ngOnInit() {
-    console.log(this.adimagurl +'3/8214_horse1_1546077856.jpg');
    
     this.currentUserData = this.auth.getCurrentUser();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
