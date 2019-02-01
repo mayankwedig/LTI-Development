@@ -1411,28 +1411,35 @@ body {
 	display:table;
 	width: 100%;
 	position: relative;
-	background: url(../images/offer-bg.jpg) no-repeat;
+	/*background: url(../images/offer-bg.jpg) no-repeat;*/
 	min-height: 198px;
-	text-align: center;
+	text-align: left;
 	background-size: cover;
+    border: solid 1px #c7c7c7;
+    padding: 15px;
 }
 #content-wrapper .offer-section .offer-content{
-	display: table-cell;
-	vertical-align: middle;
+	/*display: table-cell;*/
+	vertical-align: top;
+    height: 160px;
+    overflow-y: auto;
 }
 #content-wrapper .offer-section .offer-content .text-content{
-	font-size: 16px;
-	color: #323232;
-	padding: 15px 0;
+	/*font-size: 16px;
+	color: #323232;*/
+	padding: 0;
+    font-size: 14px;
+    color: #6a6a6a;
+    font-weight: 500;
 }
-#content-wrapper .offer-section .offer-content .text-content a{
+/*#content-wrapper .offer-section .offer-content .text-content a{
 	font-size: 16px;
 	color: #0571d7;
 	padding: 15px 0;
 	font-weight: bold;
 	text-decoration: none;
-}
-#content-wrapper .offer-section:before{
+}*/
+/*#content-wrapper .offer-section:before{
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -1449,7 +1456,7 @@ body {
 	background: url(../images/right-offer-img.png) no-repeat;
 	width: 318px;
 	height: 198px;
-}
+}*/
 #content-wrapper .billing-sec{
 	float: left;
 	width: 100%;
