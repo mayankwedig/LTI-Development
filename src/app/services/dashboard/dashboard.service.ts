@@ -246,7 +246,7 @@ export class DashboardService {
 
    getAdvertisementproData(){
     console.log("--->>>" )
-      var body={'slug':"about-us"};
+      var body={'slug':"home"};
       return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
      }
 
