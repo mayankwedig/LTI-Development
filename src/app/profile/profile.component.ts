@@ -9,6 +9,8 @@ import { AuthService } from "../services/authService/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CustomValidationsService } from "./../services/custom-validations/custom-validations.service";
 import {environment} from "./../../environments/environment";
+import { TranslationService } from "../services/translation/translation.service";
+
 
 declare var $: any;
 declare var _googCsa:any;
@@ -56,7 +58,9 @@ export class ProfileComponent implements OnInit {
     private DashboardService: DashboardService,
     private fb: FormBuilder,
     private CustomValidations: CustomValidationsService,
-    private helpers: HelpersService
+    private helpers: HelpersService,
+    private translationServices: TranslationService
+
   ) {}
 
   onFileChanged($event) {
@@ -132,6 +136,7 @@ export class ProfileComponent implements OnInit {
    
     this.currentUserData = this.auth.getCurrentUser();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
     this.getProfile();

@@ -5,6 +5,8 @@ import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { Router } from "@angular/router";
+import { TranslationService } from "../services/translation/translation.service";
+
 
 @Component({
   selector: 'app-view-all-complaints',
@@ -26,6 +28,8 @@ export class ViewAllComplaintsComponent implements OnInit {
     private router: Router,
     private complaints: ComplaintsService,
     private AuthService: AuthService,
+    private translationServices: TranslationService
+
 
   ) { }
 
@@ -34,7 +38,7 @@ export class ViewAllComplaintsComponent implements OnInit {
       let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
       let accountTokenInfo = accountToken.split(":");
       this.accountNumber = accountTokenInfo[1]; //account Number
-      this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+      this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
     } else {
       this.AuthService.getCurrentUser();
       this.dispString =

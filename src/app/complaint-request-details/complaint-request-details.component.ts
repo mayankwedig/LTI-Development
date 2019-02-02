@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
+import { TranslationService } from "../services/translation/translation.service";
+
 
 @Component({
   selector: 'app-complaint-request-details',
@@ -27,7 +29,9 @@ export class ComplaintRequestDetailsComponent implements OnInit {
     private SerivceRequest: ComplaintsService,
     private DashboardService: DashboardService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translationServices: TranslationService
+
   ) { }
 
   ngOnInit() {
@@ -38,7 +42,7 @@ export class ComplaintRequestDetailsComponent implements OnInit {
         ); // fetch account number.
         let accountTokenInfo = accountToken.split(":");
         this.accountNumber = accountTokenInfo[1]; //account Number
-        this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+        this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
         //this.showAccountDetails(this.accountNumber); // if account no is already selected then show details of selected account.
       } else {
         this.AuthService.getCurrentUser();

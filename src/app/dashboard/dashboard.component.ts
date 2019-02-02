@@ -36,6 +36,7 @@ declare var _googCsa:any;
 //   name: 'dateFormat'
 // })
 export class DashboardComponent implements OnInit {
+  test: string;
   /* scrollConfig={
     suppressScrollY:false,
     suppressScrollX:true 

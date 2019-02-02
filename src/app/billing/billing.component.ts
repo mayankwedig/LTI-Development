@@ -7,6 +7,8 @@ import { AppError } from "./../common/app-error";
 import { WindowRefService } from "./../services/window-ref/window-ref.service";
 import { ToastrService } from "ngx-toastr";
 require("../../../node_modules/moment/min/moment.min.js");
+import { TranslationService } from "../services/translation/translation.service";
+
 declare var moment: any;
 declare var $: any;
 
@@ -39,7 +41,9 @@ export class BillingComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private helpers:HelpersService,
     private WindowRef: WindowRefService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translationServices: TranslationService
+
   ) {}
 
   ngOnInit() {
@@ -56,13 +60,13 @@ export class BillingComponent implements OnInit {
     this.accountNumber=accountTokenInfo[1]//account Number
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMM");
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.billinglabels = [];
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.billingchartData = [
       {
-        label: "Billing",
+        label: this.translationServices.translate("Billing"),
         data: []
       }
     ];
@@ -154,7 +158,7 @@ export class BillingComponent implements OnInit {
         );
         this.billingchartData = [
           {
-            label: "Billing",
+            label: this.translationServices.translate("Billing"),
             data: gData
           }
         ];

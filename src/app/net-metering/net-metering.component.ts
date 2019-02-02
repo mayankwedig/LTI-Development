@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "../services/data.service";
 import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
 import { WindowRefService } from "./../services/window-ref/window-ref.service";
+import { TranslationService } from "../services/translation/translation.service";
 
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
@@ -28,7 +29,9 @@ export class NetMeteringComponent implements OnInit {
     private NetMetering: NetMeteringService,
     private toastr: ToastrService,
     private DashboardService: DashboardService,
-    private WindowRef: WindowRefService
+    private WindowRef: WindowRefService,
+    private translationServices: TranslationService
+
   ) {}
   currentYear: any = "";
   currentMonth: any = "";
@@ -74,7 +77,7 @@ export class NetMeteringComponent implements OnInit {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMMM");
@@ -177,7 +180,7 @@ export class NetMeteringComponent implements OnInit {
     this.dispSelectedDay = SelectedDate[2];
     this.netMeteringChartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];
@@ -251,13 +254,13 @@ export class NetMeteringComponent implements OnInit {
             );
             this.netMeteringChartData = [
               {
-                label: "Consumption",
+                label: this.translationServices.translate("Consumption"),
                 data: gData,
                 fill: false,
                 borderWidth: 2
               },
               {
-                label: "Generation",
+                label: this.translationServices.translate("Generation"),
                 data: generationData,
                 fill: false,
                 borderWidth: 2
@@ -312,7 +315,7 @@ export class NetMeteringComponent implements OnInit {
     this.netMeteringlabels = [];
     this.netMeteringChartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];
@@ -329,7 +332,7 @@ export class NetMeteringComponent implements OnInit {
     ];
     this.netMeteringChartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];

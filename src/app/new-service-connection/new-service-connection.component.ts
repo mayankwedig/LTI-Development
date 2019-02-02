@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
+import { TranslationService } from "../services/translation/translation.service";
 
 @Component({
   selector: "app-new-service-connection",
@@ -33,6 +34,14 @@ export class NewServiceConnectionComponent implements OnInit {
 
   enclosedIdentifDocLoder: boolean = false;
   enclosedIdentifDocs: any = [];
+
+  Mother_Maiden_Name: string;
+  Father_First_Name: string;
+  Father_Last_Name: string;
+  Husband_First_Name: string;
+  Husband_Last_Name: string;
+  
+  
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -40,15 +49,25 @@ export class NewServiceConnectionComponent implements OnInit {
     private newConnectionRequestService: NewConnectionRequest,
     private AuthService: AuthService,
     private SerivceRequest: SerivceRequestService,
-    private customValidations: CustomValidationsService
+    private customValidations: CustomValidationsService,
+    private translationServices: TranslationService
+
   ) {}
 
   ngOnInit() {
+    this.Mother_Maiden_Name = "Mother's Maiden Name";
+    this.Father_First_Name = "Father's First Name";
+    this.Father_Last_Name = "Father's Last Name";
+    this.Husband_First_Name = "Husband's First Name";
+    this.Husband_Last_Name = "Husband's Last Name"
+
+
+
     if (this.helpers.getLocalStoragData("accountToken") != null) {
       let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
       let accountTokenInfo = accountToken.split(":");
       this.accountNumber = accountTokenInfo[1]; //account Number
-      this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+      this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
     } else {
       this.AuthService.getCurrentUser();
       this.dispString =

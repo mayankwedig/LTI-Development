@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <div class="page-heading">complaints</div>
+    <div class="page-heading">{{'Complaints'|translate}}</div>
     <div class="billing-sec complaints-page">
       <div class="row margin_top20">
         <div class="col-sm-12">
@@ -34,7 +34,7 @@
                   <div class="row">
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>Account Number*</label>
+                        <label>{{'Account Number'|translate}}*</label>
                         <select
                           required
                           *ngIf="!userAccountsLoder && userAccounts.length > 0"
@@ -43,7 +43,7 @@
                           class="form-control"
                         >
                           <option value="" selected
-                            >Select Account Number</option
+                            >Select {{'Account Number'|translate}}</option
                           >
                           <option
                             value="{{ user.account_number }}"
@@ -59,7 +59,7 @@
                           class="form-control"
                         >
                           <option value="" selected
-                            >Select Account Number</option
+                            >Select {{'Account Number'|translate}}</option
                           >
                         </select>
                         <div *ngIf="userAccountsLoder" class="fieldLoding">
@@ -73,7 +73,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.accountNumber.errors?.required"
-                            >Account Number is required.</span
+                            >{{'Account Number'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -82,7 +82,7 @@
                     <div class="col-xs-12">
                       <div class="form-group">
                         <!--  {{complaintCaseTypes }} -->
-                        <label>Case Type*</label>
+                        <label>{{'Case type'|translate}}*</label>
                         <select
                           *ngIf="
                             !complaintCaseTypeLoder &&
@@ -96,7 +96,7 @@
                             initComplaintsFrm(complaintsFrm.value.caseType)
                           "
                         >
-                          <option value="" selected>Select Case Type</option>
+                          <option value="" selected>Select {{'Case type'|translate}}</option>
                           <option
                             value="{{ complaintCaseType.case_type }}"
                             *ngFor="let complaintCaseType of complaintCaseTypes"
@@ -113,7 +113,7 @@
                           name="caseType"
                           class="form-control"
                         >
-                          <option value="" selected>Select Case Type</option>
+                          <option value="" selected>Select {{'Case type'|translate}}</option>
                         </select>
                         <div *ngIf="complaintCaseTypeLoder" class="fieldLoding">
                           Loding...
@@ -122,7 +122,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.caseType.errors?.required"
-                            >Case Type is required.</span
+                            >{{'Case type'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -133,7 +133,7 @@
                       *ngIf="complaintsFrm.value.caseType == 'Bill Related'"
                     >
                       <div class="form-group">
-                        <label>Bill Id*</label>
+                        <label>{{'Bill Id'|translate}}*</label>
                         <select
                           required
                           *ngIf="
@@ -144,7 +144,7 @@
                           name="billId"
                           class="form-control"
                         >
-                          <option value="" selected>Select Bill Id</option>
+                          <option value="" selected>Select {{'Bill Id'|translate}}</option>
                           <option
                             value="{{ bill.receipt_no }}"
                             *ngFor="let bill of billingData"
@@ -163,14 +163,14 @@
                           name="billId"
                           class="form-control"
                         >
-                          <option value="" selected>Select Bill Id</option>
+                          <option value="" selected>Select {{'Bill Id'|translate}}</option>
                         </select>
                         <div *ngIf="billingDataLoder">Loding...</div>
                         <div *ngIf="f.billId.touched && f.billId.invalid">
                           <span
                             class="error-msg"
                             *ngIf="f.billId.errors?.required"
-                            >Bill Id is required.</span
+                            >{{'Bill Id'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -180,7 +180,7 @@
                       *ngIf="complaintsFrm.value.caseType == 'Bill Related'"
                     >
                       <div class="form-group">
-                        <label>Reason*</label>
+                        <label>{{'Reason'|translate}}*</label>
                         <select
                           *ngIf="
                             !complaintBillRelatedReasonLoder &&
@@ -191,7 +191,7 @@
                           name="reason"
                           class="form-control"
                         >
-                          <option value="" selected>Select Reason</option>
+                          <option value="" selected>Select {{'Reason'|translate}}</option>
                           <option
                             value="{{ complaintBillRelatedReason.reason }}"
                             *ngFor="
@@ -210,7 +210,7 @@
                           name="reason"
                           class="form-control"
                         >
-                          <option value="" selected>Select Reason</option>
+                          <option value="" selected>Select {{'Reason'|translate}}</option>
                         </select>
                         <div
                           *ngIf="complaintBillRelatedReasonLoder"
@@ -223,7 +223,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.reason.errors?.required"
-                            >Reason is required.</span
+                            >{{'Reason'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -233,7 +233,7 @@
                       *ngIf="complaintsFrm.value.caseType == 'Supply Related'"
                     >
                       <div class="form-group">
-                        <label>Service Request*</label>
+                        <label>{{'Service Requests'|translate}}*</label>
                         <select
                           *ngIf="
                             !complaintSupplyServiceRequestLoder &&
@@ -283,7 +283,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.serviceRequest.errors?.required"
-                            >Service Request is required.</span
+                            >{{'Service Requests'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -293,7 +293,7 @@
                       *ngIf="complaintsFrm.value.caseType == 'Supply Related'"
                     >
                       <div class="form-group">
-                        <label>Problem*</label>
+                        <label>{{'Problem'|translate}}*</label>
                         <select
                           *ngIf="
                             !complaintSupplyProblemLoder &&
@@ -304,7 +304,7 @@
                           name="problem"
                           class="form-control"
                         >
-                          <option value="" selected>Select Problem</option>
+                          <option value="" selected>Select {{'Problem'|translate}}</option>
                           <option
                             value="{{ complaintSupplyProblem.problems }}"
                             *ngFor="
@@ -323,7 +323,7 @@
                           name="problem"
                           class="form-control"
                         >
-                          <option value="" selected>Select Problem</option>
+                          <option value="" selected>Select {{'Problem'|translate}}</option>
                         </select>
                         <div
                           *ngIf="complaintSupplyProblemLoder"
@@ -335,14 +335,14 @@
                           <span
                             class="error-msg"
                             *ngIf="f.problem.errors?.required"
-                            >Problem is required.</span
+                            >{{'Problem'|translate}} is required.</span
                           >
                         </div>
                       </div>
                     </div>
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>Comments*</label>
+                        <label>{{'Comments'|translate}}*</label>
                         <textarea
                           required
                           formControlName="comments"
@@ -357,7 +357,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.comments.errors?.required"
-                            >Comments is required.</span
+                            >{{'Comments'|translate}} is required.</span
                           >
                         </div>
                       </div>

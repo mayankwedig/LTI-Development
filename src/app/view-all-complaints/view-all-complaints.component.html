@@ -3,7 +3,7 @@
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
     <div class="page-heading">
-      COMPLAINTS
+      {{'Complaints'|translate}}
     </div>
     <div class="complaints view-all-complaints">
       <div class="row margin_top10">
@@ -14,11 +14,11 @@
                 <table class="fl-table complaints-table" *ngIf="complaintsDataLoader == false && isComplaintsDataFound == true">
                   <thead>
                     <tr>
-                      <th>Tracking ID</th>
-                      <th>Request Date</th>
-                      <th>Complaint Request Type</th>
-                      <th>Status</th>
-                      <th>View</th>
+                      <th>{{'Tracking ID'|translate}}</th>
+                      <th>{{'Request Date'|translate}}</th>
+                      <th>{{'Complaint request type'|translate}}</th>
+                      <th>{{'Status'|translate}}</th>
+                      <th>{{'View'|translate}}</th>
                     </tr>
                   </thead>
                   <tbody *ngIf="complaintsDataLoader == false && isComplaintsDataFound == true">
@@ -28,11 +28,11 @@
                       <td *ngIf="serviceRequest.created =='0000-00-00 00:00:00'">-</td>
                       <td>{{serviceRequest.complaint_type}}</td>
                       <td>
-                        <span class="status-box status-open" *ngIf="serviceRequest.status == 0"> Open </span>
-                        <span class="status-box status-pending" *ngIf="serviceRequest.status == 2">Pending</span>
-                        <span class="status-box status-resolved" *ngIf="serviceRequest.status == 1">Resolved</span>
-                        <span class="status-box status-rejected" *ngIf="serviceRequest.status == 3">Rejected</span>
-                        <span class="status-box status-closed" *ngIf="serviceRequest.status == 4">Closed</span>
+                        <span class="status-box status-open" *ngIf="serviceRequest.status == 0"> {{'Open'|translate}} </span>
+                        <span class="status-box status-pending" *ngIf="serviceRequest.status == 2">{{'Pending'|translate}}</span>
+                        <span class="status-box status-resolved" *ngIf="serviceRequest.status == 1">{{'Resolved'|translate}}</span>
+                        <span class="status-box status-rejected" *ngIf="serviceRequest.status == 3">{{'Rejected'|translate}}</span>
+                        <span class="status-box status-closed" *ngIf="serviceRequest.status == 4">{{'Closed'|translate}}</span>
                       </td>
                       <td>
                         <a class="blue-btn edit-btn action-sm-btn" style="cursor: pointer;" (click)="redirectoRequestDetails(serviceRequest.id)"

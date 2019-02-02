@@ -6,6 +6,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { ActivatedRoute, Router } from "@angular/router";
+import { TranslationService } from "../services/translation/translation.service";
+
 
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
@@ -37,7 +39,9 @@ export class ServiceRequestDetailsComponent implements OnInit {
     private SerivceRequest: SerivceRequestService,
     private DashboardService: DashboardService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translationServices: TranslationService
+
   ) {}
 
   ngOnInit() {
@@ -49,7 +53,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
         ); // fetch account number.
         let accountTokenInfo = accountToken.split(":");
         this.accountNumber = accountTokenInfo[1]; //account Number
-        this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+        this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
         //this.showAccountDetails(this.accountNumber); // if account no is already selected then show details of selected account.
       } else {
         this.AuthService.getCurrentUser();

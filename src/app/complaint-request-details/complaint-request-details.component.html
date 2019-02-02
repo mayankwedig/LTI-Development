@@ -3,7 +3,7 @@
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
     <div class="page-heading">
-      COMPLAINT Details
+      {{'COMPLAINT Details'|translate}}
     </div>
     <div class="billing-sec complaints-page">
       <div class="row margin_top20">
@@ -15,16 +15,16 @@
                   
                   <div class="col-xs-6">
                     <div class="form-group">
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 0">Status: <span class="status-box status-open">Open</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 1">Status: <span class="status-box status-resolved">Resolved</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 2">Status: <span class="status-box status-pending">Pending</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 3">Status: <span class="status-box status-rejected">Rejected</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 4">Status: <span class="status-box status-closed">Closed</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 0">Status: <span class="status-box status-open">{{'Open'|translate}}</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 1">Status: <span class="status-box status-resolved">{{'Resolved'|translate}}</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 2">Status: <span class="status-box status-pending">{{'Pending'|translate}}</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 3">Status: <span class="status-box status-rejected">{{'Rejected'|translate}}</span></div>
+                      <div class="dtl-status" *ngIf="complaintsDetails.status == 4">Status: <span class="status-box status-closed">{{'Closed'|translate}}</span></div>
                     </div>
                   </div>
                   <div class="col-xs-6">
                     <div class="form-group">
-                      <label>Tracking Number</label>
+                      <label>{{'Tracking Number'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.tracking_number}}</div>
                     </div>
                   </div>
@@ -34,30 +34,30 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Account Number</label>
+                      <label>{{'Account Number'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.account_number}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Case Type</label>
+                      <label>{{'Case type'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.complaint_type}}</div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="service-dtl-block">
-                <div class="sr-heading">Consumer Information</div>
+                <div class="sr-heading">{{'Consumer Information'|translate}}</div>
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Name</label>
+                      <label>{{'Name'|translate}}</label>
                       <div class="dtl-value">{{name}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Supply Type</label>
+                      <label>{{'Supply Type'|translate}}</label>
                       <div class="dtl-value">{{supplyType}}</div>
                     </div>
                   </div>
@@ -65,13 +65,13 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Installation Address</label>
+                      <label>{{'Installation Address'|translate}}</label>
                       <div class="dtl-value">{{installationAddress}} </div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Mobile Number</label>
+                      <label>{{'Mobile Number'|translate}}</label>
                       <div class="dtl-value">+91{{mobileNumber}}</div>
                     </div>
                   </div>
@@ -79,13 +79,13 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Current Load</label>
+                      <label>{{'Current Load'|translate}}</label>
                       <div class="dtl-value">{{currentLoad}}KW</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Email ID</label>
+                      <label>{{'Email ID'|translate}}</label>
                       <div class="dtl-value">{{emailId}}</div>
                     </div>
                   </div>
@@ -95,19 +95,19 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Bill Id</label>
+                      <label>{{'Bill Id'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.billId}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Reason</label>
+                      <label>{{'Reason'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.reason}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Comments</label>
+                      <label>{{'Comments'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.comments}}</div>
                     </div>
                   </div>
@@ -117,7 +117,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Comments</label>
+                      <label>{{'Comments'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.comments}}</div>
                     </div>
                   </div>
@@ -128,19 +128,19 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Service Request</label>
+                      <label>{{'Service Request'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.service_request}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Problem</label>
+                      <label>{{'Problem'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.problem}}</div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>Comments</label>
+                      <label>{{'Comments'|translate}}</label>
                       <div class="dtl-value">{{complaintsDetails.comments}}</div>
                     </div>
                   </div>

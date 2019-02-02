@@ -6,6 +6,8 @@ import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { Router } from "@angular/router";
+import { TranslationService } from "../services/translation/translation.service";
+
 @Component({
   selector: 'app-view-all-service-requests',
   templateUrl: './view-all-service-requests.component.html',
@@ -22,13 +24,15 @@ export class ViewAllServiceRequestsComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private helper: HelpersService,
-    private DashboardService:DashboardService
+    private DashboardService:DashboardService,
+    private translationServices: TranslationService
+
   ) {}
   ngOnInit() {
     let accountToken = atob(this.helper.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
     this.getServiceRequest();
    
   }
