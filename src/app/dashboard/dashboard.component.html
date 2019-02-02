@@ -10,7 +10,7 @@
               <div class="">
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
-                  <div class="text-title">{{'yesterdayconsumptions' | translate}}</div>
+                  <div class="text-title">{{'Yesterdays Consumption' | translate}}</div>
                 </div>
                 <div *ngIf="!yesterDayConsumptionLoder" class="amount">
                   {{ yesterdayReading }}&nbsp;<span>KWH</span>
@@ -29,7 +29,7 @@
                 <div class="box-title max-content-title title-min-height">
                   <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
                   <div class="text-title">
-                    {{'cumulativeconsumption' | translate}} ({{ currentYear }})
+                    {{'Cumulative Consumption' | translate}} ({{ currentYear }})
                   </div>
                 </div>
                 <div class="amount" *ngIf="!yesterDayConsumptionLoder">
@@ -47,14 +47,14 @@
             <div class="col-sm-4 col-xs-12">
               <div class="box-title max-content-title title-min-height">
                 <span class="title-icon"><img src="assets/images/bill-icon.png" alt="" /></span>
-                <div class="text-title">Current Meter Reading</div>
+                <div class="text-title">{{'Current Meter Reading'| translate}}</div>
               </div>
 
               <div class="amount cmr-amount">
-                {{ onDemandReadData | number: "3.2" }}
-                <span *ngIf="onDemandReadData != ''">KWH</span> &nbsp;
+                {{ onDemandReadData.latestConsumption | number: "2.2" }}
+                <span *ngIf="onDemandReadData != ''">{{onDemandReadData.unitOfMeasure}}</span> &nbsp;
                 <a *ngIf="onDemandReadLoder == false && showGetReadButton == true" (click)="getOnDemandRead()" style="cursor:pointer;"
-                  class="blue-btn pay-now-btn">Get Read</a>
+                  class="blue-btn pay-now-btn">{{'getread'|translate}}</a>
 
                 <a class="cmr-refresh" *ngIf="onDemandReadLoder == false && showGetReadButton == false" (click)="getOnDemandRead()"
                   style="cursor:pointer;"><img width="20" src="assets/images/refresh.png" /></a>
@@ -65,7 +65,7 @@
                     <div class="bounce3"></div>
                   </div>
                 </div>
-                <div class="dashboardTimeStapm" *ngIf="onDemandReadData != ''">
+                <div class="dashboardTimeStapm" style="padding-bottom:2px;" *ngIf="onDemandReadData != ''">
                   {{ currentTime }}
                 </div>
               </div>
@@ -76,7 +76,7 @@
             <ul>
               <li class="no-style">
                 <div class="page-heading energy-title no-padding-l">
-                  <img src="assets/images/energy-icon1.png" /> &nbsp;energy tips
+                  <img src="assets/images/energy-icon1.png" /> &nbsp;{{'Energy Tips'|translate}}
                 </div>
               </li>
               <li *ngFor="let tips of energyTips">{{ tips.content }}</li>
@@ -114,7 +114,7 @@
               <div class="scroll-div no-border">
                 <div class="box-title">
                   <span class="title-icon"><img src="assets/images/notification-icon-white.png" alt="" /></span>
-                  <div class="text-title">alert & notifications</div>
+                  <div class="text-title">{{'Alert & Notifications'|translate}}</div>
                 </div>
                 <ul class="notification-listing" *ngIf="isAlertDataFound == true && alertDataLoader == false">
                     <li *ngFor ="let alerts of alertData">
@@ -125,7 +125,7 @@
                         <img *ngIf ="alerts.type == 'announcement'" src="assets/images/loud-icon.png" alt="" />
                         <div>
                             {{alerts.alertText}} - {{alerts.eventCreateDateTime | date: "dd/MM/yyyy"}}
-                            <a *ngIf ="alerts.type == 'billing'" class="blue-btn pay-now-btn" href="#">Pay Now</a>
+                            <a *ngIf ="alerts.type == 'billing'" class="blue-btn pay-now-btn" href="#">{{'Pay Now' | translate}}</a>
                           </div>
                         
                       </li>
@@ -134,7 +134,7 @@
                 <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="
                 isAlertDataFound == false && alertDataLoader == false
                   ">
-                  <img src="/assets/images/no_data.png" /> Currently there is no alerts found.
+                  <img src="/assets/images/no_data.png" /> {{'Currently no data found in this section'|translate}}.
                 </div>
                 <div class="rows" *ngIf="alertDataLoader == true" [ngClass]="{alertLoderHeight: alertDataLoader == true}">
                     <div class="spinner box-spinner">
@@ -163,7 +163,7 @@
                 <div class="box-title">
                   <span class="title-icon"><img src="assets/images/usage-icon.png" alt="" /></span>
                   <div class="text-title">
-                    YOUR CONSUMPTION - LAST 12 MONTHs
+                    {{'Your Consumption - Last 12 Months'|translate}}
                   </div>
                   <!--
                     <div class="dropdown pull-right lti-ddl">
@@ -175,7 +175,7 @@
                     </div>
                   -->
                   <div class="pull-right lti-ddl">
-                    <a (click)="downloadGraphExcelConsumption()" style="cursor: pointer;" title="Download">
+                    <a (click)="downloadGraphExcelConsumption()" style="cursor: pointer;" title="{{'Download'|translate}}">
                       <div class="download-circle">
                         <img src="assets/images/download.png" />
                       </div>
@@ -185,7 +185,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="graph-container  modal-graph-label">
-                      <div class="label-left">Units <span>(KWH)</span></div>
+                      <div class="label-left">{{'Units'| translate}} <span>(KWH)</span></div>
                       <canvas baseChart [chartType]="'bar'" [datasets]="consumptionchartData" [labels]="consumptionlabels"
                         [options]="consumptionchartOptions" [legend]="true" [colors]="consumptioncolors" (chartClick)="goToConsoumption($event, 2)">
                       </canvas>
@@ -197,7 +197,7 @@
           </div>
           <div class="text-center bottom-link">
             <div style="    position: relative;top: 9px;">
-              Click on any bar above to view more details of respective month
+              {{'Click on any bar above to view more details of respective month' | translate}}
             </div>
           </div>
         </div>
@@ -209,9 +209,9 @@
               <div class="chart-box">
                 <div class="box-title">
                   <span class="title-icon"><img src="assets/images/chart-icon.png" alt="" /></span>
-                  <div class="text-title">Your BILLING - Last 12 Months</div>
+                  <div class="text-title">{{'Your Billing - Last 12 Months' | translate}}</div>
                   <div class="pull-right lti-ddl">
-                    <a (click)="downloadGraphExcelBilling()" style="cursor: pointer;" title="Download">
+                    <a (click)="downloadGraphExcelBilling()" style="cursor: pointer;" title="{{'Download'|translate}}">
                       <div class="download-circle">
                         <img src="assets/images/download.png" />
                       </div>
@@ -221,7 +221,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="graph-container modal-graph-label">
-                      <div class="label-left">Units <span>(Rs)</span></div>
+                      <div class="label-left">{{'Units'| translate}} <span>(Rs)</span></div>
                       <canvas baseChart [chartType]="'bar'" [datasets]="billingchartData" [labels]="billinglabels"
                         [options]="billingchartOptions" [legend]="true" [colors]="billingcolors" (chartClick)="goToBilling($event, 2)">
                       </canvas>
@@ -233,12 +233,13 @@
           </div>
           <div class="text-center bottom-link">
             <div style="    position: relative;top: 9px;">
-              Click on any bar above to view more details of respective month
+              {{'Click on any bar above to view more details of respective month' | translate}}
             </div>
           </div>
         </div>
       </li>
     </ul>
+    
     <div class="consumer-account-basic-detail">
       <ul class="dash-box-list">
         <li class="dash-box-li">
@@ -247,18 +248,18 @@
               <span class="title-icon">
                 <img width="15" src="assets/images/account-info.svg" />
               </span>
-              <div class="text-title">Account Information</div>
+              <div class="text-title">{{'Account Information'|translate}}</div>
             </div>
             <div class="row">
               <div class="col-sm-12 ">
                 <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="
                     AccountDetailsFound == false && accountDetailsLoder == false
                   ">
-                  <img src="/assets/images/no_data.png" /> Currently no data
-                  found for accounts. <br />
-                  Please go to the manage account section and click on add
+                  <img src="/assets/images/no_data.png" /> {{'Currently no data found for accounts'|translate}} <!-- Currently no data
+                  found for accounts. --> <br />
+                 <!--  Please go to the manage account section and click on add
                   account button in order to verify and add your account or
-                  contact . <br />
+                  contact . --> <br />
                 </div>
                 <div class="consumer-table-scroll">
                   <table class="table consumer-basic-table" *ngIf="
@@ -269,42 +270,42 @@
                         <td class="consumer-td" style="width: 45%; padding: 0px 15px;">
                           <table width="100%">
                             <tr>
-                              <th>Account Number</th>
+                              <th>{{'Account Number'|translate}}</th>
                               <th *ngIf="accountData.account_number == ''">-</th>
                               <th *ngIf="accountData.account_number != ''">
                                 {{ accountData.account_number }}
                               </th>
                             </tr>
                             <tr>
-                              <th>Name</th>
+                              <th>{{'Name'|translate}}</th>
                               <th *ngIf="accountData.account_name == ''">-</th>
                               <th *ngIf="accountData.account_name != ''">
                                 {{ accountData.account_name }}
                               </th>
                             </tr>
                             <tr>
-                              <th>Sanctioned Load</th>
+                              <th>{{'Sanctioned Load'|translate}}</th>
                               <th *ngIf="accountData.sanctioned_load != ''">
                                 {{ accountData.sanctioned_load }} KW
                               </th>
                               <th *ngIf="accountData.sanctioned_load == ''">-</th>
                             </tr>
                             <tr>
-                              <th>Supply Type</th>
+                              <th>{{'Supply Type'|translate}}</th>
                               <th *ngIf="accountData.supply_type == ''">-</th>
                               <th *ngIf="accountData.supply_type != ''">
                                 {{ accountData.supply_type }}
                               </th>
                             </tr>
                             <tr>
-                              <th>Division</th>
+                              <th>{{'Division'|translate}}</th>
                               <th *ngIf="accountData.division == null">-</th>
                               <th *ngIf="accountData.division != null">
                                 {{ accountData.division }}
                               </th>
                             </tr>
                             <tr>
-                              <th>Sub Division</th>
+                              <th>{{'Sub Division'|translate}}</th>
                               <th *ngIf="accountData.subdivision == null">-</th>
                               <th *ngIf="accountData.subdivision != null">
                                 {{ accountData.subdivision }}
@@ -316,28 +317,28 @@
                         <td class="consumer-td" style="width: 55%; padding: 0px 15px 0 40px; border-left: 2px solid #f7ecec;">
                           <table width="100%">
                             <tr>
-                              <th>Mobile Number</th>
+                              <th>{{'Mobile Number'|translate}}</th>
                               <th *ngIf="accountData.mobile == ''">-</th>
                               <th *ngIf="accountData.mobile != ''">
                                 {{ accountData.mobile }}
                               </th>
                             </tr>
                             <tr>
-                              <th>Email ID</th>
+                              <th>{{'Email ID'|translate}}</th>
                               <th *ngIf="accountData.email == ''">-</th>
                               <th *ngIf="accountData.email != ''">
                                 {{ accountData.email }}
                               </th>
                             </tr>
                             <tr>
-                              <th>Bill Route</th>
+                              <th>{{'Bill Route'|translate}}</th>
                               <th *ngIf="accountData.bill_route == null">-</th>
                               <th *ngIf="accountData.bill_route != null">
                                 {{ accountData.bill_route }}
                               </th>
                             </tr>
                             <tr>
-                                <th>Discom</th>
+                                <th>{{'Discom'|translate}}</th>
                                 <th *ngIf="accountData.discom == null">-</th>
                                 <th *ngIf="accountData.discom != null">
                                   {{ accountData.discom }}
@@ -352,14 +353,14 @@
                               </th>
                             </tr> -->
                             <tr>
-                              <th>Premise Address</th>
+                              <th>{{'Premise Address'|translate}}</th>
                               <th *ngIf="accountData.premise_address == ''">-</th>
                               <th *ngIf="accountData.premise_address != ''">
                                 {{ accountData.premise_address }}
                               </th>
                             </tr>
                             <tr>
-                              <th>Billing Address</th>
+                              <th>{{'Billing Address'|translate}}</th>
                               <th *ngIf="accountData.billing_address == ''">-</th>
                               <th *ngIf="accountData.billing_address != ''">
                                 {{ accountData.billing_address }}
@@ -392,26 +393,26 @@
             <span class="title-icon">
               <img width="15" src="assets/images/billing-info.svg" />
             </span>
-            <div class="text-title">Billing Information</div>
+            <div class="text-title">{{'Billing Information'|translate}}</div>
           </div>
           <div class="table-wrapper no-padding">
             <div class="dash-billing-scroll-hori">
               <table class="fl-table tb-header table-fixed table-dashboard-billing" *ngIf="isbillingDataFound == true && billingDataLoder == false">
                 <thead>
                   <tr>
-                    <th width="11%"><span class="center-pos">Meter Reading Date</span></th>
-                    <th width="9%"><span class="center-pos">Reading <br />
-                        <span style="font-size:11px;">(In KWH)</span></span></th>
-                    <th width="9%"><span class="center-pos">Consumption <br />
-                        <span style="font-size:11px;">(In KWH)</span></span></th>
-                    <th width="9%"><span class="center-pos">Number of Days</span></th>
-                    <th width="10%"><span class="center-pos">Total Bill Amount <i class="fa fa-inr" aria-hidden="true"></i></span></th>
-                    <th width="12%"><span class="center-pos">Due Date</span></th>
-                    <th width="10%"><span class="center-pos">Bill Paid
+                    <th width="11%"><span class="center-pos">>{{'Meter Reading Date'|translate}}</span></th>
+                    <th width="9%"><span class="center-pos">{{'Reading'|translate}}<br />
+                        <span style="font-size:11px;">({{'In KWH'|translate}})</span></span></th>
+                    <th width="9%"><span class="center-pos">{{'Consumption'|translate}} <br />
+                        <span style="font-size:11px;">({{'In KWH'|translate}})</span></span></th>
+                    <th width="9%"><span class="center-pos">{{'Number of Days'|translate}}</span></th>
+                    <th width="10%"><span class="center-pos">{{'Total Bill Amount'|translate}} <i class="fa fa-inr" aria-hidden="true"></i></span></th>
+                    <th width="12%"><span class="center-pos">{{'Due Date'|translate}}</span></th>
+                    <th width="10%"><span class="center-pos">{{'Bill Paid'|translate}}
                         <i class="fa fa-inr" aria-hidden="true"></i></span></th>
-                    <th width="10%"><span class="center-pos">Receipt No.</span></th>
-                    <th width="9%"><span class="center-pos">Payment Date</span></th>
-                    <th width="11%"><span class="center-pos">Download</span></th>
+                    <th width="10%"><span class="center-pos">{{'Receipt No.'|translate}}</span></th>
+                    <th width="9%"><span class="center-pos">{{'Payment Date'|translate}}</span></th>
+                    <th width="11%"><span class="center-pos">{{'Download'|translate}}</span></th>
                   </tr>
                 </thead>
                 <!-- <perfect-scrollbar style="max-height: 400px;" [config]="scrollConfig"> -->
@@ -447,7 +448,7 @@
                     </td>
                     <td width="10%">
                       <a class="pdf-btn action-sm-btn" data-toggle="tooltip" data-placement="top" (click)="downloadPDFfile(billing.billUrl)"
-                        title="Download Bill PDF" style="cursor: pointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                        title="{{'Download Bill PDF'|translate}}" style="cursor: pointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                     </td>
                   </tr>
                 </tbody>
@@ -456,8 +457,7 @@
             </div>
 
             <div style="margin-top: 2;" class="text-center font-12  field_not_found" *ngIf="isbillingDataFound == false && billingDataLoder == false">
-              <img src="/assets/images/no_data.png" /> Currently no data found
-              in billing section.
+              <img src="/assets/images/no_data.png" />{{'Currently no data found in billing section' | translate}} 
             </div>
           </div>
           <div class="rows" *ngIf="billingDataLoder == true">
@@ -490,13 +490,12 @@
               <div class="chart-box">
                 <div class="box-title">
                   <span class="title-icon"><img src="assets/images/chart-icon.png" alt="" /></span>
-                  <div class="text-title">track a complaint</div>
+                  <div class="text-title">{{'track a complaint' | translate}}</div>
                 </div>
                 <!-- If Complaints not found -->
 
                 <div class="text-center font-12  field_not_found" *ngIf="complaintsFound == false">
-                  <img src="/assets/images/no_complaints.png" />You
-                  don't have any complaint, You are happy with us..!!
+                  <img src="/assets/images/no_complaints.png" />{{"You dont have any complaint, You are happy with us"|translate}}..!!
                 </div>
 
                 <!-- Complaints not found Section Ends Here -->
@@ -504,7 +503,7 @@
                 <!-- Complaint sections statrs here -->
                 <div class="row" *ngIf="complaintsFound == true">
                   <div class="col-sm-12 text-center">
-                    <div class="track-label">Complaint id</div>
+                    <div class="track-label">{{'Complaint id'|translate}}</div>
                   </div>
                 </div>
                 <div class="row text-center" *ngIf="complaintsFound == true">
@@ -528,7 +527,7 @@
                       >
                     </select> -->
                     <a class="blue-btn" style="margin-top:15px; cursor: pointer;" (click)="redirectoComplaintDetails()"
-                      title="Track">Track</a>
+                      title="Track">{{'Track' | translate}}</a>
                   </div>
                 </div>
                 <!-- Complaint sections Endes here -->
@@ -555,20 +554,19 @@
               <div class="chart-box">
                 <div class="box-title">
                   <span class="title-icon"><img src="assets/images/chart-icon.png" alt="" /></span>
-                  <div class="text-title">track a service request</div>
+                  <div class="text-title">{{'track a service request' | translate}}</div>
                 </div>
                 <!-- If service request not found -->
 
                 <div class="text-center font-12  field_not_found" *ngIf="ServiceRequestFound == false">
-                  <img src="/assets/images/no_data.png" />Currently no service
-                  request found..!!
+                  <img src="/assets/images/no_data.png" />{{'Currently no service request found'|translate}}..!!
                 </div>
 
                 <!-- Service request not found Section Ends Here -->
 
                 <div class="row" *ngIf="ServiceRequestFound == true">
                   <div class="col-sm-12 text-center">
-                    <div class="track-label">service request id</div>
+                    <div class="track-label">{{'service request id'|translate}}</div>
                   </div>
                 </div>
                 <div class="row text-center" *ngIf="ServiceRequestFound == true">
@@ -595,7 +593,7 @@
                       <div *ngIf="serviceRequestLoder == true">Loding...</div>
                     </select> -->
                     <!--   {{SelectedServiceReq}} -->
-                    <a class="blue-btn" style="margin-top:15px; cursor: pointer;" title="Track" (click)="redirectoRequestDetails()">Track</a>
+                    <a class="blue-btn" style="margin-top:15px; cursor: pointer;" title="{{'Track'|translate}}" (click)="redirectoRequestDetails()">{{'Track'|translate}}</a>
                   </div>
                 </div>
               </div>
@@ -610,15 +608,15 @@
     <ul class="dash-box-list" >
       <li class="dash-box-li rows offer-li">
         <div class="offer-section" >                
-            <div class="text-content" *ngIf ="advertisementData[0].type == 'text'">  
+            <div class="text-content" *ngIf ="advertisementData[0]?.type == 'text'">  
                 {{advertisementData[0].add_val}}     
             </div>  
-            <div class="image-ads" *ngIf ="advertisementData[0].type == 'image'">
+            <div class="image-ads" *ngIf ="advertisementData[0]?.type == 'image'">
                 <!-- <img src="/assets/images/SNP_3094702_en_v0 - Copy.png" alt="" /> -->
-                <img src="{{adimagurl}}{{advertisementData[0].add_val}}"/>
+                <img src="{{adimagurl}}{{advertisementData[0]?.add_val}}"/>
                 <!-- {{advertisementData[0].add_val}}  -->
             </div>  
-            <div class="iframe-ads" *ngIf ="advertisementData[0].type == 'google_ad'">
+            <div class="iframe-ads" *ngIf ="advertisementData[0]?.type == 'google_ad'">
                 <!-- <img src="{{adimagurl}}{{advertisementData[0].add_val}}"/> -->
               <!-- {{advertisementData[0].add_val}}  -->
               

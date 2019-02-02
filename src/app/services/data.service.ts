@@ -62,7 +62,6 @@ private apiUrl='http://192.168.1.156:3003/'; //local soa
   
     if (error.status === 404)
       return Observable.throw(new NotFoundError());
-    
     return Observable.throw(new AppError(error));
   }
 }

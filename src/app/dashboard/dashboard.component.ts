@@ -23,7 +23,8 @@ require("../../assets/js/ads.js");
 
 declare var $: any;
 declare var moment: any;
-// declare var siteurl: '192.168.1.3/lti_admin/data/ads/';
+declare var _googCsa:any;
+
 
 @Component({
   selector: "app-dashboard",
@@ -187,7 +188,7 @@ export class DashboardComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.consumptionchartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];
@@ -226,7 +227,7 @@ export class DashboardComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.billingchartData = [
       {
-        label: "Billing",
+        label: this.translationServices.translate("Billing"),
         data: []
       }
     ];
@@ -451,7 +452,7 @@ export class DashboardComponent implements OnInit {
             this.consumptionlabels = response;
             this.consumptionchartData = [
               {
-                label: "Consumption",
+                label: this.translationServices.translate("Consumption"),
                 data: gData
               }
             ];
@@ -498,7 +499,7 @@ export class DashboardComponent implements OnInit {
         );
         this.billingchartData = [
           {
-            label: "Billing",
+            label: this.translationServices.translate("Billing"),
             data: gData
           }
         ];
@@ -572,7 +573,7 @@ export class DashboardComponent implements OnInit {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.advertisementData = res.data_params;
-            console.log(this.advertisementData);
+           /*  console.log(this.advertisementData); */
             this.isAdvertDataFound = true;
           } else {
             this.isAdvertDataFound = false;
