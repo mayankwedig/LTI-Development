@@ -52,7 +52,7 @@
                   >
                   <li *ngFor="let alerts of alertData">
                       <span class="notification-texts">
-                        <img *ngIf ="alerts.type == 'billing'" src="assets/images/rupee-icon-hover.png" alt="" />
+                      <img *ngIf ="alerts.type == 'billing'" src="assets/images/rupee-icon-hover.png" alt="" />
                       <img *ngIf ="alerts.type == 'peak_load'" src="assets/images/power-icon.png" alt="" />
                       <img *ngIf ="alerts.type == 'info'" src="assets/images/save-icon.png" alt="" />
                       <img *ngIf ="alerts.type == 'announcement'" src="assets/images/loud-icon.png" alt="" />  
@@ -150,14 +150,23 @@
                       isnotificationFound == true && notificationLoder == false
                     "
                   >
-                    <li *ngFor="let notification of notifications">
+                  <li *ngFor="let notification of notifications">
                       <span class="notification-texts">
-                        <!--  Your account <strong>823749</strong> bill due on 26 Jan. 2019  -->
-                        {{ notification.title }}
+                       <div *ngIf="notification.type == 'text'">
+                         {{ notification.title }}
+                        </div>
+                        <div *ngIf="notification.type == 'link'">
+                            <a href="{{notification.value}}" title="{{ notification.title }}" target="_blank">
+                              {{ notification.title }}
+                            </a>
+                         </div>
+                         <div *ngIf="notification.type == 'image'">
+                              <a href="{{notification.value}}" title="{{ notification.title }}" target="_blank">
+                                {{ notification.title }}
+                              </a>
+                          </div>
                       </span>
-                      <!--  <a href="" class="blue-btn">
-                                Pay Now
-                              </a> -->
+                     
                       <span class="notification-date">
                         {{ notification.created | amTimeAgo }}
                       </span>
