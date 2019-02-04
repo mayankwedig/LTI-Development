@@ -16,6 +16,8 @@ require("../../../node_modules/moment/min/moment.min.js");
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import { TranslationService } from "../services/translation/translation.service";
+
 
 // Themes begin
 am4core.useTheme(am4themes_animated);
@@ -36,7 +38,9 @@ export class ConsumptionEstimatorComponent implements OnInit {
     private toastr: ToastrService,
     private winRef: WindowRefService,
     private ngZone: NgZone,
-    private consumptionEstService: ConsumptionEstimatorService
+    private consumptionEstService: ConsumptionEstimatorService,
+    private translationServices: TranslationService
+
   ) {}
 
   currentYear: any = "";
@@ -84,7 +88,7 @@ export class ConsumptionEstimatorComponent implements OnInit {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMMM");

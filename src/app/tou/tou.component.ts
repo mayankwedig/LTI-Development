@@ -11,6 +11,7 @@ import { ErrorHandler, Inject, NgZone } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 require("../../../node_modules/moment/min/moment.min.js");
+import { TranslationService } from "../services/translation/translation.service";
 
 /* Chart Lib Imports */
 import * as am4core from "@amcharts/amcharts4/core";
@@ -39,7 +40,9 @@ export class TouComponent implements OnInit {
     private NetMetering: NetMeteringService,
     private toastr: ToastrService,
     private winRef: WindowRefService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private translationServices: TranslationService
+
   ) {}
 
   currentYear: any = "";
@@ -91,7 +94,7 @@ export class TouComponent implements OnInit {
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMMM");

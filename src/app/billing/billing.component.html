@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <div class="page-heading">Billing</div>
+    <div class="page-heading">{{'Billing'| translate}}</div>
     <div
       class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r"
     >
@@ -17,30 +17,30 @@
           >
             <thead>
               <tr>
-                <th width="11%"><span class="center-pos">Meter Reading Date</span></th>
+                <th width="11%"><span class="center-pos">{{'Meter Reading Date'| translate}}</span></th>
                 <th width="11%">
-                  <span class="center-pos">Reading <br />
-                  <span style="font-size:11px;">(In KWH)</span></span>
+                  <span class="center-pos">{{'Reading'|translate}} <br />
+                  <span style="font-size:11px;">{{'(In KWH)'|translate}}</span></span>
                 </th>
                 <th width="11%">
-                  <span class="center-pos">Consumption <br />
-                  <span style="font-size:11px;">(In KWH)</span></span>
+                  <span class="center-pos">{{'Consumption'|translate}} <br />
+                  <span style="font-size:11px;">{{' (In KWH)'|translate}}</span></span>
                 </th>
-                <th width="6%"><span class="center-pos">Number of Days</span></th>
+                <th width="6%"><span class="center-pos">{{'Number of Days'|translate}}</span></th>
                 <th width="10%">
-                  <span class="center-pos">Total Bill Amount <br /><i
+                  <span class="center-pos">{{'Total Bill Amount'|translate}} <br /><i
                     class="fa fa-inr"
                     aria-hidden="true"
                   ></i></span>
                 </th>
-                <th width="11%"><span class="center-pos">Due Date</span></th>
+                <th width="11%"><span class="center-pos">{{'Due Date'|translate}}</span></th>
                 <th width="10%">
-                  <span class="center-pos">Bill Paid <br />
+                  <span class="center-pos">{{'Bill Paid'|translate}} <br />
                   <i class="fa fa-inr" aria-hidden="true"></i></span>
                 </th>
-                <th width="10%"><span class="center-pos">Receipt No.</span></th>
-                <th width="10%"><span class="center-pos">Payment Date</span></th>
-                <th width="10%"><span class="center-pos">Download</span></th>
+                <th width="10%"><span class="center-pos">{{'Receipt No.'|translate}}</span></th>
+                <th width="10%"><span class="center-pos">{{'Payment Date'|translate}}</span></th>
+                <th width="10%"><span class="center-pos">{{'Download'|translate}}</span></th>
               </tr>
             </thead>
             <tbody>
@@ -112,7 +112,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-sm-4">
-              <div class="page-heading">Billing history</div>
+              <div class="page-heading">{{'Billing History'|translate}}</div>
             </div>
             <!-- <div class="week-month-btn-sec pull-right">
                 <a style="cursor: pointer;" (click)="showchart('Weekly')" title="Weekly" class="blue-btn">Weekly</a>
@@ -154,7 +154,7 @@
                   class="graph-container modal-graph-label"
                   *ngIf="graphLoader != true"
                 >
-                  <div class="label-left">Units <span>(Rs)</span></div>
+                  <div class="label-left">{{'Units'|translate}} <span>{{'(Rs)'|translate}}</span></div>
                   <canvas
                     baseChart
                     [chartType]="'bar'"
@@ -166,7 +166,7 @@
                     (chartClick)="goToBilling($event, 2)"
                   >
                   </canvas>
-                  <div class="label-bottom">Months</div>
+                  <div class="label-bottom">{{'Months'|translate}}</div>
                 </div>
               </div>
             </div>

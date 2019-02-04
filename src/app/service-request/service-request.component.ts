@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
+import { TranslationService } from "../services/translation/translation.service";
 
 @Component({
   selector: "app-service-request",
@@ -48,7 +49,9 @@ export class ServiceRequestComponent implements OnInit {
     private toastr: ToastrService,
     private AuthService: AuthService,
     private SerivceRequest: SerivceRequestService,
-    private DashboardService: DashboardService
+    private DashboardService: DashboardService,
+    private translationServices: TranslationService
+
   ) {}
 
   ngOnInit() {
@@ -62,7 +65,7 @@ export class ServiceRequestComponent implements OnInit {
       let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
       let accountTokenInfo = accountToken.split(":");
       this.accountNumber = accountTokenInfo[1]; //account Number
-      this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+      this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
       //this.showAccountDetails(this.accountNumber); // if account no is already selected then show details of selected account.
     } else {
       this.AuthService.getCurrentUser();

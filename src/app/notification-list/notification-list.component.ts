@@ -7,7 +7,7 @@ import { AppError } from "./../common/app-error";
 import { AuthService } from "../services/authService/auth.service";
 import { DataService } from '../services/data.service';
 require("../../../node_modules/moment/min/moment.min.js");
-
+import { TranslationService } from "../services/translation/translation.service";
 declare var moment: any;
 declare var $: any;
 
@@ -30,14 +30,16 @@ export class NotificationListComponent implements OnInit {
     public dataservice:DataService,
     private helpers:HelpersService,
     private notificationsService:NotificationsService,
-    private DashboardService:DashboardService
+    private DashboardService:DashboardService,
+    private translationServices: TranslationService
+
   ) { }
 
   ngOnInit() {
   let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.getAllNotifications();
     this.getAlertData();

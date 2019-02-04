@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <div class="page-heading ">TOU</div>
+    <div class="page-heading ">{{'TOU'|translate}}</div>
     <div class="billing-sec margin_top10 padding_bottom10 ">
       <div class="panel ">
         <div class="row">
@@ -45,7 +45,7 @@
           class="page-heading text-center margin_top20"
           style="color:#635b5b;"
         >
-          TOU as on {{ dispSelectedMonth }} {{ dispSelectedDay }},
+         {{'TOU AS ON Month date, year'|translate}} {{ dispSelectedMonth }} {{ dispSelectedDay }},
           {{ dispSelectedYear }}
         </div>
         <div class="panel-body" [ngClass]="{ touLoader: loder == true }">
@@ -53,7 +53,7 @@
             class="graph-container modal-graph-label showChart"
             style="display: none;"
           >
-            <div class="label-left">Units <span>(KWH)</span></div>
+            <div class="label-left">{{'Units'|translate}}<span>{{'(KWH)'|translate}}</span></div>
             <div class="consumption-canvas pos-rel">
               <div id="chartdiv"></div>
               <div
@@ -94,9 +94,9 @@
           >
             <thead>
               <tr>
-                <th width="50%"><span class="center-pos">TOU</span></th>
+                <th width="50%"><span class="center-pos">{{'TOU'|translate}}</span></th>
                 <th width="50%">
-                  <span class="center-pos">Total Consumption</span><br />
+                  <span class="center-pos">{{'Total Consumption'|translate}}</span><br />
                   <span style="font-size:11px;">(In KWH)</span>
                 </th>
               </tr>

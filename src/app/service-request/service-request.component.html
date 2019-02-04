@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <div class="page-heading">SERVICE REQUEST</div>
+    <div class="page-heading">{{'Service Requests'|translate}}</div>
     <div class="billing-sec complaints-page">
       <div class="row margin_top10">
         <div class="col-sm-12">
@@ -40,7 +40,7 @@
                   <div class="row">
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>Account Number*</label>
+                        <label>{{'Account Number'|translate}}*</label>
                         <select
                           required
                           *ngIf="!userAccountsLoder && userAccounts.length > 0"
@@ -54,7 +54,7 @@
                           class="form-control"
                         >
                           <option value="" selected
-                            >Select Account Number</option
+                            >Select {{'Account Number'|translate}}</option
                           >
                           <option
                             value="{{ user.account_number }}"
@@ -70,7 +70,7 @@
                         class="form-control"
                       >
                         <option value="" selected
-                          >Select Account Number</option
+                          >Select {{'Account Number'|translate}}</option
                         >
                       </select>
                         <div *ngIf="userAccountsLoder" class="fieldLoding" class="fieldLoding" >Loding...</div>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>Service Request Type*</label>
+                        <label>{{'Service Request Type'|translate}}*</label>
                         <select
                           *ngIf="
                             !serviceRequestTypeLoder &&
@@ -167,7 +167,7 @@
                 <div class="row">
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Account Number</label>
+                      <label for="exampleInputEmail1">{{'Account Number'|translate}}</label>
                       <select
                         required
                         *ngIf="!userAccountsLoder && userAccounts.length > 0"
@@ -180,7 +180,7 @@
                         "
                         class="form-control"
                       >
-                        <option value="" selected>Select Account Number</option>
+                        <option value="" selected>Select {{'Account Number'|translate}}</option>
                         <option
                           value="{{ user.account_number }}"
                           *ngFor="let user of userAccounts"
@@ -194,7 +194,7 @@
                         name="accountNumber"
                         class="form-control"
                       >
-                        <option value="" selected >Select Account Number</option>
+                        <option value="" selected >Select {{'Account Number'|translate}}</option>
                         
                       </select>
                       <div *ngIf="userAccountsLoder" class="fieldLoding" >Loding...</div>
@@ -206,7 +206,7 @@
                         <span
                           class="error-msg"
                           *ngIf="f.accountNumber.errors?.required"
-                          >Account Number is required.</span
+                          >{{'Account Number'|translate}} is required.</span
                         >
                       </div>
                     </div>
@@ -214,7 +214,7 @@
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputEmail1"
-                        >Service Request Type</label
+                        >{{'Service Request Type'|translate}}</label
                       >
                       <select
                         *ngIf="
@@ -271,12 +271,12 @@
 
 
                 <div class="border-block"></div>
-                 <div class="heading-field">Consumer Information</div>
+                 <div class="heading-field">{{'Consumer Information'|translate}}</div>
                  <div class="row">
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputEmail1" class="disabled"
-                        >Name</label
+                        >{{'Name'|translate}}</label
                       >
                       <input
                         type="text"
@@ -293,7 +293,7 @@
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputEmail2" class="disabled"
-                        >Supply Type</label
+                        >{{'Supply Type'|translate}}</label
                       >
                       <input
                         type="text"
@@ -309,7 +309,7 @@
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputEmail3" class="disabled"
-                        >Installation Address</label
+                        >{{'Installation Address'|translate}}</label
                       >
                       <input
                         type="text"
@@ -325,7 +325,7 @@
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputEmail4" class="disabled"
-                        >Mobile Number</label
+                        >{{'Mobile Number'|translate}}</label
                       >
                       <input
                         type="text"
@@ -341,7 +341,7 @@
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputEmail5" class="disabled"
-                        >Current Load</label
+                        >{{'Current Load'|translate}}</label
                       >
                       <input
                         type="text"
@@ -357,7 +357,7 @@
                   <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputEmail6" class="disabled"
-                        >Email ID</label
+                        >{{'Email ID'|translate}}</label
                       >
                       <input
                         type="email"
@@ -385,7 +385,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleFormControlSelect1"
-                          >Enclosed Identification Document<span class="red"
+                          >{{'Enclosed Identification Document'|translate}}<span class="red"
                             >*</span
                           ></label
                         >
@@ -452,7 +452,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Comments<span class="red">*</span></label
+                          >{{'Comments'|translate}}<span class="red">*</span></label
                         >
                         <textarea
                           required
@@ -467,7 +467,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.comments.errors?.required"
-                            >Comments is required.</span
+                            >{{'Comments'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -487,7 +487,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Load Unit
+                          >{{'Load Unit'|translate}}
                           <!-- <span class="red">*</span> --></label
                         >
                         <input
@@ -504,7 +504,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >New Load<span class="red">*</span></label
+                          >{{'New Load'|translate}}<span class="red">*</span></label
                         >
                         <input
                           type="text"
@@ -530,7 +530,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Comments<span class="red">*</span></label
+                          >{{'Comments'|translate}}<span class="red">*</span></label
                         >
                         <textarea
                           required
@@ -545,7 +545,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.comments.errors?.required"
-                            >Comments is required.</span
+                            >{{'Comments'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -565,7 +565,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Proposed Category<span class="red">*</span></label
+                          >{{'Proposed Category'|translate}}<span class="red">*</span></label
                         >
                         <input
                           type="text"
@@ -584,7 +584,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.proposedCategory.errors?.required"
-                            >Proposed Category is required.</span
+                            >{{'Proposed Category'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -592,7 +592,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleFormControlSelect1"
-                          >Reason<span class="red">*</span></label
+                          >{{'Reason'|translate}}<span class="red">*</span></label
                         >
                         <input
                         required
@@ -607,7 +607,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.reason.errors?.required"
-                            >Reason is required.</span
+                            >{{'Reason'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -617,7 +617,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Proposed Supply Code<span class="red">*</span></label
+                          >{{'Proposed Supply Code'|translate}}<span class="red">*</span></label
                         >
                         <select
                         *ngIf="
@@ -629,7 +629,7 @@
                         class="form-control"
                         id="exampleFormControlSelect1"
                       >
-                        <option value="" selected>Select Proposed Supply Code</option>
+                        <option value="" selected>Select {{'Proposed Supply Code'|translate}}</option>
                         <option
                           value="{{ changeReason.reason }}"
                           *ngFor="let changeReason of changeReasons"
@@ -646,14 +646,14 @@
                         class="form-control"
                         id="exampleFormControlSelect1"
                       >
-                        <option value="" selected>Select Proposed Supply Code</option>
+                        <option value="" selected>Select {{'Proposed Supply Code'|translate}}</option>
                       </select>
                       <div *ngIf="ChangeReasonsLoder" class="fieldLodingServiceReq" >Loding...</div>
                       <div *ngIf="f.proposedSupplyCode.touched && f.proposedSupplyCode.invalid">
                         <span
                           class="error-msg"
                           *ngIf="f.proposedSupplyCode.errors?.required"
-                          >Proposed Supply Code is required.</span
+                          >{{'Proposed Supply Code'|translate}} is required.</span
                         >
                       </div>
                       </div>
@@ -661,7 +661,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Comments<span class="red">*</span></label
+                          >{{'Comments'|translate}}<span class="red">*</span></label
                         >
                         <textarea
                           type="text"
@@ -677,7 +677,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.comments.errors?.required"
-                            >Comments is required.</span
+                            >{{'Comments'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -700,7 +700,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Comments<span class="red">*</span></label
+                          >{{'Comments'|translate}}<span class="red">*</span></label
                         >
                         <textarea
                           type="text"
@@ -716,7 +716,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.comments.errors?.required"
-                            >Comments is required.</span
+                            >{{'Comments'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -736,7 +736,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Applicant Name<span class="red">*</span></label
+                          >{{'Applicant Name'|translate}}<span class="red">*</span></label
                         >
                         <input
                           type="text"
@@ -754,7 +754,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.applicantName.errors?.required"
-                            >Applicant Name is required.</span
+                            >{{'Applicant Name'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -762,7 +762,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleFormControlSelect1"
-                          >Enclosed Identification Document<span class="red"
+                          >{{'Enclosed Identification Document'|translate}}<span class="red"
                             >*</span
                           ></label
                         >
@@ -778,7 +778,7 @@
                           id="exampleFormControlSelect1"
                         >
                           <option value=""
-                            >Select Enclosed Identification Document</option
+                            >Select {{'Enclosed Identification Document'|translate}}</option
                           >
                           <option
                             value="{{
@@ -804,7 +804,7 @@
                           id="exampleFormControlSelect1"
                         >
                           <option value=""
-                            >Select Enclosed Identification Document</option
+                            >Select {{'Enclosed Identification Document'|translate}}</option
                           >
                         </select>
                         <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
@@ -821,7 +821,7 @@
                             *ngIf="
                               f.enclosedIdentificationDocument.errors?.required
                             "
-                            >Enclosed Identification Document is required.</span
+                            >{{'Enclosed Identification Document'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -831,7 +831,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >House Number<span class="red">*</span></label
+                          >{{'House Number'|translate}}<span class="red">*</span></label
                         >
                         <input
                           required
@@ -848,7 +848,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.houseNumber.errors?.required"
-                            >House Number is required.</span
+                            >{{'House Number'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -856,7 +856,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1"
-                          >Comments<span class="red">*</span></label
+                          >{{'Comments'|translate}}<span class="red">*</span></label
                         >
                         <textarea
                           type="text"
@@ -872,7 +872,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.comments.errors?.required"
-                            >Comments is required.</span
+                            >{{'Comments'|translate}} is required.</span
                           >
                         </div>
                       </div>
@@ -898,7 +898,7 @@
                     [disabled]="submitServiceRequestLoder == true
                     "
                   >
-                    Submit
+                    {{'submit'|translate}}
                   </button>
                   <!-- {{requestServicesFrm.value | json}} -->
                 </div>

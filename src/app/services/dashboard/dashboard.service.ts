@@ -245,7 +245,6 @@ export class DashboardService {
    }
 
    getAdvertisementproData(){
-    
       var body={'slug':"profile"};
       return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
      }

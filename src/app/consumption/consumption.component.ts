@@ -5,6 +5,8 @@ import { DataService } from "../services/data.service";
 import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
 import { WindowRefService } from "./../services/window-ref/window-ref.service";
 require("../../../node_modules/moment/min/moment.min.js");
+import { TranslationService } from "../services/translation/translation.service";
+
 declare var moment: any;
 declare var $: any;
 @Component({
@@ -19,7 +21,9 @@ export class ConsumptionComponent implements OnInit {
     private dashboard: DashboardService,
     private helpers: HelpersService,
     private WindowRef: WindowRefService,
-    private router: Router
+    private router: Router,
+    private translationServices: TranslationService
+
   ) {}
   selected_month: any = "";
   isMonthSelected: any = false;
@@ -52,9 +56,10 @@ export class ConsumptionComponent implements OnInit {
     this.currentMonth = moment().format("MMM");
 
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
+
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     if (this.activateRoute.snapshot.queryParamMap.get("consumption") != null) {
       this.getselectedGraphData = atob(
@@ -222,7 +227,7 @@ export class ConsumptionComponent implements OnInit {
     this.consumptionlabels = [];
     this.consumptionchartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];
@@ -240,7 +245,7 @@ export class ConsumptionComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.consumptionchartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];
@@ -271,7 +276,7 @@ export class ConsumptionComponent implements OnInit {
     this.consumptiondaylabels = [];
     this.consumptiondaychartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: [],
         fill: false,
         borderWidth: 2
@@ -286,7 +291,7 @@ export class ConsumptionComponent implements OnInit {
   genrateGraph() {
     this.consumptionchartData = [
       {
-        label: "Consumption",
+        label: this.translationServices.translate("Consumption"),
         data: []
       }
     ];
@@ -332,11 +337,8 @@ export class ConsumptionComponent implements OnInit {
               this.consumptionlabels = dValue;
               this.consumptionchartData = [
                 {
-                  label:
-                    "Consumption for " +
-                    this.month_name +
-                    ", " +
-                    this.selected_year,
+                  label: this.translationServices.translate("Consumption for")+this.translationServices.translate(this.month_name)+
+                  this.translationServices.translate(", ")+this.translationServices.translate(this.selected_year),
                   data: gData
                 }
               ];
@@ -416,14 +418,10 @@ export class ConsumptionComponent implements OnInit {
             };
             this.consumptionchartData = [
               {
-                label:
-                  "Consumption as on " +
-                  this.month_name +
-                  " " +
-                  this.selectedDay +
-                  ", " +
-                  this.selected_year,
-                  
+
+                label: this.translationServices.translate("Consumption as on")+this.translationServices.translate(this.month_name)+
+                this.translationServices.translate( " ")+this.translationServices.translate( this.selectedDay)+this.translationServices.translate
+                (", ")+this.translationServices.translate(this.selected_year),
                 data: gData,
                 fill: false,
                 borderWidth: 2,
@@ -456,7 +454,7 @@ export class ConsumptionComponent implements OnInit {
             this.consumptionlabels = consumptionLbl;
             this.consumptionchartData = [
               {
-                label: " Yearly Consumption",
+                label: this.translationServices.translate("Yearly Consumption"),
                 data: gData,
                 fill: false,
                 borderWidth: 2
@@ -519,7 +517,7 @@ export class ConsumptionComponent implements OnInit {
           );
           this.consumptionchartData = [
             {
-              label: "Consumption for " + this.selected_year,
+              label: this.translationServices.translate("Consumption for")+this.translationServices.translate(this.selected_year),
               data: gData
             }
           ];
@@ -543,11 +541,13 @@ export class ConsumptionComponent implements OnInit {
           this.consumptionlabels.push("1", "2", "3", "4");
           this.consumptionchartData = [
             {
-              label:
-                "Consumption for " +
-                this.month_name +
-                ", " +
-                this.selected_year,
+              label: this.translationServices.translate("Consumption for")+this.translationServices.translate(this.month_name)+
+              this.translationServices.translate(", ")+this.translationServices.translate(this.selected_year),
+              // label:
+              //   "Consumption for " +
+              //   this.month_name +
+              //   ", " +
+              //   this.selected_year,
               data: gData
             }
           ];

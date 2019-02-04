@@ -5,6 +5,8 @@ import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 require("../../../node_modules/moment/min/moment.min.js");
+import { TranslationService } from "../services/translation/translation.service";
+
 declare var moment: any;
 declare var $: any;
 
@@ -25,6 +27,8 @@ export class RechargeHistoryComponent implements OnInit {
     private DashboardService: DashboardService,
     private activateRoute: ActivatedRoute,
     private helpers:HelpersService,
+    private translationServices: TranslationService
+
     
   ) {}
 
@@ -32,7 +36,7 @@ export class RechargeHistoryComponent implements OnInit {
     let accountToken=atob(this.helpers.getLocalStoragData("accountToken"));// fetch account number.
     let accountTokenInfo=accountToken.split(":");
     this.accountNumber=accountTokenInfo[1]//account Number
-    this.dispString = "Account No. ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
     this.getrechargeData();
     };
 

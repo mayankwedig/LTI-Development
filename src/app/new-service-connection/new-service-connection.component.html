@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
   <div id="content-wrapper">
-    <div class="page-heading">New Connection Request</div>
+    <div class="page-heading">{{'New Connection Request'|translate}}</div>
     <div class="billing-sec complaints-page">
       <div class="row margin_top20">
         <div class="col-sm-12">
@@ -11,7 +11,7 @@
             *ngIf="showTrackingNo == true && showMainForm == false"
           >
             <div class="panel-body">
-              <div class="title">New Connection Request</div>
+              <div class="title">{{'New Connection Request'|translate}}</div>
               <div class="req-success-msg">
                 Thank You For Registering Your New Connection Request.
               </div>
@@ -41,7 +41,7 @@
                     <div class="col-xs-12">
                       <div class="form-group">
                         <!--  {{discomNames|json}} -->
-                        <label>DISCOM Name*</label>
+                        <label>{{'DISCOM Name'|translate}}*</label>
                         <select
                           required
                           *ngIf="!discomNameLoader && discomNames.length > 0"
@@ -50,7 +50,7 @@
                           class="form-control"
                           (change)="fetchDevision(f.discomName)"
                         >
-                          <option value="" selected>Select DISCOM Name</option>
+                          <option value="" selected>{{'Select'|translate}} {{'DISCOM Name'|translate}}</option>
                           <option
                             value="{{ discName.id }}"
                             *ngFor="let discName of discomNames"
@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>Division*</label>
+                        <label>{{'Division'|translate}}*</label>
                         <select
                           *ngIf="!divisionLoder && divisions.length > 0"
                           required
@@ -90,7 +90,7 @@
                           name="division"
                           class="form-control"
                         >
-                          <option value="" selected>Select Division</option>
+                          <option value="" selected>Select {{'Division'|translate}}</option>
                           <option
                             value="{{ division.name }}"
                             *ngFor="let division of divisions"
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>SDO Office Name*</label>
+                        <label>{{'SDO Office Name'|translate}}*</label>
                         <select
                           *ngIf="!sdoOfficeLoader && sdoOffices.length > 0"
                           required
@@ -129,7 +129,7 @@
                           class="form-control"
                         >
                           <option value="" selected
-                            >Select SDO Office Name</option
+                            >Select {{'SDO Office Name'|translate}}</option
                           >
                           <option
                             value="{{ sdoOffice.name }}"
@@ -166,7 +166,7 @@
                     </div>
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>Consumer Type*</label>
+                        <label>{{'Consumer Type'|translate}}*</label>
                         <select
                           required
                           formControlName="consumerType"
@@ -174,7 +174,7 @@
                           class="form-control"
                         >
                           <option value="" selected
-                            >Select Consumer Type</option
+                            >Select {{'Consumer Type'|translate}}</option
                           >
                           <option value="others">Others</option>
                           <option value="departmental">Departmental</option>
@@ -196,14 +196,14 @@
                     </div>
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <label>Load(KW)*</label>
+                        <label>{{'Load(KW)'|translate}}*</label>
                         <select
                           required
                           formControlName="load"
                           name="load"
                           class="form-control"
                         >
-                          <option value="" selected>Select Load(KW)</option>
+                          <option value="" selected>Select {{'Load'|translate}}{{'(KW)'|translate}}</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -262,11 +262,11 @@
                   [formGroup]="newServiceConnectionFrmSetp2"
                   (ngSubmit)="submitNewConnectionStep2Frm()"
                 >
-                  <div class="heading-field">Name of Applicant</div>
+                  <div class="heading-field">{{'Name of Applicant'|translate}}</div>
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>First Name* </label>
+                        <label>{{'First Name'|translate}}* </label>
                         <input
                           formControlName="firstName"
                           type="text"
@@ -291,7 +291,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Last Name* </label>
+                        <label>{{'Last Name'|translate}}* </label>
                         <input
                           formControlName="lastName"
                           name="lastName"
@@ -318,7 +318,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Father's First Name* </label>
+                        <label>{{Father_First_Name|translate}}*</label>
                         <input
                           formControlName="fatherFirstName"
                           name="fatherFirstName"
@@ -344,7 +344,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Father's Last Name* </label>
+                        <label>{{Father_Last_Name|translate}}*</label>
                         <input
                           formControlName="fatherLastName"
                           name="fatherLastName"
@@ -372,7 +372,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Husband's First Name </label>
+                        <label>{{Husband_First_Name|translate}} </label>
                         <input
                           formControlName="husbandFirstName"
                           name="husbandFirstName"
@@ -384,7 +384,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Husband's Last Name </label>
+                        <label>{{Husband_Last_Name|translate}} </label>
                         <input
                           formControlName="husbandLastName"
                           name="husbandLastName"
@@ -398,7 +398,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Mother's Maiden Name* </label>
+                        <label>{{Mother_Maiden_Name|translate}}* </label>
                         <input
                           formControlName="motherName"
                           name="motherName"
@@ -424,7 +424,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Occupation</label>
+                        <label>{{'Occupation'|translate}}</label>
                         <input
                           formControlName="occupation"
                           name="occupation"
@@ -435,11 +435,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="heading-field">Communication Address</div>
+                  <div class="heading-field">{{'Communication Address'|translate}}</div>
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Address line 1* </label>
+                        <label>{{'Address line 1'|translate}}* </label>
                         <input
                           formControlName="communicationAddress1"
                           name="communicationAddress1"
@@ -467,7 +467,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Address line 2* </label>
+                        <label>{{'Address line 2'|translate}}* </label>
                         <input
                           formControlName="communicationAddress2"
                           required
@@ -497,7 +497,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Address line 3* </label>
+                        <label>{{'Address line 3'|translate}}* </label>
                         <input
                           formControlName="communicationAddress3"
                           required
@@ -525,7 +525,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Pin Code*</label>
+                        <label>{{'Pin Code'|translate}}*</label>
                         <input
                           formControlName="communicationPincode"
                           name="communicationPincode"
@@ -553,7 +553,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Mobile Number* </label>
+                        <label>{{'Mobile Number'|translate}}* </label>
                         <input
                           formControlName="communicationMobileNumber"
                           name="communicationMobileNumber"
@@ -588,11 +588,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="heading-field">Installation Address</div>
+                  <div class="heading-field">{{'Installation Address'|translate}}</div>
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Address line 1* </label>
+                        <label>{{'Address line 1'|translate}}* </label>
                         <input
                           formControlName="installationAddress1"
                           required
@@ -619,7 +619,7 @@
 
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Address line 2* </label>
+                        <label>{{'Address line 2'|translate}}* </label>
                         <input
                           formControlName="installationAddress2"
                           name="installationAddress2"
@@ -647,7 +647,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Address line 3* </label>
+                        <label>{{'Address line 3'|translate}}* </label>
                         <input
                           formControlName="installationAddress3"
                           name="installationAddress3"
@@ -674,7 +674,7 @@
 
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Pin Code* </label>
+                        <label>{{'Pin Code'|translate}}* </label>
                         <input
                           formControlName="installationPincode"
                           name="installationPincode"
@@ -702,7 +702,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Mobile Number* </label>
+                        <label>{{'Mobile Number'|translate}}* </label>
                         <input
                           formControlName="installationMobileNumber"
                           name="installationMobileNumber"
@@ -740,8 +740,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label
-                          >Is the permanent address same as installation
-                          address</label
+                          >{{'Is the permanent address same as installation address'|translate}}</label
                         >
                         <select
                           required
@@ -776,7 +775,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Plot Size (in Sq mts)*</label>
+                        <label>{{'Plot Size (in Sq mts)'|translate}}*</label>
                         <input
                           formControlName="plotSize"
                           name="plotSize"
@@ -802,7 +801,7 @@
 
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Covered Area (in Sq mts)* </label>
+                        <label>{{'Covered Area (in Sq mts)'|translate}}* </label>
                         <input
                           formControlName="coveredArea"
                           name="coveredArea"
@@ -830,7 +829,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Town Name* </label>
+                        <label>{{'Town Name'|translate}}* </label>
                         <input
                           formControlName="townName"
                           name="townName"
@@ -856,7 +855,7 @@
 
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Units (KW) </label>
+                        <label>{{'Units(KW)'|translate}}</label>
                         <input
                           formControlName="units"
                           name="units"
@@ -871,7 +870,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Purpose of Supply*</label>
+                        <label>{{'Purpose of Supply'|translate}}*</label>
                         <select
                           formControlName="purposeOfSupply"
                           name="purposeOfSupply"
@@ -898,7 +897,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Connection Point</label>
+                        <label>{{'Connection Point'|translate}}</label>
                         <input
                           formControlName="connectionPoint"
                           name="connectionPoint"
@@ -912,7 +911,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Adjacent Account Number</label>
+                        <label>{{'Adjacent Account Number'|translate}}</label>
                         <input
                           formControlName="adjacentAccountNumber"
                           name="adjacentAccountNumber"
@@ -924,7 +923,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Email ID* </label>
+                        <label>{{'Email ID'|translate}}* </label>
                         <input
                           formControlName="email"
                           required
@@ -958,23 +957,23 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Place Type</label>
+                        <label>{{'Place Type'|translate}}</label>
                         <select
                           formControlName="placeType"
                           name="placeType"
                           class="form-control"
                           placeholder="Place Type"
                         >
-                          <option value="" selected>Select Place Type</option>
-                          <option value="Urban">Urban </option>
-                          <option value="Rural">Rural </option>
+                          <option value="" selected>{{'Select'|translate}} {{'Place Type'|translate}}</option>
+                          <option value="Urban">{{'Urban'|translate}} </option>
+                          <option value="Rural">{{'Rural'|translate}} </option>
                         </select>
                         <div></div>
                       </div>
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Connection Type</label>
+                        <label>{{'Connection Type'|translate}}</label>
                         <select
                           formControlName="connectionType"
                           name="connectionType"
@@ -982,10 +981,10 @@
                           placeholder=" Connection Type"
                         >
                           <option value="" selected
-                            >Select Connection Type</option
+                            >{{'Select'|translate}} {{'Connection Type'|translate}}</option
                           >
-                          <option value="Post Paid">Post Paid </option>
-                          <option value="Pre Paid">Pre Paid </option>
+                          <option value="Post Paid">{{'Post Paid'|translate}} </option>
+                          <option value="Pre Paid">{{'Pre Paid'|translate}} </option>
                         </select>
                       </div>
                     </div>
@@ -993,16 +992,16 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Phase Type</label>
+                        <label>{{'Phase Type'|translate}}</label>
                         <select
                           formControlName="phaseType"
                           name="phaseType"
                           class="form-control"
                           placeholder=" Phase Type"
                         >
-                          <option value="" selected>Select Phase Type</option>
-                          <option value="Single Phase">Single Phase</option>
-                          <option value="Three Phase">Three Phase</option>
+                          <option value="" selected>{{'Select'|translate}} {{'Phase Type'|translate}}</option>
+                          <option value="Single Phase">{{'Single Phase'|translate}}</option>
+                          <option value="Three Phase">{{'Three Phase'|translate}}</option>
                         </select>
                       </div>
                     </div>
@@ -1010,15 +1009,15 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <!--  {{complaintCaseTypes }} -->
-                        <label>Do you want to give possession details</label>
+                        <label>{{'Do you want to give possession details'|translate}}</label>
                         <select
                           formControlName="possessionDetails"
                           name="possessionDetails"
                           class="form-control"
                         >
-                          <option value="" selected>Select option</option>
-                          <option value="Yes">Yes</option>
-                          <option value="No">No</option>
+                          <option value="" selected>{{'Select'|translate}} {{'option'|translate}}</option>
+                          <option value="Yes">{{'Yes'|translate}}</option>
+                          <option value="No">{{'No'|translate}}</option>
                         </select>
                       </div>
                     </div>
@@ -1028,7 +1027,7 @@
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <!--  {{complaintCaseTypes }} -->
-                        <label>Document for Identification</label>
+                        <label>{{'Document for Identification'|translate}}</label>
                         <select
                           *ngIf="
                             !enclosedIdentifDocLoder &&
@@ -1038,7 +1037,7 @@
                           name="documentIdentification"
                           class="form-control"
                         >
-                          <option value="" selected>Select options</option>
+                          <option value="" selected>{{'Select'|translate}} {{'options'|translate}}</option>
                           <option
                             value="{{
                               enclosedIdentifDoc.enclosed_identification_documents
@@ -1060,7 +1059,7 @@
                           name="documentIdentification"
                           class="form-control"
                         >
-                          <option value="" selected>Select options</option>
+                          <option value="" selected>{{'Select'|translate}} {{'options'|translate}}</option>
                         </select>
                         <div
                           *ngIf="enclosedIdentifDocLoder"
@@ -1071,36 +1070,36 @@
                       </div>
                     </div>
                   </div>
-                  <div class="heading-field">Enclosure Section</div>
+                  <div class="heading-field">{{'Enclosure Section'|translate}}</div>
                   <div class="row">
                     <!--Yes NO Selection-->
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <!--  {{complaintCaseTypes }} -->
-                        <label>NOC</label>
+                        <label>{{'NOC'|translate}}</label>
                         <select
                           formControlName="noc"
                           name="noc"
                           class="form-control"
                         >
-                          <option value="" selected>Select Option</option>
-                          <option value="Yes">Yes </option>
-                          <option value="No">No</option>
+                          <option value="" selected>{{'Select'|translate}} {{'option'|translate}}</option>
+                          <option value="Yes">{{'Yes'|translate}} </option>
+                          <option value="No">{{'No'|translate}}</option>
                         </select>
                       </div>
                     </div>
 
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Owner Consent Letter</label>
+                        <label>{{'Owner Consent Letter'|translate}}</label>
                         <select
                           formControlName="ownerConcentLetter"
                           name="ownerConcentLetter"
                           class="form-control"
                         >
-                          <option value="" selected>Select Option</option>
-                          <option value="Yes">Yes </option>
-                          <option value="No">No </option>
+                          <option value="" selected>{{'Select'|translate}} {{'option'|translate}}</option>
+                          <option value="Yes">{{'Yes'|translate}} </option>
+                          <option value="No">{{'No'|translate}} </option>
                         </select>
                       </div>
                     </div>
@@ -1108,15 +1107,15 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>Work Completion Certificate</label>
+                        <label>{{'Work Completion Certificate'|translate}}</label>
                         <select
                           formControlName="workCompletionCertificate"
                           name="workCompletionCertificate"
                           class="form-control"
                         >
-                          <option value="" selected>Select option</option>
-                          <option value="Yes">Yes</option>
-                          <option value="No">No</option>
+                          <option value="" selected>{{'Select'|translate}} {{'option'|translate}}</option>
+                          <option value="Yes">{{'Yes'|translate}}</option>
+                          <option value="No">{{'No'|translate}}</option>
                         </select>
                       </div>
                     </div>
