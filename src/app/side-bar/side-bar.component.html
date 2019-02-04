@@ -221,7 +221,7 @@
         </a>
       </li>
       <li id="li12" [ngClass]="{ openDropdown: currentUrl == '/reset-password' }"
-      (click)="removeCss(event)">
+      (click)="removeCss($event)">
         <a routerLink="/reset-password">
           <div class="menu-icons i-settings"></div>
             <span class="mm-text" id="12">{{'Reset Password'|translate}}</span>
@@ -229,7 +229,7 @@
       </li>
      <!--Changes By chandni-->
       <li id="li13" [ngClass]="{ openDropdown: currentUrl == '/logout' }"
-      (click)="removeCss(event)">
+      (click)="removeCss($event)">
         <a href="JavaScript:Void(#);" (click)="logout()">
             <div class="menu-icons i-logout"></div>
             <span class="mm-text" id="13">{{'logout' | translate}}</span>

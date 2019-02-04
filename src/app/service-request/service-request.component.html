@@ -73,7 +73,7 @@
                           >Select {{'Account Number'|translate}}</option
                         >
                       </select>
-                        <div *ngIf="userAccountsLoder" class="fieldLoding" class="fieldLoding" >Loding...</div>
+                        <div *ngIf="userAccountsLoder" class="fieldLoding" class="fieldLoding" >{{'Loading'|translate}}...</div>
                         <div
                           *ngIf="
                             fSelectRequ.accountNumber.touched &&
@@ -125,7 +125,7 @@
                         >
                           <option value="" selected>Select Request Type</option>
                         </select>
-                        <div *ngIf="serviceRequestTypeLoder" class="fieldLoding" style="left:168px">Loding...</div>
+                        <div *ngIf="serviceRequestTypeLoder" class="fieldLoding" style="left:168px">{{'Loading'|translate}}...</div>
                         <div
                           *ngIf="
                             fSelectRequ.serviceRequestType.touched &&
@@ -197,7 +197,7 @@
                         <option value="" selected >Select {{'Account Number'|translate}}</option>
                         
                       </select>
-                      <div *ngIf="userAccountsLoder" class="fieldLoding" >Loding...</div>
+                      <div *ngIf="userAccountsLoder" class="fieldLoding" >{{'Loading'|translate}}...</div>
                       <div
                         *ngIf="
                           f.accountNumber.touched && f.accountNumber.invalid
@@ -251,7 +251,7 @@
                       <option value="" selected>Select Request Type</option>
                      
                     </select>
-                      <div class="fieldLoding" *ngIf="serviceRequestTypeLoder" style="left: 164px;" >Loding...</div> 
+                      <div class="fieldLoding" *ngIf="serviceRequestTypeLoder" style="left: 164px;" >{{'Loading'|translate}}...</div> 
                       <div
                         *ngIf="
                           f.serviceRequestType.touched &&
@@ -431,7 +431,7 @@
                         >
                       </select>
                         <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
-                          Loding...
+                          {{'Loading'|translate}}...
                         </div>
                         <div
                           *ngIf="
@@ -646,9 +646,9 @@
                         class="form-control"
                         id="exampleFormControlSelect1"
                       >
-                        <option value="" selected>Select {{'Proposed Supply Code'|translate}}</option>
+                        <option value="" selected>{{'Select Proposed Supply Code'|translate}}</option>
                       </select>
-                      <div *ngIf="ChangeReasonsLoder" class="fieldLodingServiceReq" >Loding...</div>
+                      <div *ngIf="ChangeReasonsLoder" class="fieldLodingServiceReq" >{{'Loading'|translate}}...</div>
                       <div *ngIf="f.proposedSupplyCode.touched && f.proposedSupplyCode.invalid">
                         <span
                           class="error-msg"
@@ -754,7 +754,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.applicantName.errors?.required"
-                            >{{'Applicant Name'|translate}} is required.</span
+                            >{{'Applicant Name is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -804,11 +804,11 @@
                           id="exampleFormControlSelect1"
                         >
                           <option value=""
-                            >Select {{'Enclosed Identification Document'|translate}}</option
+                            >{{'Select Enclosed Identification Document'|translate}}</option
                           >
                         </select>
                         <div *ngIf="servReqEnclosedIdentifDocLoder" class="fieldLodingServiceReq">
-                          Loding...
+                          {{'Loading'|translate}}...
                         </div>
                         <div
                           *ngIf="
@@ -821,7 +821,7 @@
                             *ngIf="
                               f.enclosedIdentificationDocument.errors?.required
                             "
-                            >{{'Enclosed Identification Document'|translate}} is required.</span
+                            >{{'Enclosed Identification Document is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -840,7 +840,7 @@
                           name="houseNumber"
                           class="form-control"
                           id="exampleInputEmail1"
-                          placeholder="Enter House Number"
+                          placeholder="{{'Enter House Number'|translate}}"
                         />
                         <div
                           *ngIf="f.houseNumber.touched && f.houseNumber.invalid"
@@ -848,7 +848,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.houseNumber.errors?.required"
-                            >{{'House Number'|translate}} is required.</span
+                            >{{'House Number is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -872,7 +872,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.comments.errors?.required"
-                            >{{'Comments'|translate}} is required.</span
+                            >{{'Comments is required'|translate}}</span
                           >
                         </div>
                       </div>
