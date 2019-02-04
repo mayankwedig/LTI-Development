@@ -240,13 +240,13 @@ export class DashboardService {
     console.log("--->>>" )
   //  var currentUser=this.auth.getCurrentUser();
     //var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
-    var body={'slug':"about-us"};
+    var body={'slug':"dashboard"};
     return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
    }
 
    getAdvertisementproData(){
     
-      var body={'slug':"home"};
+      var body={'slug':"profile"};
       return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
      }
 

@@ -129,7 +129,6 @@ export class ProfileComponent implements OnInit {
     );
   }
   ngOnInit() {
-   
     this.currentUserData = this.auth.getCurrentUser();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
@@ -138,8 +137,6 @@ export class ProfileComponent implements OnInit {
     this.initRegistrationFrm(this.profileData);
     this.initOtpVerificationForm();
     this.getadvertisementprofileData();
-
-
     var pageOptions = {
       "pubId": "pub-9616389000213823", // Make sure this the correct client ID!
       "query": "hotels",

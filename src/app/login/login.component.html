@@ -139,11 +139,11 @@
                           name="email"
                           type="text"
                           class="form-control"
-                          placeholder="{{'userId'|translate}} / {{'email'|translate}}"
+                          placeholder="{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}}"
                         />
                         <div *ngIf="errorFlags.email">
                           <span class="error-msg"
-                            >{{'userId'|translate}} / {{'email'|translate}} {{'required'|translate}}.</span
+                            >{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}} {{'required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -160,11 +160,12 @@
                           name="email1"
                           type="text"
                           class="form-control"
-                          placeholder="{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}}"
+                          placeholder="{{'userId'|translate}}"
+                          (change)="getSelectedQuestions(forgotPassFrm.value.email1)"
                         />
                         <div *ngIf="errorFlags.email1">
                           <span class="error-msg"
-                            >{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}} {{'required'|translate}}</span
+                            >{{'userId'|translate}} {{'required'|translate}}</span
                           >
                         </div>
                       </div>

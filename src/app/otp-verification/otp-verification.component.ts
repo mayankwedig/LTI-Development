@@ -15,7 +15,7 @@ declare var $: any;
   styleUrls: ["./otp-verification.component.css"]
 })
 export class OtpVerificationComponent {
-   sliderContent = [
+  sliderContent = [
     {
       image: "../assets/images/main-slide1.jpg",
       desc: "Changing The Power<br> That Changes<br> The World"
@@ -33,7 +33,7 @@ export class OtpVerificationComponent {
   private loder: boolean = false;
   private changePassFuncLoader: boolean = false;
   private otpVerificationToken: string = "";
-   isOtpVerified = false;
+  isOtpVerified = false;
 
   private OtpVerificationFrm: FormGroup;
   private ChangePasswordFrm: FormGroup;
@@ -44,7 +44,13 @@ export class OtpVerificationComponent {
   initChangePasswordFrm() {
     this.ChangePasswordFrm = this.fb.group(
       {
-        password: ["", Validators.compose([Validators.required,Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{9,})/)])],
+        password: [
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{9,})/)
+          ])
+        ],
         cpassword: ["", Validators.required]
       },
       { validator: this.CustomValidation.checkPasswords }
@@ -60,7 +66,21 @@ export class OtpVerificationComponent {
     private CustomValidation: CustomValidationsService
   ) {
     this.otpVerificationToken = this.OtpVeriyService.getOtpVerificationSession();
+    var getWithSequityQuesSessoin = localStorage.getItem("withSequityQues");
+
     if (this.otpVerificationToken != null) {
+      if (getWithSequityQuesSessoin != null) {
+        localStorage.removeItem("withSequityQues");
+        //checking if token is set
+        if (getWithSequityQuesSessoin == "true") {
+          // if true
+          this.isOtpVerified = true;
+        } else {
+          //if false
+          this.isOtpVerified = false;
+        }
+      }
+
       this.initOtpVerificationForm();
       this.initChangePasswordFrm();
       this.OtpVeriyService.clearOtpSessionData();

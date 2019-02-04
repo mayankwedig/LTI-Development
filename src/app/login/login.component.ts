@@ -79,24 +79,11 @@ export class LoginComponent {
           this.questionsList2 = res.data_params;
         }
       } else {
-        this.toastr.error(res.msg, "Failed!");
+        this.toastr.error(this._translate.translate(res.msg), this._translate.translate("Failed!"));
       }
     });
   }
-  splitFunction(){
-    var str='mayak.mourya@wedigtech.com';
-    var splitedString=str.split("@");
-    var stingToProcess=splitedString[0];
-      console.log( str.split("@"));
-      console.log(stingToProcess);
-      console.log(stingToProcess.length);
-     /*  console.log(JSON.parse("[" + stingToProcess + "]")); */
-      var stars='';
-      /* for(var i=0; i<=stingToProcess.length-3;i++){
-        stars+='*';
-      } */
-      console.log(stars);
-  }
+ 
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
@@ -113,6 +100,10 @@ export class LoginComponent {
     this.initForgotFormFrm();
     this.fechQuestionList("1");
     this.fechQuestionList("2");
+    localStorage.removeItem("withSequityQues");//deleting previouls set session
+  }
+  getQues(username){
+    console.log(username);
   }
  /*  translat_text={
     "UserId":this._translate.translate("UserId"),
@@ -158,10 +149,11 @@ export class LoginComponent {
   validateForgotPasswordFrm() {
     this.forgotPassFrm = this.helpers.markAsTouched(this.forgotPassFrm);
     var APIUrl = "users/forgotPassword";
+    var withSequrityQuest=false;
     this.setErrorFlags(); // Setting Error Flags default to false
     if (this.forgotPassFrm.value.email != "") {
       // only user-email/user-ID selected
-      this.forgotPassword(this.forgotPassFrm.value, APIUrl);
+      this.forgotPassword(false,this.forgotPassFrm.value, APIUrl);
     } else {
       if (this.forgotPassFrm.value.email1 != "") {
         // user-email/user-ID/mobile selected
@@ -189,7 +181,8 @@ export class LoginComponent {
         if (errorExists == false) {
           // if no error
           APIUrl = "users/forgotPasswordWithSecuirityQuestion";
-          this.forgotPassword(this.forgotPassFrm.value, APIUrl);
+         
+          this.forgotPassword(true,this.forgotPassFrm.value, APIUrl);
         } else {
           this.toastr.error("Please fill required field.", "Failed");
         }
@@ -200,7 +193,7 @@ export class LoginComponent {
       }
     }
   }
-  forgotPassword(data, apiUrl) {
+  forgotPassword(withSequityQues:boolean=false,data, apiUrl) {
     var forgotPassData = {};
     if (data.email != "") {
       forgotPassData = { email: data.email };
@@ -224,10 +217,15 @@ export class LoginComponent {
           if (res.authCode == "200" && res.status == true) {
             this.loginService.setOtpVerificationSession(res.data_params.id);
             var OtpVerificationToken = this.loginService.getOtpVerificationSession();
-
             if (OtpVerificationToken != null) {
               this.toastr.success(res.msg, "Verification is successful!");
-              this.router.navigate(["/otp-verification"]);
+              if(!withSequityQues){
+                this.router.navigate(["/otp-verification"]);
+              }else{
+                this.helper.setLocalStoragData("withSequityQues","true");
+                this.router.navigate(["/otp-verification"]);
+              }
+              
             }
           } else {
             this.toastr.error(res.msg, "Failed!");
@@ -312,5 +310,26 @@ export class LoginComponent {
         }
       }
     );
+  }
+  getSelectedQuestions(userName){
+    console.log(userName);
+    this.loginService.getUsersQuetion(userName)
+    .subscribe((result:any)=>{
+      /* console.log(result) */
+      if(result.authCode == 200 && result.status == true && result.data_params.length > 0){
+        var data=result.data_params;
+        var fields = {
+          email: [""],
+          email1: [userName],
+          questionsList1: [data[0].firstQuestionId],
+          questionsList2: [data[1].secondQuestionId],
+          ansques1: [""],
+          ansques2: [""]
+        };
+        this.forgotPassFrm = this.fb.group(fields);
+      }
+    },error=>{
+      this.toastr.error("Something went wrong,Please try again later", "Failed!");
+    });
   }
 }
