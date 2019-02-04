@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { Router, ActivatedRoute } from "@angular/router";
 import { CustomValidationsService } from "./../services/custom-validations/custom-validations.service";
+import { TranslationService } from "../services/translation/translation.service";
+
 declare var $: any;
 
 @Component({
@@ -57,7 +59,9 @@ export class OtpVerificationComponent {
     private toastr: ToastrService,
     private router: Router,
     private OtpVeriyService: OtpVerificationService,
-    private CustomValidation: CustomValidationsService
+    private CustomValidation: CustomValidationsService,
+    private translationServices: TranslationService
+
   ) {
     this.otpVerificationToken = this.OtpVeriyService.getOtpVerificationSession();
     if (this.otpVerificationToken != null) {
@@ -78,9 +82,9 @@ export class OtpVerificationComponent {
       var res = response;
       if (res.authCode) {
         if (res.authCode == "200" && res.status == true) {
-          this.toastr.success(res.msg, "Password updated!");
+          this.toastr.success(this.translationServices.translate(res.msg), "Password updated!");
         } else {
-          this.toastr.error(res.msg, "Failed!");
+          this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
         }
         this.otpVerificationToken = "";
         this.router.navigate(["/login"]);
@@ -98,10 +102,10 @@ export class OtpVerificationComponent {
         this.loder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
-            this.toastr.success(res.msg, "Success!");
+            this.toastr.success(this.translationServices.translate(res.msg), "Success!");
             this.isOtpVerified = true;
           } else {
-            this.toastr.error(res.msg, "Failed!");
+            this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
             this.isOtpVerified = false;
             this.router.navigate(["/login"]);
           }

@@ -80,12 +80,12 @@ export class ProfileComponent implements OnInit {
         };
       } else {
         this.invalidImageIssue = true;
-        this.toastr.error("Image file size must not exceed 2 mb", "Failed!");
+        this.toastr.error(this.translationServices.translate("Image file size must not exceed 2 mb"), "Failed!");
       }
     } else {
       this.invalidImageIssue = true;
-      this.toastr.error(
-        "Please upload image with valid file extension ex: png,jpeg and jpg",
+      this.toastr.error(this.translationServices.translate
+        ("Please upload image with valid file extension ex: png,jpeg and jpg"),
         "Failed!"
       );
     }
@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit {
             this.oldMobileNo = this.profileData.mobile;
             this.profile_image = this.profileData.profile_image;
           } else {
-            this.toastr.error(res.msg, "Failed!");
+            this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
           }
         }
       },
@@ -211,11 +211,11 @@ export class ProfileComponent implements OnInit {
           this.profileUpdateLoder = false;
           if (res.authCode) {
             if (res.authCode == "200" && res.status == true) {
-              this.toastr.success(res.msg, "Details updated successfully!");
+              this.toastr.success(this.translationServices.translate(res.msg), "Details updated successfully!");
               this.showProfileUpdateFrm(false);
               this.getProfile();
             } else {
-              this.toastr.error(res.msg, "Failed!");
+              this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
             }
           }
         },
@@ -239,11 +239,11 @@ export class ProfileComponent implements OnInit {
           this.profileUpdateLoder = false;
           if (result.authCode == 200 && result.status == true) {
             //OTP msg sent Successfully
-            this.toastr.success(result.msg, "Success!");
+            this.toastr.success(this.translationServices.translate(result.msg), "Success!");
             this.showModalPopup();
             this.initOtpVerificationForm();
           }else{
-            this.toastr.error(result.msg, "failed!");
+            this.toastr.error(this.translationServices.translate(result.msg), "failed!");
           }
         },
         (error: AppError) => {

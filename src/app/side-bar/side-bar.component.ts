@@ -9,7 +9,7 @@ import { DashboardService } from "./../services/dashboard/dashboard.service";
 
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
-
+import { TranslationService } from "../services/translation/translation.service";
 import { ToastrService } from "ngx-toastr";
 
 
@@ -41,6 +41,8 @@ export class SideBarComponent implements OnInit {
     private accountServices: ManageaccountService,
     private toastr: ToastrService,
     private Dashboard: DashboardService,
+    private translationServices: TranslationService
+
    
   ) {}
   // changes By chandni only $ remove
@@ -112,7 +114,7 @@ export class SideBarComponent implements OnInit {
             this.accountData = res.data_params;
             this.isAccountDataFound = true;
           } else {
-            this.toastr.error(res.msg, "failed!");
+            this.toastr.error(this.translationServices.translate(res.msg), "failed!");
             this.isAccountDataFound = false;
           }
         }

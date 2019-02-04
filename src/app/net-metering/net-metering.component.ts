@@ -167,7 +167,7 @@ export class NetMeteringComponent implements OnInit {
       this.selectedDate = moment($event.jsdate).format("YYYY/MM/DD");
       this.genrateGraph();
     } else {
-      this.toastr.error("Please Select appropriate date!", "failed!");
+      this.toastr.error(this.translationServices.translate("Please Select appropriate date!"), "failed!");
     }
   }
   dispSelectedYear = "";

@@ -242,7 +242,7 @@ export class ConsumptionEstimatorComponent implements OnInit {
       this.selectedDate = moment($event.jsdate).format("YYYY/MM/DD");
       this.getEstimator();
     } else {
-      this.toastr.error("Please Select appropriate date!", "failed!");
+      this.toastr.error(this.translationServices.translate("Please Select appropriate date!"), "failed!");
     }
   }
 }

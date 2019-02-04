@@ -1,3 +1,4 @@
+
 import { SignupService } from "./../services/signup/signup.service";
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
@@ -62,6 +63,7 @@ export class LoginComponent {
     } else {
       this.questionsList2Loader = true;
     }
+    
 
     this.SignupService.getQuestionList("users/questionList", {
       types: quesType
@@ -79,7 +81,7 @@ export class LoginComponent {
           this.questionsList2 = res.data_params;
         }
       } else {
-        this.toastr.error(res.msg, "Failed!");
+        this.toastr.error(this._translate.translate(res.msg), "Failed!");
       }
     });
   }
@@ -113,6 +115,7 @@ export class LoginComponent {
     this.initForgotFormFrm();
     this.fechQuestionList("1");
     this.fechQuestionList("2");
+    
   }
  /*  translat_text={
     "UserId":this._translate.translate("UserId"),
@@ -191,12 +194,12 @@ export class LoginComponent {
           APIUrl = "users/forgotPasswordWithSecuirityQuestion";
           this.forgotPassword(this.forgotPassFrm.value, APIUrl);
         } else {
-          this.toastr.error("Please fill required field.", "Failed");
+          this.toastr.error(this._translate.translate("Please fill required field."), "Failed");
         }
       } else {
         this.errorFlags.email = true;
         this.errorFlags.email1 = true;
-        this.toastr.error("Please fill at least one required field.", "Failed");
+        this.toastr.error(this._translate.translate("Please fill at least one required field."), "Failed");
       }
     }
   }
@@ -226,17 +229,17 @@ export class LoginComponent {
             var OtpVerificationToken = this.loginService.getOtpVerificationSession();
 
             if (OtpVerificationToken != null) {
-              this.toastr.success(res.msg, "Verification is successful!");
+              this.toastr.success(this._translate.translate(res.msg), "Verification is successful!");
               this.router.navigate(["/otp-verification"]);
             }
           } else {
-            this.toastr.error(res.msg, "Failed!");
+            this.toastr.error(this._translate.translate(res.msg), "Failed!");
           }
         }
       },(error)=>{
         this.initForgotFormFrm();
         this.loder = false;
-        this.toastr.error("Something went wrong,Please try again later", "Failed!");
+        this.toastr.error(this._translate.translate("Something went wrong,Please try again later"), "Failed!");
       });
   }
   /** Redirection Loder*/
@@ -268,7 +271,7 @@ export class LoginComponent {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true && res.token) {
             this.loginService.setLoginData(res.token);
-            this.toastr.success(res.msg, "Success!");
+            this.toastr.success(this._translate.translate(res.msg), "Success!");
             let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
             var UserData = this.loginService.getUserData();
             if (UserData.numberOfAccounts == 1) {
@@ -300,7 +303,7 @@ export class LoginComponent {
               this.router.navigate([returnUrl || "/manageaccount"]);
             }
           } else {
-            this.toastr.error(res.msg, "Failed!");
+            this.toastr.error(this._translate.translate(res.msg), "Failed!");
           }
         }
       },

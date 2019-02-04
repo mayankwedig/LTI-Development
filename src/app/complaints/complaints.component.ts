@@ -251,7 +251,7 @@ export class ComplaintsComponent implements OnInit {
             if (res.authCode == "200" && res.status == true) {
               res["msg"] =
                 "Your complaint has been registered successfully, We've sent a notification E-mail along with tracking number.";
-              this.toastr.success(res.msg, "Success!");
+              this.toastr.success(this.translationServices.translate(res.msg), "Success!");
               this.showTrackingNo = true;
               this.trackingNo = res.data_params;
               setTimeout(() => {
@@ -259,7 +259,7 @@ export class ComplaintsComponent implements OnInit {
                 this.trackingNo = res.data_params;
               }, 30000);
             } else {
-              this.toastr.error(res.msg, "Failed!");
+              this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
               this.showTrackingNo = false;
               this.trackingNo = "";
             }
@@ -274,7 +274,7 @@ export class ComplaintsComponent implements OnInit {
         }
       );
     } else {
-      this.toastr.warning("Please fill all required fields", "Failed!");
+      this.toastr.warning(this.translationServices.translate("Please fill all required fields"), "Failed!");
     }
   }
 }

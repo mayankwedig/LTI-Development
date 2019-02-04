@@ -91,8 +91,7 @@
             class="text-center font-12  field_not_found"
             *ngIf="isbillingDataFound == false && billingDataLoder == false"
           >
-            <img src="/assets/images/no_data.png" /> Currently no data found in
-            billing section.
+            <img src="/assets/images/no_data.png" />{{'Currently no data found in billing section.'|translate}}'
           </div>
           <div *ngIf="billingDataLoder == true">
             <div class="spinner box-spinner" style="top: 25%;">

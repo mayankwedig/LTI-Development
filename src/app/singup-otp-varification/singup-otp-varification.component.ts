@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { Router, ActivatedRoute } from "@angular/router";
 import { SignupOtpVerificationService } from './../services/signup-otp-verification/signup-otp-verification.service';
+import { TranslationService } from "../services/translation/translation.service";
 
 
 declare var $: any;
@@ -51,7 +52,9 @@ export class SingupOtpVarificationComponent implements OnInit{
     private router: Router,
     private OtpVeriyService: SignupOtpVerificationService,
     private AuthService: AuthService,
-    private helpers :HelpersService
+    private helpers :HelpersService,
+    private translationServices: TranslationService
+
   ) {
   }
   ngOnInit() {
@@ -84,13 +87,13 @@ export class SingupOtpVarificationComponent implements OnInit{
         this.Otoploder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
-            this.toastr.success(res.msg, "Success!");
+            this.toastr.success(this.translationServices.translate(res.msg), "Success!");
             localStorage.setItem("otpVerifiedAccEmail",  this.otpVerifiedAccEmail);
             localStorage.setItem("otpVerifiedAccMobileNo",  this.otpVerifiedAccMobileNo);
             localStorage.setItem("otpVerifiedAccountNumber",  this.verifiedAccountNumber);
             this.router.navigate(["/registration"]);
           } else {
-            this.toastr.error(res.msg, "Failed!");
+            this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
             this.router.navigate(["/account-verification"]);
           }
         }
