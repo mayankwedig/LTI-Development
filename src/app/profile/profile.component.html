@@ -166,12 +166,12 @@
                                      <span
                                         class="error-msg"
                                         *ngIf="f.mobile.errors?.required"
-                                        >Mobile is required.</span
+                                        >{{'Mobile is required'|translate}}</span
                                         >
                                      <span
                                         class="error-msg"
                                         *ngIf="f.mobile.errors?.pattern"
-                                        >Please enter valid mobile number.</span
+                                        >{{'Please enter valid mobile number'|translate}}</span
                                         >
                                   </div>
                                </div>
@@ -195,12 +195,12 @@
                                         class="error-msg"
                                         *ngIf="f.email.invalid && !f.email.errors?.required"
                                         >
-                                     Email address is invalid.</span
+                                     {{'Email address is invalid'|translate}}</span
                                         >
                                      <span
                                         class="error-msg"
                                         *ngIf="f.email.errors?.required"
-                                        >Email address is required.</span
+                                        >{{'Email address is required'}}|translate</span
                                         >
                                   </div>
                                </div>
@@ -237,7 +237,7 @@
                                      
                                      [disabled]="updateProfileFrm.valid == false || invalidImageIssue == true || profileUpdateLoder == true"
                                      >
-                                  Save Details
+                                  {{'Save Details'|translate}}
                                   </button>
                                </div>
                             </div>
