@@ -99,7 +99,7 @@ export class ManageaccountComponent implements OnInit {
             this.accountData = res.data_params;
             this.isDataFound = true;
           } else {
-            this.toastr.error(this.translationServices.translate(res.msg), "failed!");
+            this.toastr.error(this.translationServices.translate(res.msg), this.translationServices.translate("failed!"));
             this.isDataFound = false;
           }
         }
@@ -145,7 +145,7 @@ export class ManageaccountComponent implements OnInit {
                   this.Otoploder = false;
                   if (res.authCode) {
                     if (res.authCode == "200" && res.status == true) {
-                      this.toastr.success(this.translationServices.translate(res.msg), "Success!");
+                      this.toastr.success(this.translationServices.translate(res.msg), this.translationServices.translate("Success!"));
                       $("#add-account-modal").hide();
                       $(".modal-backdrop").remove();
                       $("body").removeClass("modal-open");
@@ -153,7 +153,7 @@ export class ManageaccountComponent implements OnInit {
                       this.initAddaccFrm();
                     } else {
                       this.initAddaccFrm();
-                      this.toastr.error(this.translationServices.translate(res.msg), "Faild!");
+                      this.toastr.error(this.translationServices.translate(res.msg), this.translationServices.translate("Faild!"));
                     }
                   }
                 },
@@ -169,7 +169,7 @@ export class ManageaccountComponent implements OnInit {
             } else {
               this.Otoploder = false;
               this.initAddaccFrm();
-              this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
+              this.toastr.error(this.translationServices.translate(res.msg), this.translationServices.translate("Failed!"));
             }
           }
         },
@@ -201,17 +201,17 @@ export class ManageaccountComponent implements OnInit {
               res.data_params.account_number
             ); // set session for verified account number.
             this.ShowOtpVerifyFrm = true;
-            this.toastr.success(this.translationServices.translate(res.msg), "Success!");
+            this.toastr.success(this.translationServices.translate(res.msg), this.translationServices.translate("Success!"));
           } else {
             this.initAddaccFrm();
-            this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
+            this.toastr.error(this.translationServices.translate(res.msg), this.translationServices.translate("Failed!"));
           }
         }
       },
       error => {
         this.accountProcesLoader = false;
         this.initAddaccFrm();
-        this.toastr.error(this.translationServices.translate(error), "Failed!");
+        this.toastr.error(this.translationServices.translate(error), this.translationServices.translate("Failed!"));
       }
     );
   }
@@ -232,10 +232,10 @@ export class ManageaccountComponent implements OnInit {
             this.loder = false;
             if (res.authCode) {
               if (res.authCode == "200" && res.status == true) {
-                this.toastr.success(this.translationServices.translate(res.msg), "Success!");
+                this.toastr.success(this.translationServices.translate(res.msg), this.translationServices.translate("Success!"));
                 this.getAccount(this.searchKeyWord);
               } else {
-                this.toastr.error(this.translationServices.translate(res.msg), "failed!");
+                this.toastr.error(this.translationServices.translate(res.msg), this.translationServices.translate("failed!"));
               }
             }
           },
@@ -271,29 +271,29 @@ export class ManageaccountComponent implements OnInit {
               if (update_value == 1) {
                 // subscribed
                 msgDisp = "You have successfully subscribed to E-Bill";
-                this.toastr.success(this.translationServices.translate(msgDisp), "Success!");
+                this.toastr.success(this.translationServices.translate(msgDisp), this.translationServices.translate("Success!"));
               } else {
                 // unsubscribed
                 msgDisp = "You have successfully unsubscribed from the E-Bill";
-                this.toastr.warning(this.translationServices.translate(msgDisp), "Success!");
+                this.toastr.warning(this.translationServices.translate(msgDisp), this.translationServices.translate("Success!"));
               }
             } else {
               // Mobile bill
               if (update_value == 1) {
                 // subscribed
                 msgDisp = "You have successfully subscribed to Mobile-Bill";
-                this.toastr.success(this.translationServices.translate(msgDisp), "Success!");
+                this.toastr.success(this.translationServices.translate(msgDisp), this.translationServices.translate("Success!"));
               } else {
                 // unsubscribed
                 msgDisp =
                   "You have successfully unsubscribed from the Monile-Bill";
-                this.toastr.warning(this.translationServices.translate(msgDisp), "Success!");
+                this.toastr.warning(this.translationServices.translate(msgDisp), this.translationServices.translate("Success!"));
               }
             }
             /*  this.toastr.success(res.msg, "Success!"); */
             /*   this.getAccount(this.searchKeyWord); */
           } else {
-            this.toastr.error(this.translationServices.translate(res.msg), "failed!");
+            this.toastr.error(this.translationServices.translate(res.msg), this.translationServices.translate("failed!"));
           }
         }
       },

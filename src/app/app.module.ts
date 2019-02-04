@@ -90,6 +90,7 @@ import { SearchComponent } from './search/search.component';
 import { TranslationService } from 'src/app/services/translation/translation.service';
 
 import { AdsenseModule } from 'ng2-adsense';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -146,7 +147,8 @@ import { AdsenseModule } from 'ng2-adsense';
     NotificationListComponent,
     ConsumptionEstimatorComponent,
     TranslatePipe,
-    SearchComponent
+    SearchComponent,
+    ResetPasswordComponent
   ],
   imports: [
 
@@ -202,7 +204,7 @@ import { AdsenseModule } from 'ng2-adsense';
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
       {path:'notifications',component:NotificationListComponent,canActivate:[AuthGuard]},
       {path:'consumption-estimator',component:ConsumptionEstimatorComponent,canActivate:[AuthGuard]},
-      
+      {path:'reset-password',component:ResetPasswordComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent}
       
       

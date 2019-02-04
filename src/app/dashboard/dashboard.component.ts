@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
         queryParams: { complaintReq: serviceRequestId }
       });
     } else {
-      this.toastr.error(this.translationServices.translate("Please Select Complaint ID!"), "failed!");
+      this.toastr.error(this.translationServices.translate("Please Select Complaint ID!"), this.translationServices.translate("failed!"));
     }
   }
   redirectoRequestDetails() {
@@ -103,7 +103,7 @@ export class DashboardComponent implements OnInit {
         queryParams: { serviceReq: serviceRequestId }
       });
     } else {
-      this.toastr.error(this.translationServices.translate("Please Select Service Request ID!"), "failed!");
+      this.toastr.error(this.translationServices.translate("Please Select Service Request ID!"), this.translationServices.translate("failed!"));
     }
   }
 
@@ -353,9 +353,9 @@ export class DashboardComponent implements OnInit {
       if (response.authCode == "200") {
         this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        this.toastr.success(this.translationServices.translate("Excel downloaded successfully"), "Success!");
+        this.toastr.success(this.translationServices.translate("Excel downloaded successfully"), this.translationServices.translate("Success!"));
       } else {
-        this.toastr.error(this.translationServices.translate("Something went wrong!"), "failed!");
+        this.toastr.error(this.translationServices.translate("Something went wrong!"), this.translationServices.translate("failed!"));
       }
     });
   }

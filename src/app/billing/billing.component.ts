@@ -117,7 +117,7 @@ export class BillingComponent implements OnInit {
   downloadPDFfile(PDFURL){
     this.WindowRef.nativeWindow.open(PDFURL, "popup");
 
-    this.toastr.success(this.translationServices.translate("Excel downloaded successfully"), "Success!");
+    this.toastr.success(this.translationServices.translate("Excel downloaded successfully"), this.translationServices.translate("Success!"));
 
   }
 

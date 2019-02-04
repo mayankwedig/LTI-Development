@@ -35,4 +35,12 @@ export class ProfileService {
     var body={"profileToken":btoa(currentUser.userId),"accountToken":btoa(data_object.accountNumber),"mobile":data_object.mobileNumber};
     return this.data.create(this.profileUpdateOTPAPI,body,this.helper.setHeaderData());
   }
+  verifyOtp(dataObject){
+    return this.data.create("users/otpVerifyProfile",dataObject,this.helper.setHeaderData());
+  }
+  verifyPassword(dataObject){
+    var currentUser=this.auth.getCurrentUser();
+    dataObject["profileToken"]=btoa(currentUser.userId);
+    return this.data.create("users/matchDetails",dataObject,this.helper.setHeaderData());
+  }
 }

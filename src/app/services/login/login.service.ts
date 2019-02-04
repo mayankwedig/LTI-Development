@@ -29,6 +29,12 @@ export class LoginService{
    }
     getUserData(){
       return this.auth.getCurrentUser();
-    }   
+    } 
+    getUsersQuetion(userName:String){
+      var sdapiUrl="users/userQuestionList"
+      var body={"userName":userName}
+      return this.DataService.getAll(sdapiUrl,body,{},"POST");
+     
+     }  
 }
 
