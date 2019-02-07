@@ -102,6 +102,36 @@ export class ServiceRequestComponent implements OnInit {
       this.toastr.warning(this.translationServices.translate("Please fill all required fields"), "Failed!");
     }
   }
+  advertiseDataLoader:boolean=false;
+  advertisementproData:any=[];
+  isAdvertiseDataFound:boolean=false;
+  getadvertisementprofileData() {
+    this.advertiseDataLoader = true;
+    this.DashboardService.getAdvertisementproData().subscribe(
+      (response: any) => {
+        var res = response;
+        this.advertiseDataLoader = false;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.advertisementproData = res.data_params;
+            this.isAdvertiseDataFound = true;
+          } else {
+            this.isAdvertiseDataFound = false;
+            this.advertisementproData = [];
+          }
+        }
+      },
+      (error: AppError) => {
+        this.isAdvertiseDataFound = false;
+        this.advertiseDataLoader = false;
+        this.advertisementproData = [];
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
   initServiceRequestFrm(selectedCaseType) {
     var fields = {
       accountNumber: [this.accountNumber, [Validators.required]],

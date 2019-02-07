@@ -1,7 +1,9 @@
-<div id="main-wrapper">
+<div id="main-wrapper" [ngClass]="{'no-sidebar': !isLoggedIn()}">
   <app-header></app-header>
-  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
-  <div id="content-wrapper">
+  <span *ngIf="isLoggedIn()">  <app-side-bar [displayUserInfo]="dispString"></app-side-bar> </span>
+ 
+  <div id="content-wrapper" [ngClass]="{'complaint-wrapeer-bg': !isLoggedIn()}">
+      <div  [ngClass]="{'col-sm-10 col-sm-offset-1': !isLoggedIn()}">
     <div class="page-heading">
       {{'COMPLAINT Details'|translate}}
     </div>
@@ -72,7 +74,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>{{'Mobile Number'|translate}}</label>
-                      <div class="dtl-value">+91{{mobileNumber}}</div>
+                      <div class="dtl-value" *ngIf="mobileNumber != null">+91{{mobileNumber}}</div>
                     </div>
                   </div>
                 </div>
@@ -263,7 +265,8 @@
         </li>
       </ul>  -->
     </div>
-    <div id="main-menu-bg"></div>
+      </div>
+    <div *ngIf="isLoggedIn()" id="main-menu-bg"></div>
   </div>
-  <app-footer></app-footer>
+  <app-footer  ></app-footer>
 </div>

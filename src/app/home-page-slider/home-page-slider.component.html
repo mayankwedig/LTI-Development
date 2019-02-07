@@ -15,7 +15,7 @@
 			</li>
 			<li>
 				<a class="register-icon" href="JavaScript:Void(0);">
-					<div class="title">{{'complaints'|translate}} <br>({{'register'|translate}} / {{'track'|translate}})</div>
+					<div class="title" (click)="redirecttocomplaints('complaints')">{{'complaints'|translate}} <br>({{'register'|translate}} / {{'track'|translate}})</div>
 				</a>
 			</li>
 			<li>
@@ -25,7 +25,7 @@
 			</li>
 			<li>
 				<a class="sevice-register-icon" href="JavaScript:Void(0);">
-					<div class="title">{{"servicerequests"|translate}} <br>({{'register'|translate}} / {{'track'|translate}})</div>
+					<div class="title" (click)="redirecttocomplaints('track-service-request')">{{"servicerequests"|translate}} <br>(<!-- {{'register'|translate}} /  -->{{'track'|translate}})</div>
 				</a>
 			</li>
 			<li>

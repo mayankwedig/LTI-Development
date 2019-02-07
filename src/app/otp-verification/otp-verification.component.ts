@@ -91,11 +91,13 @@ export class OtpVerificationComponent {
     }
   }
   changePassFunc() {
+    //var apiUrl="users/resetPassword"; old
+    var apiUrl="users/resetPasswordWithoutLogin";
     this.changePassFuncLoader = true;
     const changePassData = this.ChangePasswordFrm.value;
     changePassData["resetPasswordToken"] = this.otpVerificationToken;
     this.OtpVeriyService.changePassSerive(
-      "users/resetPassword",
+      apiUrl ,
       changePassData
     ).subscribe((response: any) => {
       this.changePassFuncLoader = false;

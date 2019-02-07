@@ -53,11 +53,18 @@ export class DashboardService {
      });
   }
   getAccountDetails(accountNumber,callback){
-    var currentUser=this.auth.getCurrentUser();
+    if(this.auth.isLoggedIn()){
+      var currentUser=this.auth.getCurrentUser();
     var body={"profileToken":btoa(currentUser.userId),"accountToken": btoa(accountNumber)}
      this.DataService.getAll(this.getAccountDetailsApi, body,this.helpers.setHeaderData()).subscribe(result => {
        callback(result);
      });
+    }else{
+     this.DataService.getAll("users/soaAccountDetails", {"account_number":accountNumber},{}).subscribe(result => {
+       callback(result);
+     });
+    }
+    
   }
   getEnergyTips(accountNumber,callback){
     var currentUser=this.auth.getCurrentUser();
@@ -246,7 +253,7 @@ export class DashboardService {
 
    getAdvertisementproData(){
       var body={'slug':"profile"};
-      return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
+      return this.DataService.getAll(this.advertisementapi, body,{},"POST");
      }
 
   setBody(body) {

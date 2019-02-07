@@ -36,8 +36,13 @@ export class SerivceRequestService {
     return this.data.getAll(this.addServiceRequestAPI,updSubsData,this.helper.setHeaderData(),"POST"); 
   }
   getServiceRequestDetails(updSubsData){
-    var currentUser=this.auth.getCurrentUser();
+    if(this.auth.isLoggedIn()){
+      var currentUser=this.auth.getCurrentUser();
     updSubsData["profileToken"]=btoa(currentUser.userId);
     return this.data.getAll(this.serviceRequestDetailsAPI,updSubsData,this.helper.setHeaderData(),"POST"); 
+    }else{
+    return this.data.getAll("users/serviceRequestByTrackingNumber",updSubsData,{},"POST"); 
+    }
+    
   }
 }

@@ -29,6 +29,7 @@ export class ResetPasswordComponent implements OnInit {
   get changePassFields() {
     return this.ChangePasswordFrm.controls;
   }
+  
   initChangePasswordFrm() {
     this.ChangePasswordFrm = this.fb.group(
       {
@@ -39,7 +40,8 @@ export class ResetPasswordComponent implements OnInit {
             Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{9,})/)
           ])
         ],
-        cpassword: ["", Validators.required]
+        cpassword: ["", Validators.required],
+        oldPassword: ["", Validators.required]
       },
       { validator: this.CustomValidation.checkPasswords }
     );

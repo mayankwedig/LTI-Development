@@ -91,6 +91,8 @@ import { TranslationService } from 'src/app/services/translation/translation.ser
 
 import { AdsenseModule } from 'ng2-adsense';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { TrackComplaintsComponent } from './track-complaints/track-complaints.component';
+import { TrackServiceRequestComponent } from './track-service-request/track-service-request.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -148,7 +150,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ConsumptionEstimatorComponent,
     TranslatePipe,
     SearchComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    TrackComplaintsComponent,
+    TrackServiceRequestComponent
   ],
   imports: [
 
@@ -182,6 +186,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
       {path:'news-media',component: NewsMediaComponent},
       {path:'tips',component: TipsComponent}, 
       {path:'important-links',component: ImportantLinksComponent},
+      {path:'track-complaint',component:TrackComplaintsComponent},
+      {path:'track-service-request',component:TrackServiceRequestComponent},
       {path:'profile',component: ProfileComponent,canActivate:[AuthGuard]},
       {path:'manageaccount',component: ManageaccountComponent,canActivate:[AuthGuard]},
       {path:'downloads',component: DownloadComponent},
@@ -190,21 +196,21 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
       {path:'otp-verification',component: OtpVerificationComponent,canActivate:[AuthGuard]}, 
       {path:'registration',component: RegistrationComponent,canActivate:[AuthGuard]}, 
       {path:'update-profile',component: UpdateProfileComponent,canActivate:[AuthGuard]},
-      {path:'complaints',component: ComplaintsComponent,canActivate:[AuthGuard]},
+      {path:'complaints',component: ComplaintsComponent},
       {path:'service-request',component:ServiceRequestComponent,canActivate:[AuthGuard]},
       {path:'net-metering',component:NetMeteringComponent,canActivate:[AuthGuard]},
       {path:'singup-otp-varification',component:SingupOtpVarificationComponent}, 
       {path:'view-all-service-request',component:ViewAllServiceRequestsComponent,canActivate:[AuthGuard]},
-      {path:'service-request-details',component:ServiceRequestDetailsComponent,canActivate:[AuthGuard]},
+      {path:'service-request-details',component:ServiceRequestDetailsComponent},
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
-      {path:'complaint-request-details',component:ComplaintRequestDetailsComponent,canActivate:[AuthGuard]},
+      {path:'complaint-request-details',component:ComplaintRequestDetailsComponent},
       {path:'new-service-connection',component:NewServiceConnectionComponent,canActivate:[AuthGuard]},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
       {path:'notifications',component:NotificationListComponent,canActivate:[AuthGuard]},
       {path:'consumption-estimator',component:ConsumptionEstimatorComponent,canActivate:[AuthGuard]},
-      {path:'reset-password',component:ResetPasswordComponent,canActivate:[AuthGuard]},
+      {path:'change-password',component:ResetPasswordComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent}
       
       

@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
     private CustomValidations: CustomValidationsService,
     private helpers: HelpersService,
     private translationServices: TranslationService
-
+    
   ) {}
 
   onFileChanged($event) {
@@ -205,7 +205,8 @@ export class ProfileComponent implements OnInit {
       email: frmData.email,
       mobile: frmData.mobile,
       area: frmData.area,
-      imgBlob: profile_image
+      imgBlob: profile_image,
+      accountToken: btoa(this.accountNumber)
     };
      // If same then no need to verify mobile no.
      this.profile.saveProfile(profileSveDAta).subscribe(
@@ -276,35 +277,44 @@ export class ProfileComponent implements OnInit {
       );
       this.saveFomrData();
     } else {
-     
+        
       // If not same then verify otp then update futher user info.
-      var header = {
-        accountNumber: this.accountNumber,
-        mobileNumber: frmData.mobile
-      };
-     
-      this.profile.verifyMobileNumber(header).subscribe(
-        (result: any) => {
-          this.profileUpdateLoder = false;
-          if (result.authCode == 200 && result.status == true) {
-            //OTP msg sent Successfully
-
-            this.toastr.success(this.translationServices.translate(result.msg),this.translationServices.translate("Success"));
-            this.showModalPopup("topVerification-modal");
-            this.initOtpVerificationForm();
-          }else{
-            this.toastr.error(this.translationServices.translate(result.msg));
-          }
-        },
-        (error: AppError) => {
-          this.profileUpdateLoder = false;
-          if (error instanceof BadInput) {
-          } else {
-            throw error;
-          }
-        }
-      );
+    if(this.newChangesType.email == true &&  this.newChangesType.mobileNo == true){
+      this.sendOTP(frmData);
+    }else if(this.newChangesType.email == false && this.newChangesType.mobileNo == true){
+      this.sendOTP(frmData);
+    }else if(this.newChangesType.email == true && this.newChangesType.mobileNo == false){
+      this.showModalPopup("passwordVeri-modal");
+      this.initPwVerificationForm();
     }
+    }
+  }
+  sendOTP(frmData){
+    var header = {
+      accountNumber: this.accountNumber,
+      mobileNumber: frmData.mobile
+    };
+    this.profile.verifyMobileNumber(header).subscribe(
+      (result: any) => {
+        this.profileUpdateLoder = false;
+        if (result.authCode == 200 && result.status == true) {
+          //OTP msg sent Successfully
+
+          this.toastr.success(this.translationServices.translate(result.msg),this.translationServices.translate("Success"));
+          this.showModalPopup("topVerification-modal");
+          this.initOtpVerificationForm();
+        }else{
+          this.toastr.error(this.translationServices.translate(result.msg));
+        }
+      },
+      (error: AppError) => {
+        this.profileUpdateLoder = false;
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
   }
   showModalPopup(toOpen){
       $("."+toOpen).modal("show");
@@ -379,6 +389,7 @@ export class ProfileComponent implements OnInit {
     this.profile.verifyPassword(header).subscribe(
       (response: any) => {
         this.VerifyPasswordLoder=false;
+        this.profileUpdateLoder = false;
         var res = response;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {// if account verfied then open password Screen
@@ -396,6 +407,7 @@ export class ProfileComponent implements OnInit {
         this.initPwVerificationForm();
         this.closePopup("passwordVerification-frm");
         this.toastr.error(this.translationServices.translate("Somthing went wrong"));
+        this.profileUpdateLoder = false;
         this.VerifyPasswordLoder = false;
         if (error instanceof BadInput) {
         } else {

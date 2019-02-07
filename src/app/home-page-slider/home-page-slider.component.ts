@@ -1,4 +1,5 @@
 import { Component, OnInit,AfterViewInit,Input} from '@angular/core';
+import { Router } from '@angular/router';
 declare var $: any;
 require('../../assets/js/owl.carousel.js');
 @Component({
@@ -9,11 +10,14 @@ require('../../assets/js/owl.carousel.js');
 
 export class HomePageSliderComponent implements OnInit,AfterViewInit {
 	@Input('content') content:any;
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit() {
   	
-  }
+	}
+	redirecttocomplaints(path){
+		this.route.navigate(["/"+path]);
+	}
   ngAfterViewInit(){
 		$(function() {
 			$('.main-carousel').owlCarousel({

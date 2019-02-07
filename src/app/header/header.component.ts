@@ -91,7 +91,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
    
     this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;};
   
-    let currentUrl = this.router.url;
+    let currentUrl = this.router.url; 
     this.winRef.nativeWindow.location=currentUrl;
     /* this.router.navigateByUrl(currentUrl)
       .then(() => {

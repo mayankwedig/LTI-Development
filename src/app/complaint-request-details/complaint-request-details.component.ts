@@ -10,11 +10,10 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { TranslationService } from "../services/translation/translation.service";
 
-
 @Component({
-  selector: 'app-complaint-request-details',
-  templateUrl: './complaint-request-details.component.html',
-  styleUrls: ['./complaint-request-details.component.css']
+  selector: "app-complaint-request-details",
+  templateUrl: "./complaint-request-details.component.html",
+  styleUrls: ["./complaint-request-details.component.css"]
 })
 export class ComplaintRequestDetailsComponent implements OnInit {
   accountNumber = "";
@@ -31,33 +30,44 @@ export class ComplaintRequestDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translationServices: TranslationService
-
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.route.snapshot.queryParams.complaintReq != null) {
-      if (this.helpers.getLocalStoragData("accountToken") != null) {
-        let accountToken = atob(
-          this.helpers.getLocalStoragData("accountToken")
-        ); // fetch account number.
-        let accountTokenInfo = accountToken.split(":");
-        this.accountNumber = accountTokenInfo[1]; //account Number
-        this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
-        //this.showAccountDetails(this.accountNumber); // if account no is already selected then show details of selected account.
-      } else {
-        this.AuthService.getCurrentUser();
-        this.dispString =
-          "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
-        //this.initServiceRequestFrm(this.selectedRequestType); // init form
-      }
       this.serviceTokenNumber = this.route.snapshot.queryParams.complaintReq;
-      this.showAccountDetails(this.accountNumber);
-      this.getComplaintRequestDetails();
+      if(this.isLoggedIn()){
+        if (this.helpers.getLocalStoragData("accountToken") != null) {
+          let accountToken = atob(
+            this.helpers.getLocalStoragData("accountToken")
+          ); // fetch account number.
+          let accountTokenInfo = accountToken.split(":");
+          this.accountNumber = accountTokenInfo[1]; //account Number
+          this.dispString =
+            this.translationServices.translate("accountnumber") +
+            " ( " +
+            this.accountNumber +
+            " ) ";
+          //this.showAccountDetails(this.accountNumber); // if account no is already selected then show details of selected account.
+        } else {
+          this.AuthService.getCurrentUser();
+          this.dispString =
+            "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
+          //this.initServiceRequestFrm(this.selectedRequestType); // init form
+        }
+       
+        this.showAccountDetails(this.accountNumber);
+        this.getComplaintRequestDetails();
+      }else{
+        this.getComplaintRequestDetails();
+      }
     } else {
+      if(this.isLoggedIn()){
       this.router.navigate(["/view-all-service-request"]);
+      }else{
+        this.toastr.warning(this.translationServices.translate("No complaint found,Please submit complaint"),this.translationServices.translate("Faild"));
+        this.router.navigate(["/complaints"]);  
+      } 
     }
-
-
   }
 
   accountDetailsLoder: boolean = false;
@@ -68,10 +78,13 @@ export class ComplaintRequestDetailsComponent implements OnInit {
   mobileNumber = "";
   emailId = "";
 
-
+  isLoggedIn() {
+    return this.AuthService.isLoggedIn();
+  }
   showAccountDetails(accNo) {
     this.accountDetailsLoder = true;
     this.DashboardService.getAccountDetails(accNo, (result: any) => {
+     console.log(result);
       this.accountDetailsLoder = false;
       if (result.authCode == "200") {
         this.accountNumber = accNo;
@@ -82,29 +95,41 @@ export class ComplaintRequestDetailsComponent implements OnInit {
         this.supplyType = accountDetails.supply_type;
         this.mobileNumber = accountDetails.mobile;
         this.emailId = accountDetails.email;
-
       } else {
       }
     });
   }
 
-
   getSerReqDtLoder: boolean = false;
-  complaintsDetails :any= {};
+  complaintsDetails: any = {};
   getComplaintRequestDetails() {
-    var requestData = {
-      accountToken: btoa(this.accountNumber),
-      complaintToken: this.serviceTokenNumber
-    };
+    var requestData = {};
+    if(this.AuthService.isLoggedIn()){
+      requestData = {
+        accountToken: btoa(this.accountNumber),
+        complaintToken: this.serviceTokenNumber
+      };
+    }else{
+      requestData = {complaintToken: this.serviceTokenNumber};
+    }
     this.getSerReqDtLoder = true;
+    
     this.SerivceRequest.getComplaintRequestDetails(requestData).subscribe(
       (response: any) => {
         var res = response;
         this.getSerReqDtLoder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
+            
             this.complaintsDetails = res.data_params;
+            if(!this.AuthService.isLoggedIn()){
+              this.showAccountDetails(this.complaintsDetails.account_number)
+            }
           } else {
+            if(!this.AuthService.isLoggedIn()){
+              this.toastr.warning(this.translationServices.translate("No complaint found,Please submit complaint"),this.translationServices.translate("Faild"));
+              this.router.navigate(["/complaints"]);  
+            }
             this.complaintsDetails = {};
           }
         }
@@ -120,11 +145,3 @@ export class ComplaintRequestDetailsComponent implements OnInit {
     );
   }
 }
-
-
-
-
-
-
-
-

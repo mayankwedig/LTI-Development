@@ -12,17 +12,16 @@ import { promise } from 'protractor';
 
 @Injectable()
 export class DataService {
-//private apiUrl='http://103.249.98.101:3002/'; // Dev URL
+private apiUrl='http://103.249.98.101:3002/'; // Dev URL
 //private apiUrl='http://103.249.98.246:3002/'; // Prod URL
 //private apiUrl='http://192.168.1.156:3002/'; //local
-private apiUrl='http://192.168.1.156:3003/'; //local soa
+//private apiUrl='http://192.168.1.156:3003/'; //local soa
 
   constructor(private http: HttpClient) { }
 
   getAll(url,body,headerData={},methode="POST") {
     const getUrl=this.apiUrl+url;
      const  getMehode=methode;
-     console.log(getMehode);
      if(methode == "POST"){
      return this.http.post(getUrl,body,{headers:headerData})
       .map(response => response)
