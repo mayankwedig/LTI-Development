@@ -43,4 +43,7 @@ export class ProfileService {
     dataObject["profileToken"]=btoa(currentUser.userId);
     return this.data.create("users/matchDetails",dataObject,this.helper.setHeaderData());
   }
+  getSiteLogo(){
+    return this.data.getAll("users/siteSetting","",{},"GET");
+  }
 }

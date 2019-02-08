@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Component, OnInit,AfterViewInit, Input } from '@angular/core';
 declare var $: any;
 require('../../assets/js/owl.carousel.js');
@@ -36,5 +37,12 @@ export class HomeImpLinkSliderComponent implements OnInit,AfterViewInit {
 		})
 	})
   }
-
+  getIcons(data){
+	var iconUrl= environment.no_image;
+	  var icon=data.icon
+	  if(icon != null && icon != ''){
+		iconUrl=environment.importantLinksIcones+"/"+data.id+"/"+icon;
+	  }
+	return iconUrl;
+  }
 }

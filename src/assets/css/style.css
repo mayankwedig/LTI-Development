@@ -5731,3 +5731,11 @@ margin:40px auto;
 .complaint-wrapeer-bg{
     background: #eeeeee;
 }
+.mng-data-scroll-tb {
+    display: block;
+    width: 100%;
+}
+.mng-data-scroll-tr {
+    display: table;
+    width: 100%;
+}

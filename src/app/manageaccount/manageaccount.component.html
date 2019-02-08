@@ -103,8 +103,8 @@
                       class="fl-table manage-account-table tb-body"
                       *ngIf="loder != true && isDataFound == true"
                     >
-                      <tbody>
-                        <tr *ngFor="let account of accountData; let i = index">
+                      <tbody class="mng-data-scroll-tb">
+                        <tr *ngFor="let account of accountData; let i = index" class="mng-data-scroll-tr">
                           <td colspan="2" width="25%" class="mat-account-dtl">
                             <table width="100%" cellpadding="0" cellspacing="0">
                               <tr>
@@ -121,6 +121,7 @@
                                   >
                                 </td>
                               </tr>
+                              
                             </table>
                           </td>
                           <td width="20%" class="mat-address-col">

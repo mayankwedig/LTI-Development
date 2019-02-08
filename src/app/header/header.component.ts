@@ -9,8 +9,7 @@ import {AuthService} from '../services/authService/auth.service';
 import { DataService } from '../services/data.service';
 import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
 import { Router } from '@angular/router';
-
-
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 require('../../assets/js/owl.carousel.js');
@@ -32,6 +31,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   totalNotifications:any=0;
   hideTotalNotification:boolean=true;
   selected_lang="eng";//localStorage.getItem("selected_lag"); 
+  logogImage="";
   doSearch(){
     if(this.searchKeyWord != ""){
       if(localStorage.getItem('search') != null){
@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     }
   }
   ngOnInit() {
+    this.getSiteLogo();
     if(localStorage.getItem('search') != null){
       this.searchKeyWord=localStorage.getItem('search');
     }else{
@@ -80,6 +81,26 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     }
     this.getLimitedNotifications();
   }
+  getSiteLogo(){
+     this.logogImage=environment.no_image;
+    this.profile.getSiteLogo().subscribe((result:any)=>{
+        console.log(result);
+        if(result.authCode == 200 && result.status){
+          if(result.home_logo != ''){
+            this.logogImage= environment.logoUrl+result.data_params.home_logo;
+          }else{
+            this.logogImage=environment.no_image;
+          }
+          
+        }
+    },(error:AppError)=>{
+      this.logogImage=environment.no_image;
+      if (error instanceof BadInput) {
+      } else {
+        throw error;
+      }
+    });
+  }
   loderLoder=false;
   profile_image:any="../assets/images/placeholder-man-grid-240x268.png";
   changeLang(changeLang){
@@ -92,7 +113,13 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;};
   
     let currentUrl = this.router.url; 
-    this.winRef.nativeWindow.location=currentUrl;
+   
+    if(currentUrl == "/"){
+      this.winRef.nativeWindow.location=this.helpers.getSiteUrl()+"/home";
+    }else{
+      this.winRef.nativeWindow.location=this.helpers.getSiteUrl()+currentUrl;
+    }
+    
     /* this.router.navigateByUrl(currentUrl)
       .then(() => {
         this.router.navigated = false;

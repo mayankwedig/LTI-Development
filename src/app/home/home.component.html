@@ -1,3 +1,12 @@
+<!-- <ngx-loading
+      [show]="redirectLoding"
+      [config]="{
+        primaryColour: primaryColour,
+        secondaryColour: secondaryColour,
+        tertiaryColour: primaryColour,
+        backdropBorderRadius: '3px'
+      }"
+    ></ngx-loading> -->
 <div id="main-wrapper" class="no-sidebar">
 	<app-header></app-header>
 	<div class="main-container-sec">
@@ -37,7 +46,7 @@
 						<div class="msg-detail">
 							<div class="cm-img">
 								<!-- {{ministermsg.display_picture}} -->
-								<img src="../assets/images/{{ministermsg.display_picture}}" alt="{{ministermsg.name}}">
+								<img [src]="getImages(ministermsg)" alt="{{ministermsg.name}}">
 							</div>
 							<div class="cm-msg-box">
 								<p>
@@ -66,25 +75,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="mission-section">
-			<div class="row">
-				<div class="col-sm-4">
+		<div class="mission-section" >
+			<div class="row" *ngIf="missionVisionFound == true">
+				<div class="col-sm-4" *ngFor="let missionData of missionVisionData">
 					<div class="mission-vision">
-						<img src="../assets/images/mission-img-2.jpg" alt="" class="image">
+						<img [src]="getImages(missionData)" alt="" class="image">
 						<div class="overlay">
 							<div class="title">
 								<img src="../assets/images/mission-icon.png" alt="">
-								{{'ourmission'|translate}}
+								{{missionData.title|translate}}
 							</div>
 							<div class="text">
-								To make network development and investment plans for an Intra-state transmission system that is reliable,
-								economical, develop best-in-class system study and system planning capacities within the organization.
+								{{missionData.description|translate}}
 								<a href="#" class="konw-more-link">{{'knowmore'|translate}}</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4">
+				<!-- <div class="col-sm-4">
 					<div class="mission-vision">
 						<img src="../assets/images/mission-img-1.jpg" alt="" class="image">
 						<div class="overlay">
@@ -99,7 +107,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<div class="col-sm-4">
 					<div class="mission-vision">
 						<img src="../assets/images/mission-img-3.jpg" alt="" class="image">
@@ -115,7 +123,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
 		<div class="important-links" [ngClass]="{ impLinkLoaderMinHeight:impLinkLoader == true }">

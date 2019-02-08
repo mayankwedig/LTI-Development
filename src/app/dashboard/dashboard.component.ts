@@ -15,7 +15,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { resolve } from "url";
 import { reject } from "q";
-import { TranslationService } from "../services/translation/translation.service";
 import {environment} from "./../../environments/environment";
 
 require("../../../node_modules/moment/min/moment.min.js");
@@ -37,10 +36,10 @@ declare var _googCsa:any;
 // })
 export class DashboardComponent implements OnInit {
   test: string;
-  /* scrollConfig={
-    suppressScrollY:false,
-    suppressScrollX:true 
-  } */
+  //Translation
+  translate(string:string):string{
+    return this._helper.translate(string);
+  }
   constructor(
     private auth: AuthService,
     private DashboardService: DashboardService,
@@ -49,8 +48,9 @@ export class DashboardComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private WindowRef: WindowRefService,
     private toastr: ToastrService,
-    private translationServices: TranslationService
+    private _helper:HelpersService
   ) {}
+  
   adimagurl=environment.adimageUrl;
   /*******************Dropdown Configs**********************************/
   serviceReqDropDownconfig = {
@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
         queryParams: { complaintReq: serviceRequestId }
       });
     } else {
-      this.toastr.error(this.translationServices.translate("Please Select Complaint ID!"), this.translationServices.translate("failed!"));
+      this.toastr.error(this.translate("Please Select Complaint ID!"), this.translate("failed!"));
     }
   }
   redirectoRequestDetails() {
@@ -103,7 +103,7 @@ export class DashboardComponent implements OnInit {
         queryParams: { serviceReq: serviceRequestId }
       });
     } else {
-      this.toastr.error(this.translationServices.translate("Please Select Service Request ID!"), this.translationServices.translate("failed!"));
+      this.toastr.error(this.translate("Please Select Service Request ID!"), this.translate("failed!"));
     }
   }
 
@@ -172,7 +172,7 @@ export class DashboardComponent implements OnInit {
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
    
-    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.currentDate = moment().format("Do MMM YY");
     this.currentYear = moment().format("YYYY");
@@ -189,7 +189,7 @@ export class DashboardComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.consumptionchartData = [
       {
-        label: this.translationServices.translate("Consumption"),
+        label: this.translate("Consumption"),
         data: []
       }
     ];
@@ -228,7 +228,7 @@ export class DashboardComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.billingchartData = [
       {
-        label: this.translationServices.translate("Billing"),
+        label: this.translate("Billing"),
         data: []
       }
     ];
@@ -353,9 +353,9 @@ export class DashboardComponent implements OnInit {
       if (response.authCode == "200") {
         this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        this.toastr.success(this.translationServices.translate("Excel downloaded successfully"), this.translationServices.translate("Success!"));
+        this.toastr.success(this.translate("Excel downloaded successfully"), this.translate("Success!"));
       } else {
-        this.toastr.error(this.translationServices.translate("Something went wrong!"), this.translationServices.translate("failed!"));
+        this.toastr.error(this.translate("Something went wrong!"), this.translate("failed!"));
       }
     });
   }
@@ -453,7 +453,7 @@ export class DashboardComponent implements OnInit {
             this.consumptionlabels = response;
             this.consumptionchartData = [
               {
-                label: this.translationServices.translate("Consumption"),
+                label: this.translate("Consumption"),
                 data: gData
               }
             ];
@@ -500,7 +500,7 @@ export class DashboardComponent implements OnInit {
         );
         this.billingchartData = [
           {
-            label: this.translationServices.translate("Billing"),
+            label: this.translate("Billing"),
             data: gData
           }
         ];

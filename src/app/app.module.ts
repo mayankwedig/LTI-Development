@@ -170,6 +170,7 @@ import { TrackServiceRequestComponent } from './track-service-request/track-serv
     ChartsModule,
     RouterModule.forRoot([
       {path:'',component: HomeComponent},
+      {path:'home',component: HomeComponent}, 
       {path:'about',component: AboutComponent}, 
       {path:'contact-us',component: ContactUsComponent},  
       {path:'login',component: LoginComponent},

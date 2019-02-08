@@ -80,6 +80,7 @@
                           type="text"
                           class="form-control"
                           placeholder="{{ 'email' | translate }}"
+                          disabled
                         />
 
                         <div
@@ -115,6 +116,7 @@
                           class="form-control"
                           placeholder="{{ 'mobilenumber' | translate }}"
                           pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
+                          disabled
                         />
 
                         <div *ngIf="f.mobile.touched && f.mobile.invalid">

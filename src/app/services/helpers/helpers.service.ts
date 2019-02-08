@@ -1,16 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
+
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormControl
 } from "@angular/forms";
-
+import { TranslationService } from "../translation/translation.service";
 @Injectable()
 export class HelpersService {
-  constructor() {}
-// Marking form fileds as touched.
+  constructor(private _translate?:TranslationService) {}
+  // Marking form fileds as touched.
   markAsTouched(fg: FormGroup) {
     var resultArray = Object.keys(fg.controls).map(function(keys) {
       let person = keys;
@@ -78,26 +80,71 @@ export class HelpersService {
   clearLocalStorateData(sessionName: string) {
     localStorage.removeItem(sessionName);
   }
-  lat12Monts(){ // This function is using for Consumption graph on Dash board.
-    return new Promise((resolve,reject)=>{
-      var lat12MOn=[];
-    var theMonths = new Array("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
-    var today = new Date();
-    var aMonth = today.getMonth()+1;
-    var i;
-    for (i=0; i<12; i++) {
-      lat12MOn.push(theMonths[aMonth])
-     /*  console.log(theMonths[aMonth]); //here you can do whatever you want... */
+  lat12Monts() {
+    // This function is using for Consumption graph on Dash board.
+    return new Promise((resolve, reject) => {
+      var lat12MOn = [];
+      var theMonths = new Array(
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+      );
+      var today = new Date();
+      var aMonth = today.getMonth() + 1;
+      var i;
+      for (i = 0; i < 12; i++) {
+        lat12MOn.push(theMonths[aMonth]);
+        /*  console.log(theMonths[aMonth]); //here you can do whatever you want... */
         aMonth++;
         if (aMonth > 11) {
-            aMonth = 0;
+          aMonth = 0;
         }
-    }
-    if(lat12MOn.length > 0){
-      resolve(lat12MOn);
-    }else{
-      reject(false);
-    }
+      }
+      if (lat12MOn.length > 0) {
+        resolve(lat12MOn);
+      } else {
+        reject(false);
+      }
     });
+  }
+  getImages(imageData, componentName) {
+    console.log(componentName);
+    var imgInfo = imageData;
+    var imgUrl = environment.no_image;
+    var pic = imgInfo.display_picture;
+    if (pic != "") {
+      switch (componentName) {
+        case "home": {
+          imgUrl = environment.missionImage + "/" + imgInfo.id + "/" + pic;
+          break;
+        }
+        case "home-imp-link-slider": {
+          imgUrl =
+            environment.importantLinksIcones + "/" + imgInfo.id + "/" + pic;
+
+          break;
+        }
+        default: {
+          imgUrl = environment.no_image;
+          break;
+        }
+      }
+    }
+    return imgUrl;
+  }
+  translate(string:string){
+    return this._translate.translate(string);
+  }
+  getSiteUrl():string{
+    return environment.siteUrl;
   }
 }
