@@ -909,7 +909,7 @@ body {
     float: left;
     position: relative;
  }
- .theme-default #main-menu .navigation li a .menu-icons:after{
+ /*.theme-default #main-menu .navigation li a .menu-icons:after{
     content: '';
     left: 0;
     top: 0;
@@ -1001,8 +1001,22 @@ body {
  .theme-default #main-menu .navigation li a:hover .i-tou:after,
  .theme-default #main-menu .navigation li.active a .i-tou:after{
  	background:url(../images/clock-on.png) no-repeat;
- }
-
+ }*/
+.theme-default #main-menu .navigation li a .menu-icons img {
+    margin-top: 2px; 
+}
+.theme-default #main-menu .navigation li a .menu-icons .icon-normal {
+    display: block;
+}
+.theme-default #main-menu .navigation li a .menu-icons .icon-hover {
+    display: none;
+}
+.theme-default #main-menu .navigation li a:hover .menu-icons .icon-normal {
+    display: none;
+}
+.theme-default #main-menu .navigation li a:hover .menu-icons .icon-hover {
+    display: block;
+}
 #main-menu .m-dropdown>a:before {
     content: "\f105";
     display: block;

@@ -31,7 +31,10 @@
         (click)="removeCss($event)"
       >
         <a routerLink="/manageaccount">
-          <div class="menu-icons i-user"></div>
+          <div class="menu-icons i-user">
+            <img class="icon-normal" src="assets/images/user-icon.png" />
+            <img class="icon-hover" src="assets/images/user-icon-hover.png" />
+          </div>
           <span class="mm-text" id="0">{{'account'| translate}}</span>
         </a>
       </li>
@@ -41,7 +44,10 @@
         (click)="removeCss($event)"
       >
         <a class="" routerLink="/dashboard">
-          <div class="menu-icons i-dashboard"></div>
+          <div class="menu-icons i-dashboard">
+            <img class="icon-normal" src="assets/images/dashboard-icon.png" />
+            <img class="icon-hover" src="assets/images/dashboard-icon-hover.png" />
+          </div>
           <span class="mm-text" id="1">{{"dashboard" | translate}}</span>
         </a>
       </li>
@@ -55,7 +61,10 @@
         (click)="removeCss($event)"
       >
         <a  routerLink="/profile" >
-          <div class="menu-icons i-settings"></div>
+          <div class="menu-icons i-settings">
+            <img class="icon-normal" src="assets/images/setting-icon.png" />
+            <img class="icon-hover" src="assets/images/setting-icon-hover.png" />
+          </div>
           <span class="mm-text" id="2">{{"manage profile" | translate}}</span>
         </a>
         <!-- <ul class="mmc-dropdown-delay animated fadeInLeft">
@@ -72,7 +81,10 @@
       </li>
       <li id="li3" [ngClass]="{ openDropdown: currentUrl == '/consumption' }">
         <a routerLink="/consumption">
-          <div class="menu-icons i-consumptions"></div>
+          <div class="menu-icons i-consumptions">
+            <img class="icon-normal" src="assets/images/consumptions-icon.png" />
+            <img class="icon-hover" src="assets/images/consumptions-icon-hover.png" />
+          </div>
           <span class="mm-text" id="3">{{"consumption" | translate}}</span>
         </a>
       </li>
@@ -82,7 +94,10 @@
         *ngIf="selectedAccountData.isPrepaid == 'No'"
       >
         <a routerLink="/billing">
-          <div class="menu-icons i-rupee"></div>
+          <div class="menu-icons i-rupee">
+            <img class="icon-normal" src="assets/images/rupee-icon.png" />
+            <img class="icon-hover" src="assets/images/rupee-icon-hover.png" />
+          </div>
           <span class="mm-text" id="4">{{"billing" | translate}}</span>
         </a>
       </li>
@@ -92,7 +107,10 @@
         *ngIf="selectedAccountData.isPrepaid == 'Yes'"
       >
         <a class="" routerLink="/recharge-history">
-          <div class="menu-icons i-rupee"></div>
+          <div class="menu-icons i-rupee">
+            <img class="icon-normal" src="assets/images/rupee-icon.png" />
+            <img class="icon-hover" src="assets/images/rupee-icon-hover.png" />
+          </div>
           <span class="mm-text" id="5">Recharge-History</span>
         </a>
       </li>
@@ -109,7 +127,10 @@
         (click)="removeCss($event)"
       >
         <a href="javascript:void(0);">
-          <div class="menu-icons i-service-request"></div>
+          <div class="menu-icons i-service-request">
+            <img class="icon-normal" src="assets/images/Service-Requests.png" />
+            <img class="icon-hover" src="assets/images/Service-Requests-hover.png" />
+          </div>
           <span class="mm-text" id="6">{{'servicerequests'| translate}}</span>
         </a>
         <ul class="mmc-dropdown-delay animated fadeInLeft">
@@ -154,7 +175,10 @@
         (click)="removeCss($event)"
       >
         <a href="javascript:void(0);">
-          <div class="menu-icons i-complaints"></div>
+          <div class="menu-icons i-complaints">
+            <img class="icon-normal" src="assets/images/complaints.png" />
+            <img class="icon-hover" src="assets/images/complaints-hover.png" />
+          </div>
           <span class="mm-text" id="7">{{'complaints'| translate}}</span>
         </a>
         <ul class="mmc-dropdown-delay animated fadeInLeft">
@@ -185,7 +209,10 @@
         (click)="removeCss($event)"
       >
         <a class="" routerLink="/net-metering">
-          <div class="menu-icons i-consumptions"></div>
+          <div class="menu-icons i-consumptions">
+            <img class="icon-normal" src="assets/images/consumptions-icon.png" />
+            <img class="icon-hover" src="assets/images/consumptions-icon-hover.png" />
+          </div>
           <span class="mm-text" id="8">{{'netmetering' | translate}}</span>
         </a>
       </li>
@@ -195,7 +222,10 @@
         (click)="removeCss($event)"
       >
         <a class="" routerLink="/tou">
-          <div class="menu-icons i-tou"></div>
+          <div class="menu-icons i-tou">
+            <img class="icon-normal" src="assets/images/clock-off.png" />
+            <img class="icon-hover" src="assets/images/clock-on.png" />
+          </div>
           <span class="mm-text" id="9">{{'tou' | translate}}</span>
         </a>
       </li>
@@ -206,7 +236,10 @@
         (click)="removeCss($event)"
       >
         <a class="" routerLink="/notifications">
-          <div class="menu-icons i-notifications"></div>
+          <div class="menu-icons i-notifications">
+            <img class="icon-normal" src="assets/images/notification-icon.png" />
+            <img class="icon-hover" src="assets/images/notification-icon-hover.png" />
+          </div>
           <span class="mm-text" id="10">{{'notifications' | translate}}</span>
         </a>
       </li>
@@ -216,14 +249,20 @@
         (click)="removeCss($event)"
       >
         <a class="" routerLink="/consumption-estimator">
-          <div class="menu-icons i-consumptions"></div>
+          <div class="menu-icons i-consumptions">
+            <img class="icon-normal" src="assets/images/consumptions-icon.png" />
+            <img class="icon-hover" src="assets/images/consumptions-icon-hover.png" />
+          </div>
           <span class="mm-text" id="11">{{'consumptionestimator' | translate}}</span>
         </a>
       </li>
       <li id="li12" [ngClass]="{ openDropdown: currentUrl == '/reset-password' }"
       (click)="removeCss($event)">
         <a routerLink="/change-password">
-          <div class="menu-icons i-settings"></div>
+          <div class="menu-icons i-settings">
+            <img class="icon-normal" src="assets/images/setting-icon.png" />
+            <img class="icon-hover" src="assets/images/setting-icon-hover.png" />
+          </div>
             <span class="mm-text" id="12">{{'Change Password'|translate}}</span>
         </a>
       </li>
@@ -231,7 +270,10 @@
       <li id="li13" [ngClass]="{ openDropdown: currentUrl == '/logout' }"
       (click)="removeCss($event)">
         <a href="JavaScript:Void(#);" (click)="logout()">
-            <div class="menu-icons i-logout"></div>
+            <div class="menu-icons i-logout">
+            <img class="icon-normal" src="assets/images/logout-icon.png" />
+            <img class="icon-hover" src="assets/images/logout-icon-hover.png" />
+          </div>
             <span class="mm-text" id="13">{{'logout' | translate}}</span>
         </a>
       </li>
