@@ -319,24 +319,53 @@ export class LoginComponent {
     );
   }
   getSelectedQuestions(userName){
-    console.log(userName);
-    this.loginService.getUsersQuetion(userName)
-    .subscribe((result:any)=>{
-      /* console.log(result) */
-      if(result.authCode == 200 && result.status == true && result.data_params.length > 0){
-        var data=result.data_params;
-        var fields = {
+    var fields ={};
+    if(userName != ''){
+      this.loginService.getUsersQuetion(userName)
+      .subscribe((result:any)=>{
+        if(result.authCode == 200 && result.status == true && result.data_params.length > 0){
+          var data=result.data_params;
+          fields = {
+            email: [""],
+            email1: [userName],
+            questionsList1: [data[0].firstQuestionId],
+            questionsList2: [data[1].secondQuestionId],
+            ansques1: [""],
+            ansques2: [""]
+          };
+          this.forgotPassFrm = this.fb.group(fields);
+        }else{
+          fields = {
+            email: [""],
+            email1: [userName],
+            questionsList1: [""],
+            questionsList2: [""],
+            ansques1: [""],
+            ansques2: [""]
+          };
+          this.forgotPassFrm = this.fb.group(fields);
+        }
+      },error=>{
+        fields = {
           email: [""],
           email1: [userName],
-          questionsList1: [data[0].firstQuestionId],
-          questionsList2: [data[1].secondQuestionId],
+          questionsList1: [""],
+          questionsList2: [""],
           ansques1: [""],
           ansques2: [""]
         };
-        this.forgotPassFrm = this.fb.group(fields);
-      }
-    },error=>{
-      this.toastr.error("Something went wrong,Please try again later", this._translate.translate("Failed!"));
-    });
+        this.toastr.error("Something went wrong,Please try again later", this._translate.translate("Failed!"));
+      });
+    }else{
+      fields = {
+        email: [""],
+        email1: [userName],
+        questionsList1: [""],
+        questionsList2: [""],
+        ansques1: [""],
+        ansques2: [""]
+      };
+    }
+   
   }
 }

@@ -161,7 +161,7 @@
                           type="text"
                           class="form-control"
                           placeholder="{{'userId'|translate}}"
-                          (change)="getSelectedQuestions(forgotPassFrm.value.email1)"
+                          (input)="getSelectedQuestions(forgotPassFrm.value.email1)"
                         />
                         <div *ngIf="errorFlags.email1">
                           <span class="error-msg"
