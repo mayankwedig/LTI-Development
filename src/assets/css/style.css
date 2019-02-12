@@ -5753,3 +5753,13 @@ margin:40px auto;
     display: table;
     width: 100%;
 }
+.language-option {
+    padding-top: 23px;
+}
+.language-option .lang-control[_ngcontent-c3] {
+    border: solid 1px #c2c2c2;
+    padding-left: 3px !important;
+}
+.for-responsive {
+    display: none;
+}
