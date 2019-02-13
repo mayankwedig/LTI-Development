@@ -207,9 +207,6 @@
     #main-navbar .name-email {
         display: none;
     }
-    .for-responsive {
-        display: block;
-    }
     .theme-default #main-navbar form.navbar-form {
         width: 28%;
     }
@@ -496,6 +493,9 @@
 
     #main-navbar .navbar-nav>li.language-option {
         padding: 10px 15px;
+    }
+    .for-responsive {
+        display: block;
     }
 }
 @media(max-width:1150px) {
@@ -891,7 +891,7 @@
         padding: 0 10px;
     }
     .main-container-sec {
-        margin-top: 74px;
+        margin-top: 140px;
     }
     .bannar-sidebar .latest-update, 
     .bannar-sidebar .c-m-message {
@@ -1322,10 +1322,10 @@
         padding-right: 0;
     }
     .responsive-menu {
-        width: 30%;
+        width: 34%;
         margin: 74px 0 0;
         padding-bottom: 0;
-        text-align: center;
+        text-align: right;
         float: right;
     }
     .responsive-menu li:first-child {
@@ -1475,13 +1475,14 @@
     }
     .header-search-bar.for-responsive {
         display: block;
-        width: 70%;
+        width: 66%;
         float: left;
         padding-bottom: 10px;
     }
     .theme-default #main-navbar form.navbar-form {
         padding-top: 0;
         padding-bottom: 0;
+        padding-right: 0;
     }
     #main-navbar form.navbar-form .form-control {
         margin-top: 0;
@@ -1490,6 +1491,10 @@
         top: 0;
         right: 0;
         height: 36px;
+        margin-right: 0; 
+    }
+    .responsive-menu li.download-menu {
+        padding-left: 0; 
     }
 }
 @media(max-width:480px) {  
