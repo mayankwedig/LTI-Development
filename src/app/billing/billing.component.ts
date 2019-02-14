@@ -45,7 +45,9 @@ export class BillingComponent implements OnInit {
     private translationServices: TranslationService
 
   ) {}
-
+    translate(string:string):string{
+      return this.helpers.translate(string);
+    }
   ngOnInit() {
     /* this.getselectedGraphData = atob(
       this.activateRoute.snapshot.queryParamMap.get("billing")
@@ -60,13 +62,13 @@ export class BillingComponent implements OnInit {
     this.accountNumber=accountTokenInfo[1]//account Number
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMM");
-    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     this.billinglabels = [];
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.billingchartData = [
       {
-        label: this.translationServices.translate("Billing"),
+        label: this.translate("Billing"),
         data: []
       }
     ];
@@ -117,7 +119,7 @@ export class BillingComponent implements OnInit {
   downloadPDFfile(PDFURL){
     this.WindowRef.nativeWindow.open(PDFURL, "popup");
 
-    this.toastr.success(this.translationServices.translate("Excel downloaded successfully"), this.translationServices.translate("Success!"));
+    this.toastr.success(this.translate("Excel downloaded successfully"), this.translate("Success!"));
 
   }
 
@@ -158,7 +160,7 @@ export class BillingComponent implements OnInit {
         );
         this.billingchartData = [
           {
-            label: this.translationServices.translate("Billing"),
+            label: this.translate("Billing"),
             data: gData
           }
         ];

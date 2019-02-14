@@ -71,26 +71,26 @@
                         </div>
                       </div>
                     </div>
+                    <!-- placeholder="{{ 'email' | translate }}" -->
                     <div class="col-sm-12">
                       <div class="form-group">
                         <input
-                          required
                           formControlName="email"
                           name="email"
                           type="text"
                           class="form-control"
-                          placeholder="{{ 'email' | translate }}"
                           disabled
+                          
                         />
 
-                        <div
+                        <!-- <div
                           *ngIf="
                             f.email.touched && f.email.errors && f.email.invalid
                           "
                         >
                           <span
                             class="error-msg"
-                            *ngIf="f.email.invalid && !f.email.errors?.required"
+                            *ngIf="f.email.invalid"
                           >
                             {{ "email" | translate }}
                             {{ "invalid" | translate }}</span
@@ -101,25 +101,27 @@
                             >{{ "email" | translate }}
                             {{ "required" | translate }}</span
                           >
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
+                         <!--  pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" -->
                         <input
-                          required
+                          
                           formControlName="mobile"
                           name="mobile"
                           type="tel"
                           class="form-control"
                           placeholder="{{ 'mobilenumber' | translate }}"
-                          pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
                           disabled
+                         
+                          
                         />
 
-                        <div *ngIf="f.mobile.touched && f.mobile.invalid">
+                        <!-- <div *ngIf="f.mobile.touched && f.mobile.invalid">
                           <span
                             class="error-msg"
                             *ngIf="f.mobile.errors?.required"
@@ -133,7 +135,7 @@
                               "pleaseentervalidmobilenumber" | translate
                             }}</span
                           >
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -340,10 +342,11 @@
                           <div class="bounce2"></div>
                           <div class="bounce3"></div>
                         </div>
+                       <!--  [disabled]="!signupFrm.valid" -->
                         <button
                           class="btn btn-primary submit-btn"
                           type="submit"
-                          [disabled]="!signupFrm.valid"
+                         
                         >
                           {{ "submit" | translate }}
                         </button>

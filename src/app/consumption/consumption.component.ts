@@ -51,6 +51,9 @@ export class ConsumptionComponent implements OnInit {
   chartToShow = "daily";
   dispString = "";
   selected_year: any = "";
+  translate(string:string):string{
+   return this.helpers.translate(string);
+  }
   ngOnInit() {
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMM");
@@ -59,7 +62,7 @@ export class ConsumptionComponent implements OnInit {
 
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
 
     if (this.activateRoute.snapshot.queryParamMap.get("consumption") != null) {
       this.getselectedGraphData = atob(
@@ -227,7 +230,7 @@ export class ConsumptionComponent implements OnInit {
     this.consumptionlabels = [];
     this.consumptionchartData = [
       {
-        label: this.translationServices.translate("Consumption"),
+        label: this.translate("Consumption"),
         data: []
       }
     ];
@@ -245,7 +248,7 @@ export class ConsumptionComponent implements OnInit {
     // STATIC DATA FOR THE CHART IN JSON FORMAT.
     this.consumptionchartData = [
       {
-        label: this.translationServices.translate("Consumption"),
+        label: this.translate("Consumption"),
         data: []
       }
     ];
@@ -276,7 +279,7 @@ export class ConsumptionComponent implements OnInit {
     this.consumptiondaylabels = [];
     this.consumptiondaychartData = [
       {
-        label: this.translationServices.translate("Consumption"),
+        label: this.translate("Consumption"),
         data: [],
         fill: false,
         borderWidth: 2
@@ -291,7 +294,7 @@ export class ConsumptionComponent implements OnInit {
   genrateGraph() {
     this.consumptionchartData = [
       {
-        label: this.translationServices.translate("Consumption"),
+        label: this.translate("Consumption"),
         data: []
       }
     ];
@@ -337,8 +340,8 @@ export class ConsumptionComponent implements OnInit {
               this.consumptionlabels = dValue;
               this.consumptionchartData = [
                 {
-                  label: this.translationServices.translate("Consumption for")+this.translationServices.translate(this.month_name)+
-                  this.translationServices.translate(", ")+this.translationServices.translate(this.selected_year),
+                  label: this.translate("Consumption for")+this.translate(this.month_name)+
+                  this.translate(", ")+this.translate(this.selected_year),
                   data: gData
                 }
               ];
@@ -401,7 +404,6 @@ export class ConsumptionComponent implements OnInit {
               tooltips: {
                 callbacks: {
                     label: function(tooltipItem, data) {
-                      console.log(tooltipItem.index);
                         var label = /* data.datasets[tooltipItem.datasetIndex].label || */ 'Consumption:'+tooltipItem.yLabel+"  Voltage:"+VoltageData[tooltipItem.index];
         
                         /* if (label) {
@@ -419,9 +421,9 @@ export class ConsumptionComponent implements OnInit {
             this.consumptionchartData = [
               {
 
-                label: this.translationServices.translate("Consumption as on")+this.translationServices.translate(this.month_name)+
-                this.translationServices.translate( " ")+this.translationServices.translate( this.selectedDay)+this.translationServices.translate
-                (", ")+this.translationServices.translate(this.selected_year),
+                label: this.translate("Consumption as on")+this.translate(this.month_name)+
+                this.translate( " ")+this.translate( this.selectedDay)+this.translate
+                (", ")+this.translate(this.selected_year),
                 data: gData,
                 fill: false,
                 borderWidth: 2,
@@ -454,7 +456,7 @@ export class ConsumptionComponent implements OnInit {
             this.consumptionlabels = consumptionLbl;
             this.consumptionchartData = [
               {
-                label: this.translationServices.translate("Yearly Consumption"),
+                label: this.translate("Yearly Consumption"),
                 data: gData,
                 fill: false,
                 borderWidth: 2
@@ -517,7 +519,7 @@ export class ConsumptionComponent implements OnInit {
           );
           this.consumptionchartData = [
             {
-              label: this.translationServices.translate("Consumption for")+this.translationServices.translate(this.selected_year),
+              label: this.translate("Consumption for")+this.translate(this.selected_year),
               data: gData
             }
           ];
@@ -541,8 +543,8 @@ export class ConsumptionComponent implements OnInit {
           this.consumptionlabels.push("1", "2", "3", "4");
           this.consumptionchartData = [
             {
-              label: this.translationServices.translate("Consumption for")+this.translationServices.translate(this.month_name)+
-              this.translationServices.translate(", ")+this.translationServices.translate(this.selected_year),
+              label: this.translate("Consumption for")+this.translate(this.month_name)+
+              this.translate(", ")+this.translate(this.selected_year),
               // label:
               //   "Consumption for " +
               //   this.month_name +

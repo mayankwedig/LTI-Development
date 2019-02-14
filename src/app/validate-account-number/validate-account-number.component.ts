@@ -64,15 +64,30 @@ export class ValidateAccountNumber implements OnInit {
       if(res.authCode){
         if(res.authCode == "200" && res.status){
           this.isAccountNumberValid="true";
+          var accEmail="";
+          var accMobile="";
+          if(res.data_params.email != "" && res.data_params.email != null && res.data_params.email != 0){
+            accEmail=res.data_params.email;
+          }
+          if(res.data_params.mobile != "" && res.data_params.mobile != null && res.data_params.mobile != 0){
+            accMobile=res.data_params.mobile;
+          }
           localStorage.setItem("isAccountNumberValid", this.isAccountNumberValid);
           localStorage.setItem("verifiedAccountNumber", this.accountVerificationFrm.value.account_number);
-          localStorage.setItem("verifiedAccEmail", res.data_params.email);
-          localStorage.setItem("verifiedAccMobileNo", res.data_params.mobile);
+          localStorage.setItem("verifiedAccEmail",accEmail);
+          localStorage.setItem("verifiedAccMobileNo", accMobile);
           this.toastr.success(res.msg, 'Success!');
           this.router.navigate(["/singup-otp-varification"]);
 
         
         }else{
+          /* this.isAccountNumberValid="true";
+          localStorage.setItem("isAccountNumberValid", this.isAccountNumberValid);
+          localStorage.setItem("verifiedAccountNumber", this.accountVerificationFrm.value.account_number);
+          localStorage.setItem("verifiedAccEmail", 'mayank.mourya@wedigtechc.com');
+          localStorage.setItem("verifiedAccMobileNo", '123456789');
+          this.toastr.success(res.msg, 'Success!');
+          this.router.navigate(["/singup-otp-varification"]); */
           this.toastr.error(res.msg, 'Failed!');
         }
       }

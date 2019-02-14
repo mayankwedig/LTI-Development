@@ -82,19 +82,19 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     this.getLimitedNotifications();
   }
   getSiteLogo(){
-     this.logogImage=environment.no_image;
+     this.logogImage=environment.logo_not_found;
     this.profile.getSiteLogo().subscribe((result:any)=>{
         console.log(result);
         if(result.authCode == 200 && result.status){
           if(result.home_logo != ''){
             this.logogImage= environment.logoUrl+result.data_params.home_logo;
           }else{
-            this.logogImage=environment.no_image;
+            this.logogImage=environment.logo_not_found;
           }
           
         }
     },(error:AppError)=>{
-      this.logogImage=environment.no_image;
+      this.logogImage=environment.logo_not_found;
       if (error instanceof BadInput) {
       } else {
         throw error;

@@ -252,11 +252,8 @@ export class DashboardComponent implements OnInit {
       this.onDemandReadLoder = false;
       if (result.authCode == "200") {
         var data = result.data_params;
-
-        var latestConsumption = data.latestConsumption;
-        //this.onDemandReadData=latestConsumption; // Yesterday's Consumption.
-        /* var myNumber = Math.floor(Math.random()*7); */
-        this.onDemandReadData = 20 * 5 + 30 + Math.floor(Math.random() * 7);
+        var latestConsumption = data;/* data.latestConsumption; */
+        this.onDemandReadData = data
       } else {
         this.onDemandReadData = "";
       }

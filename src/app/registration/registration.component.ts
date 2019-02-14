@@ -1,4 +1,4 @@
-import { HelpersService } from './../services/helpers/helpers.service';
+import { HelpersService } from "./../services/helpers/helpers.service";
 
 import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { SignupService } from "../services/signup/signup.service"; //for later purpose
 import { ToastrService } from "ngx-toastr";
-import { CustomValidationsService } from './../services/custom-validations/custom-validations.service';
+import { CustomValidationsService } from "./../services/custom-validations/custom-validations.service";
 
 import { Router } from "@angular/router";
 
@@ -26,26 +26,33 @@ export class RegistrationComponent implements OnInit {
   questionsList1Loader = false;
   questionsList2Loader = false;
 
-  otpVerifiedAcInfo:any={};
+  otpVerifiedAcInfo: any = {};
   constructor(
     private fb: FormBuilder,
     private SignupService: SignupService,
     private router: Router,
     private toastr: ToastrService,
     private CustomValidations: CustomValidationsService,
-    private helpers :HelpersService
-  ) {
-    
-  }
-  
+    private helpers: HelpersService
+  ) {}
+
   //Initialize registration form
   initRegistrationFrm() {
     this.signupFrm = this.fb.group(
       {
         username: ["", Validators.required],
-        email: [this.otpVerifiedAcInfo.email, [Validators.required, this.CustomValidations.isEmailValid("email")]],
-        mobile: [this.otpVerifiedAcInfo.mobile, Validators.required],
-        password: ["", Validators.compose([Validators.required,Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{9,})/)])],
+        email: [
+          this.otpVerifiedAcInfo.email/* ,
+          [this.CustomValidations.isEmailValid("email")] */
+        ],
+        mobile: [this.otpVerifiedAcInfo.mobile],
+        password: [
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{9,})/)
+          ])
+        ],
         cpassword: ["", Validators.required],
         questionsList1: ["", Validators.required],
         questionsList2: ["", Validators.required],
@@ -61,20 +68,30 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-      let otpVerifiedAccEmail = this.helpers.getLocalStoragData("otpVerifiedAccEmail"); // cehck if account token is exists
-      let otpVerifiedAccMobileNo = this.helpers.getLocalStoragData("otpVerifiedAccMobileNo"); // cehck if account token is exists
-      let otpVerifiedAccountNumber= this.helpers.getLocalStoragData("otpVerifiedAccountNumber");
-      this.otpVerifiedAcInfo={"email":otpVerifiedAccEmail,"mobile":otpVerifiedAccMobileNo,"account_number":otpVerifiedAccountNumber};
-      this.initRegistrationFrm();
-      this.clearOtpVerifiedAccountInfoSession();
-      this.fechQuestionList("1");
-      this.fechQuestionList("2");
+    let otpVerifiedAccEmail = this.helpers.getLocalStoragData(
+      "otpVerifiedAccEmail"
+    ); // cehck if account token is exists
+    let otpVerifiedAccMobileNo = this.helpers.getLocalStoragData(
+      "otpVerifiedAccMobileNo"
+    ); // cehck if account token is exists
+    let otpVerifiedAccountNumber = this.helpers.getLocalStoragData(
+      "otpVerifiedAccountNumber"
+    );
+    this.otpVerifiedAcInfo = {
+      email: otpVerifiedAccEmail,
+      mobile: otpVerifiedAccMobileNo,
+      account_number: otpVerifiedAccountNumber
+    };
+    this.initRegistrationFrm();
+    this.clearOtpVerifiedAccountInfoSession();
+    this.fechQuestionList("1");
+    this.fechQuestionList("2");
   }
-  clearOtpVerifiedAccountInfoSession(){
+  clearOtpVerifiedAccountInfoSession() {
     this.helpers.clearLocalStorateData("otpVerifiedAccEmail"); // verified  account info  session
     this.helpers.clearLocalStorateData("otpVerifiedAccMobileNo"); // verified  account info  session
     this.helpers.clearLocalStorateData("otpVerifiedAccountNumber"); // verified  account info  session
-}
+  }
   fechQuestionList(quesType) {
     if (quesType == "1") {
       this.questionsList1Loader = true;
@@ -116,32 +133,43 @@ export class RegistrationComponent implements OnInit {
       desc: "Changing The Power<br> That Changes<br> The World"
     }
   ];
-
-  signUp() {
-    // register user
-    this.loder = true;
-    const apiData = this.signupFrm.value;
-    apiData["accountNumber"]=this.otpVerifiedAcInfo.account_number;
-    this.SignupService.registerUser("users/register", apiData).subscribe(
-      (response: any) => {
-        var res = response;
-        this.loder = false;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            this.toastr.success(res.msg, "Success!");
-            this.router.navigate(["/login"]);
-          } else {
-            this.toastr.error(res.msg, "Failed!");
-          }
-        }
-      },
-      (error: AppError) => {
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
+  translate(string: string): string {
+    return this.helpers.translate(string);
   }
-
+  signUp() {
+    this.signupFrm = this.helpers.markAsTouched(this.signupFrm);
+    if (this.signupFrm.status != "INVALID") {
+      const apiData = this.signupFrm.value;
+      if (apiData.email == "" && apiData.mobile == "") {
+        this.toastr.error(
+          this.translate("Please provide your email address or mobile number")
+        );
+      } else {
+        this.loder = true;
+        apiData["accountNumber"] = this.otpVerifiedAcInfo.account_number;
+        this.SignupService.registerUser("users/register", apiData).subscribe(
+          (response: any) => {
+            var res = response;
+            this.loder = false;
+            if (res.authCode) {
+              if (res.authCode == "200" && res.status == true) {
+                this.toastr.success(res.msg, "Success!");
+                this.router.navigate(["/login"]);
+              } else {
+                this.toastr.error(res.msg, "Failed!");
+              }
+            }
+          },
+          (error: AppError) => {
+            if (error instanceof BadInput) {
+            } else {
+              throw error;
+            }
+          }
+        );
+      }
+    } else {
+      this.toastr.warning(this.translate("Please fill required fields"));
+    }
+  }
 }

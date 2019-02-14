@@ -135,8 +135,11 @@
                               account.billing_amount | number
                             }}
                           </td>
-                          <td width="10%">
+                          <td width="10%" *ngIf="account.billing_due_date != '-'">
                             {{ account.billing_due_date | date: "d/M/yy" }}
+                          </td>
+                          <td width="10%" *ngIf="account.billing_due_date == '-'">
+                            -
                           </td>
                           <td width="15%">
                             <a

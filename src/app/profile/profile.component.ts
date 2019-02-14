@@ -45,6 +45,9 @@ export class ProfileComponent implements OnInit {
 
   public OtpVerificationFrm: FormGroup;
   public passwordVerificationFrm:FormGroup;
+  translate(string:string):string{
+    return this.helpers.translate(string);
+  }
   get OtpVerificationFields() {
     return this.OtpVerificationFrm.controls;
   }
@@ -87,13 +90,13 @@ export class ProfileComponent implements OnInit {
         };
       } else {
         this.invalidImageIssue = true;
-        this.toastr.error(this.translationServices.translate("Image file size must not exceed 2 mb"), this.translationServices.translate("Failed!"));
+        this.toastr.error(this.translate("Image file size must not exceed 2 mb"), this.translate("Failed!"));
       }
     } else {
       this.invalidImageIssue = true;
-      this.toastr.error(this.translationServices.translate
+      this.toastr.error(this.translate
         ("Please upload image with valid file extension ex: png,jpeg and jpg"),
-        this.translationServices.translate("Failed!"));
+        this.translate("Failed!"));
 
     }
   }
@@ -128,7 +131,7 @@ export class ProfileComponent implements OnInit {
             this.oldEmailid=this.profileData.email;
             this.profile_image = this.profileData.profile_image;
           } else {
-            this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
+            this.toastr.error(this.translate(res.msg), this.translate("Failed!"));
           }
         }
       },
@@ -143,7 +146,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.currentUserData = this.auth.getCurrentUser();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
-    this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
+    this.dispString =  this.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
     this.getProfile();
@@ -214,11 +217,11 @@ export class ProfileComponent implements OnInit {
         this.profileUpdateLoder = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
-            this.toastr.success(this.translationServices.translate(res.msg), this.translationServices.translate("Details updated successfully!"));
+            this.toastr.success(this.translate(res.msg), this.translate("Details updated successfully!"));
             this.showProfileUpdateFrm(false);
             this.getProfile();
           } else {
-            this.toastr.error(this.translationServices.translate(res.msg));
+            this.toastr.error(this.translate(res.msg));
           }
         }
       },
@@ -259,11 +262,11 @@ export class ProfileComponent implements OnInit {
           this.profileUpdateLoder = false;
           if (res.authCode) {
             if (res.authCode == "200" && res.status == true) {
-              this.toastr.success(this.translationServices.translate(res.msg), "Details updated successfully!");
+              this.toastr.success(this.translate(res.msg), "Details updated successfully!");
               this.showProfileUpdateFrm(false);
               this.getProfile();
             } else {
-              this.toastr.error(this.translationServices.translate(res.msg), "Failed!");
+              this.toastr.error(this.translate(res.msg), "Failed!");
             }
           }
         },
@@ -300,11 +303,11 @@ export class ProfileComponent implements OnInit {
         if (result.authCode == 200 && result.status == true) {
           //OTP msg sent Successfully
 
-          this.toastr.success(this.translationServices.translate(result.msg),this.translationServices.translate("Success"));
+          this.toastr.success(this.translate(result.msg),this.translate("Success"));
           this.showModalPopup("topVerification-modal");
           this.initOtpVerificationForm();
         }else{
-          this.toastr.error(this.translationServices.translate(result.msg));
+          this.toastr.error(this.translate(result.msg));
         }
       },
       (error: AppError) => {
@@ -347,7 +350,7 @@ export class ProfileComponent implements OnInit {
             
             this.initOtpVerificationForm();
             this.closePopup("topVerification-frm");
-            this.toastr.success(this.translationServices.translate(response.msg));
+            this.toastr.success(this.translate(response.msg));
             
             if(this.newChangesType.mobileNo == true){
               
@@ -363,7 +366,7 @@ export class ProfileComponent implements OnInit {
           }else{
             this.initOtpVerificationForm();
             this.closePopup("topVerification-frm");
-            this.toastr.error(this.translationServices.translate(response.msg));
+            this.toastr.error(this.translate(response.msg));
           }
         }
       },(error: AppError) => {
@@ -395,18 +398,18 @@ export class ProfileComponent implements OnInit {
           if (res.authCode == "200" && res.status == true) {// if account verfied then open password Screen
             this.initPwVerificationForm();
             this.closePopup("passwordVerification-frm");
-            this.toastr.success(this.translationServices.translate(response.msg));
+            this.toastr.success(this.translate(response.msg));
             this.saveFomrData();
           }else{
             this.initPwVerificationForm();
             this.closePopup("passwordVerification-frm");
-            this.toastr.error(this.translationServices.translate(response.msg));
+            this.toastr.error(this.translate(response.msg));
           }
         }
       },(error: AppError) => {
         this.initPwVerificationForm();
         this.closePopup("passwordVerification-frm");
-        this.toastr.error(this.translationServices.translate("Somthing went wrong"));
+        this.toastr.error(this.translate("Somthing went wrong"));
         this.profileUpdateLoder = false;
         this.VerifyPasswordLoder = false;
         if (error instanceof BadInput) {

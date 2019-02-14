@@ -13,14 +13,14 @@
             <div class="panel-body">
               <div class="title">{{'New Connection Request'|translate}}</div>
               <div class="req-success-msg">
-                Thank You For Registering Your New Connection Request.
+                {{'Thank You For Registering Your New Connection Request'|translate}}
               </div>
               <div class="req-number">
-                Your tracking no. is: <span>{{ trackingNo }}</span>
+                {{'Your tracking no. is'|translate}}: <span>{{ trackingNo }}</span>
               </div>
-              <div class="team-contact">Our Team Will Contact You Shortly.</div>
+              <div class="team-contact">{{'Our Team Will Contact You Shortly'|translate}}</div>
               <div class="text-center padding_top50">
-                Page will be redirect automatically after 30 second.
+                {{'Page will be redirect automatically after 30 second'|translate}}
               </div>
             </div>
           </div>
@@ -64,10 +64,10 @@
                           name="discomName"
                           class="form-control"
                         >
-                          <option value="" selected>Select DISCOM Name</option>
+                          <option value="" selected>{{'Select DISCOM Name'|translate}}</option>
                         </select>
                         <div *ngIf="discomNameLoader" class="fieldLoding">
-                          Loding...
+                          {{'Loding'|translate}}...
                         </div>
                         <div
                           *ngIf="f.discomName.touched && f.discomName.invalid"
@@ -75,7 +75,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.discomName.errors?.required"
-                            >DISCOM Name is required.</span
+                            >{{'DISCOM Name is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -90,7 +90,7 @@
                           name="division"
                           class="form-control"
                         >
-                          <option value="" selected>Select {{'Division'|translate}}</option>
+                          <option value="" selected>{{'Select'|translate}} {{'Division'|translate}}</option>
                           <option
                             value="{{ division.name }}"
                             *ngFor="let division of divisions"
@@ -104,16 +104,16 @@
                           name="division"
                           class="form-control"
                         >
-                          <option value="" selected>Select Division</option>
+                          <option value="" selected>{{'Select Division'|translate}}</option>
                         </select>
                         <div *ngIf="divisionLoder" class="fieldLoding">
-                          Loding...
+                          {{'Loding'|translate}}...
                         </div>
                         <div *ngIf="f.division.touched && f.division.invalid">
                           <span
                             class="error-msg"
                             *ngIf="f.division.errors?.required"
-                            >Division is required.</span
+                            >{{'Division is required'|translate}}.</span
                           >
                         </div>
                       </div>
@@ -145,11 +145,11 @@
                           class="form-control"
                         >
                           <option value="" selected
-                            >Select SDO Office Name</option
+                            >{{'Select SDO Office Name'|translate}}</option
                           >
                         </select>
                         <div *ngIf="sdoOfficeLoader" class="fieldLoding">
-                          Loding...
+                          {{'Loding'|translate}}...
                         </div>
                         <div
                           *ngIf="
@@ -159,7 +159,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.sdoOfficeName.errors?.required"
-                            >SDO Office Name is required.</span
+                            >{{'SDO Office Name is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -174,11 +174,11 @@
                           class="form-control"
                         >
                           <option value="" selected
-                            >Select {{'Consumer Type'|translate}}</option
+                            >{{'Select'|translate}} {{'Consumer Type'|translate}}</option
                           >
-                          <option value="others">Others</option>
-                          <option value="departmental">Departmental</option>
-                          <option value="bpl">BPL</option>
+                          <option value="others">{{'Others'|translate}}</option>
+                          <option value="departmental">{{'Departmental'|translate}}</option>
+                          <option value="bpl">{{'BPL'|translate}}</option>
                         </select>
                         <div
                           *ngIf="
@@ -189,7 +189,7 @@
                             class="error-msg"
                             *ngIf="f.consumerType.errors?.required"
                           >
-                            Consumer Type is required.</span
+                            {{'Consumer Type is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -203,7 +203,7 @@
                           name="load"
                           class="form-control"
                         >
-                          <option value="" selected>Select {{'Load'|translate}}{{'(KW)'|translate}}</option>
+                          <option value="" selected>{{'Select'|translate}} {{'Load'|translate}}{{'(KW)'|translate}}</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -219,7 +219,7 @@
                             class="error-msg"
                             *ngIf="f.load.errors?.required"
                           >
-                            Load(KW) is required.</span
+                            {{'Load(KW) is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -243,7 +243,7 @@
                       class="btn btn-primary submit-btn full-btn"
                       type="submit"
                     >
-                      submit
+                      {{'submit'|translate}}
                     </button>
                   </div>
                   <!-- {{newServiceConnectionFrm.value | json}} -->
@@ -284,7 +284,7 @@
                             class="error-msg"
                             *ngIf="step2f.firstName.errors?.required"
                           >
-                            First name is required.</span
+                            {{'First name is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -309,7 +309,7 @@
                             class="error-msg"
                             *ngIf="step2f.lastName.errors?.required"
                           >
-                            Last name is required.</span
+                            {{'Last name is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -318,13 +318,13 @@
                   <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
-                        <label>{{Father_First_Name|translate}}*</label>
+                        <label>{{'Father_First_Name'|translate}}*</label>
                         <input
                           formControlName="fatherFirstName"
                           name="fatherFirstName"
                           type="text"
                           class="form-control"
-                          placeholder="Father's First Name"
+                          placeholder="{{'Fathers First Name'|translate}}"
                           required
                         />
                         <div
