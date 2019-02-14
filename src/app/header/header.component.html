@@ -149,6 +149,13 @@
             </ul>
             </li>
      </ul>
+     
+    <div class="header-search-bar for-responsive">
+      <form class="navbar-form">
+       <input name="search" type="text" [(ngModel)]="searchKeyWord" #ngModel class="form-control" placeholder="Search">
+       <a class="blue-search-btn" (click)="doSearch()" style="cursor: pointer;">{{'doSearch' | translate}}</a>
+      </form>
+    </div>
      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
      <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
 
@@ -203,8 +210,9 @@
       <div>
         <div class="right clearfix">
           <ul class="nav navbar-nav pull-right right-navbar-nav">
-            <li>
-              <div class="rows" style="margin-top: 23px;">
+            <li class="language-option">
+              <!-- <div class="rows" style="margin-top: 23px;">
+              </div> -->
                 <select
                   [(ngModel)]="selected_lang"
                   name="langs"
@@ -215,7 +223,6 @@
                   <option value="hi">हिंदी संस्करण</option>
                   <option value="eng">English Version</option>
                 </select>
-              </div>
             </li>
             <li *ngIf="auth.isLoggedIn()">
               <a

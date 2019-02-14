@@ -20,6 +20,11 @@
         height: 593px;
     }
 }
+@media(max-width:1550px) {
+    .theme-default #main-navbar form.navbar-form {
+        width: 22%;
+    }
+}
 @media(max-width:1500px) {
     .dash-box-li .padding_left15.rows {
         padding-left: 0 !important;
@@ -39,6 +44,14 @@
     .table-dashboard-billing.table-fixed tbody tr td:nth-child(8) {
         width: 8%;
     }
+    .theme-default #main-navbar form.navbar-form {
+        width: 25%;
+    }
+}
+@media(max-width:1470px) {
+    .theme-default #main-navbar form.navbar-form {
+        width: 21%;
+    }
 }
 @media(max-width:1450px) {
 	.dash-box-li .rows.margin_top25 .blue-btn {
@@ -57,7 +70,6 @@
         word-break: break-word;
     }
 }
-
 @media(max-width:1400px) {
     #content-wrapper .dash-box-list .dash-box-li .notification-listing li {
         margin: 5px 0;
@@ -97,6 +109,9 @@
     .profile-page .pro-account {
         padding: 6px 15px;
     }
+    .nav>li>a {
+        padding: 10px 10px;
+    }
 }
 @media(max-width:1366px) {
     #content-wrapper .box-title .text-title {
@@ -109,11 +124,11 @@
     .btn .caret {
         margin-left: 6px;
     }
-   .theme-default #main-navbar form.navbar-form {
+   /*.theme-default #main-navbar form.navbar-form {
         width: 350px;
-    }
-    .theme-default #main-navbar .navbar-nav>li>a{
-        padding: 0px 10px;
+    }*/
+    .theme-default #main-navbar .navbar-nav>li>a {
+        padding: 0px 5px;
     }
     
     #content-wrapper .dash-box1 .box-title {
@@ -176,6 +191,24 @@
     }
     .dash-billing-scroll-hori table {
         width: 1150px !important;
+    }
+    .theme-default #main-navbar .right>.navbar-nav>li.download-menu {
+        margin-left: 0;
+    }
+    .theme-default #main-navbar .right .navbar-nav li a.user-menu:before {
+        font-family: FontAwesome;
+        content: "\f107";
+        position: absolute;
+        vertical-align: 25px;
+        right: -4px;
+        top: 2px;
+        padding-right: 0;
+    }
+    #main-navbar .name-email {
+        display: none;
+    }
+    .theme-default #main-navbar form.navbar-form {
+        width: 28%;
     }
 }
 @media(max-width:1280px) {
@@ -355,7 +388,7 @@
         position: absolute;
         top: 100%;
         right: -320px;
-        min-height: 180px !important;
+        min-height: 230px !important;
         width: 320px;
         background: #fff; 
         z-index: 99999;
@@ -455,6 +488,13 @@
         float: none;
     }
     .profile-page .pro-account span {
+        display: block;
+    }
+
+    #main-navbar .navbar-nav>li.language-option {
+        padding: 10px 15px;
+    }
+    .for-responsive {
         display: block;
     }
 }
@@ -851,7 +891,7 @@
         padding: 0 10px;
     }
     .main-container-sec {
-        margin-top: 74px;
+        margin-top: 140px;
     }
     .bannar-sidebar .latest-update, 
     .bannar-sidebar .c-m-message {
@@ -1229,6 +1269,9 @@
         margin-right: 0;
         padding: 0 30px;
     }
+    #main-navbar form.navbar-form .form-control {
+        margin-top: 8px; 
+    }
 }
 
 @media(max-width:640px) { 
@@ -1279,10 +1322,11 @@
         padding-right: 0;
     }
     .responsive-menu {
-        width: 100%;
-        margin: 0;
-        padding-bottom: 10px;
-        text-align: center;
+        width: 34%;
+        margin: 74px 0 0;
+        padding-bottom: 0;
+        text-align: right;
+        float: right;
     }
     .responsive-menu li:first-child {
         position: relative;
@@ -1428,6 +1472,29 @@
     }
     .main-container-sec {
         margin-top: 120px;
+    }
+    .header-search-bar.for-responsive {
+        display: block;
+        width: 66%;
+        float: left;
+        padding-bottom: 10px;
+    }
+    .theme-default #main-navbar form.navbar-form {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+    }
+    #main-navbar form.navbar-form .form-control {
+        margin-top: 0;
+    }
+    .header-search-bar.for-responsive .blue-search-btn {
+        top: 0;
+        right: 0;
+        height: 36px;
+        margin-right: 0; 
+    }
+    .responsive-menu li.download-menu {
+        padding-left: 0; 
     }
 }
 @media(max-width:480px) {  
