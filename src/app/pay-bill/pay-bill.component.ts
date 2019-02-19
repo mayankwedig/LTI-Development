@@ -1,3 +1,6 @@
+import { AuthService } from './../services/authService/auth.service';
+import { TranslationService } from 'src/app/services/translation/translation.service';
+import { HelpersService } from './../services/helpers/helpers.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PayBillComponent implements OnInit {
 
-  constructor() { }
+  constructor(private AuthService:AuthService,private helpers:HelpersService, private translateService:TranslationService) { }
   displayUserInfo="";
-  ngOnInit() {
+  accountNumber="";
+  dispString="";
+  
+  translate(string:string):string{
+    return this.translateService.translate(string);
   }
+  ngOnInit() {
+    if(this.isLoggedIn()){ // if user is logged in
 
+      if (this.helpers.getLocalStoragData("accountToken") != null) {
+        let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
+        let accountTokenInfo = accountToken.split(":");
+        this.accountNumber = accountTokenInfo[1]; //account Number
+        this.dispString =  this.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
+      } else {
+          this.AuthService.getCurrentUser();
+          this.dispString =
+          "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
+        
+      }
+       
+      }else{
+       
+      }
+  }
+  isLoggedIn(){
+    return this.AuthService.isLoggedIn();
+  }
 }

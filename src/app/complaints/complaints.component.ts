@@ -92,7 +92,7 @@ export class ComplaintsComponent implements OnInit {
   advertisementproData:any=[];
   isAdvertiseDataFound:boolean=false;
   getadvertisementprofileData() {
-    console.log("reste");
+   /*  console.log("reste"); */
     this.advertiseDataLoader = true;
     this.DashboardService.getAdvertisementproData().subscribe(
       (response: any) => {
