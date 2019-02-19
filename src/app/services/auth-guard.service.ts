@@ -25,14 +25,25 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(route, state: RouterStateSnapshot) {
-    console.log(state.url); 
+    console.log(state.url);
     if (state.url == "/registration") {
       //if registration page
-      let otpVerifiedAccEmail = this.helpers.getLocalStoragData("otpVerifiedAccEmail"); // cehck if account token is exists
-      let otpVerifiedAccMobileNo = this.helpers.getLocalStoragData("otpVerifiedAccMobileNo"); // cehck if account token is exists
-      let otpVerifiedAccountNumber= this.helpers.getLocalStoragData("otpVerifiedAccountNumber");
-      if (otpVerifiedAccEmail !=null && otpVerifiedAccMobileNo !=null && otpVerifiedAccountNumber != null) {//check if user has verified account number
-          return true; // if yes
+      let otpVerifiedAccEmail = this.helpers.getLocalStoragData(
+        "otpVerifiedAccEmail"
+      ); // cehck if account token is exists
+      let otpVerifiedAccMobileNo = this.helpers.getLocalStoragData(
+        "otpVerifiedAccMobileNo"
+      ); // cehck if account token is exists
+      let otpVerifiedAccountNumber = this.helpers.getLocalStoragData(
+        "otpVerifiedAccountNumber"
+      );
+      if (
+        otpVerifiedAccEmail != null &&
+        otpVerifiedAccMobileNo != null &&
+        otpVerifiedAccountNumber != null
+      ) {
+        //check if user has verified account number
+        return true; // if yes
       } else {
         //if no
         this.router.navigate(["/account-verification"]); // redirect usre back to the account verfication page for account verification
@@ -106,7 +117,7 @@ export class AuthGuard implements CanActivate {
         });
         return false;
       }
-    }else if (state.url == "/net-metering") {
+    } else if (state.url == "/net-metering") {
       if (this.auth.isLoggedIn()) {
         // check if user is logged in.
         let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
@@ -132,7 +143,7 @@ export class AuthGuard implements CanActivate {
         });
         return false;
       }
-    }else if (state.url == "/view-all-service-request") {
+    } else if (state.url == "/view-all-service-request") {
       if (this.auth.isLoggedIn()) {
         // check if user is logged in.
         let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
@@ -158,7 +169,7 @@ export class AuthGuard implements CanActivate {
         });
         return false;
       }
-    }else if (state.url == "/view-all-complaints") {
+    } else if (state.url == "/view-all-complaints") {
       if (this.auth.isLoggedIn()) {
         // check if user is logged in.
         let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
@@ -240,7 +251,7 @@ export class AuthGuard implements CanActivate {
         });
         return false;
       }
-    }else if (state.url == "/notifications") {
+    } else if (state.url == "/notifications") {
       // for other page pages
       if (this.auth.isLoggedIn()) {
         // if user is logged in ?
@@ -268,7 +279,7 @@ export class AuthGuard implements CanActivate {
         });
         return false;
       }
-    }  else {
+    } else {
       // for other page pages
       if (this.auth.isLoggedIn()) return true;
       this.router.navigate(["/login"], {

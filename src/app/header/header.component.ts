@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   selected_lang="eng";//localStorage.getItem("selected_lag"); 
   logogImage="";
   doSearch(){
+    
     if(this.searchKeyWord != ""){
       if(localStorage.getItem('search') != null){
           localStorage.removeItem('search');

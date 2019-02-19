@@ -9,18 +9,19 @@
         </div>
       </div>
       <div class="about-text-sec">
-        <div class="title">{{ "aboutus" | translate }}</div>
-        <div class="text-p">
-          UPPCL will be professionally managed utility supplying reliable and
-          cost efficient electricity to every citizen of the state through
-          highly motivated employees and state of art technologies, providing an
-          economic return to our owners and maintaining leadership in the
-          country. We shall achieve this being a dynamic, forward looking,
-          reliable, safe and trustworthy organization, sensitive to our
-          customers interests, profitable and sustainable in the long run,
-          providing uninterrupted supply of quality power, with transparency and
-          integrity in operation
-        </div>
+          <div class="spinner box-spinner important-spiner" *ngIf="contentLoader == true">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+           <!--  {{isContentFound == true && contentLoader == false}} -->
+            <div *ngIf="isContentFound == true && contentLoader == false">
+                <div class="title">{{ contentTitle | translate }}</div>
+                <div class="text-p" [innerHtml]="testhtml">
+                 {{content}}
+                </div>
+            </div>
+        
         <!-- <mat-tab-group>
           <mat-tab label="First"> Content 1 </mat-tab>
           <mat-tab label="Second"> Content 2 </mat-tab>
@@ -29,7 +30,7 @@
       </div>
       <div class="tab-section rows">
         <ul class="nav nav-tabs about-tabs" role="tablist">
-          <li role="presentation" class="active abt-tbs-li">
+          <li role="presentation" class="active abt-tbs-li" *ngIf="missionVisionFound && missionVisionLoader == false">
             <a
               class="v-m-tab"
               href="#vision-mission"
@@ -65,10 +66,15 @@
 
         <div class="tab-content rows abt-tab-container">
           <div role="tabpanel" class="tab-pane active" id="vision-mission">
-            <div class="row">
+              <div class="spinner box-spinner important-spiner" style="top: 83%;" *ngIf="missionVisionLoader == true">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+            <div class="row" *ngIf="missionVisionFound && missionVisionLoader == false">
               <div class="col-sm-4">
                 <div class="img-box">
-                  <img src="../assets/images/tabs-img-1.jpg" alt="" />
+                  <img [src]="visionImage" alt="" />
                 </div>
               </div>
               <div class="col-sm-8">
@@ -78,22 +84,16 @@
                       ><img src="../assets/images/vission-icon.png" alt=""
                     /></span>
                   </div>
-                  <div class="heading">{{ "vision" | translate }}</div>
-                  <div class="p-text">
-                    Provide cost efficient good quality electricity to all
-                    categories of consumers for economic development/social
-                    uplift of the State.<br />
-                    Make the energy sector commercially viable so that it ceases
-                    to be burden on the state budget; and Protect the investment
-                    of the consumers.
+                  <div class="heading">{{ missionVisionData[0].title | translate }}</div>
+                  <div class="p-text" [innerHtml]="missionVisionData[0].description">
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row reverse">
+            <div class="row reverse" *ngIf="missionVisionFound && missionVisionLoader == false">
               <div class="col-sm-4 col-sm-push-8">
                 <div class="img-box">
-                  <img src="../assets/images/tabs-img-2.jpg" alt="" />
+                  <img [src]="missionImage" alt="" />
                 </div>
               </div>
               <div class="col-sm-8 col-sm-pull-4">
@@ -103,19 +103,8 @@
                       ><img src="../assets/images/mission-w-icon.png" alt=""
                     /></span>
                   </div>
-                  <div class="heading">{{ "mission" | translate }}</div>
-                  <div class="p-text">
-                    Restructing of Uttar Pradesh State Electricity Board into
-                    autonomous and separately accountable entities.Creation of
-                    an Independent Regulatory Body to protect consumers as well
-                    as long term financial health of the Power Sector.Ultimate
-                    transfer of ownership of the assets to public corporate
-                    entities over a phased time schedule.Rationalization of
-                    tariff.Phase I (Corporation): With the increasing volume of
-                    activities and specialisation in the field of Generation,
-                    Transmission and Distribution and with a view to improve the
-                    performance of these sectors, it has become essential to run
-                    them as separate profit centres
+                  <div class="heading">{{ missionVisionData[1].title | translate }}</div>
+                  <div class="p-text" [innerHtml]="missionVisionData[1].description">
                   </div>
                 </div>
               </div>

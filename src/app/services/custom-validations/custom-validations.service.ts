@@ -21,4 +21,14 @@ export class CustomValidationsService {
       return regex.test(control.value) ? null : { invalidEmail: true };
     };
   }
+  isEmailValidCustom(value) {
+    // Email Validation
+    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return regex.test(value) ? false:true;
+  }
+  isMobileValidCustom(value) {
+    // Email Validation
+    var regex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/;
+      return regex.test(value) ? false:true;
+  }
 }

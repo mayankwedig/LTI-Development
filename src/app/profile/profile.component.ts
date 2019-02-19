@@ -186,11 +186,8 @@ export class ProfileComponent implements OnInit {
     var area = data.premise_address;
     this.updateProfileFrm = this.fb.group({
       name: [name, Validators.required],
-      email: [
-        email,
-        [Validators.required, this.CustomValidations.isEmailValid("email")]
-      ],
-      mobile: [mobile, Validators.required],
+      email: [email],
+      mobile: [mobile],
       area: [area, Validators.required]
     });
   }
@@ -234,62 +231,94 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  newChangesType={mobileNo:false,email:false};
-  UpdateProfileFunction() {
-    this.newChangesType={mobileNo:false,email:false};
-    this.profileUpdateLoder = true;
-    var frmData = this.updateProfileFrm.value;
-    var oldMobileNo = this.oldMobileNo;
-    var newMobileNo = frmData.mobile;
-    var newEmailId = frmData.email;
-    // console.log("Old Mobile Number"+this.oldMobileNo,"Update Mobile Number"+frmData.mobile);
-    var verifyMobileNo = false;
-    if (oldMobileNo != newMobileNo ||  this.oldEmailid != newEmailId) {
-      // If Old and update mobile no is not same then verify New mobile no.
-        if(oldMobileNo != newMobileNo){ // mobileNo
-          this.newChangesType.mobileNo=true
-        }
-        if(this.oldEmailid != newEmailId){ // emailId
-          this.newChangesType.email=true
-        }
-      verifyMobileNo = true;
-    }
-    if (!verifyMobileNo) {
-      // If same then no need to verify mobile no.
-      var profileSveDAta;
-      this.profile.saveProfile(profileSveDAta).subscribe(
-        (res: any) => {
-          this.profileUpdateLoder = false;
-          if (res.authCode) {
-            if (res.authCode == "200" && res.status == true) {
-              this.toastr.success(this.translate(res.msg), "Details updated successfully!");
-              this.showProfileUpdateFrm(false);
-              this.getProfile();
-            } else {
-              this.toastr.error(this.translate(res.msg), "Failed!");
-            }
-          }
-        },
-        (error: AppError) => {
-          this.profileUpdateLoder = false;
-          if (error instanceof BadInput) {
-          } else {
-            throw error;
-          }
-        }
-      );
-      this.saveFomrData();
-    } else {
+ private isEmailInvalid(value:string):boolean{
+    let InvalidEmail:any=this.CustomValidations.isEmailValidCustom(value);
+    if(InvalidEmail != null){
+      if(InvalidEmail){
+        return true;
+      }else{
+        return false
+      }
         
-      // If not same then verify otp then update futher user info.
-    if(this.newChangesType.email == true &&  this.newChangesType.mobileNo == true){
-      this.sendOTP(frmData);
-    }else if(this.newChangesType.email == false && this.newChangesType.mobileNo == true){
-      this.sendOTP(frmData);
-    }else if(this.newChangesType.email == true && this.newChangesType.mobileNo == false){
-      this.showModalPopup("passwordVeri-modal");
-      this.initPwVerificationForm();
+    }else{
+      return false;
     }
+  }
+  private isMobileInvalid(value:string):boolean{
+   
+    let invalidMobile:any=this.CustomValidations.isMobileValidCustom(value);
+    if(invalidMobile != null){
+      if(invalidMobile){
+        return true;
+      }else{
+        return false
+      }
+        
+    }else{
+      return false;
+    }
+  }
+  newChangesType={mobileNo:false,email:false};
+  private isError:boolean=false;
+  UpdateProfileFunction() {
+    this.updateProfileFrm=this.helpers.markAsTouched(this.updateProfileFrm);
+    if(this.updateProfileFrm.status != "INVALID"){
+      this.isError=false;
+      var frmData = this.updateProfileFrm.value;
+      if((frmData.mobile == "" || frmData.mobile == null || frmData.mobile == 0) && (frmData.email == "" || frmData.email == null || frmData.email == 0)){
+        this.isError=false; // no validation is required.
+      }else{ // if Mobile or email not balnk validation is required.
+        if(!(frmData.email == "" || frmData.email == null || frmData.email == 0)){
+            if(this.isEmailInvalid(this.updateProfileFrm.value.email)){
+              this.isError=true;
+              this.toastr.error(this.translate("Email address is invalid"));
+            }
+        } 
+        if(!(frmData.mobile == "" || frmData.mobile == null || frmData.mobile == 0)){
+          if(this.isMobileInvalid(this.updateProfileFrm.value.mobile)){
+            this.isError=true;
+            this.toastr.error(this.translate("Please enter valid mobile number"));
+          }
+        }
+      }
+      if(!this.isError){ //
+        this.newChangesType={mobileNo:false,email:false};
+        this.profileUpdateLoder = true;
+        var frmData = this.updateProfileFrm.value;
+        var oldMobileNo = this.oldMobileNo;
+        var newMobileNo = frmData.mobile;
+        var newEmailId = frmData.email;
+        var verifyMobileNo = false;
+        if(newMobileNo != '' || newEmailId !=''){
+          if (oldMobileNo != newMobileNo ||  this.oldEmailid != newEmailId) {
+            if(oldMobileNo != newMobileNo){ // mobileNo
+              this.newChangesType.mobileNo=true
+            }
+            if(this.oldEmailid != newEmailId){ // emailId
+              this.newChangesType.email=true
+            }
+            verifyMobileNo = true;
+          }
+        }
+        
+        if (!verifyMobileNo) {
+        
+          this.saveFomrData();
+        } else {
+            
+          // If not same then verify otp then update futher user info.
+        if(this.newChangesType.email == true &&  this.newChangesType.mobileNo == true){
+          this.sendOTP(frmData);
+        }else if(this.newChangesType.email == false && this.newChangesType.mobileNo == true){
+          this.sendOTP(frmData);
+        }else if(this.newChangesType.email == true && this.newChangesType.mobileNo == false){
+          this.showModalPopup("passwordVeri-modal");
+          this.initPwVerificationForm();
+        }
+        }
+      }
+    }else{
+      this.toastr.warning("Please fill required fields");
     }
   }
   sendOTP(frmData){

@@ -1,3 +1,5 @@
+import { PayBillService } from './services/pay-bill/pay-bill.service';
+import { AboutService } from './services/about/about.service';
 
 import { NotificationListComponent } from './notification-list/notification-list.component';
 import { NotificationsService } from './services/notifications/notifications.service';
@@ -93,6 +95,7 @@ import { AdsenseModule } from 'ng2-adsense';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TrackComplaintsComponent } from './track-complaints/track-complaints.component';
 import { TrackServiceRequestComponent } from './track-service-request/track-service-request.component';
+import { PayBillComponent } from './pay-bill/pay-bill.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -152,7 +155,8 @@ import { TrackServiceRequestComponent } from './track-service-request/track-serv
     SearchComponent,
     ResetPasswordComponent,
     TrackComplaintsComponent,
-    TrackServiceRequestComponent
+    TrackServiceRequestComponent,
+    PayBillComponent
   ],
   imports: [
 
@@ -193,6 +197,7 @@ import { TrackServiceRequestComponent } from './track-service-request/track-serv
       {path:'manageaccount',component: ManageaccountComponent,canActivate:[AuthGuard]},
       {path:'downloads',component: DownloadComponent},
       {path:'request-track',component: RequesttrackComponent},
+      {path:'pay-bill',component: PayBillComponent},
       {path:'billing',component: BillingComponent,canActivate:[AuthGuard]},
       {path:'otp-verification',component: OtpVerificationComponent,canActivate:[AuthGuard]}, 
       {path:'registration',component: RegistrationComponent,canActivate:[AuthGuard]}, 
@@ -246,7 +251,9 @@ import { TrackServiceRequestComponent } from './track-service-request/track-serv
     SignupOtpVerificationService,
     HomeService,
     NotificationsService,
-    TranslationService
+    TranslationService,
+    AboutService,
+    PayBillService
   ],
   bootstrap: [AppComponent]
 })

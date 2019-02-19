@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {WindowRefService} from './services/window-ref/window-ref.service';
 import { fadeAnimation } from './animations';
+
 import * as $  from "jquery";
 
 
@@ -20,8 +21,9 @@ export class AppComponent implements OnInit {
   }
   title = 'lti';
   constructor(private winRef: WindowRefService){
-    
-    
+    window.onbeforeunload = function(e) { // distory sessoin after browser close
+      localStorage.clear();
+    };
   }
   public ngOnInit(){
     var init = [];
@@ -29,5 +31,10 @@ export class AppComponent implements OnInit {
        
       });
      this.winRef.nativeWindow.PixelAdmin.start(init);
+     
+/* window.onbeforeunload = function(e) {
+        alert("The Window is closing!");
+    }; */
+
   }
 }
