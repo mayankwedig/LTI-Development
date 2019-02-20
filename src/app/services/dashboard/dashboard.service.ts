@@ -244,11 +244,9 @@ export class DashboardService {
 
 
    getAdvertisementData(){
-    console.log("--->>>" )
-  //  var currentUser=this.auth.getCurrentUser();
-    //var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
+     
     var body={'slug':"dashboard"};
-    return this.DataService.getAll(this.advertisementapi, body,this.helpers.setHeaderData());
+    return this.DataService.getAll(this.advertisementapi, body,{},"POST");
    }
 
    getAdvertisementproData(){

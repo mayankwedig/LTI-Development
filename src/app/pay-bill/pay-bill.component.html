@@ -1,89 +1,135 @@
-<div id="main-wrapper" [ngClass]="{'no-sidebar': !isLoggedIn()}">
-    <app-header></app-header>
-    <span *ngIf="isLoggedIn()">
-  <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
-</span>
-		<div id="content-wrapper" [ngClass]="{'complaint-wrapeer-bg': !isLoggedIn()}">
-         <!-- bill-pay -->
-         
-         <div  [ngClass]="{'col-sm-10 col-sm-offset-1': !isLoggedIn()}">
-            <div class="page-heading">{{'Pay your bill'|translate}}</div>
-				<div class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r">
-               <div class="panel-body bil-pay-panel">
-                  <form>
-                     <div class="row">
-                        <div class="col-lg-12 col-sm-12">
-                           <div class="form-group top">
-                              <label>
-                                 Account Number
-                              </label>
-                              <div>
-                                 <input type="text" class="form-control-plaintext" id="staticEmail2" value="0375061951">
-                                 <button class="blue-btn">View</button>
-                              </div>
-                           </div>
-                        </div> 
-                        <div class="col-lg-6 col-sm-6">
-                           <div class="form-group">
-                              <label>
-                                 Account Name
-                              </label>
-                              <input type="text" class="form-control-plaintext" id="staticEmail2" value="Ravish Shukla">
-                           </div>
-                        </div>   
-                        <div class="col-lg-4 col-sm-6">
-                           <div class="form-group">
-                              <label>
-                                 Bill Amount
-                              </label>
-                              <input type="text" class="form-control-plaintext" id="staticEmail2" value="₹1500">
-                           </div>
-                        </div>  
-                        <div class="col-lg-3 col-sm-6">
-                           <div class="form-group">
-                              <label>
-                                 Account Number
-                              </label>
-                              <input type="text" class="form-control-plaintext" id="staticEmail2" value="0375061951">
-                           </div>
-                        </div> 
-                        <div class="col-lg-3 col-sm-6">
-                           <div class="form-group">
-                              <label class="min">
-                                 Due Date
-                              </label>
-                              <input type="text" class="form-control-plaintext" id="staticEmail2" value="25/01/2019">
-                           </div>
-                        </div>     
-                        <div class="col-lg-3 col-sm-6">
-                           <div class="form-group">
-                              <label>
-                                 Payble Amount
-                              </label>
-                              <input type="text" class="form-control-plaintext" id="staticEmail2" value="₹1500">
-                           </div>
-                        </div>     
-                        <div class="col-lg-3 col-sm-6">
-                           <div class="form-group">
-                              <button class="blue-btn">Pay Now</button>
-                           </div>
-                        </div>             
-                     </div>
-                  </form>
-               </div>
+<div id="main-wrapper" [ngClass]="{ 'no-sidebar': !isLoggedIn() }">
+  <app-header></app-header>
+  <span *ngIf="isLoggedIn()">
+    <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  </span>
+  <div
+    id="content-wrapper"
+    [ngClass]="{ 'complaint-wrapeer-bg': !isLoggedIn() }"
+  >
+    <!-- bill-pay -->
+
+    <div [ngClass]="{ 'col-sm-10 col-sm-offset-1': !isLoggedIn() }">
+      <div class="page-heading">{{ "Pay bill" | translate }}</div>
+      <div
+        class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r"
+      >
+        <div class="panel-body bil-pay-panel">
+          <form>
+            <div class="row">
+              <div class="col-lg-12 col-sm-12">
+                <div class="form-group top">
+                  <label>
+                    Account Number
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control-plaintext"
+                      id="staticEmail2"
+                      value="0375061951"
+                    />
+                    <button class="blue-btn" >View</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                  <label>
+                    Account Name
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail2"
+                    value="Ravish Shukla"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-6">
+                <div class="form-group">
+                  <label>
+                    Bill Amount
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail2"
+                    value="₹1500"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                <div class="form-group">
+                  <label>
+                    Account Number
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail2"
+                    value="0375061951"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                <div class="form-group">
+                  <label class="min">
+                    Due Date
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail2"
+                    value="25/01/2019"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                <div class="form-group">
+                  <label>
+                    Payble Amount
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail2"
+                    value="₹1500"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                <div class="form-group">
+                  <button class="blue-btn">Pay Now</button>
+                </div>
+              </div>
             </div>
-            <ul class="dash-box-list">
-                  <li class="dash-box-li rows offer-li pd-0">
-                     <div class="offer-section">
-                        <div class="offer-content">
-                           <img src="../../assets/images/offer-icon.png" alt="">
-                           <div class="text-content">We have a lot more to <a href="#">OFFER</a>. Choose from a wide range of products</div>
-                           <a class="blue-btn" href="#">Explore</a>
-                        </div>
-                     </div>
-                  </li>
-               </ul>
-               </div>
-               <div *ngIf="isLoggedIn()" id="main-menu-bg"></div>
-		</div> 		
-    <app-footer></app-footer>
+          </form>
+        </div>
+      </div>
+      <ul class="dash-box-list" *ngIf="isAdvertDataFound">
+         <li class="dash-box-li rows offer-li">
+           <div class="offer-section" >                
+               <div class="text-content" *ngIf ="advertisementData[0]?.type == 'text'">  
+                   {{advertisementData[0].add_val}}     
+               </div>  
+               <div class="image-ads" *ngIf ="advertisementData[0]?.type == 'image'">
+                   <!-- <img src="/assets/images/SNP_3094702_en_v0 - Copy.png" alt="" /> -->
+                   <img src="{{adimagurl}}{{advertisementData[0]?.add_val}}"/>
+                   <!-- {{advertisementData[0].add_val}}  -->
+               </div>  
+               <div class="iframe-ads" *ngIf ="advertisementData[0]?.type == 'google_ad'">
+                   <!-- <img src="{{adimagurl}}{{advertisementData[0].add_val}}"/> -->
+                 <!-- {{advertisementData[0].add_val}}  -->
+                 
+                 <div id='afscontainer1'></div>
+                     </div>            
+           </div>
+          
+         </li>
+       </ul>
+    </div>
+    <div *ngIf="isLoggedIn()" id="main-menu-bg"></div>
+  </div>
+  <app-footer></app-footer>
+</div>
