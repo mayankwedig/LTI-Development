@@ -680,6 +680,30 @@
     .login-table.blue-tabs-relative .login-signup-bottom-sec .right-sec-inner-sec {
         width: 100%;
     }
+    .not-found-bottom {
+        min-height: 170px;
+    }
+    .notfound-bottom-left, 
+    .notfound-bottom-right {
+        height: 170px;
+    }
+    .not-found-heading {
+        font-size: 110px;
+        line-height: 92px;
+        margin-top:15px; 
+    }
+    .not-found-subheading {
+        font-size: 22px;
+    }
+    .not-found-text {
+        font-size: 17px;
+    }
+    .blue-goback-btn {
+        padding: 13px 15px 9px;
+    }
+    .not-found-img img {
+        max-width: 150px;
+    }
 }
 @media(max-width:991px) {
     .main-container-sec .col-sm-12.col-md-9.no-padding-r{
@@ -1350,6 +1374,35 @@
     }
     #content-wrapper {
         padding: 155px 8px 18px;
+    }
+    .not-found-bottom {
+        min-height: inherit;
+        width: 100%;    
+        padding: 25px 15px;
+    }
+    .notfound-bottom-left, 
+    .notfound-bottom-right {
+        display: none;
+    }
+    .not-found-heading {
+        font-size: 65px;
+        line-height: 55px;
+        margin-top:15px; 
+    }
+    .not-found-subheading {
+        font-size: 19px;
+    }
+    .not-found-text {
+        font-size: 16px;
+    }
+    .blue-goback-btn {
+        padding: 13px 15px 9px;
+    }
+    .not-found-img img {
+        max-width: 120px;
+    }
+    .page-not-found .panel-body {
+        width: 100%;
     }
 }
 
