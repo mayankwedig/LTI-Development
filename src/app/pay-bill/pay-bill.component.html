@@ -1,8 +1,13 @@
-<div id="main-wrapper">
-		<app-header></app-header>
+<div id="main-wrapper" [ngClass]="{'no-sidebar': !isLoggedIn()}">
+    <app-header></app-header>
+    <span *ngIf="isLoggedIn()">
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
-		<div id="content-wrapper">
+</span>
+		<div id="content-wrapper" [ngClass]="{'complaint-wrapeer-bg': !isLoggedIn()}">
          <!-- bill-pay -->
+         
+         <div  [ngClass]="{'col-sm-10 col-sm-offset-1': !isLoggedIn()}">
+            <div class="page-heading">{{'Pay your bill'|translate}}</div>
 				<div class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r">
                <div class="panel-body bil-pay-panel">
                   <form>
@@ -78,7 +83,7 @@
                      </div>
                   </li>
                </ul>
-
-			<div id="main-menu-bg"></div>
+               </div>
+               <div *ngIf="isLoggedIn()" id="main-menu-bg"></div>
 		</div> 		
     <app-footer></app-footer>
