@@ -55,7 +55,7 @@ export class AboutComponent implements OnInit,AfterViewInit {
 				if(response.status && response.authCode == "200"){
 					this.isContentFound=true;
 					this.contentTitle=response.data_params.title;
-					this.content=response.data_params.description/* .replace(/<(.|\n)*?>/g, '').replace(/\n/g, '').replace(/\t/g, '').replace("&#39;", "'").replace("�",'-').replace("�",'"').replace("&ldquo;",'"').replace("&rdquo;",'"').replace("&amp;",'&').replace('&#39;',"'");	 */
+					this.content=response.data_params.description;/* .replace(/<(.|\n)*?>/g, '').replace(/\n/g, '').replace(/\t/g, '').replace("&#39;", "'").replace("�",'-').replace("�",'"').replace("&ldquo;",'"').replace("&rdquo;",'"').replace("&amp;",'&').replace('&#39;',"'");	 */
 				}else{
 					this.content="";
 					this.isContentFound=false;

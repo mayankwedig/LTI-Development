@@ -17,8 +17,8 @@
            <!--  {{isContentFound == true && contentLoader == false}} -->
             <div *ngIf="isContentFound == true && contentLoader == false">
                 <div class="title">{{ contentTitle | translate }}</div>
-                <div class="text-p" [innerHtml]="testhtml">
-                 {{content}}
+                <div class="text-p" [innerHtml]="content">
+                <!--  {{content}} -->
                 </div>
             </div>
         
