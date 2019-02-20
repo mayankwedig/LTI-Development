@@ -208,7 +208,7 @@
         display: none;
     }
     .theme-default #main-navbar form.navbar-form {
-        width: 28%;
+        width: 25%;
     }
 }
 @media(max-width:1280px) {
@@ -240,6 +240,14 @@
     }
     #content-wrapper .dash-box-list .dash-box-li .notification-listing li div {
         width: 85%;
+    }
+    
+    .theme-default #main-navbar.home-menu form.navbar-form {
+
+    }
+    #main-navbar.home-menu .navbar-nav>li.login-signup-sec .login-btn.blue-btn {
+        padding: 7px 15px 5px;
+        margin-right: 2px; 
     }
 }
 @media(max-width:1240px) {
@@ -388,7 +396,7 @@
         position: absolute;
         top: 100%;
         right: -320px;
-        min-height: 230px !important;
+        min-height: 290px !important;
         width: 320px;
         background: #fff; 
         z-index: 99999;
@@ -631,6 +639,9 @@
     }
     .signup-form-page .login-width .signup-form-box .form-group .submit-btn {
         min-width: 100%;
+    }
+    .login-table.blue-tabs-relative .login-signup-bottom-sec .right-sec-inner-sec {
+        width: 100%;
     }
 }
 @media(max-width:991px) {
@@ -888,7 +899,7 @@
         float: left;
     }
     .responsive-menu li {
-        padding: 0 10px;
+        padding: 0 4px;
     }
     .main-container-sec {
         margin-top: 140px;
@@ -1312,6 +1323,12 @@
         width: 50%;
         word-break: break-word;
     }
+    #main-navbar .responsive-menu li a {
+        margin-right: 0; 
+    }
+    #main-navbar .responsive-menu li:last-child a {
+        margin-right: 0; 
+    }
 }
 @media(max-width:600px) { 
 	.responsive-menu li {
@@ -1321,8 +1338,11 @@
         padding-left: 0;
         padding-right: 0;
     }
+    .home-menu .responsive-menu {
+        width: 26%;
+    }
     .responsive-menu {
-        width: 34%;
+        width: 30%;
         margin: 74px 0 0;
         padding-bottom: 0;
         text-align: right;
@@ -1330,7 +1350,7 @@
     }
     .responsive-menu li:first-child {
         position: relative;
-        padding: 0;
+        padding: 0 4px;
     }
     #main-navbar form.navbar-form .form-control {
         height: 36px;
@@ -1496,6 +1516,9 @@
     .responsive-menu li.download-menu {
         padding-left: 0; 
     }
+    .header-search-bar.for-responsive .blue-search-btn {
+        padding: 3px 15px 5px !important;
+    }
 }
 @media(max-width:480px) {  
     .common-notification-lists li .notification-texts{
@@ -1633,6 +1656,15 @@
     .profile-page .profile-right-content .detail-list li {
         width: 100%;
         margin: 10px 0; 
+    }
+    .responsive-menu {
+        width: 34%;
+    }
+    .responsive-menu li {
+        padding: 0 4px;
+    }
+    .responsive-menu li:first-child {
+        padding: 0 2px;
     }
 }
 @media(max-width:360px) { 
