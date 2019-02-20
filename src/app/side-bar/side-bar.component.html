@@ -19,8 +19,9 @@
             >{{ acc.account_number }}</a
           >
         </li>
-      </ul>
+      </ul>     
     </div>
+    <div class="scroll-div">
     <ul class="navigation">
       <li
         id="li0"
@@ -266,18 +267,26 @@
             <span class="mm-text" id="12">{{'Change Password'|translate}}</span>
         </a>
       </li>
-     <!--Changes By chandni-->
-      <li id="li13" [ngClass]="{ openDropdown: currentUrl == '/logout' }"
+      <li id="li13" [ngClass]="{ openDropdown: currentUrl == '/pay-bill' }"
       (click)="removeCss($event)">
-        <a href="JavaScript:Void(#);" (click)="logout()">
+      <a routerLink="/pay-bill">
+            <div class="menu-icons i-rupee">
+              <img class="icon-normal" src="assets/images/rupee-icon.png" />
+              <img class="icon-hover" src="assets/images/rupee-icon-hover.png" />
+          </div>
+            <span class="mm-text" id="13">{{'Pay bill' | translate}}</span>
+        </a>
+      </li>
+      <li id="li14" [ngClass]="{ openDropdown: currentUrl == '/logout' }" (click)="removeCss($event)">
+        <a  (click)="logout()">
             <div class="menu-icons i-logout">
             <img class="icon-normal" src="assets/images/logout-icon.png" />
             <img class="icon-hover" src="assets/images/logout-icon-hover.png" />
           </div>
-            <span class="mm-text" id="13">{{'logout' | translate}}</span>
+            <span class="mm-text" id="14">{{'logout' | translate}}</span>
         </a>
       </li>
-
     </ul>
+    </div>
   </div>
 </div>

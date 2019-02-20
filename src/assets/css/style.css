@@ -5888,3 +5888,15 @@ margin:40px auto;
     width: 15%;
     float: left;
 } 
+/* 20-02-2019 css */
+#main-menu-inner .scroll-div {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+#main-menu .scroll-div .navigation{
+    height: 450px;
+}
+#main-menu ul.navigation>li {
+    width: 100%;
+}

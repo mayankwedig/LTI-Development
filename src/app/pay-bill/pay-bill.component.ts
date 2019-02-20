@@ -17,7 +17,29 @@ export class PayBillComponent implements OnInit {
   advertisementData: any = "";
   isAdvertDataFound: boolean = false;
 
-  constructor(private PayBillService: PayBillService,private fb: FormBuilder) {}
+  billing: any = {};
+
+  initBillingData() {
+    this.billing = {
+      accountNumber: this.accountNumber,
+      accountName: "ashu123",
+      bill_amount: 0.0,
+      due_date: "",
+      payable_amount: 0.0
+    };
+  }
+
+  accountDetailsLoader: boolean = false;
+  isAccountDetailsFound: boolean = false;
+  AccountDetails: any = "";
+
+  userAccountsLoder: boolean = false;
+  userAccounts: any = "";
+
+  constructor(
+    private PayBillService: PayBillService,
+    private fb: FormBuilder
+  ) {}
   translate(string: string): string {
     return this.PayBillService.translate(string);
   }
@@ -30,32 +52,62 @@ export class PayBillComponent implements OnInit {
   isLoggedIn() {
     return this.PayBillService.isLoggedIn();
   }
-  accountDetailsLoader:boolean=false;
-  isAccountDetailsFound:boolean=false;
-  AccountDetails:any="";
-  getBillAccountDetails(){
-    this.accountDetailsLoader=true;
-    var data={"account_number":123456};
-    this.PayBillService.getBillAccountDetails(data)
-    .subscribe((result:any)=>{
-      this.accountDetailsLoader=false;
-      if(result.authCode == 200 && result.status == true){
-        this.isAccountDetailsFound=true;
-        this.AccountDetails=result.data_params
-      }else{
-        this.isAccountDetailsFound=false;
-        this.AccountDetails="";
+  prompt(flag: string, msg: string) {
+    this.PayBillService.prompt(flag, msg);
+  }
 
-      }
-    },(error: AppError) => {
-      this.isAccountDetailsFound = false;
-      this.accountDetailsLoader = false;
-      this.AccountDetails="";
-      if (error instanceof BadInput) {
-      } else {
+  getUserAccounts() {
+    this.userAccountsLoder = true;
+    this.PayBillService.getAccounts().subscribe(
+      (response: any) => {
+        this.userAccountsLoder = false;
+        var res = response;
+        if (res.authCode) {
+          if (res.authCode == "200" && res.status == true) {
+            this.userAccounts = res.data_params;
+          } else {
+            this.userAccounts = [];
+          }
+        }
+      },
+      error => {
+        this.userAccountsLoder = false;
+        this.userAccounts = [];
         throw error;
       }
-    })
+    );
+  }
+  getBillAccountDetails() {
+    if (this.accountNumber != "") {
+      // account number not blank
+      this.accountDetailsLoader = true;
+      var data = { account_number: this.accountNumber };
+      this.PayBillService.getBillAccountDetails(data).subscribe(
+        (result: any) => {
+          this.accountDetailsLoader = false;
+          if (result.authCode == 200 && result.status == true) {
+            this.isAccountDetailsFound = true;
+            this.billing = result.data_params;
+            this.billing["payable_amount"] = this.billing.bill_amount;
+          } else {
+            this.isAccountDetailsFound = false;
+            this.initBillingData();
+          }
+        },
+        (error: AppError) => {
+          this.initBillingData();
+          this.isAccountDetailsFound = false;
+          this.accountDetailsLoader = false;
+          if (error instanceof BadInput) {
+          } else {
+            throw error;
+          }
+        }
+      );
+    } else {
+      this.initBillingData();
+      this.prompt("warning", "Please provide your account number.");
+    }
   }
   getAdvertisementData() {
     this.advertDataLoader = true;
@@ -92,14 +144,18 @@ export class PayBillComponent implements OnInit {
         this.accountNumber = accountTokenInfo[1]; //account Number
         this.dispString =
           this.translate("accountnumber") + " ( " + this.accountNumber + " ) ";
+         
+          this.getBillAccountDetails();
       } else {
+      
         this.getCurrentUser();
         this.dispString =
           "User Name ( " + this.getCurrentUser().username + " ) ";
       }
+      this.getUserAccounts();
     } else {
-      
     }
+    this.initBillingData();
     this.getAdvertisementData();
   }
 }
