@@ -24,6 +24,12 @@
     .theme-default #main-navbar form.navbar-form {
         width: 22%;
     }
+    .bil-pay-panel label {
+        min-width: 140px;
+    }
+    .bil-pay-panel input {
+        width: 47%;
+    }
 }
 @media(max-width:1500px) {
     .dash-box-li .padding_left15.rows {
@@ -46,6 +52,15 @@
     }
     .theme-default #main-navbar form.navbar-form {
         width: 25%;
+    }
+    .bil-pay-panel input {
+        width: 100%;
+    }
+    .bil-pay-panel button {
+        margin: 19px 15px 0;
+    }
+    .bil-pay-panel .top button {
+        margin: 0 15px 0;
     }
 }
 @media(max-width:1470px) {
@@ -209,6 +224,9 @@
     }
     .theme-default #main-navbar form.navbar-form {
         width: 25%;
+    }
+    .bil-pay-panel label {
+        width: 100%;
     }
 }
 @media(max-width:1280px) {
@@ -504,6 +522,25 @@
     }
     .for-responsive {
         display: block;
+    }
+    .bil-pay-panel .center{
+        justify-content:flex-start;
+    }
+    .bil-pay-panel label.min{
+        min-width:120px;
+    }
+    .bil-pay-panel .form-group.top  .blue-btn{
+        margin:0px 15px;
+    }
+    .bil-pay-panel input {
+        max-width: 100%;
+    }
+    .bil-pay-panel .top div {
+        width: 100%;
+    }
+    .bil-pay-panel .top input {
+        max-width: 49%;
+        display: inline-block;
     }
 }
 @media(max-width:1150px) {
@@ -1283,6 +1320,37 @@
     #main-navbar form.navbar-form .form-control {
         margin-top: 8px; 
     }
+    .bil-pay-panel .form-group{
+        flex-direction:column;
+    }
+    .bil-pay-panel input{
+        max-width:100%;
+        width:100%;
+    }
+    .bil-pay-panel .form-group{
+        width:100%
+    }
+    .bil-pay-panel .form-group.top {
+        margin-bottom: 20px;
+    }
+    .bil-pay-panel label{
+        margin-bottom:5px;
+    }
+    .bil-pay-panel .form-group {
+        margin-bottom: 20px;
+    }
+    .bil-pay-panel .top input {
+        max-width: 60%;
+    }
+    .bil-pay-panel button {
+        margin: 0;
+    }
+    .bil-pay-panel .form-group.top .blue-btn {
+        margin: 0 0 0 15px;
+    }
+    #content-wrapper {
+        padding: 155px 8px 18px;
+    }
 }
 
 @media(max-width:640px) { 
@@ -1665,6 +1733,10 @@
     }
     .responsive-menu li:first-child {
         padding: 0 2px;
+    }
+    .bil-pay-panel .form-group.top .blue-btn {
+        margin: 0 0 0 7px;
+        padding: 6px 25px;
     }
 }
 @media(max-width:360px) { 
