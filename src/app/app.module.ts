@@ -96,6 +96,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { TrackComplaintsComponent } from './track-complaints/track-complaints.component';
 import { TrackServiceRequestComponent } from './track-service-request/track-service-request.component';
 import { PayBillComponent } from './pay-bill/pay-bill.component';
+import { EnergyTipsComponent } from './energy-tips/energy-tips.component';
+import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -156,7 +158,8 @@ import { PayBillComponent } from './pay-bill/pay-bill.component';
     ResetPasswordComponent,
     TrackComplaintsComponent,
     TrackServiceRequestComponent,
-    PayBillComponent
+    PayBillComponent,
+    EnergyTipsComponent
   ],
   imports: [
 
@@ -182,7 +185,8 @@ import { PayBillComponent } from './pay-bill/pay-bill.component';
       {path:'dashboard',component: DashboardComponent,canActivate:[AuthGuard]},
       {path:'help',component: HelpComponent},
       {path:'faqs',component: FaqComponent},   
-      {path:'customers-service',component: CustomersServiceComponent}, 
+      {path:'customers-service',component: CustomersServiceComponent},
+      {path:'energy-tips',component: EnergyTipsComponent}, 
       {path:'sitemap',component: SitemapComponent},    
       {path:'consumption',component: ConsumptionComponent,canActivate:[AuthGuard]},
       {path:'settings',component: SettingsComponent},
@@ -253,7 +257,8 @@ import { PayBillComponent } from './pay-bill/pay-bill.component';
     NotificationsService,
     TranslationService,
     AboutService,
-    PayBillService
+    PayBillService,
+    EnergyTipsService
   ],
   bootstrap: [AppComponent]
 })

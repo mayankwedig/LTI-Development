@@ -1,7 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,HostListener} from '@angular/core';
 import {WindowRefService} from './services/window-ref/window-ref.service';
 import { fadeAnimation } from './animations';
-
 import * as $  from "jquery";
 
 
@@ -15,6 +14,7 @@ import * as $  from "jquery";
   ]
 })
 export class AppComponent implements OnInit {
+ 
   prepareRoute(outlet: any) {
     return outlet.isActivated ? outlet.activatedRoute : '';
     /* return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']; */
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
       localStorage.clear();
     };
   }
+ 
   public ngOnInit(){
     var init = [];
     init.push(function () {
