@@ -4,9 +4,9 @@
     <div class="container">
       <div class="about-banner inner-page-banner">
         <img src="../assets/images/about-bannar.jpg" alt="" />
-        <div class="content">
+        <!-- <div class="content">
           Changing The <span>Power</span> <br />That Changes The World
-        </div>
+        </div> -->
       </div>
       <div class="about-text-sec">
           <div class="spinner box-spinner important-spiner" *ngIf="contentLoader == true">
@@ -42,7 +42,7 @@
               }}<!-- Vision & <br/>Mission --></a
             >
           </li>
-          <li role="presentation" class="abt-tbs-li">
+          <li role="presentation" class="abt-tbs-li" *ngIf="boardDirectorsFound && contentLoader == false">
             <a
               class="dir-tab"
               href="#directors"
@@ -112,85 +112,30 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="directors">
-            <table class="directors-table responsive-table">
+              <div class="spinner box-spinner important-spiner" style="top: 83%;" *ngIf="dloader == true">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+            <table class="directors-table responsive-table" *ngIf="boardDirectorsFound && dloader == false">
               <thead>
                 <tr>
-                  <th align="left">{{ "boardofdirectors" | translate }}</th>
-                  <th align="center">{{ "name" | translate }}</th>
-                  <th align="center">{{ "contactno" | translate }}</th>
+                  <th align="left">{{ "Board of directors" | translate }}</th>
+                  <th align="center">{{ "Name" | translate }}</th>
+                  <th align="center">{{ "Contact no" | translate }}</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let boardDirector of boardDirectors">
                   <td data-title="Board of Directors" width="230" align="left">
-                    <b>CHAIRMAN UPPCL</b>
+                    <b>{{boardDirector.board_of_directors}}</b>
                   </td>
-                  <td data-title="Name" align="center">
-                    Shri Alok Kumar <br />
+                  <td data-title="Name" align="center" [innerHtml]="boardDirector.name">
+                   <!--  Shri Alok Kumar <br />
                     Shakti Bhawan 14 Ashok Marg, <br />
-                    Lucknow
+                    Lucknow -->
                   </td>
-                  <td data-title="Contact No." align="center">
-                    2287827 / 0522 2287525
-                  </td>
-                </tr>
-                <tr>
-                  <td data-title="Board of Directors" width="230" align="left">
-                    <b>MD UPPCL</b>
-                  </td>
-                  <td data-title="Name" align="center">
-                    Ms Aparna U <br />
-                    Shakti Bhawan 14 Ashok Marg, <br />
-                    Lucknow
-                  </td>
-                  <td data-title="Contact No." align="center">
-                    2288377 / 0522 2287525
-                  </td>
-                </tr>
-                <tr>
-                  <td data-title="Board of Directors" width="230" align="left">
-                    <b>Chairman (Vidyut Seva Ayog)</b>
-                  </td>
-                  <td data-title="Name" align="center">
-                    Sri Arun Kumar Saxena<br />
-                    Shakti Bhawan 14 Ashok Marg, <br />
-                    Lucknow
-                  </td>
-                  <td data-title="Contact No." align="center">---------</td>
-                </tr>
-                <tr>
-                  <td data-title="Board of Directors" width="230" align="left">
-                    <b>Executive Director (Planning)</b>
-                  </td>
-                  <td data-title="Name" align="center">
-                    Sri Ravindra Kumar Sharma
-                  </td>
-                  <td data-title="Contact No." align="center">0522 2287525</td>
-                </tr>
-                <tr>
-                  <td data-title="Board of Directors" width="230" align="left">
-                    <b>Director (F&A)</b>
-                  </td>
-                  <td data-title="Name" align="center">
-                    Er. Sudhanshu Dwivedi
-                  </td>
-                  <td data-title="Contact No." align="center">0522 2287525</td>
-                </tr>
-                <tr>
-                  <td data-title="Board of Directors" width="230" align="left">
-                    <b>Director (P.M.& Admn)</b>
-                  </td>
-                  <td data-title="Name" align="center">
-                    Sri Satya Prakash Pandey
-                  </td>
-                  <td data-title="Contact No." align="center">-</td>
-                </tr>
-                <tr>
-                  <td data-title="Board of Directors" width="230" align="left">
-                    <b>Director (Distribution) </b>
-                  </td>
-                  <td data-title="Name" align="center">Sri Vijay Kumar</td>
-                  <td data-title="Contact No." align="center">-</td>
+                  <td data-title="Contact No." align="center" [innerHtml]="boardDirector.contact"></td>
                 </tr>
               </tbody>
             </table>

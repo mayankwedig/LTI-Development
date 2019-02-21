@@ -12,9 +12,9 @@ var apiUrl='http://103.249.98.101:3000/' //dev soa
 //var siteUrl='http://103.249.98.101:82/uppcl';//dev
 //var siteUrl='http://103.249.98.101:3000/';  //prod
  
- //var siteUrl='http://103.249.98.101:82'; // dev soa
+ var siteUrl='http://103.249.98.101:82'; // dev soa
 
- var siteUrl="http://192.168.1.108:4200";
+ //var siteUrl="http://192.168.1.108:4200";
 export const environment = {
   production: false,
   adimageUrl:AdminUrl+"ads/3/",
