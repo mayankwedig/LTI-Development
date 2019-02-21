@@ -22,7 +22,7 @@
 					<div class="latest-update" *ngIf="latestNewsLoader == false">
 						<div class="box-title">
 							<span class="title-icon"><img src="../assets/images/bill-icon.png" alt=""></span>
-							<div class="text-title">{{'latestupdates' | translate}}</div>
+							<div class="text-title">{{'Latest updates' | translate}}</div>
 						</div>
 						<div class="marquee-slide">
 							<app-latest-news-marquee [latestNews]="latestNews"></app-latest-news-marquee>
@@ -40,7 +40,7 @@
 
 						<div class="box-title">
 							<span class="title-icon"><img src="../assets/images/msg-icon.png" alt=""></span>
-							<div class="text-title">{{'chiefministermessage'|translate}}</div>
+							<div class="text-title">{{'Chief Minister Message'|translate}}</div>
 						</div>
 
 						<div class="msg-detail">
@@ -62,7 +62,7 @@
 						</div>
 					</div>
 					<div style="margin-top: 66px;" class="text-center font-12  field_not_found" *ngIf="ministerLoader == false && ministerDataFound == false">
-						<img src="../assets/images/no_data.png" />{{'datanotfound'|translate}}
+						<img src="../assets/images/no_data.png" />{{'Data not found'|translate}}
 					</div>
 					<div class="rows" *ngIf="ministerLoader == true">
 						<div class="spinner box-spinner" style="top: 135%;">
@@ -87,7 +87,8 @@
 							</div>
 							<div class="text">
 								{{missionData.description|translate}}
-								<a routerLink="/about"  class="konw-more-link">{{'knowmore'|translate}}</a>
+								<a routerLink="/about" *ngIf="missionData.id != 4"  class="konw-more-link">{{'Know more'|translate}}</a>
+								<a routerLink="/energy-tips" *ngIf="missionData.id == 4"  class="konw-more-link">{{'Know more'|translate}}</a>
 							</div>
 						</div>
 					</div>
@@ -108,28 +109,12 @@
 						</div>
 					</div>
 				</div>-->
-				<div class="col-sm-4">
-					<div class="mission-vision">
-						<img src="../assets/images/mission-img-3.jpg" alt="" class="image">
-						<div class="overlay">
-							<div class="title">
-								<img src="../assets/images/energy-icon.png" alt="">
-								{{'energytips'|translate}}
-							</div>
-							<div class="text">
-								To make network development and investment plans for an Intra-state transmission system that is reliable,
-								economical, develop best-in-class system study and system planning capacities within the organization.
-								<a routerLink="/energy-tips" routerLinkActive="router-link-active" >{{'knowmore'|translate}}</a>
-							</div>
-						</div>
-					</div>
-				</div> 
 			</div>
 		</div>
 		<div class="important-links" [ngClass]="{ impLinkLoaderMinHeight:impLinkLoader == true }">
 			<div class="title">
 				
-				{{'importantlinks'|translate}}
+				{{'Important links'|translate}}
 			</div>
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-1">

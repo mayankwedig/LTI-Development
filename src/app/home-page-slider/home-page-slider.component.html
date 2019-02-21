@@ -8,29 +8,29 @@
 </div>
 <div class="blue-tabs-sec">
 		<ul class="menu-listing">
-			<li>
-				<a class="credit-card-icon" href="JavaScript:void(0);" (click)="redirecttocomplaints('pay-bill')">
-					<div class="title" >{{"payonline"|translate}}</div>
+			<li (click)="redirecttocomplaints('pay-bill')">
+				<a class="credit-card-icon" href="JavaScript:void(0);" >
+					<div class="title" >{{"Pay online"|translate}}</div>
 				</a>
 			</li>
-			<li>
-				<a class="register-icon" href="JavaScript:void(0);" (click)="redirecttocomplaints('complaints')">
-					<div class="title" >{{'complaints'|translate}} <br>({{'register'|translate}} / {{'track'|translate}})</div>
+			<li (click)="redirecttocomplaints('complaints')">
+				<a class="register-icon" href="JavaScript:void(0);" >
+					<div class="title" >{{'Complaints'|translate}} <br>({{'register'|translate}} / {{'track'|translate}})</div>
 				</a>
 			</li>
-			<li>
-				<a class="bulb-icon" (click)="redirecttocomplaints('energy-tips')">
-					<div class="title">{{'energytips'|translate}}</div>
+			<li (click)="redirecttocomplaints('energy-tips')">
+				<a class="bulb-icon" href="JavaScript:void(0);" >
+					<div class="title">{{'Energy tips'|translate}}</div>
 				</a>
 			</li>
-			<li>
-				<a class="sevice-register-icon" (click)="redirecttocomplaints('track-service-request')" >
-					<div class="title" >{{"servicerequests"|translate}} <br>(<!-- {{'register'|translate}} /  -->{{'track'|translate}})</div>
+			<li (click)="redirecttocomplaints('track-service-request')">
+				<a class="sevice-register-icon"  href="JavaScript:void(0);" >
+					<div class="title" >{{"Service requests"|translate}} <br>(<!-- {{'register'|translate}} /  -->{{'track'|translate}})</div>
 				</a>
 			</li>
 			<li>
 				<a class="connection-icon" href="JavaScript:Void(0);">
-					<div class="title">{{"new"|translate}} <br>{{"connection" | translate}}</div>
+					<div class="title">{{"New"|translate}} <br>{{"Connection" | translate}}</div>
 				</a>
 			</li>
 		</ul>
