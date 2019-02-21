@@ -84,7 +84,7 @@ export class AboutComponent implements OnInit,AfterViewInit {
 							this.missionImage=environment.missionImage+"/"+this.missionVisionData[1].id+"/"+this.missionVisionData[1].display_picture;
 								
 						}
-            this.missionVisionFound = false; //data found
+            this.missionVisionFound = true; //data found
           } else {
             this.missionVisionData = [];
             this.missionVisionFound = false;
