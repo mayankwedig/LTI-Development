@@ -2797,28 +2797,35 @@ body {
     font-weight: 400;
 }
 .about-tabs{
-    float: left;
+    float: none;
     width: 100%;
-    background: #e6eff6;
+    display: inline-block;
+    text-align: center;
     border-radius: 6px;
     padding: 5px;
     border-bottom: none;
+    background: #e6eff6;
 }
 .about-tabs .abt-tbs-li{
-    float: left;
-    width: 33.3%;
+    background: #e6eff6;
+    float: none;
+    display: inline-block;
     text-align: center;
     margin: 0;
-    padding: 0 10px;
+    padding: 5px 10px;
 }
 .about-tabs .abt-tbs-li:nth-child(2){
     border-right: 2px solid #66aee6;
     border-left: 2px solid #66aee6;
 }
+.about-tabs .abt-tbs-li:last-child{
+    border-right: 0px;
+}
 .about-tabs .abt-tbs-li a{
     background-color: transparent;
     border-bottom: none;
     border-radius: 10px;
+    padding: 10px 80px;
     font-size: 15px;
     color: #303030;
     position: relative;
@@ -2894,6 +2901,7 @@ body {
     float: left;
     width: 100%;
     padding-left: 40px;
+    text-align: left;
 }
 .abt-tab-container .box-title {
     display: table;
@@ -2947,6 +2955,7 @@ body {
 }
 .tab-section{
     padding: 40px 0;
+    text-align: center;
 }
 .energy-conservation{
     float: left;
