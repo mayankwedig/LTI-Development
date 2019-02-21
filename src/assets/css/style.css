@@ -2776,7 +2776,7 @@ body {
 .about-text-sec{
     float: left;
     width: 100%;
-    padding: 30px 0;
+    padding: 30px 0 0;
 }
 .about-text-sec .title{
     float: left;
@@ -2954,7 +2954,7 @@ body {
     text-align: right;
 }
 .tab-section{
-    padding: 40px 0;
+    padding: 20px 0;
     text-align: center;
 }
 .energy-conservation{
@@ -5908,4 +5908,8 @@ margin:40px auto;
 }
 #main-menu ul.navigation>li {
     width: 100%;
+}
+.energy-tab-sec .nav-tabs li {
+    width: 50%;
+    float: left;
 }

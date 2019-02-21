@@ -904,6 +904,9 @@
     }
 }
 @media(max-width:767px) { 
+    .energy-tab-sec .nav-tabs li{
+        width: 100%;
+    }
     .common-notification-lists li .notification-texts{
         font-size: 15px;
     }
