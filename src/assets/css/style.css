@@ -812,6 +812,7 @@ body {
 }
 #main-menu{
 	padding-top: 75px;
+    height: 100%;
 }
 #main-menu #main-menu-inner .dropdown .dropdown-toggle{
 	width: 100%;
@@ -5902,14 +5903,25 @@ margin:40px auto;
     border: 0px;
     margin: 0px;
     padding: 0px;
+    height: 100%;
 }
 #main-menu .scroll-div .navigation{
-    height: 450px;
+    height: 100%;
 }
 #main-menu ul.navigation>li {
     width: 100%;
+    padding: 0px;
 }
 .energy-tab-sec .nav-tabs li {
     width: 50%;
     float: left;
+}
+
+/*22-02-2019*/
+
+#main-menu-inner {
+    height: 100%;
+    width: 100%;
+    float: left;
+    padding-bottom: 46px;
 }
