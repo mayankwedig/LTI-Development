@@ -1,4 +1,4 @@
-import { HomeService } from './../services/home/home.service';
+import { ContactUsService } from './../services/contact-us/contact-us.service';
 import { Component, OnInit } from '@angular/core';
 
 declare var $: any;
@@ -15,7 +15,7 @@ export class ContactUsComponent implements OnInit {
 	impLinkLoader:boolean=false;
 	getImportantLink() {
     this.impLinkLoader = true;
-    this.homeService.getImportantLink().subscribe(
+    this.contactService.getImportantLink().subscribe(
       (response: any) => {
         this.impLinkLoader = false;
         var res = response;
@@ -34,9 +34,31 @@ export class ContactUsComponent implements OnInit {
       }
     );
   }
-  constructor(public homeService:HomeService) { }
-
+  contactUsConent:any="";
+  contentLoader:boolean=false;
+  isContentDataFound:boolean=false;
+  constructor(public contactService:ContactUsService) { }
+  getContactUsContent(){
+    this.contentLoader=true;
+    this.contactService.getContactUsContent()
+    .subscribe((response:any) => {
+      this.contentLoader=false;
+      
+      if(response.authCode == "200" && response.status == true){
+        this.isContentDataFound=true;
+        this.contactUsConent=response.data_params;
+      }else{
+        this.isContentDataFound=false;
+        this.contactUsConent="";
+      } 
+    },(error)=>{
+      this.isContentDataFound=false;
+      this.contentLoader=false;
+      this.contactUsConent=""
+    });
+  }
   ngOnInit() {
+    this.getContactUsContent();
 		this.getImportantLink();
   }
 

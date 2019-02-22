@@ -16,6 +16,7 @@ export class AboutComponent implements OnInit,AfterViewInit {
   ngOnInit() {
 		this.getContent();
 		this.getMissionAndVision();
+		this.getBoardOfDirectors();
   }
   ngAfterViewInit(){
     $(function() {
@@ -48,7 +49,8 @@ export class AboutComponent implements OnInit,AfterViewInit {
   missionVisionFound: boolean = false;
 	getContent(){
 		this.contentLoader=true;
-		this._aboutServices.getAboutContent()
+		var data={"slug":"about"};
+		this._aboutServices.getAboutContent(data)
 			.subscribe((response:any)=>{
 			/* 	console.log(response.data_params); */
 				this.contentLoader=false;
@@ -64,6 +66,27 @@ export class AboutComponent implements OnInit,AfterViewInit {
 				this.isContentFound=false;
 				this.contentLoader=false;
 				this.content="";
+			});
+	}
+	boardDirectorsFound:boolean=false;
+	boardDirectors:any="";
+	dloader:boolean=false;
+	getBoardOfDirectors(){
+		this.dloader=true;
+		this._aboutServices.getBoardOfDirectors()
+			.subscribe((response:any)=>{
+				this.dloader=false;
+				if(response.status && response.authCode == "200"){
+					this.boardDirectorsFound=true;
+					this.boardDirectors=response.data_params;
+				}else{
+					this.boardDirectors="";
+					this.boardDirectorsFound=false;
+				}
+			},(error)=>{
+				this.boardDirectorsFound=false;
+				this.dloader=false;
+				this.boardDirectors="";
 			});
 	}
 	visionImage="../assets/images/tabs-img-1.jpg";
@@ -84,7 +107,7 @@ export class AboutComponent implements OnInit,AfterViewInit {
 							this.missionImage=environment.missionImage+"/"+this.missionVisionData[1].id+"/"+this.missionVisionData[1].display_picture;
 								
 						}
-            this.missionVisionFound = false; //data found
+            this.missionVisionFound = true; //data found
           } else {
             this.missionVisionData = [];
             this.missionVisionFound = false;

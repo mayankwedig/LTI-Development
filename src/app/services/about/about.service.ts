@@ -10,11 +10,14 @@ export class AboutService {
 
   constructor(private _data:DataService,private _homeSerivce:HomeService){}
 
-  getAboutContent(){
-    return this._data.getAll("users/staticPage",{"slug":"about"},{},"POST");
+  getAboutContent(data){
+    return this._data.getAll("users/staticPage",data,{},"POST");
   }
   getMissionandVision(){
     return this._homeSerivce.getMissionandVision();
+  }
+  getBoardOfDirectors(){
+    return this._data.getAll("users/boardDirectors",{},{},"GET");
   }
 
 }

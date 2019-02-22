@@ -1,3 +1,4 @@
+import { ContactUsService } from './services/contact-us/contact-us.service';
 import { PayBillService } from './services/pay-bill/pay-bill.service';
 import { AboutService } from './services/about/about.service';
 
@@ -258,7 +259,8 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
     TranslationService,
     AboutService,
     PayBillService,
-    EnergyTipsService
+    EnergyTipsService,
+    ContactUsService
   ],
   bootstrap: [AppComponent]
 })
