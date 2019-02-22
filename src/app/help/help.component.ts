@@ -47,7 +47,7 @@ export class HelpComponent implements OnInit {
 				this.contentLoader=false;
 				if(response.status && response.authCode == "200"){
 					this.isContentFound=true;
-					this.contentTitle=response.data_params.title;
+					this.contentTitle=response.data_params.title+" & support";
 					this.content=response.data_params.description;/* .replace(/<(.|\n)*?>/g, '').replace(/\n/g, '').replace(/\t/g, '').replace("&#39;", "'").replace("�",'-').replace("�",'"').replace("&ldquo;",'"').replace("&rdquo;",'"').replace("&amp;",'&').replace('&#39;',"'");	 */
 				}else{
 					this.isContentFound=false;

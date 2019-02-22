@@ -21,9 +21,14 @@ export class AppComponent implements OnInit {
   }
   title = 'lti';
   constructor(private winRef: WindowRefService){
-    window.onbeforeunload = function(e) { // distory sessoin after browser close
-      localStorage.clear();
-    };
+   // window.onbeforeunload = function(e) { // distory sessoin after browser close
+     //alert(e);
+      /*  localStorage.clear(); */
+   // };
+   /*window.addEventListener("beforeunload", function(event) {
+     // event.returnValue = "Write something clever here..";
+      console.log(event);
+    }); */
   }
  
   public ngOnInit(){

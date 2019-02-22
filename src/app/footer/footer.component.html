@@ -8,9 +8,12 @@
 			  <li>
 				 <a  routerLink="/sitemap"  routerLinkActive="footer-menu-active" [routerLinkActiveOptions]="{exact: true}">{{'Site map'|translate}}</a>
 			  </li>
-			  <li>
-				 <a >{{'Consumption'|translate}}</a>
+			  <li *ngIf="!isLoggedIn()">
+				 <a routerLink="/login" routerLinkActive="footer-menu-active">{{'Consumption'|translate}}</a>
 			  </li>
+			  <li *ngIf="isLoggedIn()">
+				<a routerLink="/consumption" routerLinkActive="footer-menu-active">{{'Consumption'|translate}}</a>
+			 </li>
 			 <!--  <li>
 				 <a  routerLink="/settings"  routerLinkActive="footer-menu-active" [routerLinkActiveOptions]="{exact: true}">{{'Settings'|translate}}</a>
 			  </li> -->
@@ -31,13 +34,13 @@
 			  <li class="title-heading">{{'Help and support'|translate}}</li>
 			  <li>
 				 
-				<a  routerLink="/contact-us"  routerLinkActive="active-menu">{{'Contact'| translate}}</a> 
+				<a  routerLink="/contact-us"  routerLinkActive="footer-menu-active">{{'Contact'| translate}}</a> 
 			 </li>
 			 <li>
-				<a  routerLink="/faqs"  routerLinkActive="active-menu">{{'Frequently asked question'|translate}}</a>
+				<a  routerLink="/faqs"  routerLinkActive="footer-menu-active">{{'Frequently asked question'|translate}}</a>
 			 </li>
 			 <li>
-				<a  routerLink="/help"  routerLinkActive="active-menu">{{'Help and support'|translate}}</a>
+				<a  routerLink="/help"  routerLinkActive="footer-menu-active">{{'Help and support'|translate}}</a>
 			 </li>
 			 <!-- <li>
 				<a  routerLink="/customers-service"  routerLinkActive="active-menu">Customers Service</a>
