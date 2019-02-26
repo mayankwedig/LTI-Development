@@ -25,7 +25,7 @@ export class SerivceRequestService {
     return this.data.getAll(this.getServiceRequestTypeAPI,"",this.helper.setHeaderData(),"POST");
    }
    getServReqEnclosedIdentifDoc(){
-    return this.data.getAll(this.getServReqEnclosedIdentifDocAPI,"",this.helper.setHeaderData(),"POST");
+    return this.data.getAll(this.getServReqEnclosedIdentifDocAPI,"",{},"POST");
    }
    getChangeReasons(){
     return this.data.getAll(this.getChangeReasonsAPI,"",this.helper.setHeaderData(),"POST");

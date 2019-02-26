@@ -10,8 +10,8 @@ var AdminUrl="http://103.249.98.101:82/admin/data/"; //Dev
 var apiUrl='http://103.249.98.101:3000/' //dev soa
 //var siteUrl='http://103.249.98.101:82/uppcl';//dev
 //var siteUrl='http://103.249.98.101:3000/';  //prod
-// var siteUrl='http://103.249.98.101:82'; // dev soa
- var siteUrl="http://192.168.1.108:4200";
+var siteUrl='http://103.249.98.101:82'; // dev soa
+ //var siteUrl="http://192.168.1.108:4200";
 export const environment = {
   production: false,
   adimageUrl:AdminUrl+"ads/3/",
@@ -21,6 +21,7 @@ export const environment = {
   logoUrl:AdminUrl+"other/",
   no_image:"../assets/images/no-image-found.jpg",
   logo_not_found:'../assets/images/no-logo.png',
+  icon_img:AdminUrl+"/icon_img/",
   siteUrl:siteUrl
 };
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CustomValidationsService } from "./../services/custom-validations/custom-validations.service";
 import { SerivceRequestService } from "./../services/service-request/serivce-request.service";
 import { AuthService } from "./../services/authService/auth.service";
@@ -40,8 +41,7 @@ export class NewServiceConnectionComponent implements OnInit {
   Father_Last_Name: string;
   Husband_First_Name: string;
   Husband_Last_Name: string;
-  
-  
+
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -50,34 +50,46 @@ export class NewServiceConnectionComponent implements OnInit {
     private AuthService: AuthService,
     private SerivceRequest: SerivceRequestService,
     private customValidations: CustomValidationsService,
-    private translationServices: TranslationService
-
+    private translationServices: TranslationService,
+    private router:Router
   ) {}
-
+  isLoggedIn() {
+    return this.AuthService.isLoggedIn();
+  }
   ngOnInit() {
     this.Mother_Maiden_Name = "Mother's Maiden Name";
     this.Father_First_Name = "Father's First Name";
     this.Father_Last_Name = "Father's Last Name";
     this.Husband_First_Name = "Husband's First Name";
-    this.Husband_Last_Name = "Husband's Last Name"
-
-
-
-    if (this.helpers.getLocalStoragData("accountToken") != null) {
-      let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
-      let accountTokenInfo = accountToken.split(":");
-      this.accountNumber = accountTokenInfo[1]; //account Number
-      this.dispString =  this.translationServices.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
-    } else {
-      this.AuthService.getCurrentUser();
-      this.dispString =
-        "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
-    }
-
+    this.Husband_Last_Name = "Husband's Last Name";
     this.getDiscomName();
     this.initnewServiceConnectionFrm();
     this.initnewServiceConnectionStep2Frm();
     this.getServReqEnclosedIdentifDoc();
+    if (this.isLoggedIn()) {
+      if (this.helpers.getLocalStoragData("accountToken") != null) {
+        let accountToken = atob(
+          this.helpers.getLocalStoragData("accountToken")
+        ); // fetch account number.
+        let accountTokenInfo = accountToken.split(":");
+        this.accountNumber = accountTokenInfo[1]; //account Number
+        this.dispString =
+          this.translationServices.translate("accountnumber") +
+          " ( " +
+          this.accountNumber +
+          " ) ";
+      } else {
+        setTimeout(()=>{
+          this.toastr.warning("Please select account number", ""); // prompt msg
+          this.router.navigate(["/manageaccount"]); // redirect user to manage account
+        },1)
+       
+        this.AuthService.getCurrentUser();
+        this.dispString =
+          "User Name ( " + this.AuthService.getCurrentUser().username + " ) ";
+      }
+    }
+    
   }
   initnewServiceConnectionFrm() {
     var fields = {
@@ -89,6 +101,7 @@ export class NewServiceConnectionComponent implements OnInit {
     };
     this.newServiceConnectionFrm = this.fb.group(fields);
   }
+  
   getServReqEnclosedIdentifDoc() {
     this.enclosedIdentifDocLoder = true;
     this.SerivceRequest.getServReqEnclosedIdentifDoc().subscribe(
@@ -160,7 +173,6 @@ export class NewServiceConnectionComponent implements OnInit {
     this.discomNameLoader = true;
     var header = {
       supplyType: "discoms"
-      
     };
     this.newConnectionRequestService.getMasterData(header).subscribe(
       (response: any) => {
@@ -214,7 +226,10 @@ export class NewServiceConnectionComponent implements OnInit {
         }
       );
     } else {
-      this.toastr.error(this.translationServices.translate("Please select discom name"), this.translationServices.translate("Failed"));
+      this.toastr.error(
+        this.translationServices.translate("Please select discom name"),
+        this.translationServices.translate("Failed")
+      );
     }
   }
   get f() {
@@ -233,12 +248,14 @@ export class NewServiceConnectionComponent implements OnInit {
       const newServiceConnectionFrmData = this.newServiceConnectionFrm.value;
       this.showMainForm = true;
     } else {
-      this.toastr.warning(this.translationServices.translate("Please fill all required fields"), this.translationServices.translate("Failed!"));
+      this.toastr.warning(
+        this.translationServices.translate("Please fill all required fields"),
+        this.translationServices.translate("Failed!")
+      );
     }
   }
   submitNewConnectReqLoader: boolean = false;
   submitNewConnectionStep2Frm() {
-   
     this.newServiceConnectionFrmSetp2 = this.helpers.markAsTouched(
       this.newServiceConnectionFrmSetp2
     );
@@ -255,10 +272,14 @@ export class NewServiceConnectionComponent implements OnInit {
       newServiceConnectionFrmSetp2Data["consumerType"] =
         setp1FrmValues.consumerType;
       newServiceConnectionFrmSetp2Data["load"] = setp1FrmValues.load;
-      newServiceConnectionFrmSetp2Data["accountToken"] = btoa(
-        this.accountNumber
-      );
-      newServiceConnectionFrmSetp2Data["typeUser"] = "login";
+      if (this.isLoggedIn()) {
+        newServiceConnectionFrmSetp2Data["accountToken"] = btoa(this.accountNumber);
+      }
+      if (this.isLoggedIn()) {
+        newServiceConnectionFrmSetp2Data["typeUser"] = "login";
+      } else {
+        newServiceConnectionFrmSetp2Data["typeUser"] = "withoutlogin";
+      }
       this.submitNewConnectReqLoader = true;
       this.newConnectionRequestService
         .addNewConnection(newServiceConnectionFrmSetp2Data)
@@ -271,7 +292,10 @@ export class NewServiceConnectionComponent implements OnInit {
               if (res.authCode == "200" && res.status == true) {
                 res["msg"] =
                   "Your new connection request has been registered successfully, We've sent a notification E-mail along with tracking number.";
-                this.toastr.success(this.translationServices.translate(res.msg), this.translationServices.translate("Success!"));
+                this.toastr.success(
+                  this.translationServices.translate(res.msg),
+                  this.translationServices.translate("Success!")
+                );
                 this.showTrackingNo = true;
                 this.trackingNo = res.data_params;
                 setTimeout(() => {
@@ -281,7 +305,10 @@ export class NewServiceConnectionComponent implements OnInit {
                   this.initnewServiceConnectionStep2Frm();
                 }, 30000);
               } else {
-                this.toastr.error(this.translationServices.translate(res.msg), this.translationServices.translate("Failed!"));
+                this.toastr.error(
+                  this.translationServices.translate(res.msg),
+                  this.translationServices.translate("Failed!")
+                );
               }
             }
           },
@@ -295,7 +322,10 @@ export class NewServiceConnectionComponent implements OnInit {
           }
         );
     } else {
-      this.toastr.warning(this.translationServices.translate("Please fill all required fields"), this.translationServices.translate("Failed!"));
+      this.toastr.warning(
+        this.translationServices.translate("Please fill all required fields"),
+        this.translationServices.translate("Failed!")
+      );
     }
   }
 }

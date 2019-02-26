@@ -1,7 +1,10 @@
-<div id="main-wrapper">
+<div id="main-wrapper" [ngClass]="{'no-sidebar': !isLoggedIn()}">
   <app-header></app-header>
+  <span *ngIf="isLoggedIn()">
   <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+</span>
   <div id="content-wrapper">
+      <div  [ngClass]="{'col-sm-10 col-sm-offset-1': !isLoggedIn()}">
     <div class="page-heading">{{'New Connection Request'|translate}}</div>
     <div class="billing-sec complaints-page">
       <div class="row margin_top20">
@@ -1157,7 +1160,8 @@
         </div>
       </div>
     </div>
-    <div id="main-menu-bg"></div>
+      </div>
+    <div *ngIf="isLoggedIn()" id="main-menu-bg"></div>
   </div>
   <app-footer></app-footer>
 </div>

@@ -1,3 +1,4 @@
+import { SideBarService } from "./../services/side-bar/side-bar.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { AuthService } from "./../services/authService/auth.service";
 import { Component, OnInit, Input } from "@angular/core";
@@ -12,6 +13,7 @@ import { AppError } from "./../common/app-error";
 import { TranslationService } from "../services/translation/translation.service";
 import { ToastrService } from "ngx-toastr";
 
+import { environment } from "../../environments/environment";
 
 import * as $ from "jquery";
 @Component({
@@ -27,10 +29,10 @@ export class SideBarComponent implements OnInit {
   dashboardDataApiUrl = "users/getUserData";
   is_net_metering: boolean = false; // by Default Net metering will be 0
   userData = "";
-  accountLoder:boolean=false;
-  accountData="";
-  isAccountDataFound:boolean=false;
-  accountNumber="";
+  accountLoder: boolean = false;
+  accountData = "";
+  isAccountDataFound: boolean = false;
+  accountNumber = "";
   constructor(
     private helpers: HelpersService,
     private dataservice: DataService,
@@ -41,30 +43,106 @@ export class SideBarComponent implements OnInit {
     private accountServices: ManageaccountService,
     private toastr: ToastrService,
     private Dashboard: DashboardService,
-    private translationServices: TranslationService
-
-   
+    private translationServices: TranslationService,
+    private sideBarService: SideBarService
   ) {}
-  // changes By chandni only $ remove
-  removeCss(event) {
-   /*  alert("TEst"); */
 
-    $("li").removeClass("openDropdown");
-    
-    var target: any = event.target || event.srcElement || event.currentTarget;
-    var value: any = target.id;
-    
-    $("#li" + value).addClass("openDropdown");
+  icone_image = environment.icon_img;
+
+  // changes By chandni only $ remove
+  getIconeImage(imageData, type) {
+    if (type == "normal") {
+      if (imageData.image != null) {
+        return environment.icon_img + imageData.id + "/" + imageData.image;
+      } else {
+        return null;
+      }
+    } else {
+      if (imageData.hover_image != null) {
+        return (
+          environment.icon_img + imageData.id + "/" + imageData.hover_image
+        );
+      } else {
+        return null;
+      }
+    }
   }
 
+  removeCss(event) {
+    $("li").removeClass("openDropdown");
+    var target: any = event.target || event.srcElement || event.currentTarget;
+    var value: any = target.id;
+    $("#li" + value).addClass("openDropdown");
+    $("#li" + value).removeClass("open");
+  }
+  isSidebarMenusFound: boolean = true;
+  sideBarMenuLoader: boolean = false;
+  sideBarMenus: any = [];
+  filterBy(prop: string) {
+    return this.sideBarMenus.sort((a, b) =>
+      a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
+    );
+  }
+
+  getSideBarMenus() {
+    this.sideBarMenuLoader = true;
+    this.sideBarService.getSideBarMenus().subscribe(
+      (response: any) => {
+        this.sideBarMenuLoader = false;
+        if (
+          response.authCode == "200" &&
+          response.status == true &&
+          response.data_params.length > 0
+        ) {
+          this.sideBarMenus = response.data_params;
+          this.isSidebarMenusFound = true;
+        } else {
+          this.isSidebarMenusFound = false;
+          this.sideBarMenus = [];
+        }
+      },
+      error => {
+        this.sideBarMenuLoader = false;
+        this.isSidebarMenusFound = false;
+        this.sideBarMenus = [];
+      }
+    );
+  }
+  isDispalyable(menu) {
+    if (menu.slug == "billing") {
+      // if billing
+      if (this.selectedAccountData.isPrepaid == "No") {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (menu.slug == "recharge-history") {
+      // if recharge history
+      if (this.selectedAccountData.isPrepaid == "Yes") {
+        return true;
+      } else {
+        return false;
+      }
+    }else if (menu.slug == "net-metering") {
+      // if net metering
+      if (this.is_net_metering) {
+        return true;
+      } else {
+        return false;
+      }
+    }else
+    {
+      return true;
+    }
+  }
   ngOnInit() {
     let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
     if (accountToken != null) {
       // If not null
       let accountTokenInfo = atob(accountToken).split(":"); // split token
-      
+
       if (accountTokenInfo[0] == this.auth.getCurrentUser().userId) {
-          this.accountNumber=accountTokenInfo[1];
+        this.accountNumber = accountTokenInfo[1];
         // if token of current user
         if (parseInt(accountTokenInfo[2]) == 1) {
           this.is_net_metering = true;
@@ -76,31 +154,37 @@ export class SideBarComponent implements OnInit {
     }
     var init = [];
     this.winRef.nativeWindow.PixelAdmin.start(init);
-    this.currentUrl = this.router.url;
-    if(this.currentUrl.indexOf("serviceReq") !== -1){
-      this.currentUrl="/service-request-details";
-    }else if(this.currentUrl.indexOf("complaintReq") !== -1){
-      this.currentUrl="/complaint-request-details";
+    this.currentUrl = this.router.url.replace(/\//g, "");
+    if (
+      this.currentUrl.indexOf("serviceReq") !== -1 ||
+      this.currentUrl == "new-service-connection" ||
+      this.currentUrl == "view-all-service-request"
+    ) {
+      this.currentUrl = "service-request";
+    } else if (
+      this.currentUrl.indexOf("complaintReq") !== -1 ||
+      this.currentUrl == "view-all-complaints"
+    ) {
+      this.currentUrl = "complaints";
     }
+
     this.userData = this.auth.getCurrentUser();
     this.getAccounts("");
+    this.getSideBarMenus();
   }
-  accountDetailsLoder:any=false;
-  AccountDetailsFound:any=false;
-  selectedAccountData:any="";
+  accountDetailsLoder: any = false;
+  AccountDetailsFound: any = false;
+  selectedAccountData: any = "";
   selectedAccountDetails() {
-    this.Dashboard.getAccountDetails(
-      this.accountNumber,
-      (result: any) => {
-        this.accountDetailsLoder = false;
-        if (result.authCode == "200") {
-          this.AccountDetailsFound = true;
-          this.selectedAccountData = result.data_params;
-        } else {
-          this.AccountDetailsFound = false;
-        }
+    this.Dashboard.getAccountDetails(this.accountNumber, (result: any) => {
+      this.accountDetailsLoder = false;
+      if (result.authCode == "200") {
+        this.AccountDetailsFound = true;
+        this.selectedAccountData = result.data_params;
+      } else {
+        this.AccountDetailsFound = false;
       }
-    );
+    });
   }
   getAccounts(searchKeyWord) {
     this.accountLoder = true;
@@ -114,7 +198,10 @@ export class SideBarComponent implements OnInit {
             this.accountData = res.data_params;
             this.isAccountDataFound = true;
           } else {
-            this.toastr.error(this.translationServices.translate(res.msg), "failed!");
+            this.toastr.error(
+              this.translationServices.translate(res.msg),
+              "failed!"
+            );
             this.isAccountDataFound = false;
           }
         }
@@ -147,7 +234,6 @@ export class SideBarComponent implements OnInit {
   /** Redirection Loder Ends Here*/
 
   redirectoDashBoard(accountId, userId) {
-      
     this.redirectLoding = true; // make loder true
     var userId = this.auth.getCurrentUser().userId;
     var is_net_metering = 0;
@@ -167,17 +253,15 @@ export class SideBarComponent implements OnInit {
         ); // set new account access token.
       }
       this.currentUrl = this.router.url;
-      if(this.currentUrl.indexOf("dashboard") !== -1){
-       /*  this.currentUrl="/redirect-dashboard"; */
+      if (this.currentUrl.indexOf("dashboard") !== -1) {
+        /*  this.currentUrl="/redirect-dashboard"; */
         this.router.navigate(["/redirect-dashboard"]);
-      }else{
+      } else {
         this.router.navigate(["/dashboard"]); //redirect user to dashboard.
       }
-      
     });
   }
-  logout(){
-    this.auth.logout()
+  logout() {
+    this.auth.logout();
   }
-
 }

@@ -216,7 +216,7 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
       {path:'view-all-complaints',component:ViewAllComplaintsComponent,canActivate:[AuthGuard]},
       {path:'redirect-dashboard',component:DashboarRedirectComponent,canActivate:[AuthGuard]},
       {path:'complaint-request-details',component:ComplaintRequestDetailsComponent},
-      {path:'new-service-connection',component:NewServiceConnectionComponent,canActivate:[AuthGuard]},
+      {path:'new-service-connection',component:NewServiceConnectionComponent},
       {path:'tou',component:TouComponent,canActivate:[AuthGuard]},
       {path:'recharge-history',component:RechargeHistoryComponent,canActivate:[AuthGuard]},
       {path:'notifications',component:NotificationListComponent,canActivate:[AuthGuard]},

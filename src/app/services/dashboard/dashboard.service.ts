@@ -241,7 +241,9 @@ export class DashboardService {
     var body={"accountToken":btoa(accountNumber),"profileToken":btoa(currentUser.userId)}
     return this.DataService.getAll(this.alertnotification, body,this.helpers.setHeaderData());
    }
-
+getDesktopWidget(){
+  return this.DataService.getAll("users/getWidget",{},this.helpers.setHeaderData(),"POST");
+}
 
    getAdvertisementData(){
      

@@ -40,6 +40,28 @@ export class DashboardComponent implements OnInit {
   translate(string:string):string{
     return this._helper.translate(string);
   }
+  isWidgetFound:boolean=false;
+  widgetLoader:boolean=false;
+  widgets:any="";
+  getDesktopWidget(){
+    this.widgetLoader=true;
+    this.DashboardService.getDesktopWidget()
+    .subscribe((response:any)=>{
+      this.widgetLoader=false;
+      if(response.authCode == "200" && response.status == true){
+        this.isWidgetFound=true;
+        this.widgets=response.data_params.json_data;
+        console.log(this.widgets);
+      }else{
+        this.isWidgetFound=false;
+        this.widgets="";
+      }
+    },(error)=>{
+      this.isWidgetFound=false;
+      this.widgetLoader=false;
+      this.widgets="";
+    });
+  }
   constructor(
     private auth: AuthService,
     private DashboardService: DashboardService,
@@ -168,6 +190,7 @@ export class DashboardComponent implements OnInit {
   advertisementData: any =[];
 
   ngOnInit() {
+    this.getDesktopWidget();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number

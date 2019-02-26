@@ -4807,6 +4807,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
 
 #main-menu ul.navigation>li.openDropdown .mmc-dropdown-delay {
     display: block;
+    height: auto;
 }
 .theme-default #main-menu .navigation li.openDropdown a {
     color: #0571d7;
@@ -5924,4 +5925,11 @@ margin:40px auto;
     width: 100%;
     float: left;
     padding-bottom: 46px;
+}
+.enerytips-faqs{
+    text-align: left;    
+    padding-top: 0px;
+}
+.faq-section.enerytips-faqs .panel-group{
+    width: 100%;
 }

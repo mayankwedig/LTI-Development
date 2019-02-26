@@ -19,274 +19,113 @@
             >{{ acc.account_number }}</a
           >
         </li>
-      </ul>     
+      </ul>
     </div>
-    <div class="scroll-div">
-    <ul class="navigation">
-      <li
-        id="li0"
-        [ngClass]="{
-          openDropdown:
-            currentUrl == '/manageaccount' || currentUrl == '/addaccount'
-        }"
-        (click)="removeCss($event)"
-      >
-        <a routerLink="/manageaccount">
-          <div class="menu-icons i-user">
-            <img class="icon-normal" src="assets/images/user-icon.png" />
-            <img class="icon-hover" src="assets/images/user-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="0">{{'account'| translate}}</span>
-        </a>
-      </li>
-      <li
-        id="li1"
-        [ngClass]="{ openDropdown: currentUrl == '/dashboard' }"
-        (click)="removeCss($event)"
-      >
-        <a class="" routerLink="/dashboard">
-          <div class="menu-icons i-dashboard">
-            <img class="icon-normal" src="assets/images/dashboard-icon.png" />
-            <img class="icon-hover" src="assets/images/dashboard-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="1">{{"dashboard" | translate}}</span>
-        </a>
-      </li>
-      <li
-        
-        id="li2"
-        [ngClass]="{
-          openDropdown:
-            currentUrl == '/profile' || currentUrl == '/update-profile'
-        }"
-        (click)="removeCss($event)"
-      >
-        <a  routerLink="/profile" >
-          <div class="menu-icons i-settings">
-            <img class="icon-normal" src="assets/images/setting-icon.png" />
-            <img class="icon-hover" src="assets/images/setting-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="2">{{"manage profile" | translate}}</span>
-        </a>
-        <!-- <ul class="mmc-dropdown-delay animated fadeInLeft">
-          <li>
-            <a
-              tabindex="-1"
-             
-              routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">Profile</span></a
-            >
-          </li>
-        </ul> -->
-      </li>
-      <li id="li3" [ngClass]="{ openDropdown: currentUrl == '/consumption' }">
-        <a routerLink="/consumption">
-          <div class="menu-icons i-consumptions">
-            <img class="icon-normal" src="assets/images/consumptions-icon.png" />
-            <img class="icon-hover" src="assets/images/consumptions-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="3">{{"consumption" | translate}}</span>
-        </a>
-      </li>
-      <li
-        id="li4"
-        [ngClass]="{ openDropdown: currentUrl == '/billing' }"
-        *ngIf="selectedAccountData.isPrepaid == 'No'"
-      >
-        <a routerLink="/billing">
-          <div class="menu-icons i-rupee">
-            <img class="icon-normal" src="assets/images/rupee-icon.png" />
-            <img class="icon-hover" src="assets/images/rupee-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="4">{{"billing" | translate}}</span>
-        </a>
-      </li>
-      <li
-        id="li5"
-        [ngClass]="{ openDropdown: currentUrl == '/recharge-history' }"
-        *ngIf="selectedAccountData.isPrepaid == 'Yes'"
-      >
-        <a class="" routerLink="/recharge-history">
-          <div class="menu-icons i-rupee">
-            <img class="icon-normal" src="assets/images/rupee-icon.png" />
-            <img class="icon-hover" src="assets/images/rupee-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="5">Recharge-History</span>
-        </a>
-      </li>
-      <li
-        class="m-dropdown mm-dropdown"
-        id="li6"
-        [ngClass]="{
-          openDropdown:
-            currentUrl == '/service-request' ||
-            currentUrl == '/view-all-service-request' ||
-            currentUrl == '/service-request-details' ||
-            currentUrl == '/new-service-connection'
-        }"
-        (click)="removeCss($event)"
-      >
-        <a href="javascript:void(0);">
-          <div class="menu-icons i-service-request">
-            <img class="icon-normal" src="assets/images/Service-Requests.png" />
-            <img class="icon-hover" src="assets/images/Service-Requests-hover.png" />
-          </div>
-          <span class="mm-text" id="6">{{'servicerequests'| translate}}</span>
-        </a>
-        <ul class="mmc-dropdown-delay animated fadeInLeft">
-          <li>
-            <a
-              tabindex="-1"
-              routerLink="/new-service-connection"
-              routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">{{'newserviceconnection' | translate}}</span></a
-            >
-          </li>
-          <li>
-            <a
-              tabindex="-1"
-              routerLink="/view-all-service-request"
-              routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">{{'viewservicerequest' | translate}}</span></a
-            >
-          </li>
-          <li>
-            <a
-              tabindex="-1"
-              routerLink="/service-request"
-              routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">{{'registerservicerequests' | translate}}</span></a
-            >
-          </li>
+    <ng-template #showLoader>
+      <div class="spinner box-spinner latest-spin">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </ng-template>
+    <ng-container *ngIf="isSidebarMenusFound == true && sideBarMenuLoader == false else showLoader">
+      <div class="scroll-div">
+        <ul class="navigation">
+          <ng-container *ngFor="let menu of filterBy('display_order')">
+            <ng-container *ngIf="menu.subMenu.length > 0">
+              <li
+                class="m-dropdown mm-dropdown"
+                id="li{{ menu.id }}"
+                (click)="removeCss($event)"
+                [ngClass]="{
+                  openDropdown: currentUrl == menu.slug
+                }"
+              >
+                <a href="javascript:void(0);">
+                  <div class="menu-icons i-service-request">
+                    <img
+                      *ngIf="menu.image != null"
+                      class="icon-normal"
+                      [src]="getIconeImage(menu, 'normal')"
+                    />
+                    <img
+                      *ngIf="menu.hover_image != null"
+                      class="icon-hover"
+                      [src]="getIconeImage(menu, 'hover')"
+                    />
+                  </div>
+                  <span class="mm-text" id="{{ menu.id }}">{{
+                    menu.name | translate
+                  }}</span>
+                </a>
+                <ul
+                  class="mmc-dropdown-delay animated fadeInLeft"
+                  *ngIf="menu.subMenu.length > 0"
+                >
+                  <li *ngFor="let subMenu of menu.subMenu">
+                    <a
+                      tabindex="-1"
+                      routerLink="/{{ subMenu.slug }}"
+                      routerLinkActive="DropdownActive"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      ><span class="mm-text">{{
+                        subMenu.name | translate
+                      }}</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="menu.subMenu.length == 0">
+              <li
+                id="li{{ menu.id }}"
+                (click)="removeCss($event)"
+                [ngClass]="{ openDropdown: currentUrl == menu.slug }"
+                *ngIf="isDispalyable(menu)"
+              >
+                <a routerLink="/{{ menu.slug }}" *ngIf="menu.slug != 'logout'">
+                  <div class="menu-icons i-service-request">
+                    <img
+                      *ngIf="menu.image != null"
+                      class="icon-normal"
+                      [src]="getIconeImage(menu, 'normal')"
+                    />
+                    <img
+                      *ngIf="menu.hover_image != null"
+                      class="icon-hover"
+                      [src]="getIconeImage(menu, 'hover')"
+                    />
+                  </div>
+                  <span class="mm-text" id="{{ menu.id }}">{{
+                    menu.name | translate
+                  }}</span>
+                </a>
+                <a
+                  href="javascript:void(0);"
+                  *ngIf="menu.slug == 'logout'"
+                  (click)="logout()"
+                >
+                  <div class="menu-icons i-service-request">
+                    <img
+                      *ngIf="menu.image != null"
+                      class="icon-normal"
+                      [src]="getIconeImage(menu, 'normal')"
+                    />
+                    <img
+                      *ngIf="menu.hover_image != null"
+                      class="icon-hover"
+                      [src]="getIconeImage(menu, 'hover')"
+                    />
+                  </div>
+                  <span class="mm-text" id="{{ menu.id }}">{{
+                    menu.name | translate
+                  }}</span>
+                </a>
+              </li>
+            </ng-container>
+          </ng-container>
         </ul>
-      </li>
-      <li
-        class="m-dropdown mm-dropdown"
-        id="li7"
-        [ngClass]="{
-          openDropdown:
-            currentUrl == '/complaints' ||
-            currentUrl == '/view-all-complaints' ||
-            currentUrl == '/complaint-request-details'
-        }"
-        (click)="removeCss($event)"
-      >
-        <a href="javascript:void(0);">
-          <div class="menu-icons i-complaints">
-            <img class="icon-normal" src="assets/images/complaints.png" />
-            <img class="icon-hover" src="assets/images/complaints-hover.png" />
-          </div>
-          <span class="mm-text" id="7">{{'complaints'| translate}}</span>
-        </a>
-        <ul class="mmc-dropdown-delay animated fadeInLeft">
-          <li>
-            <a
-              tabindex="-1"
-              routerLink="/view-all-complaints"
-              routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">{{'viewcomplaints' | translate}}</span></a
-            >
-          </li>
-          <li>
-            <a
-              tabindex="-1"
-              routerLink="/complaints"
-              routerLinkActive="DropdownActive"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><span class="mm-text">{{'registercomplaint'|translate}}</span></a
-            >
-          </li>
-        </ul>
-      </li>
-      <li
-        id="li8"
-        *ngIf="is_net_metering"
-        [ngClass]="{ openDropdown: currentUrl == '/net-metering' }"
-        (click)="removeCss($event)"
-      >
-        <a class="" routerLink="/net-metering">
-          <div class="menu-icons i-consumptions">
-            <img class="icon-normal" src="assets/images/consumptions-icon.png" />
-            <img class="icon-hover" src="assets/images/consumptions-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="8">{{'netmetering' | translate}}</span>
-        </a>
-      </li>
-      <li
-        id="li9"
-        [ngClass]="{ openDropdown: currentUrl == '/tou' }"
-        (click)="removeCss($event)"
-      >
-        <a class="" routerLink="/tou">
-          <div class="menu-icons i-tou">
-            <img class="icon-normal" src="assets/images/clock-off.png" />
-            <img class="icon-hover" src="assets/images/clock-on.png" />
-          </div>
-          <span class="mm-text" id="9">{{'tou' | translate}}</span>
-        </a>
-      </li>
-      <!-- {{currentUrl}} -->
-      <li
-        id="li10"
-        [ngClass]="{ openDropdown: currentUrl == '/notifications' }"
-        (click)="removeCss($event)"
-      >
-        <a class="" routerLink="/notifications">
-          <div class="menu-icons i-notifications">
-            <img class="icon-normal" src="assets/images/notification-icon.png" />
-            <img class="icon-hover" src="assets/images/notification-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="10">{{'notifications' | translate}}</span>
-        </a>
-      </li>
-      <li
-        id="li11"
-        [ngClass]="{ openDropdown: currentUrl == '/consumption-estimator' }"
-        (click)="removeCss($event)"
-      >
-        <a class="" routerLink="/consumption-estimator">
-          <div class="menu-icons i-consumptions">
-            <img class="icon-normal" src="assets/images/consumptions-icon.png" />
-            <img class="icon-hover" src="assets/images/consumptions-icon-hover.png" />
-          </div>
-          <span class="mm-text" id="11">{{'consumptionestimator' | translate}}</span>
-        </a>
-      </li>
-      <li id="li12" [ngClass]="{ openDropdown: currentUrl == '/reset-password' }"
-      (click)="removeCss($event)">
-        <a routerLink="/change-password">
-          <div class="menu-icons i-settings">
-            <img class="icon-normal" src="assets/images/setting-icon.png" />
-            <img class="icon-hover" src="assets/images/setting-icon-hover.png" />
-          </div>
-            <span class="mm-text" id="12">{{'Change Password'|translate}}</span>
-        </a>
-      </li>
-      <li id="li13" [ngClass]="{ openDropdown: currentUrl == '/pay-bill' }"
-      (click)="removeCss($event)">
-      <a routerLink="/pay-bill">
-            <div class="menu-icons i-rupee">
-              <img class="icon-normal" src="assets/images/rupee-icon.png" />
-              <img class="icon-hover" src="assets/images/rupee-icon-hover.png" />
-          </div>
-            <span class="mm-text" id="13">{{'Pay bill' | translate}}</span>
-        </a>
-      </li>
-      <li id="li14" [ngClass]="{ openDropdown: currentUrl == '/logout' }" (click)="removeCss($event)">
-        <a  (click)="logout()">
-            <div class="menu-icons i-logout">
-            <img class="icon-normal" src="assets/images/logout-icon.png" />
-            <img class="icon-hover" src="assets/images/logout-icon-hover.png" />
-          </div>
-            <span class="mm-text" id="14">{{'logout' | translate}}</span>
-        </a>
-      </li>
-    </ul>
-    </div>
+      </div>
+    </ng-container>
   </div>
 </div>

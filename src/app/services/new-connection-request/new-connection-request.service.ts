@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { HelpersService } from "./../helpers/helpers.service";
 import { DataService } from "./../data.service";
 import { AuthService } from "../authService/auth.service";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +16,8 @@ export class NewConnectionRequest {
     private userAccounts: ManageaccountService,
     private data: DataService,
     private auth: AuthService,
-    private helper: HelpersService
+    private helper: HelpersService,
+    private router:Router
   ) {}
 
 
@@ -23,13 +25,12 @@ export class NewConnectionRequest {
     return this.data.getAll(
       this.masterDropDownAPI,
       header,
-      this.helper.setHeaderData(),
+      {},
       "POST"
     );
   }
 
   getlatestData(header){
-    alert("tesdfs");
      return this.data.getAll(this.masterDropDownAPI, header,this.helper.setHeaderData(),"POST");
   }
 
@@ -38,18 +39,28 @@ export class NewConnectionRequest {
     return this.data.getAll(
       this.dropdownDataAPI,
       header,
-      this.helper.setHeaderData(),
+      {},
       "POST"
     );
   }
+  
   addNewConnection(updSubsData) {
-    var currentUser = this.auth.getCurrentUser();
-    updSubsData["profileToken"] = btoa(currentUser.userId);
-    return this.data.getAll(
-      this.addNewConnectionAPI,
+    var apiUrl=this.addNewConnectionAPI;
+    var headerData={};
+    if(this.auth.isLoggedIn()){
+      var currentUser = this.auth.getCurrentUser();
+      updSubsData["profileToken"] = btoa(currentUser.userId);
+      headerData=this.helper.setHeaderData();
+    }else{
+      headerData={};
+      apiUrl="users/addConnectionWithouLogin";
+    }
+    return this.data.getAll(apiUrl,
       updSubsData,
-      this.helper.setHeaderData(),
+      headerData,
       "POST"
     );
+    
+   
   }
 }

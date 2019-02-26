@@ -25,7 +25,6 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(route, state: RouterStateSnapshot) {
-    console.log(state.url);
     if (state.url == "/registration") {
       //if registration page
       let otpVerifiedAccEmail = this.helpers.getLocalStoragData(

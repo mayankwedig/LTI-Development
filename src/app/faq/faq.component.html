@@ -1,63 +1,116 @@
 <div id="main-wrapper" class="no-sidebar">
-		<app-header></app-header>
-		<div class="main-container-sec faq-main-container" style="">
-			 <div class="container">
-					<div class="important-banner inner-page-banner">
-						 <img alt="" src="../assets/images/faqs-banner.jpg">
-					</div>
-			 </div>
-			 <div class="faq-section">
-					<div class="main-heading">{{'Frequently asked question'|translate}} (FAQs)</div>
-					<div class="container">
-							<div class="row" *ngIf="faqLoader == true">
-									<div class="spinner box-spinner">
-									  <div class="bounce1"></div>
-									  <div class="bounce2"></div>
-									  <div class="bounce3"></div>
-									</div>
-								  </div>
-								  <div class="content-body" *ngIf="faqDataFound == false && faqLoader == false">
-										<div
-										  class="text-center font-12  field_not_found"
-										  style="margin-top: 70px;"
-										>
-										  <img src="/assets/images/no_data.png" />{{'Data not found for FAQ section'|translate}} <br />
-										</div>
-									  </div>
-						 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngIf="faqDataFound == true && faqLoader == false">
-								<div class="panel panel-default" *ngFor="let faq of faQData let i = index">
-									<!-- Opened --> 
-									 <div *ngIf="i == 0" class="panel-heading" role="tab" id="headingOne">
-											<h4 class="panel-title">
-								 		 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										 <!--  What can I do for converting my single phase service connection to three phase one? -->
-										{{faq.name}}
-												 <span class="heading-title-close"><i class="fa fa-plus"></i></span>
-												 </a>
-											</h4>
-									 </div>
-									 <div *ngIf="i == 0" id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-											<div class="panel-body">
-													{{faq.name}}
-											</div>
-									 </div>
-									 
-										<!-- Closed --> 
-									 <div *ngIf="i > 0" class="panel-heading" role="tab" id="headingTwo">
-											<h4 class="panel-title">
-												 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-														{{faq.name}}
-												 <span class="heading-title-close"><i class="fa fa-plus"></i></span>
-												 </a>
-											</h4>
-									 </div>
-									 <div *ngIf="i > 0" id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-											<div class="panel-body">
-													{{faq.name}}
-											</div>
-									 </div>
-								</div>
-								<!-- <div class="panel panel-default">
+  <app-header></app-header>
+  <div class="main-container-sec faq-main-container" style="">
+    <div class="container">
+      <div class="important-banner inner-page-banner">
+        <img alt="" src="../assets/images/faqs-banner.jpg" />
+      </div>
+    </div>
+    <div class="faq-section">
+      <div class="main-heading">
+        {{ "Frequently asked question" | translate }} (FAQs)
+      </div>
+      <div class="container">
+        <div class="row" *ngIf="faqLoader == true">
+          <div class="spinner box-spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        </div>
+        <div
+          class="content-body"
+          *ngIf="faqDataFound == false && faqLoader == false"
+        >
+          <div
+            class="text-center font-12  field_not_found"
+            style="margin-top: 70px;"
+          >
+            <img src="/assets/images/no_data.png" />{{
+              "Data not found for FAQ section" | translate
+            }}
+            <br />
+          </div>
+        </div>
+        <div
+          class="panel-group"
+          id="accordion"
+          role="tablist"
+          aria-multiselectable="true"
+          *ngIf="faqDataFound == true && faqLoader == false"
+        >
+          <div
+            class="panel panel-default"
+            *ngFor="let faq of faQData; let i = index"
+          >
+            <!-- Opened -->
+            <div
+              *ngIf="i == 0"
+              class="panel-heading"
+              role="tab"
+              id="headingOne"
+            >
+              <h4 class="panel-title">
+                <a
+                  role="button"
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  <!--  What can I do for converting my single phase service connection to three phase one? -->
+                  {{ faq.name }}
+                  <span class="heading-title-close"
+                    ><i class="fa fa-plus"></i
+                  ></span>
+                </a>
+              </h4>
+            </div>
+            <div
+              *ngIf="i == 0"
+              id="collapseOne"
+              class="panel-collapse collapse in"
+              role="tabpanel"
+              aria-labelledby="headingOne"
+            >
+              <div class="panel-body">
+                {{ faq.name }}
+              </div>
+            </div>
+
+            <!-- Closed -->
+            <div *ngIf="i > 0" class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a
+                  class="collapsed"
+                  role="button"
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  {{ faq.name }}
+                  <span class="heading-title-close"
+                    ><i class="fa fa-plus"></i
+                  ></span>
+                </a>
+              </h4>
+            </div>
+            <div
+              *ngIf="i > 0"
+              id="collapseTwo"
+              class="panel-collapse collapse"
+              role="tabpanel"
+              aria-labelledby="headingTwo"
+            >
+              <div class="panel-body">
+                {{ faq.name }}
+              </div>
+            </div>
+          </div>
+          <!-- <div class="panel panel-default">
 									 <div class="panel-heading" role="tab" id="headingTwo">
 											<h4 class="panel-title">
 												 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -72,7 +125,7 @@
 											</div>
 									 </div>
 								</div> -->
-							<!-- 	<div class="panel panel-default">
+          <!-- 	<div class="panel panel-default">
 									 <div class="panel-heading" role="tab" id="headingThree">
 											<h4 class="panel-title">
 												 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -207,10 +260,10 @@
 											</div>
 									 </div>
 								</div> -->
-						 </div>
-					</div>
-					<app-disclamider></app-disclamider>
-			 </div>
-		</div>
- </div>
- <app-footer></app-footer>
+        </div>
+      </div>
+      <app-disclamider></app-disclamider>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
