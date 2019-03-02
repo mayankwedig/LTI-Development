@@ -104,7 +104,7 @@ export class LoginComponent {
     this.fechQuestionList("1");
     this.fechQuestionList("2");
 
-    localStorage.removeItem("withSequityQues");//deleting previouls set session
+    sessionStorage.removeItem("withSequityQues");//deleting previouls set session
   }
   getQues(username){
     console.log(username);

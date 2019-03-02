@@ -8,7 +8,7 @@ import { AppError } from "./../common/app-error";
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent implements OnInit {
-  searchKeyWord = localStorage.getItem("search");
+  searchKeyWord = sessionStorage.getItem("search");
   resultFound: any = false;
   searchLoader: boolean = false;
   searchResponse = [];

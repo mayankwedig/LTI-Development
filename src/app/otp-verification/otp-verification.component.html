@@ -14,7 +14,7 @@
               <div class="right-sec-inner signup-form-box" *ngIf="!isOtpVerified">
                 <div class="box-title">
                   <div class="text-title text-transform-none">
-                    {{'otpverificationmsg'|translate}}
+                    {{'OTP has been sent to your registered mobile number and email. please enter it below to verify'|translate}}
                   </div>
                 </div>
                 <form
@@ -35,7 +35,7 @@
                           name="otp"
                           type="text"
                           class="form-control"
-                          placeholder="{{'otp'|translate}}"
+                          placeholder="{{'OTP'|translate}}"
                         />
 
                         <div
@@ -47,7 +47,7 @@
                           <span
                             class="error-msg"
                             *ngIf="OtpVerificationFields.otp.errors?.required"
-                            >{{'otp'|translate}}  {{'required'|translate}}.</span
+                            >{{'OTP is required'|translate}}.</span
                           >
                         </div>
                       </div>
@@ -68,7 +68,7 @@
                           class="btn btn-primary submit-btn"
                           [disabled]="!OtpVerificationFrm.valid"
                         >
-                          {{'submit'|translate}}
+                          {{'Submit'|translate}}
                         </button>
                       </div>
                     </div>
@@ -76,8 +76,8 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="dont-account">
-                       {{'alreadyhaveaccount' | translate}}
-                        <a class="" routerLink="/login"> {{'login' | translate}}</a>
+                       {{'Already have an account?' | translate}}
+                        <a class="" routerLink="/login"> {{'Login' | translate}}</a>
                       </div>
                     </div>
                   </div>
@@ -86,14 +86,14 @@
               <div class="right-sec-inner signup-form-box" *ngIf="isOtpVerified">
                 <div class="box-title">
                     
-                  <div class="text-title">{{'resetpassword'|translate}}</div>
+                  <div class="text-title">{{'Reset password'|translate}}</div>
                 </div>
                 <form class="form no-padding" 
                   class="form no-padding"
                   [formGroup]="ChangePasswordFrm"
                   (ngSubmit)="changePassFunc()">
                   <div class="row">
-                      <div class="form-hint"> <span style="color:red"> <strong>{{'note'|translate}}:</strong> </span> {{'passwordpolicy'|translate}}</div>
+                      <div class="form-hint"> <span style="color:red"> <strong>{{'Note'|translate}}:</strong> </span> {{'Conform with our Strong Password policy, you are required to use a sufficiently strong password. Password must contain more than 8 characters, 1 upper case letter, and 1 special character'|translate}}</div>
                     </div>
                   <div class="row">
                     <div class="col-sm-12">
@@ -105,11 +105,10 @@
                           type="password"
                           name=""
                           class="form-control"
-                          placeholder="{{'new'|translate}} {{'password'|translate}}"
+                          placeholder="{{'New password'|translate}}"
                         />
                         <div *ngIf="changePassFields.password.touched && changePassFields.password.invalid">
-                            <span class="error-msg" *ngIf="changePassFields.password.errors?.required"> {{'password'|translate}} {{'required'|translate}}</span>
-                            <span class="error-msg" *ngIf="!changePassFields.password.errors?.patterns && changePassFields.password.value != ''">{{'invalid'|translate}} {{'password'|translate}}</span>
+                            <span class="error-msg" *ngIf="changePassFields.password.errors?.required"> {{'New password is required'|translate}}</span>
                           </div>
                       </div>
                     </div>
@@ -122,13 +121,13 @@
                           type="password"
                           name=""
                           class="form-control"
-                          placeholder="{{'confirmpassword'|translate}}"
+                          placeholder="{{'Confirm password'|translate}}"
                         />
                         <div *ngIf="changePassFields.cpassword.touched && changePassFields.cpassword.invalid">
-                            <span class="error-msg" *ngIf="changePassFields.cpassword.errors?.required">{{'password'|translate}} {{'required'|translate}}</span>
+                            <span class="error-msg" *ngIf="changePassFields.cpassword.errors?.required">{{'Confirm password is required'|translate}}</span>
                           </div>
                           <div *ngIf="(ChangePasswordFrm.hasError('notSame')) && (changePassFields.cpassword.touched && changePassFields.password.touched &&  changePassFields.cpassword.value != '')">
-                            <span class="error-msg">{{'passwordconfirmpasswordnotmatch'|translate}}</span>
+                            <span class="error-msg">{{'Password and confirm password do not match'|translate}}</span>
                           </div>
                       </div>
                     </div>
@@ -145,7 +144,7 @@
                           class="btn btn-primary submit-btn"
                           [disabled]="!ChangePasswordFrm.valid"
                         >
-                          {{'submit'|translate}}
+                          {{'Submit'|translate}}
                         </button>
                       </div>
                     </div>
@@ -153,8 +152,8 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="dont-account">
-                          {{'alreadyhaveaccount'|translate}}
-                        <a class="" routerLink="/login">{{'login'|translate}}</a>
+                          {{'Already have an account?'|translate}}
+                        <a class="" routerLink="/login">{{'Login'|translate}}</a>
                       </div>
                     </div>
                   </div>

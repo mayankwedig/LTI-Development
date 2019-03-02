@@ -30,29 +30,29 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   notifications:any=[];
   totalNotifications:any=0;
   hideTotalNotification:boolean=true;
-  selected_lang="eng";//localStorage.getItem("selected_lag"); 
+  selected_lang="eng";//sessionStorage.getItem("selected_lag"); 
   logogImage="";
   doSearch(){
     
     if(this.searchKeyWord != ""){
-      if(localStorage.getItem('search') != null){
-          localStorage.removeItem('search');
+      if(sessionStorage.getItem('search') != null){
+          sessionStorage.removeItem('search');
       }
-      localStorage.setItem("search",this.searchKeyWord);
+      sessionStorage.setItem("search",this.searchKeyWord);
       this.router.navigate(["/search"]);
     }
   }
   ngOnInit() {
     this.getSiteLogo();
-    if(localStorage.getItem('search') != null){
-      this.searchKeyWord=localStorage.getItem('search');
+    if(sessionStorage.getItem('search') != null){
+      this.searchKeyWord=sessionStorage.getItem('search');
     }else{
       this.searchKeyWord="";
     }
-    if(localStorage.getItem('selected_lag') == null){
-      localStorage.setItem("selected_lag",this.selected_lang);
+    if(sessionStorage.getItem('selected_lag') == null){
+      sessionStorage.setItem("selected_lag",this.selected_lang);
     }else{
-      this.selected_lang=localStorage.getItem('selected_lag');
+      this.selected_lang=sessionStorage.getItem('selected_lag');
     }
     let accountToken = this.helpers.getLocalStoragData("accountToken"); // cehck if account token is exists
     if (accountToken != null) {
@@ -105,7 +105,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   loderLoder=false;
   profile_image:any="../assets/images/placeholder-man-grid-240x268.png";
   changeLang(changeLang){
-    localStorage.setItem("selected_lag",changeLang);
+    sessionStorage.setItem("selected_lag",changeLang);
     /* this.ngOnInit(); */
     this.onRefresh();
   }

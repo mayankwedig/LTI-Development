@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   constructor(private winRef: WindowRefService){
    // window.onbeforeunload = function(e) { // distory sessoin after browser close
      //alert(e);
-      /*  localStorage.clear(); */
+      /*  sessionStorage.clear(); */
    // };
    /*window.addEventListener("beforeunload", function(event) {
      // event.returnValue = "Write something clever here..";

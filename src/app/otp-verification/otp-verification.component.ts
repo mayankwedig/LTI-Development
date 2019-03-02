@@ -70,11 +70,11 @@ export class OtpVerificationComponent {
 
   ) {
     this.otpVerificationToken = this.OtpVeriyService.getOtpVerificationSession();
-    var getWithSequityQuesSessoin = localStorage.getItem("withSequityQues");
+    var getWithSequityQuesSessoin = sessionStorage.getItem("withSequityQues");
 
     if (this.otpVerificationToken != null) {
       if (getWithSequityQuesSessoin != null) {
-        localStorage.removeItem("withSequityQues");
+        sessionStorage.removeItem("withSequityQues");
         //checking if token is set
         if (getWithSequityQuesSessoin == "true") {
           // if true

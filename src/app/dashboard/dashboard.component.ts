@@ -40,6 +40,24 @@ export class DashboardComponent implements OnInit {
   translate(string:string):string{
     return this._helper.translate(string);
   }
+  dashBoardRows=[
+    {"row_name":1,"sort":2,"cols":[{"col_name":1,"sort":2},{"col_name":2,"sort":1}]}, //
+    {"row_name":2,"sort":1,"cols":[{"col_name":1,"sort":2},{"col_name":2,"sort":1}]},
+    {"row_name":3,"sort":3,"cols":[]},
+    {"row_name":4,"sort":4,"cols":[]},
+    {"row_name":5,"sort":5,"cols":[{"col_name":1,"sort":2},{"col_name":2,"sort":1}]},
+    {"row_name":6,"sort":6,"cols":[]}
+  ]
+  filterBy(prop: string) {
+    return this.dashBoardRows.sort((a, b) =>
+      a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
+    );
+  }
+  filterColsBy(drows,prop: string){
+    return drows.sort((a, b) =>
+      a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
+    );
+  }
   isWidgetFound:boolean=false;
   widgetLoader:boolean=false;
   widgets:any="";
@@ -62,6 +80,7 @@ export class DashboardComponent implements OnInit {
       this.widgets="";
     });
   }
+ 
   constructor(
     private auth: AuthService,
     private DashboardService: DashboardService,

@@ -14,13 +14,41 @@
       <div
         class="billing-sec margin_top20 padding_bottom10 no-padding-l no-padding-r"
       >
-        <div class="panel-body bil-pay-panel">
+        <div class="panel-body bil-pay-panel" *ngIf="showPaymentProcessSection == true">
+            <div class="service-box" >
+                  <div class="title">{{'Bill Payment'|translate}}</div>
+                  <div class="req-success-msg">
+                    {{'Thank You for pay your bill'|translate}}
+                  </div>
+                  <div class="req-number">
+                    {{'Please do not press back button or refesh this page'|translate}}
+                  </div>
+                  <div class="team-contact">{{'Your payment will process shortly'|translate}}</div>
+                  <div class="text-center padding_top50">
+                    {{'Page will be redirect automatically to payment gateway'|translate}}
+                  </div>
+                  <form method="post"   action="{{payMentDetails.url}}" name="f1" id="payMentFrm">
+                    <input type='hidden' name='MID' [value]='payMentDetails.MID' >
+                    <input type='hidden' name='WEBSITE' [value]='payMentDetails.WEBSITE' >
+                    <input type='hidden' name='CHANNEL_ID' [value]='payMentDetails.CHANNEL_ID' >
+                    <input type='hidden' name='INDUSTRY_TYPE_ID'[value]='payMentDetails.INDUSTRY_TYPE_ID' >
+                    <input type='hidden' name='ORDER_ID'[value]='payMentDetails.ORDER_ID' >
+                    <input type='hidden' name='CUST_ID'[value]='payMentDetails.CUST_ID' >
+                    <input type='hidden' name='TXN_AMOUNT'[value]='payMentDetails.TXN_AMOUNT' >
+                    <input type='hidden' name='CALLBACK_URL'[value]='payMentDetails.CALLBACK_URL' >
+                    <input type='hidden' name='EMAIL' [value]='payMentDetails.EMAIL' >
+                    <input type='hidden' name='MOBILE_NO' [value]='payMentDetails.MOBILE_NO' >
+                    <input type='hidden' name='CHECKSUMHASH' [value]='payMentDetails.CHECKSUMHASH'>
+                </form>
+              </div>
+        </div>
+        <div class="panel-body bil-pay-panel" *ngIf="showPaymentProcessSection == false">
           <form>
             <div class="row">
               <div class="col-lg-12 col-sm-12">
                 <div class="form-group top">
                   <label>
-                    Account Number
+                    {{'Account Number'|translate}}
                   </label>
                   <div class="form-group">
                     <div *ngIf="!isLoggedIn()">
@@ -62,7 +90,7 @@
                           }}</option>
                         </select>
                         <div *ngIf="userAccountsLoder" class="fieldLoding">
-                          Loding...
+                          {{'Loding'|translate}}...
                         </div>
                       </div>
                       <div class="col-sm-6">
@@ -70,7 +98,7 @@
                           class="blue-btn"
                           (click)="getBillAccountDetails()"
                         >
-                          View
+                          {{'View'|translate}}
                         </button>
                       </div>
                     </div>
@@ -81,7 +109,7 @@
                 <div class="col-lg-6 col-sm-6">
                   <div class="form-group">
                     <label>
-                      Account Name
+                      {{'Account Name'|translate}}
                     </label>
                     <input
                       [(ngModel)]="billing.accountName"
@@ -96,7 +124,7 @@
                 <div class="col-lg-4 col-sm-6">
                   <div class="form-group">
                     <label>
-                      Bill Amount
+                      {{'Bill Amount'|translate}}
                     </label>
                     <input
                       [(ngModel)]="billing.bill_amount"
@@ -110,7 +138,7 @@
                 <div class="col-lg-3 col-sm-6">
                   <div class="form-group">
                     <label>
-                      Account Number
+                      {{'Account Number'|translate}}
                     </label>
                     <input
                       [(ngModel)]="billing.accountNumber"
@@ -125,7 +153,7 @@
                 <div class="col-lg-3 col-sm-6">
                   <div class="form-group">
                     <label class="min">
-                      Due Date
+                      {{'Due Date'|translate}}
                     </label>
                     <input
                       [(ngModel)]="billing.due_date"
@@ -140,7 +168,7 @@
                 <div class="col-lg-3 col-sm-6">
                   <div class="form-group">
                     <label>
-                      Payble Amount
+                      {{'Payble Amount'|translate}}
                     </label>
                     <input
                       [(ngModel)]="billing.payable_amount"
@@ -154,7 +182,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                   <div class="form-group">
-                    <button class="blue-btn">Pay Now</button>
+                    <button class="blue-btn" (click)=getPaymentChecksm()>Pay Now</button>
                   </div>
                 </div>
               </div>

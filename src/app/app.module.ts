@@ -20,7 +20,6 @@ import { HomeComponent } from './home/home.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomePageInfoComponent } from './home-page-info/home-page-info.component';
 import { HomePageSliderComponent } from './home-page-slider/home-page-slider.component';
 import {WindowRefService} from './services/window-ref/window-ref.service';
 import { LoginComponent } from './login/login.component';
@@ -41,7 +40,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
 import { HelpComponent } from './help/help.component';
 import { FaqComponent } from './faq/faq.component';
-import { CustomersServiceComponent } from './customers-service/customers-service.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { ConsumptionComponent } from './consumption/consumption.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -63,8 +61,6 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
 import {HelpersService} from './services/helpers/helpers.service';
 import { OtpVerificationService } from './services/otp-varification/otp-verification.service';
 import { DashboardService } from './services/dashboard/dashboard.service';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
-import {AddaccountComponent} from './addaccount/addaccount.component';
 import {DataTableModule} from "angular-6-datatable";
 import { ComplaintsComponent } from './complaints/complaints.component';
 import { ServiceRequestComponent } from './service-request/service-request.component';
@@ -99,6 +95,7 @@ import { TrackServiceRequestComponent } from './track-service-request/track-serv
 import { PayBillComponent } from './pay-bill/pay-bill.component';
 import { EnergyTipsComponent } from './energy-tips/energy-tips.component';
 import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
+import { PaymentProcessComponent } from './payment-process/payment-process.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -110,7 +107,6 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
     SideBarComponent,
     HeaderComponent,
     FooterComponent,
-    HomePageInfoComponent,
     HomePageSliderComponent,
     LoginComponent,
     ValidateAccountNumber,
@@ -120,7 +116,6 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
     AboutComponent,
     HelpComponent,
     FaqComponent,
-    CustomersServiceComponent,
     SitemapComponent,
     ConsumptionComponent,
     SettingsComponent,
@@ -137,8 +132,6 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
     DisclamiderComponent,
     RegistrationComponent,
     OtpVerificationComponent,
-    UpdateProfileComponent,
-    AddaccountComponent,
     ComplaintsComponent,
     ServiceRequestComponent,
     NetMeteringComponent,
@@ -160,7 +153,8 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
     TrackComplaintsComponent,
     TrackServiceRequestComponent,
     PayBillComponent,
-    EnergyTipsComponent
+    EnergyTipsComponent,
+    PaymentProcessComponent
   ],
   imports: [
 
@@ -169,7 +163,6 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
         adClient: 'ca-pub-1234567899876543', //replace with your client from google adsense
         adSlot: 1234567891 //replace with your slot from google adsense
       }),
-
     BrowserModule,
     DataTableModule,
     MatTabsModule,
@@ -186,7 +179,6 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
       {path:'dashboard',component: DashboardComponent,canActivate:[AuthGuard]},
       {path:'help',component: HelpComponent},
       {path:'faqs',component: FaqComponent},   
-      {path:'customers-service',component: CustomersServiceComponent},
       {path:'energy-tips',component: EnergyTipsComponent}, 
       {path:'sitemap',component: SitemapComponent},    
       {path:'consumption',component: ConsumptionComponent,canActivate:[AuthGuard]},
@@ -206,7 +198,6 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
       {path:'billing',component: BillingComponent,canActivate:[AuthGuard]},
       {path:'otp-verification',component: OtpVerificationComponent,canActivate:[AuthGuard]}, 
       {path:'registration',component: RegistrationComponent,canActivate:[AuthGuard]}, 
-      {path:'update-profile',component: UpdateProfileComponent,canActivate:[AuthGuard]},
       {path:'complaints',component: ComplaintsComponent},
       {path:'service-request',component:ServiceRequestComponent,canActivate:[AuthGuard]},
       {path:'net-metering',component:NetMeteringComponent,canActivate:[AuthGuard]},
@@ -222,6 +213,7 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
       {path:'notifications',component:NotificationListComponent,canActivate:[AuthGuard]},
       {path:'consumption-estimator',component:ConsumptionEstimatorComponent,canActivate:[AuthGuard]},
       {path:'change-password',component:ResetPasswordComponent,canActivate:[AuthGuard]},
+      {path:"payment-process",component:PaymentProcessComponent},
       {path:'**',component: PageNotFoundComponent}
       
       

@@ -22,7 +22,7 @@
             <div class="right-sec-inner-sec">
               <div class="right-sec-inner signup-form-box">
                 <div class="box-title">
-                  <div class="text-title">{{ "login" | translate }}</div>
+                  <div class="text-title">{{ "Login" | translate }}</div>
                 </div>
                 <form [formGroup]="loginFrm" (ngSubmit)="login()">
                   <div class="row">
@@ -35,13 +35,13 @@
                           name="user_name"
                           type="text"
                           class="form-control"
-                          placeholder="{{ translateText('userId') }}"
+                          placeholder="{{ translateText('Userid') }}"
                         />
                         <div *ngIf="f.user_name.touched && f.user_name.invalid">
                           <span
                             class="error-msg"
                             *ngIf="f.user_name.errors?.required"
-                            >{{ "userIdReq" | translate }}</span
+                            >{{ "Userid is required" | translate }}</span
                           >
                         </div>
                       </div>
@@ -57,13 +57,13 @@
                           type="password"
                           name="password"
                           class="form-control"
-                          placeholder="{{ translateText('password') }}"
+                          placeholder="{{ translateText('Password') }}"
                         />
                         <div *ngIf="f.password.touched && f.password.invalid">
                           <span
                             class="error-msg"
                             *ngIf="f.password.errors?.required"
-                            >{{ "passwordReq" | translate }}</span
+                            >{{ "Password is required" | translate }}</span
                           >
                         </div>
                       </div>
@@ -76,7 +76,7 @@
                           <a
                             (click)="showForgotPass()"
                             style="cursor: pointer"
-                            >{{ "forgotpassword" | translate }}</a
+                            >{{ "Forgot password?" | translate }}</a
                           >
                         </div>
                       </div>
@@ -99,7 +99,7 @@
                           type="submit"
                           [disabled]="!loginFrm.valid"
                         >
-                          {{ "login" | translate }}
+                          {{ "Login" | translate }}
                         </button>
                       </div>
                     </div>
@@ -107,9 +107,9 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="dont-account">
-                        {{ "donthaveaccount" | translate }}
+                        {{ "Do not have account?" | translate }}
                         <a class="" routerLink="/account-verification">{{
-                          "doregisteration" | translate
+                          "Register" | translate
                         }}</a>
                       </div>
                     </div>
@@ -126,7 +126,7 @@
             <div class="right-sec-inner-sec">
               <div class="right-sec-inner signup-form-box">
                 <div class="box-title">
-                  <div class="text-title">{{'forgotpassword'|translate}}</div>
+                  <div class="text-title">{{'Forgot Password'|translate}}</div>
                 </div>
                 <form
                   class="form no-padding"
@@ -142,18 +142,18 @@
                           name="email"
                           type="text"
                           class="form-control"
-                          placeholder="{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}}"
+                          placeholder="{{'Userid'|translate}} / {{'E-mail'|translate}} / {{'Mobile no.'|translate}}"
                         />
                         <div *ngIf="errorFlags.email">
                           <span class="error-msg"
-                            >{{'userId'|translate}} / {{'email'|translate}} / {{'mobilenumber'|translate}} {{'required'|translate}}</span
+                            >{{'Userid/E-mail/mobile no. is required'|translate}}</span
                           >
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-12"><div class="orClass">{{'or'|translate}}</div></div>
+                    <div class="col-sm-12"><div class="orClass">{{'Or'|translate}}</div></div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
@@ -164,12 +164,12 @@
                           name="email1"
                           type="text"
                           class="form-control"
-                          placeholder="{{'userId'|translate}}"
+                          placeholder="{{'Userid'|translate}}"
                           (input)="getSelectedQuestions(forgotPassFrm.value.email1)"
                         />
                         <div *ngIf="errorFlags.email1">
                           <span class="error-msg"
-                            >{{'userId'|translate}} {{'required'|translate}}</span
+                            >{{'Userid is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -185,7 +185,7 @@
                           class="form-control"
                           disabled
                         >
-                          <option value="">{{'selectsecurityquestions'|translate}}</option>
+                          <option value="">{{'Select Security question'|translate}}</option>
                           <option
                             *ngFor="let ques of questionsList1"
                             [value]="ques.id"
@@ -194,7 +194,7 @@
                         </select>
                         <div *ngIf="errorFlags.questionsList1">
                           <span class="error-msg"
-                            >{{'securityquestion'|translate}} 1 {{'required'|translate}}</span
+                            >{{'Security ques 1 is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -209,10 +209,10 @@
                           name="ansques1"
                           type="text"
                           class="form-control"
-                          placeholder="{{'answer'|translate}} 1"
+                          placeholder="{{'Answer 1'|translate}}"
                         />
                         <div *ngIf="errorFlags.ansques1">
-                          <span class="error-msg">{{'answer'|translate}} 1 {{'required'|translate}}</span>
+                          <span class="error-msg">{{'Answer 1 is required'|translate}}</span>
                         </div>
                       </div>
                     </div>
@@ -227,7 +227,7 @@
                           class="form-control"
                           disabled
                         >
-                          <option value="">{{'selectsecurityquestions'|translate}}</option>
+                          <option value="">{{'Select security questions'|translate}}</option>
                           <option
                             *ngFor="let ques of questionsList2"
                             [value]="ques.id"
@@ -236,7 +236,7 @@
                         </select>
                         <div *ngIf="errorFlags.questionsList2">
                           <span class="error-msg"
-                            >{{'securityquestion'|translate}} 2 {{'required'|translate}}</span
+                            >{{'Security ques 1 is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -251,10 +251,10 @@
                           formControlName="ansques2"
                           type="text"
                           class="form-control"
-                          placeholder="{{'answer'|translate}} 2"
+                          placeholder="{{'Answer 2'|translate}}"
                         />
                         <div *ngIf="errorFlags.ansques2">
-                          <span class="error-msg">{{'answer'|translate}} 2 {{'required'|translate}}</span>
+                          <span class="error-msg">{{'Answer 2 is required'|translate}}</span>
                         </div>
                       </div>
                     </div>
@@ -274,7 +274,7 @@
                           class="btn btn-primary submit-btn"
                           [disabled]="loder"
                         >
-                        {{'submit'|translate}}
+                        {{'Submit'|translate}}
                         </button>
                       </div>
                     </div>
@@ -284,7 +284,7 @@
                   <div class="form-group text-right">
                     <div class="f-text">
                       <a (click)="showLogin()" style="cursor: pointer;">
-                        {{'backtologin'|translate}}</a
+                        {{'Back to login'|translate}}</a
                       >
                     </div>
                   </div>

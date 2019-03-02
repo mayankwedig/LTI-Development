@@ -167,8 +167,8 @@ export class ProfileComponent implements OnInit {
     };
   
     _googCsa('ads', pageOptions, adblock1);
-    if(localStorage.getItem("isOtpVerified") != null){
-        localStorage.removeItem("isOtpVerified");
+    if(sessionStorage.getItem("isOtpVerified") != null){
+        sessionStorage.removeItem("isOtpVerified");
     }
 
   }
@@ -363,7 +363,7 @@ export class ProfileComponent implements OnInit {
   formData:any="";
   pwVerifLoader:boolean=false;
   verifyOtpFun(){
-    localStorage.removeItem("isOtpVerified");
+    sessionStorage.removeItem("isOtpVerified");
     this.Otoploder=true;
     this.formData=this.OtpVerificationFrm.value
     const verifyOtpData = this.formData.verifyOtp
@@ -385,7 +385,7 @@ export class ProfileComponent implements OnInit {
               
               this.showModalPopup("passwordVeri-modal");
               this.initPwVerificationForm();
-              localStorage.setItem("isOtpVerified","true");
+              sessionStorage.setItem("isOtpVerified","true");
 
             }else{
               

@@ -38,6 +38,9 @@ export class PayBillService {
   getAccounts() {
     return this.userAccounts.getAccount("");
   }
+  getPaymentChecksm(){
+    return this._data.getAll("users/paytmCheckout",{},{},"POST");
+  }
   prompt(flag: string, msg: string) {
     var translatedMsg = this.translate(msg);
     switch (flag) {

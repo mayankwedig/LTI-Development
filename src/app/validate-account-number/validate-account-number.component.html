@@ -44,7 +44,7 @@
               <div class="right-sec-inner signup-form-box">
                 <div class="box-title">
                   <div class="text-title text-transform-none">
-                    {{ "pleaseenteryouraccountno" | translate }}
+                    {{ "Please enter your Account Number" | translate }}
                   </div>
                 </div>
                 <form
@@ -61,9 +61,7 @@
                           name="account_number"
                           type="text"
                           class="form-control"
-                          placeholder="{{ 'accountnumber' | translate }} {{
-                            'or' | translate
-                          }} {{ 'billnumber' | translate }}"
+                          placeholder="{{'Account number or bill number'| translate}}"
                           autocomplete="off"
                         />
                         <div
@@ -74,10 +72,7 @@
                           <span
                             class="error-msg"
                             *ngIf="f.account_number.errors?.required"
-                            >{{ "accountnumber" | translate }}
-                            {{ "or" | translate }}
-                            {{ "billnumber" | translate }}
-                            {{ "required" | translate }}.</span
+                            >{{'Account number or bill number is required'|translate}}</span
                           >
                         </div>
                       </div>
@@ -98,7 +93,7 @@
                           class="btn btn-primary submit-btn"
                           [disabled]="!accountVerificationFrm.valid"
                         >
-                          {{ "next" | translate }}
+                          {{ "Next" | translate }}
                         </button>
                       </div>
                     </div>
@@ -106,9 +101,9 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="dont-account">
-                        {{ "alreadyhaveaccount" | translate }}
+                        {{ "Already have an account?" | translate }}
                         <a class="" routerLink="/login">{{
-                          "login" | translate
+                          "Login" | translate
                         }}</a>
                       </div>
                     </div>

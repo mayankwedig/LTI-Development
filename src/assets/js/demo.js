@@ -135,11 +135,11 @@ var loadDemoSettings = function () {
 
   if (storageSupported) {
     try {
-      result.fixed_navbar = (window.localStorage.demo_fixed_navbar && window.localStorage.demo_fixed_navbar === '1');
-      result.fixed_menu   = (window.localStorage.demo_fixed_menu && window.localStorage.demo_fixed_menu === '1');
-      result.rtl          = (window.localStorage.demo_rtl && window.localStorage.demo_rtl === '1');
-      result.menu_right   = (window.localStorage.demo_menu_right && window.localStorage.demo_menu_right === '1');
-      result.theme        = testTheme((window.localStorage.demo_theme) ? window.localStorage.demo_theme : '');
+      result.fixed_navbar = (window.sessionStorage.demo_fixed_navbar && window.sessionStorage.demo_fixed_navbar === '1');
+      result.fixed_menu   = (window.sessionStorage.demo_fixed_menu && window.sessionStorage.demo_fixed_menu === '1');
+      result.rtl          = (window.sessionStorage.demo_rtl && window.sessionStorage.demo_rtl === '1');
+      result.menu_right   = (window.sessionStorage.demo_menu_right && window.sessionStorage.demo_menu_right === '1');
+      result.theme        = testTheme((window.sessionStorage.demo_theme) ? window.sessionStorage.demo_theme : '');
       return result;
     } catch (e) {}
   } 
@@ -174,11 +174,11 @@ var loadDemoSettings = function () {
 var saveDemoSettings = function () {
   if (storageSupported) {
     try {
-      window.localStorage.demo_fixed_navbar = escape((demo_settings.fixed_navbar) ? '1' : '0');
-      window.localStorage.demo_fixed_menu   = escape((demo_settings.fixed_menu) ? '1' : '0');
-      window.localStorage.demo_rtl          = escape((demo_settings.rtl) ? '1' : '0');
-      window.localStorage.demo_menu_right   = escape((demo_settings.menu_right) ? '1' : '0');
-      window.localStorage.demo_theme        = escape(demo_settings.theme);
+      window.sessionStorage.demo_fixed_navbar = escape((demo_settings.fixed_navbar) ? '1' : '0');
+      window.sessionStorage.demo_fixed_menu   = escape((demo_settings.fixed_menu) ? '1' : '0');
+      window.sessionStorage.demo_rtl          = escape((demo_settings.rtl) ? '1' : '0');
+      window.sessionStorage.demo_menu_right   = escape((demo_settings.menu_right) ? '1' : '0');
+      window.sessionStorage.demo_theme        = escape(demo_settings.theme);
       return;
     } catch (e) {}
   }

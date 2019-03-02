@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 
 export class TranslationService {
   public languages = ["hi", "eng"];
-  public language = localStorage.getItem("selected_lag");
+  public language = sessionStorage.getItem("selected_lag");
    localDictionery={
     hi: {
       languange: "hi",

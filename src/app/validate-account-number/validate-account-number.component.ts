@@ -72,20 +72,20 @@ export class ValidateAccountNumber implements OnInit {
           if(res.data_params.mobile != "" && res.data_params.mobile != null && res.data_params.mobile != 0){
             accMobile=res.data_params.mobile;
           }
-          localStorage.setItem("isAccountNumberValid", this.isAccountNumberValid);
-          localStorage.setItem("verifiedAccountNumber", this.accountVerificationFrm.value.account_number);
-          localStorage.setItem("verifiedAccEmail",accEmail);
-          localStorage.setItem("verifiedAccMobileNo", accMobile);
+          sessionStorage.setItem("isAccountNumberValid", this.isAccountNumberValid);
+          sessionStorage.setItem("verifiedAccountNumber", this.accountVerificationFrm.value.account_number);
+          sessionStorage.setItem("verifiedAccEmail",accEmail);
+          sessionStorage.setItem("verifiedAccMobileNo", accMobile);
           this.toastr.success(res.msg, 'Success!');
           this.router.navigate(["/singup-otp-varification"]);
 
         
         }else{
           /* this.isAccountNumberValid="true";
-          localStorage.setItem("isAccountNumberValid", this.isAccountNumberValid);
-          localStorage.setItem("verifiedAccountNumber", this.accountVerificationFrm.value.account_number);
-          localStorage.setItem("verifiedAccEmail", 'mayank.mourya@wedigtechc.com');
-          localStorage.setItem("verifiedAccMobileNo", '123456789');
+          sessionStorage.setItem("isAccountNumberValid", this.isAccountNumberValid);
+          sessionStorage.setItem("verifiedAccountNumber", this.accountVerificationFrm.value.account_number);
+          sessionStorage.setItem("verifiedAccEmail", 'mayank.mourya@wedigtechc.com');
+          sessionStorage.setItem("verifiedAccMobileNo", '123456789');
           this.toastr.success(res.msg, 'Success!');
           this.router.navigate(["/singup-otp-varification"]); */
           this.toastr.error(res.msg, 'Failed!');

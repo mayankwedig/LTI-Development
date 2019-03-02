@@ -1,8 +1,10 @@
+import { environment } from '../../environments/environment';
 import { PayBillService } from "./../services/pay-bill/pay-bill.service";
 import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+declare var $: any;
 @Component({
   selector: "app-pay-bill",
   templateUrl: "./pay-bill.component.html",
@@ -18,7 +20,7 @@ export class PayBillComponent implements OnInit {
   isAdvertDataFound: boolean = false;
 
   billing: any = {};
-
+  callBackUrl=environment.siteUrl+"/payment-process";
   initBillingData() {
     this.billing = {
       accountNumber: this.accountNumber,
@@ -55,7 +57,51 @@ export class PayBillComponent implements OnInit {
   prompt(flag: string, msg: string) {
     this.PayBillService.prompt(flag, msg);
   }
-
+  getPaymentChksmLoader:boolean=false;
+  isPaymentChksmReceived:boolean=false;
+  showPaymentProcessSection:boolean=false;
+  payMentDetails= {
+            "MID": "zZrvAW66270870088570",
+            "WEBSITE": "http://103.249.98.101:82/",
+            "CHANNEL_ID": "WEB",
+            "INDUSTRY_TYPE_ID": "Retail",
+            "ORDER_ID": "TEST_1551349811730",
+            "CUST_ID": "Customer001",
+            "TXN_AMOUNT": "1.00",
+            "CALLBACK_URL": "http://localhost:8080/callback",
+            "EMAIL": "abc@mailinator.com",
+            "MOBILE_NO": "7777777777"
+        }
+        submitPaymentFrm(){
+          setTimeout(()=>{
+          $('#payMentFrm').submit();
+          console.log("submit frm called");
+          },10);
+        }
+  getPaymentChecksm(){
+   /*  this.showPaymentProcessSection=true;
+    setTimeout(()=>{
+      this.submitPaymentFrm();
+    },1) */
+  this.getPaymentChksmLoader=true;
+  this.PayBillService.getPaymentChecksm()
+  .subscribe((response:any)=>{
+    this.getPaymentChksmLoader=false;
+    if(response.authCode == "200" && response.status == true){
+      this.isPaymentChksmReceived=true;
+      this.showPaymentProcessSection=true;
+      this.payMentDetails=response.data_params.paramsData
+      this.submitPaymentFrm();
+    }else{
+      this.showPaymentProcessSection=false;
+      this.prompt("error",response.msg);
+      this.isPaymentChksmReceived=false;
+    }
+  },(error)=>{
+    this.showPaymentProcessSection=false;
+    this.getPaymentChksmLoader=false;
+  });
+  }
   getUserAccounts() {
     this.userAccountsLoder = true;
     this.PayBillService.getAccounts().subscribe(
@@ -66,6 +112,7 @@ export class PayBillComponent implements OnInit {
           if (res.authCode == "200" && res.status == true) {
             this.userAccounts = res.data_params;
           } else {
+            this.prompt("error",res.msg);
             this.userAccounts = [];
           }
         }
@@ -91,6 +138,7 @@ export class PayBillComponent implements OnInit {
             this.billing["payable_amount"] = this.billing.bill_amount;
           } else {
             this.isAccountDetailsFound = false;
+            this.prompt("error","Billing Details not found.  "+result.msg);
             this.initBillingData();
           }
         },

@@ -70,15 +70,15 @@ export class HelpersService {
   }
   getLocalStoragData(value: string) {
     var val = value || "";
-    return val != "" ? localStorage.getItem(val) : val;
+    return val != "" ? sessionStorage.getItem(val) : val;
   }
   setLocalStoragData(name: string, value: string) {
-    localStorage.setItem(name, value);
+    sessionStorage.setItem(name, value);
     /*   var val=value||"";
-    return val != "" ? localStorage.getItem(val):val; */
+    return val != "" ? sessionStorage.getItem(val):val; */
   }
   clearLocalStorateData(sessionName: string) {
-    localStorage.removeItem(sessionName);
+    sessionStorage.removeItem(sessionName);
   }
   lat12Monts() {
     // This function is using for Consumption graph on Dash board.

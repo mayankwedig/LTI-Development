@@ -194,7 +194,7 @@ export class ManageaccountComponent implements OnInit {
         this.accountProcesLoader = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status) {
-            localStorage.setItem(
+            sessionStorage.setItem(
               "verifiedAccountNumber",
               res.data_params.account_number
             ); // set session for verified account number.
