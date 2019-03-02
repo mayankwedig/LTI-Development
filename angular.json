@@ -66,7 +66,7 @@
           "options": {
             "browserTarget": "lti:build",
             "port": 4200,
-            "host": "localhost"
+            "host": "192.168.1.108"
           },
           "configurations": {
             "production": {

@@ -24,8 +24,8 @@
                         <div
                           class="box-title max-content-title title-min-height"
                         >
-                          <span class="title-icon"
-                            ><img src="assets/images/bill-icon.png" alt=""
+                          <span class="title-icon" *ngIf="getWedgetIcone(widgets[3].image) != null"
+                            ><img [src]="getWedgetIcone(widgets[3].image)" alt=""
                           /></span>
                           <div class="text-title">
                             {{ "Yesterdays Consumption" | translate }}
@@ -52,8 +52,8 @@
                         <div
                           class="box-title max-content-title title-min-height"
                         >
-                          <span class="title-icon"
-                            ><img src="assets/images/bill-icon.png" alt=""
+                          <span class="title-icon" *ngIf="getWedgetIcone(widgets[3].image) != null"
+                            ><img [src]="getWedgetIcone(widgets[3].image)" alt=""
                           /></span>
                           <div class="text-title">
                             {{ "Cumulative Consumption" | translate }} ({{
@@ -79,8 +79,8 @@
                     </div>
                     <div class="col-sm-4 col-xs-12">
                       <div class="box-title max-content-title title-min-height">
-                        <span class="title-icon"
-                          ><img src="assets/images/bill-icon.png" alt=""
+                        <span class="title-icon" *ngIf="getWedgetIcone(widgets[3].image) != null"
+                          ><img [src]="getWedgetIcone(widgets[3].image)" alt=""
                         /></span>
                         <div class="text-title">
                           {{ "Current Meter Reading" | translate }}
@@ -184,9 +184,9 @@
                     <div class="col-sm-12">
                       <div class="scroll-div no-border">
                         <div class="box-title">
-                          <span class="title-icon"
+                          <span class="title-icon" *ngIf="getWedgetIcone(widgets[2].image) != null"
                             ><img
-                              src="assets/images/notification-icon-white.png"
+                              [src]="getWedgetIcone(widgets[2].image)"
                               alt=""
                           /></span>
                           <div class="text-title">
@@ -288,8 +288,9 @@
                     <div class="col-sm-12">
                       <div class="chart-box">
                         <div class="box-title">
-                          <span class="title-icon"
-                            ><img src="assets/images/usage-icon.png" alt=""
+                         
+                          <span class="title-icon" *ngIf="getWedgetIcone(widgets[1].image) != null"
+                            ><img [src]="getWedgetIcone(widgets[1].image)" alt=""
                           /></span>
                           <div class="text-title">
                             {{
@@ -344,8 +345,8 @@
               <li
                 class="dash-box-li"
                 *ngIf="
-                  widgets[5]?.Name == 'BILLING INFORMATION' &&
-                  widgets[5]?.Status == 'Enabled' &&
+                  widgets[0]?.Name == 'Billing' &&
+                  widgets[0]?.Status == 'Enabled' &&
                   dcol.col_name == 2
                 "
               >
@@ -355,8 +356,10 @@
                       <div class="chart-box">
                         <div class="box-title">
                           <span class="title-icon"
-                            ><img src="assets/images/chart-icon.png" alt=""
-                          /></span>
+                          *ngIf="getWedgetIcone(widgets[0].image) != null"
+                            >
+                            <img [src]="getWedgetIcone(widgets[0].image)" alt=""/>
+                          </span>
                           <div class="text-title">
                             {{ "Your Billing - Last 12 Months" | translate }}
                           </div>
@@ -426,8 +429,8 @@
                 }"
               >
                 <div class="box-title margin_bottom10">
-                  <span class="title-icon">
-                    <img width="15" src="assets/images/account-info.svg" />
+                  <span class="title-icon" *ngIf="getWedgetIcone(widgets[4].image) != null">
+                    <img width="15" [src]="getWedgetIcone(widgets[4].image)" />
                   </span>
                   <div class="text-title">
                     {{ "Account Information" | translate }}
@@ -621,8 +624,8 @@
               [ngClass]="{ dashboardManageAccount: billingDataLoder == true }"
             >
               <div class="box-title margin_bottom10">
-                <span class="title-icon">
-                  <img width="15" src="assets/images/billing-info.svg" />
+                <span class="title-icon" *ngIf="getWedgetIcone(widgets[5].image) != null">
+                  <img width="15" [src]="getWedgetIcone(widgets[5].image)" />
                 </span>
                 <div class="text-title">
                   {{ "Billing Information" | translate }}
@@ -803,8 +806,8 @@
                     <div class="col-sm-12">
                       <div class="chart-box">
                         <div class="box-title">
-                          <span class="title-icon"
-                            ><img src="assets/images/chart-icon.png" alt=""
+                          <span class="title-icon" *ngIf="getWedgetIcone(widgets[6].image) != null"
+                            ><img [src]="getWedgetIcone(widgets[6].image)" alt=""
                           /></span>
                           <div class="text-title">
                             {{ "track a complaint" | translate }}
@@ -898,8 +901,8 @@
                     <div class="col-sm-12">
                       <div class="chart-box">
                         <div class="box-title">
-                          <span class="title-icon"
-                            ><img src="assets/images/chart-icon.png" alt=""
+                          <span class="title-icon" *ngIf="getWedgetIcone(widgets[6].image) != null"
+                            ><img [src]="getWedgetIcone(widgets[6].image)" alt=""
                           /></span>
                           <div class="text-title">
                             {{ "track a service request" | translate }}

@@ -41,8 +41,8 @@ export class DashboardComponent implements OnInit {
     return this._helper.translate(string);
   }
   dashBoardRows=[
-    {"row_name":1,"sort":2,"cols":[{"col_name":1,"sort":2},{"col_name":2,"sort":1}]}, //
-    {"row_name":2,"sort":1,"cols":[{"col_name":1,"sort":2},{"col_name":2,"sort":1}]},
+    {"row_name":1,"sort":1,"cols":[{"col_name":1,"sort":1},{"col_name":2,"sort":2}]}, //
+    {"row_name":2,"sort":2,"cols":[{"col_name":1,"sort":1},{"col_name":2,"sort":2}]},
     {"row_name":3,"sort":3,"cols":[]},
     {"row_name":4,"sort":4,"cols":[]},
     {"row_name":5,"sort":5,"cols":[{"col_name":1,"sort":2},{"col_name":2,"sort":1}]},
@@ -93,6 +93,14 @@ export class DashboardComponent implements OnInit {
   ) {}
   
   adimagurl=environment.adimageUrl;
+  widgetIconePath=environment.dashVBoardIcone;
+  getWedgetIcone(image){
+    if(image != null && image != ''){
+      return image;
+    }else{
+      return null;
+    }
+  }
   /*******************Dropdown Configs**********************************/
   serviceReqDropDownconfig = {
     displayKey: "label", //if objects array passed which key to be displayed defaults to description

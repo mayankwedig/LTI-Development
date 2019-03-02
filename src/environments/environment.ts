@@ -22,6 +22,7 @@ export const environment = {
   no_image:"../assets/images/no-image-found.jpg",
   logo_not_found:'../assets/images/no-logo.png',
   icon_img:AdminUrl+"/icon_img/",
+  dashVBoardIcone:AdminUrl+"/data/widget/",
   siteUrl:siteUrl
 };
 
