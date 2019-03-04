@@ -33,8 +33,14 @@
             title="View notifications"
             style="cursor:pointer;"
             (click)="funcHideNotification()"
-            ><img src="../assets/images/notification-icon-white.png" alt=""
-          /></span>
+            *ngIf="setIconeImage(2) != null"
+            >
+            
+                <img [src]="setIconeImage(2)" alt=""
+                />
+            
+            
+        </span>
           <span class="small-screen-text">{{
             "Notifications" | translate
           }}</span>
@@ -90,7 +96,8 @@
             class="title-icon header-notification"
             title="View notifications"
             style="cursor:pointer;"
-            ><img src="../assets/images/call-white-icon.png" alt=""
+            *ngIf="setIconeImage(2) != null"
+            ><img [src]="setIconeImage(2)" alt=""
           /></span>
           <span class="small-screen-text">{{
             "Notifications" | translate
@@ -127,7 +134,8 @@
       <li class="download-menu">
         <a  routerLink="/downloads" 
           ><span class="download"
-            ><img src="../assets/images/download.png" alt=""/></span
+          *ngIf="setIconeImage(4) != null"
+            ><img [src]="setIconeImage(4)" alt=""/></span
         ></a>
       </li>
 
@@ -275,8 +283,9 @@
                   title="View notifications"
                   style="cursor:pointer;"
                   (click)="funcHideNotification()"
+                  *ngIf="setIconeImage(2) != null"
                   ><img
-                    src="../assets/images/notification-icon-white.png"
+                    [src]="setIconeImage(2)"
                     alt=""
                 /></span>
                 <span class="small-screen-text">{{
@@ -325,7 +334,8 @@
                   class="title-icon header-notification"
                   title="View notifications"
                   style="cursor:pointer;"
-                  ><img src="../assets/images/call-white-icon.png" alt=""
+                  *ngIf="setIconeImage(2) != null"
+                  ><img [src]="setIconeImage(2)" alt=""
                 /></span>
                 <span class="small-screen-text">{{
                   "Notifications" | translate
@@ -385,7 +395,7 @@
             <li class="download-menu">
               <a title="Forms download" style="cursor: pointer;"  routerLink="/downloads"
                 >
-                <span class="download"><img src="../assets/images/download.png" alt=""/></span>
+                <span class="download"  *ngIf="setIconeImage(4) != null"><img [src]="setIconeImage(4)" alt=""/></span>
               </a>
             </li>
             <li class="dropdown" *ngIf="auth.isLoggedIn()">

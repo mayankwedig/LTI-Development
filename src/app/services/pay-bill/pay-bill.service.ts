@@ -58,4 +58,7 @@ export class PayBillService {
         break;
     }
   }
+  getTransectionData(url){
+    return this._data.getAll(url,{},{},"POST");
+  }
 }

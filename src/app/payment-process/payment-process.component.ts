@@ -1,4 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
+import { PayBillService } from './../services/pay-bill/pay-bill.service';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentProcessComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute) { 
+  constructor(private route:ActivatedRoute,private router:Router,private payBillService:PayBillService) { 
     
   }
 
   ngOnInit() {
-    console.log(this.route.snapshot.queryParamMap);
+    this.route.paramMap.subscribe((result)=>{
+      console.log(result);
+    },(error)=>{
+      console.log(error);
+    })
+    console.log(this.router.url);
+    /* this.payBillService.getTransectionData() */
   }
-
+  
 }

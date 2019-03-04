@@ -14,6 +14,7 @@ declare var $: any;
   templateUrl: "./consumption.component.html",
   styleUrls: ["./consumption.component.css"]
 })
+
 export class ConsumptionComponent implements OnInit {
   constructor(
     private dataservice: DataService,

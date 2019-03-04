@@ -14,7 +14,6 @@ export class AuthService {
     
     this.Helpers.clearLocalStorateData('accountToken');
     this.Helpers.clearLocalStorateData('token');
-    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
   isLoggedIn(){

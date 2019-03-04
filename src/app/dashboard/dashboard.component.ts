@@ -215,9 +215,25 @@ export class DashboardComponent implements OnInit {
   advertDataLoader:boolean =false;
   isAdvertDataFound: boolean = false;
   advertisementData: any =[];
-
+  OtherIconse:any=null;
+  getIcones(){
+    this.OtherIconse=JSON.parse(this.helpers.getLocalStoragData("icons"));
+  }
+  setIconeImage(index){
+    if(this.OtherIconse != null){
+      let image=environment.icon_img+this.OtherIconse[index];
+        if(image){
+          return image;
+        }else{
+          return null;
+        }
+    }else{
+      return null;
+    }
+  }
   ngOnInit() {
     this.getDesktopWidget();
+    this.getIcones();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
