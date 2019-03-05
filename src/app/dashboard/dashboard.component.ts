@@ -423,7 +423,7 @@ export class DashboardComponent implements OnInit {
     });
   }
   downloadGraphExcelConsumption() {
-    var excelBillingYearlyDataAPI = "users/excelYearlyData";
+    var excelBillingYearlyDataAPI = "users/excelYearlyDataDashboard";
     var data = {
       account_number: this.accountNumber,
       year: parseInt(this.currentYear)
