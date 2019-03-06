@@ -6,7 +6,7 @@
 >
   <button type="button" id="main-menu-toggle">
     <i class="navbar-icon fa fa-bars icon"></i
-    ><span class="hide-menu-text">{{'Hide Menu'|translate}}</span>
+    ><span class="hide-menu-text">{{ "Hide Menu" | translate }}</span>
   </button>
   <div class="navbar-inner">
     <div class="navbar-header">
@@ -34,13 +34,9 @@
             style="cursor:pointer;"
             (click)="funcHideNotification()"
             *ngIf="setIconeImage(2) != null"
-            >
-            
-                <img [src]="setIconeImage(2)" alt=""
-                />
-            
-            
-        </span>
+          >
+            <img [src]="setIconeImage(2)" alt="" />
+          </span>
           <span class="small-screen-text">{{
             "Notifications" | translate
           }}</span>
@@ -110,7 +106,7 @@
           <span class="ddl-icon-arrow"
             ><img src="../assets/images/ddl-icon.png" alt=""
           /></span>
-          <a class="notifications-link">{{'tollfreenumbers'|translate}}</a>
+          <a class="notifications-link">{{ "tollfreenumbers" | translate }}</a>
           <div class="notifications-list" id="main-navbar-notifications-1">
             <div class="notification">
               <span>PUVVNL</span>
@@ -132,41 +128,85 @@
         </div>
       </li>
       <li class="download-menu">
-        <a  routerLink="/downloads" 
-          ><span class="download"
-          *ngIf="setIconeImage(4) != null"
+        <a routerLink="/downloads"
+          ><span class="download" *ngIf="setIconeImage(4) != null"
             ><img [src]="setIconeImage(4)" alt=""/></span
         ></a>
       </li>
 
+      <li class="dropdown user-account" *ngIf="auth.isLoggedIn()">
+        <a class="dropdown-toggle user-menu" data-toggle="dropdown">
+          <img src="../assets/images/1.jpg" alt="" />
+          <div class="name-email">
+            <span>{{ userName }}</span>
+            <div class="email-acccount" *ngIf="userEmail != ''">
+              {{ userEmail }} <i class="fa fa-angle-down"></i>
+            </div>
+          </div>
+        </a>
+        <ul class="dropdown-menu user-info-menu">
+          <li>
+            <a
+              routerLink="/profile"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              style="cursor: pointer;"
+              ><span class="label label-warning pull-right">{{
+                "new" | translate
+              }}</span
+              >{{ "Manage profile" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              ><span class="badge badge-primary pull-right">{{
+                "new" | translate
+              }}</span
+              >{{ "account" | translate }}</a
+            >
+          </li>
+          <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
+          <li class="divider"></li>
+          <li>
+            <a href="JavaScript:Void(#);" (click)="logout()"
+              ><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log
+              Out</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
 
-           <li class="dropdown user-account" *ngIf="auth.isLoggedIn()">
-            <a  class="dropdown-toggle user-menu" data-toggle="dropdown">
-              <img src="../assets/images/1.jpg" alt="">
-              <div class="name-email">
-                <span>{{userName}}</span>
-                <div class="email-acccount" *ngIf="userEmail != ''">{{userEmail}} <i class="fa fa-angle-down"></i></div>
-              </div>
-            </a>
-            <ul class="dropdown-menu user-info-menu">
-              <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="cursor: pointer;"><span class="label label-warning pull-right">{{'new'|translate}}</span>{{'Manage profile' | translate}}</a></li>
-              <li><a ><span class="badge badge-primary pull-right">{{'new'|translate}}</span>{{'account'|translate}}</a></li>
-              <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
-              <li class="divider"></li>
-              <li><a href="JavaScript:Void(#);" (click)="logout()"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
-            </ul>
-            </li>
-     </ul>
-     
     <div class="header-search-bar for-responsive">
       <form class="navbar-form">
-       <input name="search" type="text" [(ngModel)]="searchKeyWord" #ngModel class="form-control" placeholder="Search">
-       <a class="blue-search-btn" (click)="doSearch()" style="cursor: pointer;">{{'Search' | translate}}</a>
+        <input
+          name="search"
+          type="text"
+          [(ngModel)]="searchKeyWord"
+          #ngModel
+          class="form-control"
+          placeholder="Search"
+        />
+        <a
+          class="blue-search-btn"
+          (click)="doSearch()"
+          style="cursor: pointer;"
+          >{{ "Search" | translate }}</a
+        >
       </form>
     </div>
-     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
-     <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
-
+    <button
+      type="button"
+      class="navbar-toggle collapsed"
+      data-toggle="collapse"
+      data-target="#main-navbar-collapse"
+    >
+      <i class="navbar-icon fa fa-bars"></i>
+    </button>
+    <div
+      id="main-navbar-collapse"
+      class="collapse navbar-collapse main-navbar-collapse"
+    >
       <!-- <li class="dropdown user-account" *ngIf="auth.isLoggedIn()">
         <a class="dropdown-toggle user-menu" data-toggle="dropdown">
           <img src="../assets/images/1.jpg" alt="" />
@@ -193,7 +233,7 @@
             >
           </li>
            <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
-          <!-- <li class="divider"></li>
+      <!-- <li class="divider"></li>
           <li>
             <a href="JavaScript:Void(#);" (click)="logout()"
               ><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;{{'logout'|translate}}</a
@@ -221,16 +261,16 @@
             <li class="language-option">
               <!-- <div class="rows" style="margin-top: 23px;">
               </div> -->
-                <select
-                  [(ngModel)]="selected_lang"
-                  name="langs"
-                  class="form-control lang-control"
-                  #selectedLang="ngModel"
-                  (change)="changeLang(selectedLang.value)"
-                >
-                  <option value="hi">हिंदी संस्करण</option>
-                  <option value="eng">English Version</option>
-                </select>
+              <select
+                [(ngModel)]="selected_lang"
+                name="langs"
+                class="form-control lang-control"
+                #selectedLang="ngModel"
+                (change)="changeLang(selectedLang.value)"
+              >
+                <option value="hi">हिंदी संस्करण</option>
+                <option value="eng">English Version</option>
+              </select>
             </li>
             <li *ngIf="auth.isLoggedIn()">
               <a
@@ -284,9 +324,7 @@
                   style="cursor:pointer;"
                   (click)="funcHideNotification()"
                   *ngIf="setIconeImage(2) != null"
-                  ><img
-                    [src]="setIconeImage(2)"
-                    alt=""
+                  ><img [src]="setIconeImage(2)" alt=""
                 /></span>
                 <span class="small-screen-text">{{
                   "Notifications" | translate
@@ -334,8 +372,8 @@
                   class="title-icon header-notification"
                   title="View notifications"
                   style="cursor:pointer;"
-                  *ngIf="setIconeImage(2) != null"
-                  ><img [src]="setIconeImage(2)" alt=""
+                  *ngIf="setIconeImage(3) != null"
+                  ><img [src]="setIconeImage(3)" alt=""
                 /></span>
                 <span class="small-screen-text">{{
                   "Notifications" | translate
@@ -348,7 +386,9 @@
                 <span class="ddl-icon-arrow"
                   ><img src="../assets/images/ddl-icon.png" alt=""
                 /></span>
-                <a class="notifications-link">{{'Toll free numbers'|translate}}</a>
+                <a class="notifications-link">{{
+                  "Toll free numbers" | translate
+                }}</a>
                 <div
                   class="notifications-list"
                   id="main-navbar-notifications-1"
@@ -383,8 +423,8 @@
                   </div>
                 </div>
               </div>
-            
-            <!-- <ul class="dropdown-menu user-info-menu">
+
+              <!-- <ul class="dropdown-menu user-info-menu">
               <li><a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Manage Profile</a></li>
               <li><a routerLink="/manageaccount" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Accounts</a></li> -->
               <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
@@ -393,9 +433,14 @@
             </ul> -->
             </li>
             <li class="download-menu">
-              <a title="Forms download" style="cursor: pointer;"  routerLink="/downloads"
-                >
-                <span class="download"  *ngIf="setIconeImage(4) != null"><img [src]="setIconeImage(4)" alt=""/></span>
+              <a
+                title="Forms download"
+                style="cursor: pointer;"
+                routerLink="/downloads"
+              >
+                <span class="download" *ngIf="setIconeImage(4) != null"
+                  ><img [src]="setIconeImage(4)" alt=""
+                /></span>
               </a>
             </li>
             <li class="dropdown" *ngIf="auth.isLoggedIn()">
@@ -415,7 +460,7 @@
                     routerLink="/profile"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
-                    >{{'Manage profile'|translate}}</a
+                    >{{ "Manage profile" | translate }}</a
                   >
                 </li>
                 <li>
@@ -423,15 +468,16 @@
                     routerLink="/manageaccount"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
-                    >{{'Account'|translate}}</a
+                    >{{ "Account" | translate }}</a
                   >
                 </li>
                 <!-- <li><a ><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
                 <li class="divider"></li>
                 <li>
                   <a href="JavaScript:Void(#);" (click)="logout()"
-                    ><i class="dropdown-icon fa fa-power-off"></i
-                    >&nbsp;&nbsp;{{'Logout'|translate}}</a
+                    ><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;{{
+                      "Logout" | translate
+                    }}</a
                   >
                 </li>
               </ul>
@@ -441,14 +487,15 @@
                 class="login-btn blue-btn"
                 routerLink="/login"
                 routerLinkActive="active"
-              > {{'Login'|translate}}
+              >
+                {{ "Login" | translate }}
               </button>
               <button
                 class="login-btn blue-btn"
                 routerLink="/account-verification"
                 routerLinkActive="active"
-              >{{'Signup'|translate}}
-                
+              >
+                {{ "Signup" | translate }}
               </button>
             </li>
             <!-- <li class="login-signup-sec" *ngIf="auth.isLoggedIn()">
@@ -457,10 +504,22 @@
           </ul>
           <div class="header-search-bar">
             <form class="navbar-form">
-             <input name="search" type="text" [(ngModel)]="searchKeyWord" #ngModel class="form-control" placeholder="Search">
-             <a class="blue-search-btn" (click)="doSearch()" style="cursor: pointer;">{{'Search' | translate}}</a>
+              <input
+                name="search"
+                type="text"
+                [(ngModel)]="searchKeyWord"
+                #ngModel
+                class="form-control"
+                placeholder="Search"
+              />
+              <a
+                class="blue-search-btn"
+                (click)="doSearch()"
+                style="cursor: pointer;"
+                >{{ "Search" | translate }}</a
+              >
             </form>
-           </div>
+          </div>
         </div>
       </div>
     </div>

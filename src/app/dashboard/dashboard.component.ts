@@ -1,3 +1,4 @@
+import { IconsService } from './../services/icons/icons.service';
 import { WindowRefService } from "./../services/window-ref/window-ref.service";
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { Component, OnInit } from "@angular/core";
@@ -89,7 +90,8 @@ export class DashboardComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private WindowRef: WindowRefService,
     private toastr: ToastrService,
-    private _helper:HelpersService
+    private _helper:HelpersService,
+    private icones: IconsService,
   ) {}
   
   adimagurl=environment.adimageUrl;
@@ -218,6 +220,20 @@ export class DashboardComponent implements OnInit {
   OtherIconse:any=null;
   getIcones(){
     this.OtherIconse=JSON.parse(this.helpers.getLocalStoragData("icons"));
+    if(this.OtherIconse == null){
+      this.icones.getIcons().subscribe(
+        (response: any) => {
+          if (response.authCode == "200" && response.status == true) {
+            this.OtherIconse=response.data_params;
+            this.helpers.setLocalStoragData(
+              "icons",
+              JSON.stringify(response.data_params)
+            );
+          }
+        },
+        error => {}
+      );
+    }
   }
   setIconeImage(index){
     if(this.OtherIconse != null){

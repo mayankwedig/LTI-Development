@@ -1,6 +1,9 @@
+import { HelpersService } from "./../services/helpers/helpers.service";
 import { Component, OnInit } from "@angular/core";
 import { HomeService } from "../services/home/home.service";
 import { environment } from "../../environments/environment";
+import { IconsService } from "../services/icons/icons.service";
+import { Router } from "@angular/router";
 require("../../assets/js/owl.carousel.js");
 
 @Component({
@@ -8,7 +11,6 @@ require("../../assets/js/owl.carousel.js");
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"]
 })
-
 export class HomeComponent implements OnInit {
   sliderContent = [
     {
@@ -24,9 +26,9 @@ export class HomeComponent implements OnInit {
       desc: "Changing The Power<br> That Changes<br> The World"
     }
   ];
-  redirectLoding=false;
+  redirectLoding = false;
   /** Redirection Loder*/
- /*  redirectLoding = false;
+  /*  redirectLoding = false;
   PrimaryWhite = "#16689e";
   SecondaryGrey = "#ffffff";
   PrimaryRed = "#dd0031";
@@ -41,7 +43,12 @@ export class HomeComponent implements OnInit {
     tertiaryColour: this.primaryColour,
     backdropBorderRadius: "3px"
   }; */
-  constructor(private homeService: HomeService) {
+  constructor(
+    private homeService: HomeService,
+    private helpers: HelpersService,
+    private icones: IconsService,
+    private router:Router
+  ) {
     this.getLatestNews();
   }
   latestNewsLoader: boolean = false;
@@ -54,9 +61,53 @@ export class HomeComponent implements OnInit {
   missionVisionLoader: boolean = true;
   missionVisionData: any = [];
   missionVisionFound: boolean = false;
-  
+  headerIcons: any = null;
+  getIcones() {
+    this.headerIcons = null;
+    if (this.helpers.getLocalStoragData("icons") == null) {
+      this.icones.getIcons().subscribe(
+        (response: any) => {
+          if (response.authCode == "200" && response.status == true) {
+            this.helpers.setLocalStoragData(
+              "icons",
+              JSON.stringify(response.data_params)
+            );
+          }
+        },
+        error => {}
+      );
+    } else {
+      if (this.router.url == "/") {
+        this.icones.getIcons().subscribe(
+          (response: any) => {
+            if (response.authCode == "200" && response.status == true) {
+              this.helpers.setLocalStoragData(
+                "icons",
+                JSON.stringify(response.data_params)
+              );
+            }
+          },
+          error => {}
+        );
+      }
+    }
+    this.headerIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
+  }
+  setIconeImage(index) {
+    if (this.headerIcons != null) {
+      let image = environment.icon_img + this.headerIcons[index];
+      if (image) {
+        return image;
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
   ngOnInit() {
-    this.latestNewsLoader=true;
+    this.getIcones();
+    this.latestNewsLoader = true;
     this.getLatestNews();
     this.getMinisterMessage();
     this.getImportantLink();
@@ -81,20 +132,20 @@ export class HomeComponent implements OnInit {
         }
       },
       error => {
-        this.redirectLoding=false;
+        this.redirectLoding = false;
         this.latestNewsLoader = false;
         this.latestNews = [];
         throw error;
       }
     );
   }
- 
+
   getMissionAndVision() {
     this.missionVisionLoader = true;
     this.homeService.getMissionandVision().subscribe(
       (response: any) => {
         this.missionVisionLoader = false;
-        this.redirectLoding=false;
+        this.redirectLoding = false;
         var res = response;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
@@ -108,7 +159,7 @@ export class HomeComponent implements OnInit {
         }
       },
       error => {
-        this.redirectLoding=false;
+        this.redirectLoding = false;
         this.missionVisionFound = false;
         this.missionVisionLoader = false;
         this.missionVisionData = [];
@@ -116,7 +167,7 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  
+
   ministerDataFound: boolean = false;
   getMinisterMessage() {
     this.ministerLoader = true;
@@ -128,7 +179,7 @@ export class HomeComponent implements OnInit {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.ministermsg = res.data_params;
-           /*  console.log(this.ministermsg); */
+            /*  console.log(this.ministermsg); */
             this.ministerDataFound = true;
           } else {
             this.ministermsg = [];
@@ -137,7 +188,7 @@ export class HomeComponent implements OnInit {
         }
       },
       error => {
-        this.redirectLoding=false;
+        this.redirectLoding = false;
         this.ministerDataFound = false;
         this.ministerLoader = false;
         this.ministermsg = [];
@@ -161,7 +212,7 @@ export class HomeComponent implements OnInit {
         }
       },
       error => {
-        this.redirectLoding=false;
+        this.redirectLoding = false;
         this.impLinkLoader = false;
         this.impLinks = [];
         throw error;
@@ -169,11 +220,11 @@ export class HomeComponent implements OnInit {
     );
   }
   getImages(imageData) {
-    var imgInfo=imageData;
+    var imgInfo = imageData;
     var imgUrl = environment.no_image;
     var pic = imgInfo.display_picture;
-    if(pic!=""){
-      imgUrl = environment.missionImage+"/"+imgInfo.id+"/"+ pic;
+    if (pic != "") {
+      imgUrl = environment.missionImage + "/" + imgInfo.id + "/" + pic;
     }
     return imgUrl;
   }

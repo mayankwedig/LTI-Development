@@ -14,8 +14,14 @@ import { promise } from "protractor";
 export class DataService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
-  getAll(url, body, headerData = {}, methode = "POST") {
-    const getUrl = this.apiUrl + url;
+  getAll(url, body, headerData = {}, methode = "POST",useApi:boolean=true) {
+    let fetchUrl="";
+    if(useApi){
+      fetchUrl=this.apiUrl + url;
+    }else{
+      fetchUrl=url;
+    } 
+    const getUrl =fetchUrl;
     const getMehode = methode;
     if (methode == "POST") {
       return this.http

@@ -50,7 +50,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.router.navigate(["/search"]);
     }
   }
-  getImageIcone() {}
   headerIcons: any = null;
   getIcones() {
     this.headerIcons=null;

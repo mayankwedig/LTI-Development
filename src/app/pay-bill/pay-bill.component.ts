@@ -84,7 +84,8 @@ export class PayBillComponent implements OnInit {
       this.submitPaymentFrm();
     },1) */
   this.getPaymentChksmLoader=true;
-  this.PayBillService.getPaymentChecksm()
+    if(this.billing.accountNumber != null){
+      this.PayBillService.getPaymentChecksm(this.billing.accountNumber)
   .subscribe((response:any)=>{
     this.getPaymentChksmLoader=false;
     if(response.authCode == "200" && response.status == true){
@@ -101,6 +102,10 @@ export class PayBillComponent implements OnInit {
     this.showPaymentProcessSection=false;
     this.getPaymentChksmLoader=false;
   });
+    }else{
+      this.prompt("error","Please provide account number");
+    }
+  
   }
   getUserAccounts() {
     this.userAccountsLoder = true;

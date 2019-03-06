@@ -9,27 +9,40 @@
 <div class="blue-tabs-sec">
 		<ul class="menu-listing">
 			<li (click)="redirecttocomplaints('pay-bill')">
-				<a class="credit-card-icon" href="JavaScript:void(0);" >
-					<div class="title" >{{"Pay online"|translate}}</div>
+				<a href="javascript:void(0);">
+					<ng-container *ngIf="setIconeImage(13) != null">
+							<img [src]="setIconeImage(13)"></ng-container>
+					<div class="title" >
+							{{"Pay online"|translate}}
+					</div>	
 				</a>
 			</li>
 			<li (click)="redirecttocomplaints('complaints')">
-				<a class="register-icon" href="JavaScript:void(0);" >
-					<div class="title" >{{'Complaints'|translate}} <br>({{'register'|translate}} / {{'track'|translate}})</div>
+				<a href="javascript:void(0);">
+					<ng-container *ngIf="setIconeImage(10) != null">
+					<img [src]="setIconeImage(10)"></ng-container>
+					<div class="title" >
+						{{'Complaints'|translate}} <br>({{'register'|translate}} / {{'track'|translate}})
+					</div>
 				</a>
 			</li>
 			<li (click)="redirecttocomplaints('energy-tips')">
-				<a class="bulb-icon" href="JavaScript:void(0);" >
+				<a href="javascript:void(0);">
+					<ng-container *ngIf="setIconeImage(11) != null"><img [src]="setIconeImage(11)"></ng-container>
 					<div class="title">{{'Energy tips'|translate}}</div>
 				</a>
 			</li>
 			<li (click)="redirecttocomplaints('track-service-request')">
-				<a class="sevice-register-icon"  href="JavaScript:void(0);" >
-					<div class="title" >{{"Service requests"|translate}} <br>(<!-- {{'register'|translate}} /  -->{{'track'|translate}})</div>
+				<a href="javascript:void(0);">
+					<ng-container *ngIf="setIconeImage(14) != null"><img [src]="setIconeImage(14)"></ng-container>
+					<div class="title" >
+						{{"Service requests"|translate}} <br>(<!-- {{'register'|translate}} /  -->{{'track'|translate}}
+					</div>
 				</a>
 			</li>
 			<li (click)="redirecttocomplaints('new-service-connection')">
-				<a class="connection-icon" href="JavaScript:Void(0);">
+				<a href="javascript:void(0);">
+					<ng-container *ngIf="setIconeImage(1) != null"><img [src]="setIconeImage(12)"></ng-container>
 					<div class="title">{{"New"|translate}} <br>{{"Connection" | translate}}</div>
 				</a>
 			</li>

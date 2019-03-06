@@ -38,8 +38,9 @@ export class PayBillService {
   getAccounts() {
     return this.userAccounts.getAccount("");
   }
-  getPaymentChecksm(){
-    return this._data.getAll("users/paytmCheckout",{},{},"POST");
+  getPaymentChecksm(accountNumber){
+    accountNumber={"accountToken":btoa(accountNumber)};
+    return this._data.getAll("users/paytmCheckout",accountNumber,{},"POST");
   }
   prompt(flag: string, msg: string) {
     var translatedMsg = this.translate(msg);
@@ -59,6 +60,6 @@ export class PayBillService {
     }
   }
   getTransectionData(url){
-    return this._data.getAll(url,{},{},"POST");
+    return this._data.getAll(url,{},{},"POST",false);
   }
 }

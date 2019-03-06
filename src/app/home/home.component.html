@@ -21,7 +21,7 @@
 				<div class="bannar-sidebar">
 					<div class="latest-update" *ngIf="latestNewsLoader == false">
 						<div class="box-title">
-							<span class="title-icon"><img src="../assets/images/bill-icon.png" alt=""></span>
+							<span class="title-icon" *ngIf="setIconeImage(5) != null"><img [src]="setIconeImage(5)" alt=""></span>
 							<div class="text-title">{{'Latest updates' | translate}}</div>
 						</div>
 						<div class="marquee-slide">
@@ -39,7 +39,7 @@
 					<div class="c-m-message" *ngIf="ministerLoader == false && ministerDataFound == true ">
 
 						<div class="box-title">
-							<span class="title-icon"><img src="../assets/images/msg-icon.png" alt=""></span>
+							<span class="title-icon" *ngIf="setIconeImage(6) != null"><img [src]="setIconeImage(6)" alt=""></span>
 							<div class="text-title">{{'Chief Minister Message'|translate}}</div>
 						</div>
 

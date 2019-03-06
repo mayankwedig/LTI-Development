@@ -10,4 +10,5 @@ export class IconsService {
   getIcons(){
     return this._data.getAll("users/iconManagement",{},{},"GET");
   }
+  
 }

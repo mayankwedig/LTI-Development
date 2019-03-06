@@ -1828,12 +1828,14 @@ body {
 }
 .menu-listing li a{
     display: table;
-    padding-left: 55px;
+    padding-left: 0;
     margin-left: 15px;
     position: relative;
-    background-size: 50px 38px;
-    min-height: 50px;
-    background-position:center left !important;
+    min-height: 40px;
+}
+.menu-listing li a img {
+    vertical-align: middle;
+    display: table-cell;
 }
 .menu-listing li a .title{
     display: table-cell;
@@ -1842,8 +1844,9 @@ body {
     text-transform: uppercase;
     vertical-align: middle;
     font-weight: 500;
+    padding-left: 5px;
 }
-.menu-listing li a.credit-card-icon{
+/*.menu-listing li a.credit-card-icon{
     background: url(../images/credit-card-icon.png) no-repeat;
     background-size: 50px 38px;
 }
@@ -1862,9 +1865,9 @@ body {
 .menu-listing li a.connection-icon{
     background: url(../images/connection-icon.png) no-repeat;
     background-size: 50px 38px;
-}
+}*/
 /*hover*/
-.menu-listing li a.credit-card-icon:hover{
+/*.menu-listing li a.credit-card-icon:hover{
     background: url(../images/credit-card-icon-hover.png) no-repeat;
     background-size: 50px 38px;
     transition: all .3s linear;
@@ -1888,7 +1891,7 @@ body {
     background: url(../images/connection-icon-hover.png) no-repeat;
     background-size: 50px 38px;
     transition: all .3s linear;
-}
+}*/
 .bannar-sidebar{
     float: left;
     width: 100%;

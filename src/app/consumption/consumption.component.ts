@@ -1,3 +1,5 @@
+import { environment } from 'src/environments/environment';
+import { IconsService } from './../services/icons/icons.service';
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
@@ -6,7 +8,6 @@ import { Router, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
 import { WindowRefService } from "./../services/window-ref/window-ref.service";
 require("../../../node_modules/moment/min/moment.min.js");
 import { TranslationService } from "../services/translation/translation.service";
-
 declare var moment: any;
 declare var $: any;
 @Component({
@@ -23,7 +24,8 @@ export class ConsumptionComponent implements OnInit {
     private helpers: HelpersService,
     private WindowRef: WindowRefService,
     private router: Router,
-    private translationServices: TranslationService
+    private translationServices: TranslationService,
+    private iconsService: IconsService
 
   ) {}
   selected_month: any = "";
@@ -55,7 +57,39 @@ export class ConsumptionComponent implements OnInit {
   translate(string:string):string{
    return this.helpers.translate(string);
   }
+  icons:any={};
+  getIcones(){
+    this.icons=JSON.parse(this.helpers.getLocalStoragData("icons"));
+    if(this.icons == null){
+      this.iconsService.getIcons().subscribe(
+        (response: any) => {
+          if (response.authCode == "200" && response.status == true) {
+            this.icons=response.data_params;
+            this.helpers.setLocalStoragData(
+              "icons",
+              JSON.stringify(response.data_params)
+            );
+          }
+        },
+        error => {}
+      );
+    }
+  }
+  setIconeImage(index){
+    if(this.icons != null){
+      let image=environment.icon_img+this.icons[index];
+        if(image){
+          return image;
+        }else{
+          return null;
+        }
+    }else{
+      return null;
+    }
+  }
+
   ngOnInit() {
+    this.getIcones();
     this.currentYear = moment().format("YYYY");
     this.currentMonth = moment().format("MMM");
 
