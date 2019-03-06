@@ -4912,6 +4912,7 @@ table.table.consumer-basic-table tbody tr th:last-child {
     padding-left: 27px;
     margin-bottom: 0;
     color: #076fd7;
+    border-width: 1px; 
 }
 
 .top-label-form input:focus,
@@ -5674,6 +5675,9 @@ margin:40px auto;
     max-width:150px;
     width: 100%;
 }
+.bil-pay-panel .account-number-input {
+    max-width: 100%;
+}
 .bil-pay-panel label{
     padding-right:0;
     display:flex;
@@ -5783,8 +5787,9 @@ margin:40px auto;
     padding-top: 23px;
 }
 .language-option .lang-control[_ngcontent-c3] {
-    border: solid 1px #c2c2c2;
+    border: solid 1px #076fd7;
     padding-left: 3px !important;
+    border-radius: 15px;
 }
 .for-responsive {
     display: none;
@@ -5932,4 +5937,19 @@ margin:40px auto;
 }
 .faq-section.enerytips-faqs .panel-group{
     width: 100%;
+}
+
+.wtl-paybill-body .top-label-form input, 
+.wtl-paybill-body .top-label-form input:disabled, 
+.wtl-paybill-body .top-label-form select {
+    width: 100%;
+}
+.wtl-paybill-body .top-label-form input:-internal-autofill-selected {
+    background: #ffffff !important;
+}
+.wtl-paybill-body .blue-btn {
+    margin-top: 8px;
+}
+.paybill-not-login {
+    padding-top: 65px;
 }
