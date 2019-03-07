@@ -213,6 +213,7 @@ import { TransectionStatusMessageComponent } from './transection-status-message/
       {path:'consumption-estimator',component:ConsumptionEstimatorComponent,canActivate:[AuthGuard]},
       {path:'change-password',component:ResetPasswordComponent,canActivate:[AuthGuard]},
       {path:"payment-process",component:PaymentProcessComponent},
+      {path:"transection-status",component:TransectionStatusMessageComponent},
       {path:'**',component: PageNotFoundComponent}
       
       
