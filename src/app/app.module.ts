@@ -45,7 +45,6 @@ import { ConsumptionComponent } from './consumption/consumption.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UsageComponent } from './usage/usage.component';
 import { NewsMediaComponent } from './news-media/news-media.component';
-import { TipsComponent } from './tips/tips.component';
 import { ChartsModule } from 'ng2-charts';
 import { ImportantLinksComponent } from './important-links/important-links.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -96,6 +95,7 @@ import { PayBillComponent } from './pay-bill/pay-bill.component';
 import { EnergyTipsComponent } from './energy-tips/energy-tips.component';
 import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
 import { PaymentProcessComponent } from './payment-process/payment-process.component';
+import { TransectionStatusMessageComponent } from './transection-status-message/transection-status-message.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -121,7 +121,6 @@ import { PaymentProcessComponent } from './payment-process/payment-process.compo
     SettingsComponent,
     UsageComponent,
     NewsMediaComponent,
-    TipsComponent,
     ImportantLinksComponent,
     ProfileComponent,
     ManageaccountComponent,
@@ -154,7 +153,8 @@ import { PaymentProcessComponent } from './payment-process/payment-process.compo
     TrackServiceRequestComponent,
     PayBillComponent,
     EnergyTipsComponent,
-    PaymentProcessComponent
+    PaymentProcessComponent,
+    TransectionStatusMessageComponent
   ],
   imports: [
 
@@ -186,7 +186,6 @@ import { PaymentProcessComponent } from './payment-process/payment-process.compo
       {path:'search',component: SearchComponent},
       {path:'usage',component: UsageComponent},
       {path:'news-media',component: NewsMediaComponent},
-      {path:'tips',component: TipsComponent}, 
       {path:'important-links',component: ImportantLinksComponent},
       {path:'track-complaint',component:TrackComplaintsComponent},
       {path:'track-service-request',component:TrackServiceRequestComponent},

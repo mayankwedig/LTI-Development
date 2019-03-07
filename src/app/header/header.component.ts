@@ -11,6 +11,7 @@ import { DataService } from "../services/data.service";
 import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from "constants";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { SiteSettingsService } from "../services/site-settings/site-settings.service";
 
 declare var $: any;
 require("../../assets/js/owl.carousel.js");
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     public auth: AuthService,
     public dataservice: DataService,
     private helpers: HelpersService,
-    private profile: ProfileService
+    private profile: ProfileService,
+    private siteSettings:SiteSettingsService
   ) {}
   searchKeyWord = "";
   dashboardDataApiUrl = "users/getUserData";
@@ -133,28 +135,36 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
     this.getLimitedNotifications();
   }
+  setSiteLogo(){
+    let SiteLogo=this.siteSettings.getSiteSettings().home_logo;
+    this.logogImage=  environment.logoUrl+SiteLogo; 
+  }
   getSiteLogo() {
     this.logogImage = environment.logo_not_found;
-    this.profile.getSiteLogo().subscribe(
-      (result: any) => {
-        console.log(result);
-        if (result.authCode == 200 && result.status) {
-          if (result.home_logo != "") {
-            this.logogImage =
-              environment.logoUrl + result.data_params.home_logo;
-          } else {
+      if(this.siteSettings.getSiteSettings() == null){
+        this.siteSettings.getSiteSettingsAPI().subscribe(
+          (result: any) => {
+            if (result.authCode == 200 && result.status) {
+              if (result.home_logo != "") {
+                this.siteSettings.setSiteSettingsSession(result.data_params);
+                  this.setSiteLogo();
+              } else {
+                this.logogImage = environment.logo_not_found;
+              }
+            }
+          },
+          (error: AppError) => {
             this.logogImage = environment.logo_not_found;
+            if (error instanceof BadInput) {
+            } else {
+              throw error;
+            }
           }
-        }
-      },
-      (error: AppError) => {
-        this.logogImage = environment.logo_not_found;
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
+        );
+      }else{
+        this.setSiteLogo();
       }
-    );
+    
   }
   loderLoder = false;
   profile_image: any = "../assets/images/placeholder-man-grid-240x268.png";

@@ -107,6 +107,7 @@ export class PayBillComponent implements OnInit {
     }
   
   }
+
   getUserAccounts() {
     this.userAccountsLoder = true;
     this.PayBillService.getAccounts().subscribe(
@@ -128,6 +129,10 @@ export class PayBillComponent implements OnInit {
         throw error;
       }
     );
+  }
+  focusFunction(){
+    this.initBillingData();
+    this.isAccountDetailsFound = false;
   }
   getBillAccountDetails() {
     if (this.accountNumber != "") {

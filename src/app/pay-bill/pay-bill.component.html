@@ -57,10 +57,11 @@
                         name="accountNumber"
                         type="text"
                         class="form-control-plaintext account-number-input"
+                        (focus)="focusFunction()"
                         required
                       />
                     </div>
-                    <div class="col-sm-6" *ngIf="!isLoggedIn()" >
+                    <div class="col-sm-6" *ngIf="!isLoggedIn() && !isAccountDetailsFound" >
                       <button
                         class="blue-btn"
                         (click)="getBillAccountDetails()"

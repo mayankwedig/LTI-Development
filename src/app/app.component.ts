@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   }
  
   public ngOnInit(){
+  
     var init = [];
     init.push(function () {
        
