@@ -10,6 +10,7 @@ require('../../assets/js/owl.carousel.js');
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit,AfterViewInit {
+	
 	orgChart=`<table width="0" cellspacing="0" cellpadding="0" border="0">
 	<tbody>
 		<tr>
@@ -3158,6 +3159,7 @@ export class AboutComponent implements OnInit,AfterViewInit {
 		this.getContent();
 		this.getMissionAndVision();
 		this.getBoardOfDirectors();
+		this.getOrgChart();
   }
   ngAfterViewInit(){
     $(function() {
@@ -3262,5 +3264,19 @@ export class AboutComponent implements OnInit,AfterViewInit {
         throw error;
       }
     );
-  }
+	}
+	getOrgChart(){
+		this._aboutServices.getOrgChart()
+		.subscribe((res:any)=>{
+			if(res.status && res.authCode == "200"){
+				this.orgChart=res.data_params.description;
+				this.orgChart="";
+			}else{
+				this.orgChart="";
+			}
+		},(err)=>{
+			this.orgChart="";
+			throw err;
+		});
+	}
 }

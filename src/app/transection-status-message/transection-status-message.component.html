@@ -1,3 +1,18 @@
-<p>
-  transection-status-message works!
-</p>
+<div class="alert" [ngClass]="{'alert-success':msgFlag == 'success','alert-warning':msgFlag == 'warning','alert-danger':msgFlag == 'error'}">
+{{msgDispay}}
+</div>
+<div class="rows" *ngIf="viewTransectionDetails != null">
+  Following is your transection details:
+  <div class="col-sm-5">
+  Transection ID: {{viewTransectionDetails.TXNID}}
+</div>
+<div class="col-sm-5">
+  Order ID: {{viewTransectionDetails.ORDERID}}
+</div>
+<div class="col-sm-5">
+  Transection Amount: {{viewTransectionDetails.TXNAMOUNT}}
+</div>
+<div class="col-sm-5">
+  Transection Date/Time: {{viewTransectionDetails.TXNDATE|date:'EEEE, d  MMMM, y, h:mm:ss a '}}
+</div>
+</div>

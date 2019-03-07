@@ -321,7 +321,8 @@ export class ManageaccountComponent implements OnInit {
   };
   /** Redirection Loder Ends Here*/
   redirectoPaymentPage(accountId, userId) {
-    this.WindowRef.nativeWindow.open('https://paytm.com/', "popup");
+    //this.WindowRef.nativeWindow.open('https://paytm.com/', "popup");
+    this.router.navigate(["/pay-bill"]);
     /* this.redirectLoding = true; // make loder true
     var userId = this.auth.getCurrentUser().userId;
     var is_net_metering = 0;

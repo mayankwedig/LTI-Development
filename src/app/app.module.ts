@@ -238,7 +238,7 @@ import { TransectionStatusMessageComponent } from './transection-status-message/
     SignupService,
     {provide:ErrorHandler,useClass:AppErrorHandler},
     LoginService,
-    AuthService,
+    AuthService,  
     OtpVerificationService,
     DashboardService,
     ProfileService,

@@ -38,6 +38,9 @@ export class DashboardService {
   ac_number=this.helpers.getLocalStoragData("account_number");//getting account number
   
   constructor(private DataService: DataService,private helpers:HelpersService,private auth:AuthService) {}
+  getRowOrderSorting(){
+    return this.DataService.getAll("users/widgetSorting",{},this.helpers.setHeaderData(),"GET");  
+  }
   getYtdData(accountNumber,callback) {
     var currentUser=this.auth.getCurrentUser();
    var body={"account_number": accountNumber,"userId":currentUser.userId};

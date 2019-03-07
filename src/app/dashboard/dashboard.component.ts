@@ -1,4 +1,4 @@
-import { IconsService } from './../services/icons/icons.service';
+import { IconsService } from "./../services/icons/icons.service";
 import { WindowRefService } from "./../services/window-ref/window-ref.service";
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { Component, OnInit } from "@angular/core";
@@ -16,15 +16,14 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { resolve } from "url";
 import { reject } from "q";
-import {environment} from "./../../environments/environment";
+import { environment } from "./../../environments/environment";
 
 require("../../../node_modules/moment/min/moment.min.js");
 require("../../assets/js/ads.js");
 
 declare var $: any;
 declare var moment: any;
-declare var _googCsa:any;
-
+declare var _googCsa: any;
 
 @Component({
   selector: "app-dashboard",
@@ -38,50 +37,80 @@ declare var _googCsa:any;
 export class DashboardComponent implements OnInit {
   test: string;
   //Translation
-  translate(string:string):string{
+  translate(string: string): string {
     return this._helper.translate(string);
   }
-  dashBoardRows=[
-    {"row_name":1,"sort":1,"cols":[{"col_name":1,"sort":1},{"col_name":2,"sort":2}]}, //
-    {"row_name":2,"sort":2,"cols":[{"col_name":1,"sort":1},{"col_name":2,"sort":2}]},
-    {"row_name":3,"sort":3,"cols":[]},
-    {"row_name":4,"sort":4,"cols":[]},
-    {"row_name":5,"sort":5,"cols":[{"col_name":1,"sort":2},{"col_name":2,"sort":1}]},
-    {"row_name":6,"sort":6,"cols":[]}
-  ]
+  dashBoardRows = [
+    {
+      row_name: 1,
+      sort: 1,
+      cols: [{ col_name: 1, sort: 1 }, { col_name: 2, sort: 2 }]
+    }, //
+    {
+      row_name: 2,
+      sort: 2,
+      cols: [{ col_name: 1, sort: 1 }, { col_name: 2, sort: 2 }]
+    },
+    { row_name: 3, sort: 3, cols: [] },
+    { row_name: 4, sort: 4, cols: [] },
+    {
+      row_name: 5,
+      sort: 5,
+      cols: [{ col_name: 1, sort: 2 }, { col_name: 2, sort: 1 }]
+    },
+    { row_name: 6, sort: 6, cols: [] }
+  ];
+
+  getRowOrderSorting() {
+    this.DashboardService.getRowOrderSorting().subscribe(
+      (response: any) => {
+        if (response.authCode == "200" && response.status == true) {
+           this.dashBoardRows=response.data_params;
+        } 
+      },
+      error => {
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      }
+    );
+  }
   filterBy(prop: string) {
     return this.dashBoardRows.sort((a, b) =>
       a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
     );
   }
-  filterColsBy(drows,prop: string){
+  filterColsBy(drows, prop: string) {
     return drows.sort((a, b) =>
       a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
     );
   }
-  isWidgetFound:boolean=false;
-  widgetLoader:boolean=false;
-  widgets:any="";
-  getDesktopWidget(){
-    this.widgetLoader=true;
-    this.DashboardService.getDesktopWidget()
-    .subscribe((response:any)=>{
-      this.widgetLoader=false;
-      if(response.authCode == "200" && response.status == true){
-        this.isWidgetFound=true;
-        this.widgets=response.data_params.json_data;
-        console.log(this.widgets);
-      }else{
-        this.isWidgetFound=false;
-        this.widgets="";
+  isWidgetFound: boolean = false;
+  widgetLoader: boolean = false;
+  widgets: any = "";
+  getDesktopWidget() {
+    this.widgetLoader = true;
+    this.DashboardService.getDesktopWidget().subscribe(
+      (response: any) => {
+        this.widgetLoader = false;
+        if (response.authCode == "200" && response.status == true) {
+          this.isWidgetFound = true;
+          this.widgets = response.data_params.json_data;
+          console.log(this.widgets);
+        } else {
+          this.isWidgetFound = false;
+          this.widgets = "";
+        }
+      },
+      error => {
+        this.isWidgetFound = false;
+        this.widgetLoader = false;
+        this.widgets = "";
       }
-    },(error)=>{
-      this.isWidgetFound=false;
-      this.widgetLoader=false;
-      this.widgets="";
-    });
+    );
   }
- 
+
   constructor(
     private auth: AuthService,
     private DashboardService: DashboardService,
@@ -90,16 +119,16 @@ export class DashboardComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private WindowRef: WindowRefService,
     private toastr: ToastrService,
-    private _helper:HelpersService,
-    private icones: IconsService,
+    private _helper: HelpersService,
+    private icones: IconsService
   ) {}
-  
-  adimagurl=environment.adimageUrl;
-  widgetIconePath=environment.dashVBoardIcone;
-  getWedgetIcone(image){
-    if(image != null && image != ''){
+
+  adimagurl = environment.adimageUrl;
+  widgetIconePath = environment.dashVBoardIcone;
+  getWedgetIcone(image) {
+    if (image != null && image != "") {
       return image;
-    }else{
+    } else {
       return null;
     }
   }
@@ -140,7 +169,10 @@ export class DashboardComponent implements OnInit {
         queryParams: { complaintReq: serviceRequestId }
       });
     } else {
-      this.toastr.error(this.translate("Please Select Complaint ID!"), this.translate("failed!"));
+      this.toastr.error(
+        this.translate("Please Select Complaint ID!"),
+        this.translate("failed!")
+      );
     }
   }
   redirectoRequestDetails() {
@@ -154,7 +186,10 @@ export class DashboardComponent implements OnInit {
         queryParams: { serviceReq: serviceRequestId }
       });
     } else {
-      this.toastr.error(this.translate("Please Select Service Request ID!"), this.translate("failed!"));
+      this.toastr.error(
+        this.translate("Please Select Service Request ID!"),
+        this.translate("failed!")
+      );
     }
   }
 
@@ -214,17 +249,17 @@ export class DashboardComponent implements OnInit {
   alertData = [];
   alertDataLoader: boolean = false;
   isAlertDataFound: boolean = false;
-  advertDataLoader:boolean =false;
+  advertDataLoader: boolean = false;
   isAdvertDataFound: boolean = false;
-  advertisementData: any =[];
-  OtherIconse:any=null;
-  getIcones(){
-    this.OtherIconse=JSON.parse(this.helpers.getLocalStoragData("icons"));
-    if(this.OtherIconse == null){
+  advertisementData: any = [];
+  OtherIconse: any = null;
+  getIcones() {
+    this.OtherIconse = JSON.parse(this.helpers.getLocalStoragData("icons"));
+    if (this.OtherIconse == null) {
       this.icones.getIcons().subscribe(
         (response: any) => {
           if (response.authCode == "200" && response.status == true) {
-            this.OtherIconse=response.data_params;
+            this.OtherIconse = response.data_params;
             this.helpers.setLocalStoragData(
               "icons",
               JSON.stringify(response.data_params)
@@ -235,26 +270,28 @@ export class DashboardComponent implements OnInit {
       );
     }
   }
-  setIconeImage(index){
-    if(this.OtherIconse != null){
-      let image=environment.icon_img+this.OtherIconse[index];
-        if(image){
-          return image;
-        }else{
-          return null;
-        }
-    }else{
+  setIconeImage(index) {
+    if (this.OtherIconse != null) {
+      let image = environment.icon_img + this.OtherIconse[index];
+      if (image) {
+        return image;
+      } else {
+        return null;
+      }
+    } else {
       return null;
     }
   }
   ngOnInit() {
+    this.getRowOrderSorting();
     this.getDesktopWidget();
     this.getIcones();
     let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
     let accountTokenInfo = accountToken.split(":");
     this.accountNumber = accountTokenInfo[1]; //account Number
-   
-    this.dispString =  this.translate("accountnumber")+" ( " + this.accountNumber + " ) ";
+
+    this.dispString =
+      this.translate("accountnumber") + " ( " + this.accountNumber + " ) ";
 
     this.currentDate = moment().format("Do MMM YY");
     this.currentYear = moment().format("YYYY");
@@ -277,19 +314,18 @@ export class DashboardComponent implements OnInit {
     ];
 
     var pageOptions = {
-      "pubId": "pub-9616389000213823", // Make sure this the correct client ID!
-      "query": "hotels",
-      "adPage": 1
+      pubId: "pub-9616389000213823", // Make sure this the correct client ID!
+      query: "hotels",
+      adPage: 1
     };
-  
-    var adblock1 = {
-      "container": "afscontainer1",
-      "width": "100%",
-      "number": 2
-    };
-  
-    _googCsa('ads', pageOptions, adblock1);
 
+    var adblock1 = {
+      container: "afscontainer1",
+      width: "100%",
+      number: 2
+    };
+
+    _googCsa("ads", pageOptions, adblock1);
 
     // CHART COLOR.
     this.consumptioncolors = [
@@ -334,8 +370,8 @@ export class DashboardComponent implements OnInit {
       this.onDemandReadLoder = false;
       if (result.authCode == "200") {
         var data = result.data_params;
-        var latestConsumption = data;/* data.latestConsumption; */
-        this.onDemandReadData = data
+        var latestConsumption = data; /* data.latestConsumption; */
+        this.onDemandReadData = data;
       } else {
         this.onDemandReadData = "";
       }
@@ -432,9 +468,15 @@ export class DashboardComponent implements OnInit {
       if (response.authCode == "200") {
         this.WindowRef.nativeWindow.open(response.data_params, "popup");
 
-        this.toastr.success(this.translate("Excel downloaded successfully"), this.translate("Success!"));
+        this.toastr.success(
+          this.translate("Excel downloaded successfully"),
+          this.translate("Success!")
+        );
       } else {
-        this.toastr.error(this.translate("Something went wrong!"), this.translate("failed!"));
+        this.toastr.error(
+          this.translate("Something went wrong!"),
+          this.translate("failed!")
+        );
       }
     });
   }
@@ -541,7 +583,7 @@ export class DashboardComponent implements OnInit {
             console.log("Error occured...!");
           }
         );
-       /*  console.log(this.consumptionlabels); */
+        /*  console.log(this.consumptionlabels); */
       }
     });
   }
@@ -653,7 +695,7 @@ export class DashboardComponent implements OnInit {
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
             this.advertisementData = res.data_params;
-           /*  console.log(this.advertisementData); */
+            /*  console.log(this.advertisementData); */
             this.isAdvertDataFound = true;
           } else {
             this.isAdvertDataFound = false;
@@ -672,6 +714,4 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-
-
 }

@@ -19,5 +19,8 @@ export class AboutService {
   getBoardOfDirectors(){
     return this._data.getAll("users/boardDirectors",{},{},"GET");
   }
+  getOrgChart(){
+    return this._data.getAll("users/staticPage",{"slug":"organisation-structure"},{},"POST");
+  }
 
 }
