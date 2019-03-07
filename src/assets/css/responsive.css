@@ -904,6 +904,53 @@
     }
 }
 @media(max-width:767px) { 
+    .status-table-sec tbody,
+    .status-table-sec td, 
+    .status-table-sec tr{
+        border: 0;
+        display: block;
+        padding: 0;
+        text-align: left;
+        white-space: normal;
+    }
+    .status-table-sec thead {
+        display: none;
+        visibility: hidden;
+    }
+    .status-table-sec td{
+        border-top: 1px solid #d9e8f8 !important;
+    }
+    .status-table-sec td[data-title] {
+        padding-left: 48% !important;
+        position: relative;
+        text-align: left !important;
+        height: 40px;
+        line-height: 30px;
+    }
+    .status-table-sec td[data-title]:before {
+        content: attr(data-title);
+        font-weight: bold;
+        padding-left: 12px;
+        width: 45%;
+        background: #ecf5fe;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        line-height: 40px;
+        border-right: 1px solid #d9e8f8;
+    }
+    .status-table-sec th, .status-table-sec td{
+        font-size: 15px;
+    }
+    .msg-heading h3{
+        font-size: 26px;
+        padding-left: 35px;
+    }
+    .msg-heading h3:before{
+        width: 24px;
+        height: 24px;
+    }
     .energy-tab-sec .nav-tabs li{
         width: 100%;
     }
@@ -1670,6 +1717,28 @@
     }
 }
 @media(max-width:480px) {  
+    .status-table-sec th, .status-table-sec td{
+        font-size: 14px;
+    }
+    .status-sec-panel .blue-box:before {
+        width: 100px;
+        height: 133px;
+        margin-left: -50px;
+    }
+    .blue-box{
+        padding-top: 120px;
+    }
+    .msg-heading h3 {
+        font-size: 22px;
+        padding-left: 28px;
+    }
+    .msg-heading span{
+        font-size: 16px;
+    }
+    .msg-heading h3:before {
+        width: 21px;
+        height: 21px;
+    }
     .common-notification-lists li .notification-texts{
         width: 100%;
     }
