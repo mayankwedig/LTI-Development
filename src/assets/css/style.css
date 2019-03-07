@@ -5956,3 +5956,120 @@ margin:40px auto;
 .paybill-not-login {
     padding-top: 65px;
 }
+
+/*Success Failure Css*/
+
+.status-sec-panel{
+    width: 100%;
+    float: left;
+    height: 100vh;
+    background: #ecf5fe;
+    display: table;
+}
+.status-sec-panel .status-inner-panel {
+    display: table-cell;
+    vertical-align: middle;
+}
+.page-wrap {
+    width: 100%;
+    float: left;
+}
+.blue-box {
+    width: 100%;
+    max-width: 900px;
+    padding: 150px 30px 30px 30px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #d9e8f8;
+    overflow: hidden;
+    position: relative;
+}
+.status-sec-panel .blue-box:before{
+    position: absolute;
+    content: '';
+    left: 50%;
+    top: 0px;
+    width: 123px;
+    height: 164px;
+    background-size: cover !important;
+    margin-left: -62px;
+}
+.msg-heading {
+    text-align: center;
+    font-size: 17px;
+    padding: 40px 0 0;
+}
+.msg-heading h3 {
+    font-size: 32px;
+    display: inline-block;
+    font-weight: 700;
+    padding-left: 40px;
+    position: relative;
+}
+.msg-heading h3:before{
+    position: absolute;
+    content: '';
+    left: 0px;
+    top: 3px;
+    width: 28px;
+    height: 28px;
+    background-size: cover !important;
+}
+.msg-heading span{
+    display: block;
+    font-size: 18px;
+}
+.status-table-sec {
+    width: 100%;
+     float: left; 
+    margin: 25px 0px;
+}
+.status-table-sec th, 
+.status-table-sec td{
+    padding: 10px 15px 3px;
+    background: #f5faff;
+    font-size: 16px;
+    color: #323232;
+}
+.status-table-sec .table-bordered>tbody>tr>td{
+    border: 0px;
+    border-left: 1px solid #d9e8f8;
+    font-weight: 700;
+}
+.status-table-sec .table-bordered{
+    border-color: #d9e8f8;
+    margin-bottom: 0px;
+}
+.status-table-sec .table-bordered thead th {
+    border-left: 1px solid #d9e8f8;
+        font-weight: 400;
+}
+.status-sec-panel .success-msg-sec .blue-box .msg-heading h3{
+    color: #2eac87;
+}
+.success-msg-sec .msg-heading h3:before{
+    background: url(../images/status-success-ic.png);
+}
+.status-sec-panel .success-msg-sec .blue-box:before{
+    background: url(../images/buld-success.png);
+}
+
+.status-sec-panel .failure-msg-sec .blue-box .msg-heading h3{
+    color: #d05858;
+}
+.failure-msg-sec .msg-heading h3:before{
+    background: url(../images/status-failed-ic.png);
+}
+.status-sec-panel .failure-msg-sec .blue-box:before{
+    background: url(../images/buld-failed.png);
+}
+
+.status-sec-panel .warning-msg-sec .blue-box .msg-heading h3{
+    color: #dbac46;
+}
+.warning-msg-sec .msg-heading h3:before{
+    background: url(../images/status-warning-ic.png);
+}
+.status-sec-panel .warning-msg-sec .blue-box:before{
+    background: url(../images/buld-warning.png);
+}
