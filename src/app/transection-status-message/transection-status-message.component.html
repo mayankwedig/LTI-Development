@@ -1,24 +1,29 @@
 <div id="main-wrapper" class="no-sidebar">
   <app-header></app-header>
   <div id="content-wrapper" class="status-sec-panel">
-      <div class="status-inner-panel" [ngClass]="{'success-msg-sec':msgFlag == 'success','warning-msg-sec':msgFlag == 'warning','failure-msg-sec':msgFlag == 'error'}">
+      <div class="status-inner-panel" 
+      [ngClass]="{
+        'success-msg-sec':msgFlag == 'success',
+        'warning-msg-sec':msgFlag == 'warning',
+        'failure-msg-sec':msgFlag == 'error'}"
+      >
 	  		<div class="container">
 			    <div class="blue-box">
 				    <div class="msg-heading">
 				        <h3 *ngIf="msgFlag == 'success'">
-				        	Congratulations
-                </h3> 
-                <h3 *ngIf="msgFlag == 'success'">
-				        	Congratulations
-                </h3> 
-                <h3>
-				        	Congratulations
-				        </h3> 
+				        	{{'Congratulations'|translate}}
+                </h3>
+                <h3 *ngIf="msgFlag == 'warning'">
+				        	{{'Payment is Pending'|translate}}
+                </h3>
+                <h3 *ngIf="msgFlag == 'error'">
+				        	{{'Payment failed'|translate}}
+				        </h3>  
 				        <span>
-				        	Your audition registration has been done successfully
+				        	{{msgDispay}}
 				        </span>
 				    </div>
-				    <div class="status-table-sec">
+				    <div class="status-table-sec" *ngIf="viewTransectionDetails != null">
 				    	<table class="table table-bordered table-responsive">
 				    		<thead>
 				    			<th class="text-center">
@@ -31,36 +36,33 @@
 				    				Amount
 				    			</th>
 				    			<th class="text-center">
-				    				Date
-				    			</th>
-				    			<th class="text-center">
-				    				Time
+				    				Date and Time
 				    			</th>
 				    		</thead>
 				    		<tbody>
 				    			<tr>
 				    				<td class="text-center" data-title="Transaction ID">
-				    					123456
+				    					{{viewTransectionDetails.TXNID}}
 				    				</td>
 				    				<td class="text-center" data-title="Order ID">
-				    					456789
+				    					{{viewTransectionDetails.ORDERID}}
 				    				</td>
 				    				<td class="text-center" data-title="Amount">
-				    					<i class="fa fa-inr" aria-hidden="true"></i> 2150
+				    					<i class="fa fa-inr" aria-hidden="true"></i> {{viewTransectionDetails.TXNAMOUNT}}
 				    				</td>
 				    				<td class="text-center" data-title="Date">
-				    					3 Mar 2019
-				    				</td>
-				    				<td class="text-center" data-title="Time">
-				    					04:15 P.M.
+				    					{{viewTransectionDetails.TXNDATE|date:'EEEE, d  MMMM, y, h:mm:ss a '}}
 				    				</td>
 				    			</tr>
 				    		</tbody>
 				    	</table>
 				    </div>
-				    <div class="rows text-center">
-				    	<a class="blue-goback-btn margin_top0" href="#">Go back to Home</a>
-				    </div>
+				    <div class="rows text-center" *ngIf="msgFlag == 'success'">
+				    	<a class="blue-goback-btn margin_top0" (click)="redirectUser('/')">{{'Go back to Home'|translate}}</a>
+            </div>
+            <div class="rows text-center" *ngIf="msgFlag != 'success'">
+				    	<a class="blue-goback-btn margin_top0" (click)="redirectUser('contact-us')">{{'Contact us'|translate}}</a>
+            </div>
 				</div>
 	  		</div>
       </div>

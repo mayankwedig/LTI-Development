@@ -22,7 +22,7 @@ export class TransectionStatusMessageComponent implements OnInit {
   msgDispay=this.translate("Something went wrong,Please try again later");
   ngOnInit() {
     if(!this.activeRoute.snapshot.queryParams.authCode){
-        this.Route.navigate(["/"]);
+        this.redirectUser("/");
     }else{
       let error_code=this.activeRoute.snapshot.queryParams.authCode;
       let status=this.activeRoute.snapshot.queryParams.status;
@@ -32,7 +32,7 @@ export class TransectionStatusMessageComponent implements OnInit {
       this.viewTransectionDetails=tansectionDetails;
       if(error_code == 200 && status == 'true'){
         this.msgFlag="success";
-        this.msgDispay=this.translate("Thank you, your payment has been processed successfully");
+        this.msgDispay=this.translate("Your payment has been processed successfully");
       }else{
         if(tansectionDetails == null){
           this.viewTransectionDetails=null
@@ -56,11 +56,9 @@ export class TransectionStatusMessageComponent implements OnInit {
       }
      
     }
-    /* this.activeRoute.queryParamMap.subscribe((response:any)=>{
-        console.log(response);
-    },(error)=>{
-
-    }); */
+    
   }
-
+  redirectUser(path){
+    this.Route.navigate([path]);
+  }
 }
