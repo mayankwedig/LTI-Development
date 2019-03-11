@@ -10,7 +10,6 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { TranslationService } from "../services/translation/translation.service";
 
-import {environment} from "./../../environments/environment";
 import { Router } from "@angular/router";
 
 @Component({
@@ -21,14 +20,8 @@ import { Router } from "@angular/router";
 
 export class TrackComplaintsComponent implements OnInit {
   trackComplaintFrm: FormGroup;
-  
   trackCompLoader:boolean=false;
-  
-  advertiseDataLoader:boolean=false;
-  advertisementproData:any=[];
-  isAdvertiseDataFound:boolean=false;
-
-  adimagurl=environment.adimageUrl;
+  fetchAdQuery="profile";
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -47,37 +40,8 @@ export class TrackComplaintsComponent implements OnInit {
       this.router.navigate(["/complaints"])
     }
     this.initTrackComplaitnsFrm();
-    this.getadvertisementprofileData();
-    
   }
- 
-  getadvertisementprofileData() {
-    this.advertiseDataLoader = true;
-    this.DashboardService.getAdvertisementproData().subscribe(
-      (response: any) => {
-        var res = response;
-        this.advertiseDataLoader = false;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            this.advertisementproData = res.data_params;
-            this.isAdvertiseDataFound = true;
-          } else {
-            this.isAdvertiseDataFound = false;
-            this.advertisementproData = [];
-          }
-        }
-      },
-      (error: AppError) => {
-        this.isAdvertiseDataFound = false;
-        this.advertiseDataLoader = false;
-        this.advertisementproData = [];
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
-  }
+
   isLoggedIn(){
     return this.auth.isLoggedIn();
   }
