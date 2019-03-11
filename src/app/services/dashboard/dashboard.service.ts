@@ -29,12 +29,9 @@ export class DashboardService {
 
   complaintListAPI="users/complaintList";
   serviceRequestListAPI="users/serviceRequestList";
-
   masterDropDown="users/masterDropDown";   
   alertnotification="users/getAlerts";   
-  advertisementapi="users/advertisement"; 
-   TouAPI="users/touHourly";
-
+  TouAPI="users/touHourly";
   ac_number=this.helpers.getLocalStoragData("account_number");//getting account number
   
   constructor(private DataService: DataService,private helpers:HelpersService,private auth:AuthService) {}
@@ -248,16 +245,6 @@ getDesktopWidget(){
   return this.DataService.getAll("users/getWidget",{},this.helpers.setHeaderData(),"POST");
 }
 
-   getAdvertisementData(){
-     
-    var body={'slug':"dashboard"};
-    return this.DataService.getAll(this.advertisementapi, body,{},"POST");
-   }
-
-   getAdvertisementproData(){
-      var body={'slug':"profile"};
-      return this.DataService.getAll(this.advertisementapi, body,{},"POST");
-     }
 
   setBody(body) {
     var bodyData = {};

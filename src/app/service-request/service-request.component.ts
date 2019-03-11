@@ -1,3 +1,5 @@
+
+import { environment } from './../../environments/environment';
 import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { SerivceRequestService } from "./../services/service-request/serivce-request.service";
 import { AuthService } from "./../services/authService/auth.service";
@@ -9,12 +11,14 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { TranslationService } from "../services/translation/translation.service";
 
+
 @Component({
   selector: "app-service-request",
   templateUrl: "./service-request.component.html",
   styleUrls: ["./service-request.component.css"]
 })
 export class ServiceRequestComponent implements OnInit {
+  fetchAdQuery="profile"//ad query
   requestServicesFrm: FormGroup;
   selectServiceRequestFrm: FormGroup;
   selectedRequestType: any = "";
@@ -53,14 +57,14 @@ export class ServiceRequestComponent implements OnInit {
     private translationServices: TranslationService
 
   ) {}
-
+  
   ngOnInit() {
+  
     this.hideServiceRequestDetailsFrm = true;
     this.getServReqEnclosedIdentifDoc();
     this.getServiceRequestType();
     this.getChangeReasons();
     this.getUserAccounts();
-
     if (this.helpers.getLocalStoragData("accountToken") != null) {
       let accountToken = atob(this.helpers.getLocalStoragData("accountToken")); // fetch account number.
       let accountTokenInfo = accountToken.split(":");
@@ -102,36 +106,9 @@ export class ServiceRequestComponent implements OnInit {
       this.toastr.warning(this.translationServices.translate("Please fill all required fields"), "Failed!");
     }
   }
-  advertiseDataLoader:boolean=false;
-  advertisementproData:any=[];
-  isAdvertiseDataFound:boolean=false;
-  getadvertisementprofileData() {
-    this.advertiseDataLoader = true;
-    this.DashboardService.getAdvertisementproData().subscribe(
-      (response: any) => {
-        var res = response;
-        this.advertiseDataLoader = false;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            this.advertisementproData = res.data_params;
-            this.isAdvertiseDataFound = true;
-          } else {
-            this.isAdvertiseDataFound = false;
-            this.advertisementproData = [];
-          }
-        }
-      },
-      (error: AppError) => {
-        this.isAdvertiseDataFound = false;
-        this.advertiseDataLoader = false;
-        this.advertisementproData = [];
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
-  }
+
+
+
   initServiceRequestFrm(selectedCaseType) {
     var fields = {
       accountNumber: [this.accountNumber, [Validators.required]],

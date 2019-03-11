@@ -123,6 +123,13 @@ export class SideBarComponent implements OnInit {
       } else {
         return false;
       }
+    }else if (menu.slug == "pay-bill") {
+      // if recharge history
+      if (!(this.selectedAccountData.isPrepaid == "Yes")) {
+        return true;
+      } else {
+        return false;
+      }
     }else if (menu.slug == "net-metering") {
       // if net metering
       if (this.is_net_metering) {

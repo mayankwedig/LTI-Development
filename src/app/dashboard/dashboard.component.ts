@@ -23,7 +23,7 @@ require("../../assets/js/ads.js");
 
 declare var $: any;
 declare var moment: any;
-declare var _googCsa: any;
+
 
 @Component({
   selector: "app-dashboard",
@@ -35,6 +35,7 @@ declare var _googCsa: any;
 //   name: 'dateFormat'
 // })
 export class DashboardComponent implements OnInit {
+  fetchAdQuery="dashboard";
   test: string;
   //Translation
   translate(string: string): string {
@@ -123,7 +124,6 @@ export class DashboardComponent implements OnInit {
     private icones: IconsService
   ) {}
 
-  adimagurl = environment.adimageUrl;
   widgetIconePath = environment.dashVBoardIcone;
   getWedgetIcone(image) {
     if (image != null && image != "") {
@@ -249,9 +249,6 @@ export class DashboardComponent implements OnInit {
   alertData = [];
   alertDataLoader: boolean = false;
   isAlertDataFound: boolean = false;
-  advertDataLoader: boolean = false;
-  isAdvertDataFound: boolean = false;
-  advertisementData: any = [];
   OtherIconse: any = null;
   getIcones() {
     this.OtherIconse = JSON.parse(this.helpers.getLocalStoragData("icons"));
@@ -312,21 +309,6 @@ export class DashboardComponent implements OnInit {
         data: []
       }
     ];
-
-    var pageOptions = {
-      pubId: "pub-9616389000213823", // Make sure this the correct client ID!
-      query: "hotels",
-      adPage: 1
-    };
-
-    var adblock1 = {
-      container: "afscontainer1",
-      width: "100%",
-      number: 2
-    };
-
-    _googCsa("ads", pageOptions, adblock1);
-
     // CHART COLOR.
     this.consumptioncolors = [
       // { // 1st Year.
@@ -518,7 +500,7 @@ export class DashboardComponent implements OnInit {
     this.getcomplaints();
     this.getServiceRequest();
     this.getAlertData();
-    this.getadvertisementData();
+
   }
   showYtdData() {
     this.yesterDayConsumptionLoder = true;
@@ -634,7 +616,6 @@ export class DashboardComponent implements OnInit {
     data.forEach(item => {
       this.helpers.getMonth(item._model.label).then(result => {
         var month = result;
-        console.log(month);
         this.router.navigate(["/consumption"], {
           queryParams: { consumption: btoa(month + ":" + item._model.label) }
         });
@@ -678,35 +659,6 @@ export class DashboardComponent implements OnInit {
         this.isAlertDataFound = false;
         this.alertDataLoader = false;
         this.alertData = [];
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
-  }
-
-  getadvertisementData() {
-    this.advertDataLoader = true;
-    this.DashboardService.getAdvertisementData().subscribe(
-      (response: any) => {
-        var res = response;
-        this.advertDataLoader = false;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            this.advertisementData = res.data_params;
-            /*  console.log(this.advertisementData); */
-            this.isAdvertDataFound = true;
-          } else {
-            this.isAdvertDataFound = false;
-            this.advertisementData = [];
-          }
-        }
-      },
-      (error: AppError) => {
-        this.isAdvertDataFound = false;
-        this.advertDataLoader = false;
-        this.advertisementData = [];
         if (error instanceof BadInput) {
         } else {
           throw error;

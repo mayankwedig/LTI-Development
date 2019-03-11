@@ -17,9 +17,9 @@
         <div class="panel-body bil-pay-panel" *ngIf="showPaymentProcessSection == true">
             <div class="service-box" >
                   <div class="title">{{'Bill Payment'|translate}}</div>
-                  <div class="req-success-msg">
+                  <!-- <div class="req-success-msg">
                     {{'Thank You for pay your bill'|translate}}
-                  </div>
+                  </div> -->
                   <div class="req-number">
                     {{'Please do not press back button or refesh this page'|translate}}
                   </div>
@@ -188,7 +188,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" *ngIf='billing.payable_amount > 0'>
                       <div class="form-group">
                         <button class="blue-btn" (click)=getPaymentChecksm()>Pay Now</button>
                       </div>
@@ -203,58 +203,11 @@
                   <div class="bounce3"></div>
                 </div>
               </div>
-              <!-- <div *ngIf="!isAccountDetailsFound && !accountDetailsLoader">
-                <div
-                  class="text-center font-12  field_not_found"
-                  style="margin-top:-92px;"
-                  *ngIf="
-                    accountDetailsLoader == false &&
-                    isAccountDetailsFound == false
-                  "
-                >
-                  <img src="../assets/images/no_data.png" />{{
-                    "Currently billing detials not found." | translate
-                  }}
-                  <br />
-                  {{
-                    "Provide your valid Account no. in Account Number field showing above and then click on View Button to fetch billing details"
-                      | translate
-                  }}
-                </div>
-              </div> -->
             </div>
           </form>
         </div>
       </div>
-      <ul class="dash-box-list" *ngIf="isAdvertDataFound">
-        <li class="dash-box-li rows offer-li">
-          <div class="offer-section">
-            <div
-              class="text-content"
-              *ngIf="advertisementData[0]?.type == 'text'"
-            >
-              {{ advertisementData[0].add_val }}
-            </div>
-            <div
-              class="image-ads"
-              *ngIf="advertisementData[0]?.type == 'image'"
-            >
-              <!-- <img src="/assets/images/SNP_3094702_en_v0 - Copy.png" alt="" /> -->
-              <img src="{{ adimagurl }}{{ advertisementData[0]?.add_val }}" />
-              <!-- {{advertisementData[0].add_val}}  -->
-            </div>
-            <div
-              class="iframe-ads"
-              *ngIf="advertisementData[0]?.type == 'google_ad'"
-            >
-              <!-- <img src="{{adimagurl}}{{advertisementData[0].add_val}}"/> -->
-              <!-- {{advertisementData[0].add_val}}  -->
-
-              <div id="afscontainer1"></div>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <app-advertisement [adQuery]="fetchAdQuery"></app-advertisement>
     </div>
     <div *ngIf="isLoggedIn()" id="main-menu-bg"></div>
   </div>

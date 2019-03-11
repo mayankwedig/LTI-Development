@@ -1,7 +1,10 @@
+import { HelpersService } from './services/helpers/helpers.service';
 import { Component, OnInit,HostListener} from '@angular/core';
 import {WindowRefService} from './services/window-ref/window-ref.service';
 import { fadeAnimation } from './animations';
 import * as $  from "jquery";
+import { IconsService } from './services/icons/icons.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,20 +18,41 @@ import * as $  from "jquery";
 })
 export class AppComponent implements OnInit {
  
+  getIcones() {
+    if (this.helpers.getLocalStoragData("icons") == null) {
+      this.icones.getIcons().subscribe(
+        (response: any) => {
+          if (response.authCode == "200" && response.status == true) {
+            this.helpers.setLocalStoragData(
+              "icons",
+              JSON.stringify(response.data_params)
+            );
+          }
+        },
+        error => {}
+      );
+    } else {
+      if (this.router.url == "/") {
+        this.icones.getIcons().subscribe(
+          (response: any) => {
+            if (response.authCode == "200" && response.status == true) {
+              this.helpers.setLocalStoragData(
+                "icons",
+                JSON.stringify(response.data_params)
+              );
+            }
+          },
+          error => {}
+        );
+      }
+    }
+  }
   prepareRoute(outlet: any) {
     return outlet.isActivated ? outlet.activatedRoute : '';
-    /* return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']; */
   }
   title = 'lti';
-  constructor(private winRef: WindowRefService){
-   // window.onbeforeunload = function(e) { // distory sessoin after browser close
-     //alert(e);
-      /*  sessionStorage.clear(); */
-   // };
-   /*window.addEventListener("beforeunload", function(event) {
-     // event.returnValue = "Write something clever here..";
-      console.log(event);
-    }); */
+  constructor(private winRef: WindowRefService,private helpers:HelpersService,private icones:IconsService,private router:Router){
+    this.getIcones();
   }
  
   public ngOnInit(){
@@ -38,10 +62,5 @@ export class AppComponent implements OnInit {
        
       });
      this.winRef.nativeWindow.PixelAdmin.start(init);
-     
-/* window.onbeforeunload = function(e) {
-        alert("The Window is closing!");
-    }; */
-
   }
 }

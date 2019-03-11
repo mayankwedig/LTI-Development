@@ -9,7 +9,7 @@ import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { AuthService } from "../services/authService/auth.service";
 import { DataService } from "../services/data.service";
 import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from "constants";
-import { Router } from "@angular/router";
+import { Router,ActivatedRoute } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { SiteSettingsService } from "../services/site-settings/site-settings.service";
 
@@ -30,7 +30,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     public dataservice: DataService,
     private helpers: HelpersService,
     private profile: ProfileService,
-    private siteSettings:SiteSettingsService
+    private siteSettings:SiteSettingsService,
+    private activatedRoute:ActivatedRoute
   ) {}
   searchKeyWord = "";
   dashboardDataApiUrl = "users/getUserData";
@@ -45,15 +46,18 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logogImage = "";
   doSearch() {
     if (this.searchKeyWord != "") {
-      if (sessionStorage.getItem("search") != null) {
-        sessionStorage.removeItem("search");
-      }
-      sessionStorage.setItem("search", this.searchKeyWord);
-      this.router.navigate(["/search"]);
+      this.router.navigate(["/search"],{ queryParams: { keyword: this.searchKeyWord } });
     }
   }
   headerIcons: any = null;
+  checkSearcSring(){
+    let searchKeyWord=this.activatedRoute.snapshot.queryParamMap.get("keyword");
+    if(searchKeyWord){
+      this.searchKeyWord=searchKeyWord;
+    }
+  }
   getIcones() {
+      
     this.headerIcons=null;
     if (this.helpers.getLocalStoragData("icons") == null) {
       this.icones.getIcons().subscribe(
@@ -63,6 +67,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
               "icons",
               JSON.stringify(response.data_params)
             );
+            this.headerIcons=JSON.parse(this.helpers.getLocalStoragData("icons"));
           }
         },
         error => {}
@@ -76,13 +81,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
                 "icons",
                 JSON.stringify(response.data_params)
               );
+              this.headerIcons=JSON.parse(this.helpers.getLocalStoragData("icons"));
             }
           },
           error => {}
         );
+      }else{
+        this.headerIcons=JSON.parse(this.helpers.getLocalStoragData("icons"));
       }
     }
-    this.headerIcons=JSON.parse(this.helpers.getLocalStoragData("icons"));
+    
   }
     setIconeImage(index){
           if(this.headerIcons != null){
@@ -97,13 +105,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
           }
         }
   ngOnInit() {
+    this.checkSearcSring();
     this.getIcones();
     this.getSiteLogo();
-    if (sessionStorage.getItem("search") != null) {
-      this.searchKeyWord = sessionStorage.getItem("search");
-    } else {
-      this.searchKeyWord = "";
-    }
     if (sessionStorage.getItem("selected_lag") == null) {
       sessionStorage.setItem("selected_lag", this.selected_lang);
     } else {

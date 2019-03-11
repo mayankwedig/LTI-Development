@@ -13,7 +13,7 @@ import { TranslationService } from "../services/translation/translation.service"
 
 
 declare var $: any;
-declare var _googCsa:any;
+
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -37,14 +37,10 @@ export class ProfileComponent implements OnInit {
   oldMobileNo: any = "";
   oldEmailid:any="";
 
-  advertiseDataLoader:boolean =false;
-  isAdvertiseDataFound: boolean = false;
-  advertisementproData:any=[];
-  adimagurl=environment.adimageUrl;
-
-
   public OtpVerificationFrm: FormGroup;
   public passwordVerificationFrm:FormGroup;
+
+  fetchAdQuery="profile";
   translate(string:string):string{
     return this.helpers.translate(string);
   }
@@ -152,21 +148,7 @@ export class ProfileComponent implements OnInit {
     this.getProfile();
     this.initRegistrationFrm(this.profileData);
     this.initOtpVerificationForm();
-    this.getadvertisementprofileData();
     this.initPwVerificationForm();
-    var pageOptions = {
-      "pubId": "pub-9616389000213823", // Make sure this the correct client ID!
-      "query": "hotels",
-      "adPage": 1
-    };
-  
-    var adblock1 = {
-      "container": "afscontainer1",
-      "width": "100%",
-      "number": 2
-    };
-  
-    _googCsa('ads', pageOptions, adblock1);
     if(sessionStorage.getItem("isOtpVerified") != null){
         sessionStorage.removeItem("isOtpVerified");
     }
@@ -452,35 +434,7 @@ export class ProfileComponent implements OnInit {
 
 
 
-  getadvertisementprofileData() {
-    this.advertiseDataLoader = true;
-    this.DashboardService.getAdvertisementproData().subscribe(
-      (response: any) => {
-        var res = response;
-        this.advertiseDataLoader = false;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            this.advertisementproData = res.data_params;
-           /*  console.log(this.advertisementproData[0].type);
-            console.log(this.advertisementproData); */
-            this.isAdvertiseDataFound = true;
-          } else {
-            this.isAdvertiseDataFound = false;
-            this.advertisementproData = [];
-          }
-        }
-      },
-      (error: AppError) => {
-        this.isAdvertiseDataFound = false;
-        this.advertiseDataLoader = false;
-        this.advertisementproData = [];
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
-  }
+
 
 
 

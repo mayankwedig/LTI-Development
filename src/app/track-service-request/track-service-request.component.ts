@@ -1,4 +1,3 @@
-import { DashboardService } from "./../services/dashboard/dashboard.service";
 import { AuthService } from "./../services/authService/auth.service";
 import { HelpersService } from "./../services/helpers/helpers.service";
 import { ComplaintsService } from "./../services/complaints/complaints.service";
@@ -21,14 +20,11 @@ import { Router } from "@angular/router";
 })
 
 export class TrackServiceRequestComponent implements OnInit {
+  
+  fetchAdQuery="profile";
+  
   serviceRequestFrm: FormGroup;
-  
   trackServiceReqLoader:boolean=false;
-  
-  advertiseDataLoader:boolean=false;
-  advertisementproData:any=[];
-  isAdvertiseDataFound:boolean=false;
-
   adimagurl=environment.adimageUrl;
   constructor(
     private fb: FormBuilder,
@@ -36,7 +32,6 @@ export class TrackServiceRequestComponent implements OnInit {
     private toastr: ToastrService,
     private complaints: ComplaintsService,
     private AuthService: AuthService,
-    private DashboardService: DashboardService,
     private translationServices: TranslationService,
     private auth: AuthService,
     private router: Router,
@@ -48,37 +43,11 @@ export class TrackServiceRequestComponent implements OnInit {
       this.router.navigate(["/service-request"])
     }
     this.initTrackComplaitnsFrm();
-    this.getadvertisementprofileData();
+  
     
   }
  
-  getadvertisementprofileData() {
-    this.advertiseDataLoader = true;
-    this.DashboardService.getAdvertisementproData().subscribe(
-      (response: any) => {
-        var res = response;
-        this.advertiseDataLoader = false;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            this.advertisementproData = res.data_params;
-            this.isAdvertiseDataFound = true;
-          } else {
-            this.isAdvertiseDataFound = false;
-            this.advertisementproData = [];
-          }
-        }
-      },
-      (error: AppError) => {
-        this.isAdvertiseDataFound = false;
-        this.advertiseDataLoader = false;
-        this.advertisementproData = [];
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
-  }
+ 
   isLoggedIn(){
     return this.auth.isLoggedIn();
   }

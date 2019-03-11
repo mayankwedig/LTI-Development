@@ -11,8 +11,6 @@ import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { TranslationService } from "../services/translation/translation.service";
 
-import {environment} from "./../../environments/environment";
-
 @Component({
   selector: "app-complaints",
   templateUrl: "./complaints.component.html",
@@ -46,7 +44,8 @@ export class ComplaintsComponent implements OnInit {
 
   showTrackingNo = false;
   trackingNo = "";
-  adimagurl=environment.adimageUrl;
+  fetchAdQuery="profile"; //Ad query.
+ 
   constructor(
     private fb: FormBuilder,
     private helpers: HelpersService,
@@ -85,40 +84,8 @@ export class ComplaintsComponent implements OnInit {
     this.getComplaintBillRelatedReason();
     this.getComplaintSupplyProblem();
     this.getComplaintSupplyServiceRequest();
-    this.getadvertisementprofileData();
-    
   }
-  advertiseDataLoader:boolean=false;
-  advertisementproData:any=[];
-  isAdvertiseDataFound:boolean=false;
-  getadvertisementprofileData() {
-   /*  console.log("reste"); */
-    this.advertiseDataLoader = true;
-    this.DashboardService.getAdvertisementproData().subscribe(
-      (response: any) => {
-        var res = response;
-        this.advertiseDataLoader = false;
-        if (res.authCode) {
-          if (res.authCode == "200" && res.status == true) {
-            this.advertisementproData = res.data_params;
-            this.isAdvertiseDataFound = true;
-          } else {
-            this.isAdvertiseDataFound = false;
-            this.advertisementproData = [];
-          }
-        }
-      },
-      (error: AppError) => {
-        this.isAdvertiseDataFound = false;
-        this.advertiseDataLoader = false;
-        this.advertisementproData = [];
-        if (error instanceof BadInput) {
-        } else {
-          throw error;
-        }
-      }
-    );
-  }
+  
   trackComplaints(){
     this.router.navigate(["/track-complaint"]);
   }

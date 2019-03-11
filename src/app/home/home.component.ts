@@ -72,6 +72,7 @@ export class HomeComponent implements OnInit {
               "icons",
               JSON.stringify(response.data_params)
             );
+            this.headerIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
           }
         },
         error => {}
@@ -85,13 +86,17 @@ export class HomeComponent implements OnInit {
                 "icons",
                 JSON.stringify(response.data_params)
               );
+              this.headerIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
             }
           },
           error => {}
         );
+      }else{
+        this.headerIcons=JSON.parse(this.helpers.getLocalStoragData("icons"));
       }
+      
     }
-    this.headerIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
+   
   }
   setIconeImage(index) {
     if (this.headerIcons != null) {

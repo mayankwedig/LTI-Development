@@ -5789,7 +5789,7 @@ margin:40px auto;
 .language-option {
     padding-top: 23px;
 }
-.language-option .lang-control[_ngcontent-c3] {
+.language-option .lang-control{
     border: solid 1px #076fd7;
     padding-left: 3px !important;
     border-radius: 15px;

@@ -1,3 +1,4 @@
+import { AdvertisementService } from './services/advertisement/advertisement.service';
 import { ContactUsService } from './services/contact-us/contact-us.service';
 import { PayBillService } from './services/pay-bill/pay-bill.service';
 import { AboutService } from './services/about/about.service';
@@ -96,6 +97,7 @@ import { EnergyTipsComponent } from './energy-tips/energy-tips.component';
 import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
 import { PaymentProcessComponent } from './payment-process/payment-process.component';
 import { TransectionStatusMessageComponent } from './transection-status-message/transection-status-message.component';
+import { AdvertisementComponent } from './advertisement/advertisement.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -154,7 +156,8 @@ import { TransectionStatusMessageComponent } from './transection-status-message/
     PayBillComponent,
     EnergyTipsComponent,
     PaymentProcessComponent,
-    TransectionStatusMessageComponent
+    TransectionStatusMessageComponent,
+    AdvertisementComponent
   ],
   imports: [
 
@@ -252,7 +255,8 @@ import { TransectionStatusMessageComponent } from './transection-status-message/
     AboutService,
     PayBillService,
     EnergyTipsService,
-    ContactUsService
+    ContactUsService,
+    AdvertisementService
   ],
   bootstrap: [AppComponent]
 })

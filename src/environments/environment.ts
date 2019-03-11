@@ -24,7 +24,19 @@ export const environment = {
   logo_not_found:'../assets/images/no-logo.png',
   icon_img:AdminUrl+"/icon_img/",
   dashVBoardIcone:AdminUrl+"/widget/",
-  siteUrl:siteUrl
+  siteUrl:siteUrl,
+  ads:{
+    options:{
+      pubId: "pub-9616389000213823", // Make sure this the correct client ID!
+      query: "hotels",
+      adPage: 1
+    },
+    adblock:{
+      container: "afscontainer1",
+      width: "100%",
+      number: 2
+    }
+  }
 };
 
 /*

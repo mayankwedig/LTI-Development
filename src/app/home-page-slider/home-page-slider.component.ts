@@ -16,9 +16,9 @@ export class HomePageSliderComponent implements OnInit,AfterViewInit {
 	constructor(private route:Router,
 		private helpers: HelpersService,
     private icones: IconsService) { }
-		headerIcons: any = null;
+	sliderIcons: any = null;
 		getIcones() {
-			this.headerIcons = null;
+			this.sliderIcons = null;
 			if (this.helpers.getLocalStoragData("icons") == null) {
 				this.icones.getIcons().subscribe(
 					(response: any) => {
@@ -27,6 +27,7 @@ export class HomePageSliderComponent implements OnInit,AfterViewInit {
 								"icons",
 								JSON.stringify(response.data_params)
 							);
+							this.sliderIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
 						}
 					},
 					error => {}
@@ -40,17 +41,20 @@ export class HomePageSliderComponent implements OnInit,AfterViewInit {
 									"icons",
 									JSON.stringify(response.data_params)
 								);
+								this.sliderIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
 							}
 						},
 						error => {}
 					);
+				}else{
+					this.sliderIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
 				}
 			}
-			this.headerIcons = JSON.parse(this.helpers.getLocalStoragData("icons"));
+			
 		}
 		setIconeImage(index) {
-			if (this.headerIcons != null) {
-				let image = environment.icon_img + this.headerIcons[index];
+			if (this.sliderIcons != null) {
+				let image = environment.icon_img + this.sliderIcons[index];
 				if (image) {
 					return image;
 				} else {
