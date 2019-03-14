@@ -14,11 +14,13 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ValidateAccountNumberService } from "./../services/validate-account-number/validate-account-number.service";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
+
 @Component({
   selector: "app-manageaccount",
   templateUrl: "./manageaccount.component.html",
   styleUrls: ["./manageaccount.component.css"]
 })
+
 export class ManageaccountComponent implements OnInit {
   loder: any = false;
   isDataFound = false;
@@ -321,28 +323,17 @@ export class ManageaccountComponent implements OnInit {
   };
   /** Redirection Loder Ends Here*/
   redirectoPaymentPage(accountId, userId) {
-    //this.WindowRef.nativeWindow.open('https://paytm.com/', "popup");
-    this.router.navigate(["/pay-bill"]);
-    /* this.redirectLoding = true; // make loder true
-    var userId = this.auth.getCurrentUser().userId;
-    var is_net_metering = 0;
-   
     this.Dashboard.getAccountDetails(accountId, (result: any) => {
-      this.redirectLoding = false;
       if (result.authCode == "200") {
-        is_net_metering = result.data_params.is_net_metering;
-        this.helper.setLocalStoragData(
-          "accountToken",
-          btoa(userId + ":" + accountId + ":" + is_net_metering)
-        ); // set new account access token.
+        if(result.data_params.isPrepaid){
+          this.router.navigate(["/recharge-history"]);
+        }else{
+          this.router.navigate(["/pay-bill"]);
+        }
       } else {
-        this.helper.setLocalStoragData(
-          "accountToken",
-          btoa(userId + ":" + accountId + ":" + 0)
-        ); // set new account access token.
+        this.router.navigate(["/pay-bill"]);
       }
-      this.router.navigate(["/dashboard"]); //redirect user to dashboard.
-    }); */
+    });
   }
   redirectoDashBoard(accountId, userId) {
     this.redirectLoding = true; // make loder true

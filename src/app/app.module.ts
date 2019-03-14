@@ -98,6 +98,8 @@ import { EnergyTipsService } from './services/energy-tips/energy-tips.service';
 import { PaymentProcessComponent } from './payment-process/payment-process.component';
 import { TransectionStatusMessageComponent } from './transection-status-message/transection-status-message.component';
 import { AdvertisementComponent } from './advertisement/advertisement.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordWithoutLoginComponent } from './change-password-without-login/change-password-without-login.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -157,7 +159,9 @@ import { AdvertisementComponent } from './advertisement/advertisement.component'
     EnergyTipsComponent,
     PaymentProcessComponent,
     TransectionStatusMessageComponent,
-    AdvertisementComponent
+    AdvertisementComponent,
+    ChangePasswordComponent,
+    ChangePasswordWithoutLoginComponent
   ],
   imports: [
 
@@ -217,6 +221,7 @@ import { AdvertisementComponent } from './advertisement/advertisement.component'
       {path:'change-password',component:ResetPasswordComponent,canActivate:[AuthGuard]},
       {path:"payment-process",component:PaymentProcessComponent},
       {path:"transection-status",component:TransectionStatusMessageComponent},
+      {path:"change-expired-password",component:ChangePasswordWithoutLoginComponent},
       {path:'**',component: PageNotFoundComponent}
       
       

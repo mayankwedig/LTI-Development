@@ -12,10 +12,10 @@ declare var _googCsa: any;
 export class AdvertisementComponent implements OnInit, AfterViewInit {
   @Input("adQuery") adQuery: any;
 
-  private adLoader: boolean = false;
-  private adData: any = [];
-  private isAdFound: boolean = false;
-  private adFetchQuery: any = { slug: "dashboard" };
+   adLoader: boolean = false;
+   adData: any = [];
+   isAdFound: boolean = false;
+   adFetchQuery: any = { slug: "dashboard" };
   adimagurl: string = "";
 
   constructor(private _ad: AdvertisementService) {}

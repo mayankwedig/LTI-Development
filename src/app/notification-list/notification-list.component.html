@@ -11,6 +11,7 @@
         >
           
           <div class="tab-section rows blue-tabs">
+            
             <ul class="nav nav-tabs" role="tablist">
              
               <li role="presentation" class="abt-tbs-li">
@@ -44,8 +45,16 @@
                 class="tab-pane active"
                 id="notification-list-1"
               >
+              
                 <div class="notifaction-block">
-               
+                    <div
+                    style="margin-top: 2;"
+                    class="text-center font-12  field_not_found"
+                    *ngIf="isAlertDataFound == false && alertDataLoader == false"
+                  >
+                    <img src="/assets/images/no_data.png" /> {{'Currently no new
+                    alert(s) found in this section.'|translate}}
+                  </div>
                   <ul
                     class="common-notification-lists alerts-tab-list"
                     *ngIf="isAlertDataFound == true && alertDataLoader == false"
@@ -130,6 +139,7 @@
                               </span>
                             </li> -->
                   </ul>
+                  
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane" id="notification-list-2">
@@ -141,8 +151,8 @@
                       isnotificationFound == false && notificationLoder == false
                     "
                   >
-                    <img src="/assets/images/no_data.png" /> Currently no new
-                    notification(s) found in this section.
+                    <img src="/assets/images/no_data.png" /> {{'Currently no new
+                    notification(s) found in this section.'|translate}}
                   </div>
                   <ul
                     class="common-notification-lists notify-tab-list"

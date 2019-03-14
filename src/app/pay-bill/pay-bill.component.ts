@@ -1,8 +1,11 @@
+import { Router } from "@angular/router";
 import { PayBillService } from "./../services/pay-bill/pay-bill.service";
 import { Component, OnInit } from "@angular/core";
 import { BadInput } from "./../common/bad-input";
 import { AppError } from "./../common/app-error";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DashboardService } from "../services/dashboard/dashboard.service";
+
 declare var $: any;
 
 @Component({
@@ -38,7 +41,8 @@ export class PayBillComponent implements OnInit {
 
   constructor(
     private PayBillService: PayBillService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
   translate(string: string): string {
     return this.PayBillService.translate(string);
@@ -68,7 +72,8 @@ export class PayBillComponent implements OnInit {
     this.getPaymentChksmLoader = true;
     if (this.billing.accountNumber != null) {
       this.PayBillService.getPaymentChecksm(
-        this.billing.accountNumber
+        this.billing.accountNumber,
+        0
       ).subscribe(
         (response: any) => {
           this.getPaymentChksmLoader = false;
@@ -152,18 +157,35 @@ export class PayBillComponent implements OnInit {
       this.prompt("warning", "Please provide your account number.");
     }
   }
-
+  checkAccountType(accountNumber) {
+    if (accountNumber != "") {
+      this.checkIfAccountIsPrepaid(accountNumber);
+    } else {
+      this.prompt("warning", "Please select an account number.");
+    }
+  }
+  checkIfAccountIsPrepaid(accNumber) {
+    this.PayBillService.checkIfAccountIsPrepaid(this.accountNumber, (result: any) => {
+      if (result.authCode == "200") {
+        if (result.data_params.isPrepaid == "Yes") {
+          this.router.navigate(["/recharge-history"]);
+        }
+      }
+    });
+  }
   ngOnInit() {
-    if (this.isLoggedIn()) {
-      if (this.getAccountToken() != null) {
+    if (this.isLoggedIn()) { // if logged in 
+      if (this.getAccountToken() != null) { // if account selected
         let accountToken = atob(this.getAccountToken()); // fetch account number.
         let accountTokenInfo = accountToken.split(":");
         this.accountNumber = accountTokenInfo[1]; //account Number
         this.dispString =
           this.translate("accountnumber") + " ( " + this.accountNumber + " ) ";
-
+        this.checkIfAccountIsPrepaid(this.accountNumber);
         this.getBillAccountDetails();
-      } else {
+      } else { // if account not selected
+        this.prompt("warning", "Please select an account number.");
+        this.router.navigate(["/manageaccount"]);
         this.getCurrentUser();
         this.dispString =
           "User Name ( " + this.getCurrentUser().username + " ) ";

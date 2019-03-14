@@ -3270,7 +3270,6 @@ export class AboutComponent implements OnInit,AfterViewInit {
 		.subscribe((res:any)=>{
 			if(res.status && res.authCode == "200"){
 				this.orgChart=res.data_params.description;
-				this.orgChart="";
 			}else{
 				this.orgChart="";
 			}

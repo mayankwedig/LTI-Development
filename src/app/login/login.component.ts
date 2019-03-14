@@ -41,6 +41,9 @@ export class LoginComponent {
     $("#forgotPass").fadeOut(300);
     $("#loginFr").fadeIn(300);
   }
+  showchangePassword() {
+    
+  }
   loder: boolean = false;
   loginFrm: FormGroup;
   forgotPassFrm: FormGroup;
@@ -305,7 +308,14 @@ export class LoginComponent {
               this.router.navigate([returnUrl || "/manageaccount"]);
             }
           } else {
-            this.toastr.error(this._translate.translate(res.msg), this._translate.translate("Failed!"));
+            if(res.authCode == "101"){
+              this.toastr.error(this._translate.translate(res.msg), this._translate.translate("Failed!"));
+              this.initLoginFrm();
+              this.helper.setLocalStoragData("changeExpPassword",res.userId);
+              this.router.navigate(["/change-expired-password"]);
+            }else{
+              this.toastr.error(this._translate.translate(res.msg), this._translate.translate("Failed!"));
+            }
           }
         }
       },

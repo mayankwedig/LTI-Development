@@ -1,155 +1,232 @@
-<div id="main-wrapper" [ngClass]="{'no-sidebar': !isLoggedIn()}">
+<div id="main-wrapper" [ngClass]="{ 'no-sidebar': !isLoggedIn() }">
   <app-header></app-header>
-  <span *ngIf="isLoggedIn()">  <app-side-bar [displayUserInfo]="dispString"></app-side-bar> </span>
- 
-  <div id="content-wrapper" [ngClass]="{'complaint-wrapeer-bg': !isLoggedIn()}">
-      <div  [ngClass]="{'col-sm-10 col-sm-offset-1': !isLoggedIn()}">
-    <div class="page-heading">
-      {{'COMPLAINT Details'|translate}}
-    </div>
-    <div class="billing-sec complaints-page">
-      <div class="row margin_top20">
-        <div class="col-sm-12">
-          <div class="panel-body">
-            <div class="service-request-dtl">
-              <div class="service-dtl-block no-padding-t">
-                <div class="row">
-                  
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 0">Status: <span class="status-box status-open">{{'Open'|translate}}</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 1">Status: <span class="status-box status-resolved">{{'Resolved'|translate}}</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 2">Status: <span class="status-box status-pending">{{'Pending'|translate}}</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 3">Status: <span class="status-box status-rejected">{{'Rejected'|translate}}</span></div>
-                      <div class="dtl-status" *ngIf="complaintsDetails.status == 4">Status: <span class="status-box status-closed">{{'Closed'|translate}}</span></div>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label>{{'Tracking Number'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.tracking_number}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="service-dtl-block">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Account Number'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.account_number}}</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Case type'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.complaint_type}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="service-dtl-block">
-                <div class="sr-heading">{{'Consumer Information'|translate}}</div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Name'|translate}}</label>
-                      <div class="dtl-value">{{name}}</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Supply Type'|translate}}</label>
-                      <div class="dtl-value">{{supplyType}}</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Installation Address'|translate}}</label>
-                      <div class="dtl-value">{{installationAddress}} </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Mobile Number'|translate}}</label>
-                      <div class="dtl-value" *ngIf="mobileNumber != null">+91{{mobileNumber}}</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Current Load'|translate}}</label>
-                      <div class="dtl-value">{{currentLoad}}KW</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Email ID'|translate}}</label>
-                      <div class="dtl-value">{{emailId}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="service-dtl-block" *ngIf="complaintsDetails.complaint_type == 'Bill Related'">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Bill Id'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.billId}}</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Reason'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.reason}}</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Comments'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.comments}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="service-dtl-block" *ngIf="complaintsDetails.complaint_type == 'Meter Related'">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Comments'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.comments}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="service-dtl-block" *ngIf="complaintsDetails.complaint_type == 'Supply Related'">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Service Request'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.service_request}}</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Problem'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.problem}}</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>{{'Comments'|translate}}</label>
-                      <div class="dtl-value">{{complaintsDetails.comments}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <span *ngIf="isLoggedIn()">
+    <app-side-bar [displayUserInfo]="dispString"></app-side-bar>
+  </span>
 
-              <!-- <div
+  <div
+    id="content-wrapper"
+    [ngClass]="{ 'complaint-wrapeer-bg': !isLoggedIn() }"
+  >
+    <div [ngClass]="{ 'col-sm-10 col-sm-offset-1': !isLoggedIn() }">
+      <div class="page-heading">
+        {{ "COMPLAINT Details" | translate }}
+      </div>
+      <div class="billing-sec complaints-page">
+        <div class="row margin_top20">
+          <div class="col-sm-12">
+            <div class="panel-body">
+              <div class="service-request-dtl">
+                <div class="service-dtl-block no-padding-t">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <div
+                          class="dtl-status"
+                          *ngIf="complaintsDetails.status == 0"
+                        >
+                          Status:
+                          <span class="status-box status-open">{{
+                            "Open" | translate
+                          }}</span>
+                        </div>
+                        <div
+                          class="dtl-status"
+                          *ngIf="complaintsDetails.status == 1"
+                        >
+                          Status:
+                          <span class="status-box status-resolved">{{
+                            "Resolved" | translate
+                          }}</span>
+                        </div>
+                        <div
+                          class="dtl-status"
+                          *ngIf="complaintsDetails.status == 2"
+                        >
+                          Status:
+                          <span class="status-box status-pending">{{
+                            "Pending" | translate
+                          }}</span>
+                        </div>
+                        <div
+                          class="dtl-status"
+                          *ngIf="complaintsDetails.status == 3"
+                        >
+                          Status:
+                          <span class="status-box status-rejected">{{
+                            "Rejected" | translate
+                          }}</span>
+                        </div>
+                        <div
+                          class="dtl-status"
+                          *ngIf="complaintsDetails.status == 4"
+                        >
+                          Status:
+                          <span class="status-box status-closed">{{
+                            "Closed" | translate
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label>{{ "Tracking Number" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.tracking_number }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="service-dtl-block">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Account Number" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.account_number }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Case type" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.complaint_type }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="service-dtl-block">
+                  <div class="sr-heading">
+                    {{ "Consumer Information" | translate }}
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Name" | translate }}</label>
+                        <div class="dtl-value">{{ name }}</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Supply Type" | translate }}</label>
+                        <div class="dtl-value">{{ supplyType }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Installation Address" | translate }}</label>
+                        <div class="dtl-value">{{ installationAddress }}</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Mobile Number" | translate }}</label>
+                        <div class="dtl-value" *ngIf="mobileNumber != null">
+                          +91{{ mobileNumber }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Current Load" | translate }}</label>
+                        <div class="dtl-value">{{ currentLoad }}KW</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Email ID" | translate }}</label>
+                        <div class="dtl-value">{{ emailId }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="service-dtl-block"
+                  *ngIf="complaintsDetails.complaint_type == 'Bill Related'"
+                >
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Bill Id" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.billId }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Reason" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.reason }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Comments" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.comments }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="service-dtl-block"
+                  *ngIf="complaintsDetails.complaint_type == 'Meter Related'"
+                >
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Comments" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.comments }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="service-dtl-block"
+                  *ngIf="complaintsDetails.complaint_type == 'Supply Related'"
+                >
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Service Request" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.service_request }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Problem" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.problem }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>{{ "Comments" | translate }}</label>
+                        <div class="dtl-value">
+                          {{ complaintsDetails.comments }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div
                   class="service-dtl-block"
                   *ngIf="
                     requestServicesFrm.value.serviceRequestType ==
@@ -249,11 +326,11 @@
                     </div>
                   </div>
                 </div> -->
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- <ul class="dash-box-list">
+        <!-- <ul class="dash-box-list">
         <li class="dash-box-li rows offer-li no-padding">
           <div class="offer-section">
             <div class="offer-content">
@@ -264,9 +341,9 @@
           </div>
         </li>
       </ul>  -->
-    </div>
       </div>
+    </div>
     <div *ngIf="isLoggedIn()" id="main-menu-bg"></div>
   </div>
-  <app-footer  ></app-footer>
+  <app-footer></app-footer>
 </div>

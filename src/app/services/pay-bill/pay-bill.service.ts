@@ -1,3 +1,4 @@
+import { DashboardService } from './../dashboard/dashboard.service';
 import { AuthService } from "./../authService/auth.service";
 import { HelpersService } from "./../helpers/helpers.service";
 import { Injectable } from "@angular/core";
@@ -14,8 +15,15 @@ export class PayBillService {
     private AuthService: AuthService,
     private helpers: HelpersService,
     private toaster: ToastrService,
-    private userAccounts:ManageaccountService
+    private userAccounts:ManageaccountService,
+    private dashboard:DashboardService
   ) {}
+  checkIfAccountIsPrepaid(accNumber,callback) {
+    this.dashboard.getAccountDetails(accNumber,(response)=>{
+      callback(response)
+   });
+  }  
+  
   translate(string: string): string {
     return this.helpers.translate(string);
   }
@@ -34,8 +42,9 @@ export class PayBillService {
   getAccounts() {
     return this.userAccounts.getAccount("");
   }
-  getPaymentChecksm(accountNumber){
+  getPaymentChecksm(accountNumber,amount=0){
     accountNumber={"accountToken":btoa(accountNumber)};
+    accountNumber["amount"]=amount
     return this._data.getAll("users/paytmCheckout",accountNumber,{},"POST");
   }
   prompt(flag: string, msg: string) {

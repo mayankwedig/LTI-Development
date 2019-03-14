@@ -21,11 +21,11 @@
                     {{'Thank You for pay your bill'|translate}}
                   </div> -->
                   <div class="req-number">
-                    {{'Please do not press back button or refesh this page'|translate}}
+                    {{'Please do not press back button or refresh this page'|translate}}
                   </div>
                   <div class="team-contact">{{'Your payment will process shortly'|translate}}</div>
                   <div class="text-center padding_top50">
-                    {{'Page will be redirect automatically to payment gateway'|translate}}
+                    {{'Page will be redirect automatically to the payment gateway'|translate}}
                   </div>
                   <form method="post" action="{{payMentDetails.url}}" name="f1" id="payMentFrm">
                     <input type='hidden' name='MID' [value]='payMentDetails.MID' >
@@ -82,6 +82,8 @@
                           [(ngModel)]="accountNumber"
                           name="accountNumber"
                           class="form-control"
+                          #accNumb="ngModel"
+                          (change)="checkAccountType(accNumb.value)"
                         >
                           <option value="" selected>
                             {{ "Select Account Number" | translate }}</option
