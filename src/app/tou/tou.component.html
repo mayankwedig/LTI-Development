@@ -5,6 +5,19 @@
     <div class="page-heading ">{{'TOU'|translate}}</div>
     <div class="billing-sec margin_top10 padding_bottom10 ">
       <div class="panel ">
+          <div class="row">
+              <div class="col-sm-6 pull-right margin_top20">
+                <a
+                  data-toggle="modal"
+                  data-target="#add-account-modal"
+                  class="blue-btn pull-right"
+                  (click)="redirectTo()"
+                  style="cursor:pointer;"
+                  title="{{ 'Add Account'|translate }}"
+                  >{{ "View Tariff" | translate }}</a
+                >
+              </div>
+            </div>
         <div class="row">
           <div
             class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-right tou-filter"

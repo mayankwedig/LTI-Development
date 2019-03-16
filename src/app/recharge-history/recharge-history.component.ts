@@ -83,9 +83,6 @@ export class RechargeHistoryComponent implements OnInit {
   submitPaymentFrm() {
     setTimeout(() => {
       $("#payMentFrm").submit();
-      $("#recharge-pay").hide();
-      $(".modal-backdrop").remove();
-      $("body").removeClass("modal-open");
     }, 3000);
   }
   openRechargeAmount() {
@@ -130,7 +127,7 @@ export class RechargeHistoryComponent implements OnInit {
           this.hideShowModal("recharge-amount", 0);
           this.redirectLoding = true;
           this.payBillService
-            .getPaymentChecksm(this.billing.accountNumber, this.rechargeAmount)
+            .getPaymentChecksm(this.billing.accountNumber, this.rechargeAmount,"prePaid")
             .subscribe(
               (response: any) => {
                 this.redirectLoding = false;

@@ -73,7 +73,8 @@ export class PayBillComponent implements OnInit {
     if (this.billing.accountNumber != null) {
       this.PayBillService.getPaymentChecksm(
         this.billing.accountNumber,
-        0
+        this.billing.payable_amount,
+        "postPaid"
       ).subscribe(
         (response: any) => {
           this.getPaymentChksmLoader = false;

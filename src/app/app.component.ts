@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
   }
   title = 'lti';
   constructor(private winRef: WindowRefService,private helpers:HelpersService,private icones:IconsService,private router:Router){
-    this.getIcones();
+    /* this.getIcones(); */
   }
  
   public ngOnInit(){

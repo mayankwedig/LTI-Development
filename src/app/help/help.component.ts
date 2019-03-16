@@ -1,5 +1,7 @@
+import { environment } from './../../environments/environment';
 import { AboutService } from './../services/about/about.service';
 import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-help',
   templateUrl: './help.component.html',
@@ -35,7 +37,8 @@ export class HelpComponent implements OnInit {
 </div>`;
 	contentLoader:boolean=false;
 	isContentFound:boolean=false;
-	contentTitle:any="Help and support";
+  contentTitle:any="Help and support";
+  banner:any="";
   ngOnInit() {
     this.getContent();
   }
@@ -48,11 +51,17 @@ export class HelpComponent implements OnInit {
 				if(response.status && response.authCode == "200"){
 					this.isContentFound=true;
 					this.contentTitle=response.data_params.title+" & support";
-					this.content=response.data_params.description;/* .replace(/<(.|\n)*?>/g, '').replace(/\n/g, '').replace(/\t/g, '').replace("&#39;", "'").replace("�",'-').replace("�",'"').replace("&ldquo;",'"').replace("&rdquo;",'"').replace("&amp;",'&').replace('&#39;',"'");	 */
+          this.content=response.data_params.description;/* .replace(/<(.|\n)*?>/g, '').replace(/\n/g, '').replace(/\t/g, '').replace("&#39;", "'").replace("�",'-').replace("�",'"').replace("&ldquo;",'"').replace("&rdquo;",'"').replace("&amp;",'&').replace('&#39;',"'");	 */
+          if(response.data_params.uploaded_file != null){
+            this.banner=environment.cms_img+response.data_params.id+"/"+response.data_params.uploaded_file;
+          }
+          
 				}else{
+          this.banner="";
 					this.isContentFound=false;
 				}
 			},(error)=>{
+          this.banner="";
 				this.isContentFound=false;
 				this.contentLoader=false;
 			});

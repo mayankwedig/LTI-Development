@@ -31,6 +31,10 @@ export class HelpersService {
     headerData = headerData.append("Content-Type", contentType);
     headerData = headerData.append("Access-Control-Allow-Origin", "token");
     headerData = headerData.append("token", this.getLocalStoragData("token"));
+    /* headerData = headerData.append('Cache-control', 'no-cache');
+    headerData = headerData.append('Cache-control', 'no-store');
+    headerData = headerData.append('Expires', '0');
+    headerData = headerData.append('Pragma', 'no-cache'); */
     return headerData;
   }
   getArray(length, callBack) {

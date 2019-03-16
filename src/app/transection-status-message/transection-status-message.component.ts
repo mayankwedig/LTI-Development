@@ -1,3 +1,4 @@
+import { AuthService } from './../services/authService/auth.service';
 import { HelpersService } from './../services/helpers/helpers.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -10,12 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransectionStatusMessageComponent implements OnInit {
 
-  constructor(private helpersService:HelpersService,private activeRoute:ActivatedRoute, private Route :Router) { }
+  constructor(private _auth:AuthService, private helpersService:HelpersService,private activeRoute:ActivatedRoute, private Route :Router) { }
   /* error_code=100;
   status=false;
   message=""; */
   translate(msg:string):string{
     return this.helpersService.translate(msg);
+  }
+  isLoggedIn(){
+    return this._auth.isLoggedIn();
   }
   msgFlag="error";
   viewTransectionDetails:any=null;

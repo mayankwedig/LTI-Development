@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     private icones: IconsService,
     private router:Router
   ) {
-    this.getLatestNews();
+    /* this.getLatestNews(); */
   }
   latestNewsLoader: boolean = false;
   latestNews: any = [];

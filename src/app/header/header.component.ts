@@ -135,9 +135,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         if (this.auth.getCurrentUser().username != null) {
           this.userName = this.auth.getCurrentUser().username;
         }
+        
+      }
+      if(this.auth.isLoggedIn()){
+        this.getLimitedNotifications();
       }
     }
-    this.getLimitedNotifications();
+    
   }
   setSiteLogo(){
     let SiteLogo=this.siteSettings.getSiteSettings().home_logo;

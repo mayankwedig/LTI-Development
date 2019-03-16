@@ -37,15 +37,23 @@ export class PayBillService {
     return this.AuthService.isLoggedIn();
   }
   getBillAccountDetails(body) {
-    return this._data.getAll("users/billPayEnquiry", body, {}, "POST");
+   // let billPayEnquiry="users/billPayEnquiry"; actual amount
+   let billPayEnquiry="users/billPayEnquiryDummy";
+
+    return this._data.getAll(billPayEnquiry, body, {}, "POST");
   }
   getAccounts() {
     return this.userAccounts.getAccount("");
   }
-  getPaymentChecksm(accountNumber,amount=0){
+  getPaymentChecksm(accountNumber,amount=0,type="postPaid"){
     accountNumber={"accountToken":btoa(accountNumber)};
     accountNumber["amount"]=amount
-    return this._data.getAll("users/paytmCheckout",accountNumber,{},"POST");
+    //let paytmCheckout="users/paytmCheckout";
+    let paytmCheckout="users/paytmCheckoutDummy";
+    if(type == "prePaid"){
+      paytmCheckout="users/paytmCheckout";
+    }
+    return this._data.getAll(paytmCheckout,accountNumber,{},"POST");
   }
   prompt(flag: string, msg: string) {
     var translatedMsg = this.translate(msg);

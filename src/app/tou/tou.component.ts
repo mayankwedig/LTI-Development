@@ -88,6 +88,9 @@ export class TouComponent implements OnInit {
       this.genrateGraph();
     });
   }
+  redirectTo(){
+    this.router.navigate(["/peak-load-management"]);
+  }
   tabularDataloader: boolean = false;
   isTabularDataFound: boolean = false;
   ngOnInit() {

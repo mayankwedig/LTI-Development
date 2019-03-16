@@ -2,8 +2,8 @@
   <app-header></app-header>
   <div class="main-container-sec about-main-container">
     <div class="container">
-      <div class="contact-banner inner-page-banner">
-        <img alt="" src="../assets/images/contact-banner.jpg" />
+      <div class="contact-banner inner-page-banner" *ngIf="contactUsBanner != ''">
+        <img alt="" [src]="contactUsBanner" />
         <div class="content">
           Changing The <span>Power</span> <br />That Changes The World
         </div>

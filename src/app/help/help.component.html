@@ -3,8 +3,8 @@
   
 		<div class="main-container-sec">
 			<div class="container">
-				<div class="help-banner inner-page-banner">
-					<img src="assets/images/imp-links-bannar.jpg" alt="">
+				<div class="help-banner inner-page-banner" *ngIf="banner != ''">
+					<img [src]="banner" alt="banner">
 				</div>
 				<div class="main-page-wrapper">
 					<div class="main-heading">{{contentTitle|translate}}</div>

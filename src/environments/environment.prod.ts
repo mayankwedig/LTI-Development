@@ -25,6 +25,8 @@ export const environment = {
   icon_img:AdminUrl+"/icon_img/",
   dashVBoardIcone:AdminUrl+"/widget/",
   siteUrl:siteUrl,
+  cms_img:AdminUrl+"/cms_img/",
+    
   ads:{
     options:{
       pubId: "pub-9616389000213823", // Make sure this the correct client ID!

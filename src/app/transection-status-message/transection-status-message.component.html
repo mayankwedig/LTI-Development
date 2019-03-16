@@ -57,10 +57,13 @@
 				    		</tbody>
 				    	</table>
 				    </div>
-				    <div class="rows text-center" *ngIf="msgFlag == 'success'">
-				    	<a class="blue-goback-btn margin_top0" (click)="redirectUser('/')">{{'Go back to Home'|translate}}</a>
-            </div>
-            <div class="rows text-center" *ngIf="msgFlag != 'success'">
+				    <div class="rows text-center" *ngIf="msgFlag == 'success' && !isLoggedIn()">
+								<a class="blue-goback-btn margin_top0" (click)="redirectUser('/')" style="cursor: pointer;">{{'Go to Home'|translate}}</a>
+						</div>
+						<div class="rows text-center" *ngIf="msgFlag == 'success' && isLoggedIn()"  style="cursor: pointer;">
+								<a class="blue-goback-btn margin_top0" (click)="redirectUser('dashboard')">{{'Go to Dashboard'|translate}}</a>
+							</div>
+            <div class="rows text-center" *ngIf="msgFlag != 'success'" style="cursor: pointer;">
 				    	<a class="blue-goback-btn margin_top0" (click)="redirectUser('contact-us')">{{'Contact us'|translate}}</a>
             </div>
 				</div>

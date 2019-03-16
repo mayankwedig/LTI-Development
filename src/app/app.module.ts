@@ -1,3 +1,4 @@
+import { PeakLoadManageService } from './services/peack-load-manage/peak-load-manage.service';
 import { AdvertisementService } from './services/advertisement/advertisement.service';
 import { ContactUsService } from './services/contact-us/contact-us.service';
 import { PayBillService } from './services/pay-bill/pay-bill.service';
@@ -100,6 +101,7 @@ import { TransectionStatusMessageComponent } from './transection-status-message/
 import { AdvertisementComponent } from './advertisement/advertisement.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ChangePasswordWithoutLoginComponent } from './change-password-without-login/change-password-without-login.component';
+import { PeakLoadManageComponent } from './peak-load-manage/peak-load-manage.component';
 
 
 /* import { NgxCaptchaModule } from 'ngx-captcha'; */
@@ -161,7 +163,8 @@ import { ChangePasswordWithoutLoginComponent } from './change-password-without-l
     TransectionStatusMessageComponent,
     AdvertisementComponent,
     ChangePasswordComponent,
-    ChangePasswordWithoutLoginComponent
+    ChangePasswordWithoutLoginComponent,
+    PeakLoadManageComponent
   ],
   imports: [
 
@@ -222,6 +225,7 @@ import { ChangePasswordWithoutLoginComponent } from './change-password-without-l
       {path:"payment-process",component:PaymentProcessComponent},
       {path:"transection-status",component:TransectionStatusMessageComponent},
       {path:"change-expired-password",component:ChangePasswordWithoutLoginComponent},
+      {path:"peak-load-management",component:PeakLoadManageComponent,canActivate:[AuthGuard]},
       {path:'**',component: PageNotFoundComponent}
       
       
@@ -261,7 +265,8 @@ import { ChangePasswordWithoutLoginComponent } from './change-password-without-l
     PayBillService,
     EnergyTipsService,
     ContactUsService,
-    AdvertisementService
+    AdvertisementService,
+    PeakLoadManageService
   ],
   bootstrap: [AppComponent]
 })
