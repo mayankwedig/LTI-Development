@@ -4,7 +4,7 @@
   [ngClass]="{ 'home-menu': !auth.isLoggedIn() }"
   role="navigation"
 >
-  <button type="button" id="main-menu-toggle">
+  <button type="button" id="main-menu-toggle2" (click)="changeNavBar()">
     <i class="navbar-icon fa fa-bars icon"></i
     ><span class="hide-menu-text">{{ "Hide Menu" | translate }}</span>
   </button>
@@ -17,11 +17,12 @@
     <ul class="responsive-menu">
       <li
         class="nav-icon-btn nav-icon-btn-danger dropdown"
-        *ngIf="auth.isLoggedIn()"
-      >
+         *ngIf="auth.isLoggedIn()"
+        >
         <a
           class="dropdown-toggle no-padding-t notifications-icon"
           data-toggle="dropdown"
+         
         >
           <span
             class="label-notification"
@@ -55,7 +56,7 @@
           <div class="notifications-list" id="main-navbar-notifications">
             <div class="notification" *ngFor="let nofication of notifications">
               <div class="notification-description">
-                Mahapareshan Samachar June - July 2018. pdf
+             
               </div>
             </div>
             <!-- <div class="notification">
@@ -82,22 +83,21 @@
           </div>
         </div>
       </li>
-      <li class="nav-icon-btn nav-icon-btn-danger dropdown tollfree-dropdown">
+      <li class="nav-icon-btn nav-icon-btn-danger dropdown tollfree-dropdown" >
         <a
-          href="#notifications"
-          class="dropdown-toggle no-padding-t notifications-icon"
+          href="JavaScript: void(0);"
+          class="dropdown-toggle no-padding-t notifications-icon toggleClick"
           data-toggle="dropdown"
+          (click)="toggleDiv()"
         >
           <span
             class="title-icon header-notification"
-            title="View notifications"
+            title="{{ 'tollfreenumbers' | translate }}"
             style="cursor:pointer;"
-            *ngIf="setIconeImage(2) != null"
-            ><img [src]="setIconeImage(2)" alt=""
+            *ngIf="setIconeImage(3) != null"
+            ><img [src]="setIconeImage(3)" alt=""
           /></span>
-          <span class="small-screen-text">{{
-            "Notifications" | translate
-          }}</span>
+          <span class="small-screen-text">{{ "tollfreenumbers" | translate }}</span>
         </a>
         <div
           class="dropdown-menu widget-notifications no-padding"
@@ -324,7 +324,7 @@
               class="nav-icon-btn nav-icon-btn-danger dropdown tollfree-dropdown"
             >
               <a
-                href="#notifications"
+                href="JavaScript: void(0);"
                 class="dropdown-toggle no-padding-t notifications-icon"
                 data-toggle="dropdown"
               >

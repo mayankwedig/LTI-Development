@@ -33,6 +33,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private siteSettings:SiteSettingsService,
     private activatedRoute:ActivatedRoute
   ) {}
+  toggleDiv(){
+    var self = $(".toggleClick").parent();
+    self.toggleClass("open");
+  }
   searchKeyWord = "";
   dashboardDataApiUrl = "users/getUserData";
   userName;
@@ -56,6 +60,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.searchKeyWord=searchKeyWord;
     }
   }
+
+  changeNavBar(){
+    $("body").toggleClass("mme");
+  }
+  
+
+
   getIcones() {
       
     this.headerIcons=null;

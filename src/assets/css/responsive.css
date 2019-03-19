@@ -1,3 +1,4 @@
+
 @media (min-width:1200px) {
     #main-navbar .navbar-toggle {
     display:none!important
@@ -267,6 +268,14 @@
         padding: 7px 15px 5px;
         margin-right: 2px; 
     }
+    .billing-table-scroll .table-wrapper {
+        overflow-x: auto;
+        width:inherit;
+        float: inherit;
+    }
+    .billing-table-scroll .table-wrapper .fl-table.tb-header {
+        width: 1150px;
+    }
 }
 @media(max-width:1240px) {
     #main-navbar .name-email{
@@ -275,14 +284,11 @@
     .bannar-sidebar .latest-update .marquee-slide{
         height: 203px;
     }
-    .main-slide-bar .blue-tabs-sec .menu-listing{
-        padding-left: 0;
-    }
     .main-slide-bar .blue-tabs-sec .menu-listing li a{
         background-position: top center !important;
         padding-left: 0;
         text-align: center;
-        padding-top: 50px;
+        padding-top: 0;
         width: 100%;
         margin-left: 0;
     }
@@ -309,6 +315,12 @@
         right: -4px;
         top: 2px;
         padding-right: 0;
+    }
+    .menu-listing li a .title {
+        text-align: left;
+    }
+    .menu-listing li a img {
+        width: 50px;
     }
 }
 @media(max-width:1199px) {
@@ -458,7 +470,7 @@
         top: 100%;
     }
     .theme-default #main-navbar .dropdown.open>a {
-        border-bottom: transparent;
+        border: transparent;
     }
     /**Dashboard**/
     .navbar.navbar-inverse {
@@ -707,6 +719,20 @@
     .not-found-img img {
         max-width: 150px;
     }
+    .main-footer {
+        box-shadow: 4px 0 10px rgba(0, 0, 0, .08);
+        left: 240px;
+        width: auto;
+    }
+    #main-navbar {
+        position: fixed;
+    }
+    #main-menu {
+        position: fixed;
+    }
+    #main-menu-inner {
+        padding-bottom: 60px;
+    }
 }
 @media(max-width:991px) {
     .about-tabs .abt-tbs-li a{
@@ -722,7 +748,8 @@
         padding: 15px 30px;
     }
     .main-slide-bar .blue-tabs-sec .menu-listing li a .title{
-        font-size: 10px;
+        font-size: 11px;
+        width:75%;
     }
     .main-footer .footer-container ul li .btn-group{
         float: left;
@@ -903,6 +930,11 @@
         bottom: 0;
     }
 }
+@media(max-width:768px) {
+    .navbar .nav-icon-btn.dropdown.open>.dropdown-menu {
+        display: block !important;
+    }
+}
 @media(max-width:767px) { 
     .status-table-sec tbody,
     .status-table-sec td, 
@@ -969,7 +1001,6 @@
     }
     .main-slide-bar .blue-tabs-sec .menu-listing li a{
         background-size: 35px 28px !important;
-        padding-top: 35px;
     }
     .main-container-sec .main-slide-bar .main-carousel .owl-dots{
         bottom: 100px;
@@ -1041,7 +1072,7 @@
     #content-wrapper .box-title .text-title {
         width: 90%;
     }
-    .theme-default.animate-mm-sm #main-menu-toggle {
+    .theme-default.animate-mm-sm #main-menu-toggle2 {
         display: block !important;
     }
     .mme #content-wrapper {
@@ -1087,7 +1118,7 @@
     #content-wrapper {
         padding: 95px 8px 18px;
     }
-    #main-navbar #main-menu-toggle {
+    #main-navbar #main-menu-toggle2 {
         height: 76px;
     }
     .navbar .responsive-menu .dropdown-menu .badge.pull-right, 
@@ -1367,14 +1398,15 @@
     .profile-page .profile-right-content .col-sm-6 {
         width: 100%;
     }
-    .theme-default #main-menu ul.navigation>.m-dropdown.open>ul {
-        display: none;
-    }
+    /*.theme-default #main-menu ul.navigation>.mm-dropdown>ul.mmc-dropdown-delay {
+        height: 0px !important;
+        opacity: 0;
+    }*/
     .theme-default #main-menu .mmc-dropdown-open>a {
         background: #e6f1fb url(../images/angle-arrow-down.png) no-repeat 92% center !important;
     }
     .theme-default #main-menu .mmc-dropdown-open-ul .mmc-title {
-        background: #5f5f5f;
+        background: #0770d6;
         color: #fff;
     }
     .theme-default #main-menu li.active>a {
@@ -1459,6 +1491,36 @@
     }
     .page-not-found .panel-body {
         width: 100%;
+    }
+    #main-menu ul.navigation>.m-dropdown.open>ul li a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    /*#main-menu .navigation {
+        padding-top: 65px;
+    }
+    .mme #main-menu .navigation {
+        padding-top: 0;
+        height: 66vh;
+    }*/
+    .theme-default #main-navbar #main-menu-toggle2 {
+        display: block;
+    }
+    .main-footer {
+        left: 60px;
+        z-index: 0;
+    }
+    #main-menu-inner {
+        padding-bottom: 0;
+    }
+    #main-menu {
+        padding-top: 127px;
+    }
+    .mme #main-navbar {
+        position: fixed !important;
+    }
+    .mme #main-menu-inner {
+        padding-bottom: 60px;
     }
 }
 @media(max-width: 690px){
@@ -1771,7 +1833,7 @@
     .mme #content-wrapper {
         width: 540px;
     }
-    .mme #main-navbar #main-menu-toggle {
+    .mme #main-navbar #main-menu-toggle2 {
         width: 50%;
     }
 
@@ -1832,6 +1894,12 @@
     #content-wrapper .billing-sec.profile-page {
         padding-bottom: 30px;
     }
+    #content-wrapper .box-title .text-title {
+        width: 80%;
+    }
+    .main-footer {
+        left: 0;
+    }
 }
 @media(max-width:420px) { 
 
@@ -1876,10 +1944,10 @@
         margin: 10px 0; 
     }
     .responsive-menu {
-        width: 34%;
+        width: 28%;
     }
     .responsive-menu li {
-        padding: 0 4px;
+        padding: 0 2px;
     }
     .responsive-menu li:first-child {
         padding: 0 2px;
@@ -1888,16 +1956,22 @@
         margin: 0 0 0 7px;
         padding: 6px 25px;
     }
+    .header-search-bar.for-responsive {
+        width: 64%;
+    }
+    table.table.consumer-basic-table tbody tr th:first-child {
+        width: 56%;
+    }
 }
 @media(max-width:360px) { 
 	.main-footer .footer-container ul{
         width: 100%;
         min-height: auto;
     }
-    #main-navbar #main-menu-toggle {
+    #main-navbar #main-menu-toggle2 {
         width: 46px;
     }
-    #main-navbar #main-menu-toggle .navbar-icon {
+    #main-navbar #main-menu-toggle2 .navbar-icon {
         left: 14px;
     }
     .theme-default.animate-mm-sm #main-navbar .navbar-header {
@@ -1908,5 +1982,10 @@
     }
     .theme-default #main-navbar .responsive-menu li.user-account .dropdown-menu {
         z-index: 9999;
+    }
+    .header-notification, .download-menu .download {
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
     }
 }
