@@ -3727,7 +3727,7 @@ display:none!important
 	z-index:499
 }
 @media (max-width:480px) {
-.animate-mm-sm #content-wrapper, .animate-mm-sm #main-menu, .animate-mm-sm #main-menu-bg, .animate-mm-sm #main-menu-toggle2, .animate-mm-sm #main-navbar .navbar-inner, .animate-mm-sm #main-wrapper {
+.animate-mm-sm #content-wrapper, .animate-mm-sm #main-menu, .animate-mm-sm #main-menu-bg, .animate-mm-sm #main-menu-toggle, .animate-mm-sm #main-navbar .navbar-inner, .animate-mm-sm #main-wrapper {
 -webkit-transition:all .5s;
 transition:all .5s
 }
@@ -3737,7 +3737,7 @@ transition:padding .5s
 }
 }
 @media (min-width:480px) and (max-width:768px) {
-.animate-mm-md #content-wrapper, .animate-mm-md #main-menu, .animate-mm-md #main-menu-bg, .animate-mm-md #main-menu-toggle2, .animate-mm-md #main-navbar .navbar-inner, .animate-mm-md #main-wrapper {
+.animate-mm-md #content-wrapper, .animate-mm-md #main-menu, .animate-mm-md #main-menu-bg, .animate-mm-md #main-menu-toggle, .animate-mm-md #main-navbar .navbar-inner, .animate-mm-md #main-wrapper {
 -webkit-transition:all .5s;
 transition:all .5s
 }
@@ -3747,7 +3747,7 @@ transition:padding .5s
 }
 }
 @media (min-width:768px) {
-.animate-mm-lg #content-wrapper, .animate-mm-lg #main-menu, .animate-mm-lg #main-menu-bg, .animate-mm-lg #main-menu-toggle2, .animate-mm-lg #main-navbar .navbar-inner, .animate-mm-lg #main-wrapper {
+.animate-mm-lg #content-wrapper, .animate-mm-lg #main-menu, .animate-mm-lg #main-menu-bg, .animate-mm-lg #main-menu-toggle, .animate-mm-lg #main-navbar .navbar-inner, .animate-mm-lg #main-wrapper {
 -webkit-transition:all .5s;
 transition:all .5s
 }
@@ -3756,7 +3756,7 @@ transition:all .5s
 transition:padding .5s
 }
 }
-.disable-mm-animation #content-wrapper, .disable-mm-animation #main-menu, .disable-mm-animation #main-menu-bg, .disable-mm-animation #main-menu-toggle2, .disable-mm-animation #main-navbar .navbar-header, .disable-mm-animation #main-navbar .navbar-inner, .disable-mm-animation #main-wrapper {
+.disable-mm-animation #content-wrapper, .disable-mm-animation #main-menu, .disable-mm-animation #main-menu-bg, .disable-mm-animation #main-menu-toggle, .disable-mm-animation #main-navbar .navbar-header, .disable-mm-animation #main-navbar .navbar-inner, .disable-mm-animation #main-wrapper {
 	-webkit-transition:none!important;
 	transition:none!important
 }
@@ -3826,7 +3826,7 @@ animation-duration:0s!important
 	height:auto!important;
 	padding:0 0 0 14px
 }
-#main-navbar #main-menu-toggle2, #main-navbar .navbar-toggle {
+#main-navbar #main-menu-toggle, #main-navbar .navbar-toggle {
 	background:0 0;
 	border:none;
 	display:block;
@@ -3839,18 +3839,18 @@ animation-duration:0s!important
 	top:0!important;
 	z-index:1033
 }
-#main-navbar #main-menu-toggle2 .navbar-icon, #main-navbar .navbar-toggle .navbar-icon {
+#main-navbar #main-menu-toggle .navbar-icon, #main-navbar .navbar-toggle .navbar-icon {
 	font-size:14px;
 	line-height:46px
 }
-#main-navbar #main-menu-toggle2 {
+#main-navbar #main-menu-toggle {
 	height:46px;
 	left:0;
 	overflow:hidden;
 	width:56px;
 	z-index:1034
 }
-#main-navbar #main-menu-toggle2 .navbar-icon {
+#main-navbar #main-menu-toggle .navbar-icon {
 	left:20px;
 	margin:-23px 0 0 0;
 	padding:0;
@@ -3859,7 +3859,7 @@ animation-duration:0s!important
 -webkit-transition:all .2s;
 transition:all .2s
 }
-#main-navbar #main-menu-toggle2 .navbar-icon:after {
+#main-navbar #main-menu-toggle .navbar-icon:after {
 	content:"\f0da";
 	display:block;
 	font-size:10px;
@@ -3868,14 +3868,14 @@ transition:all .2s
 	right:-8px;
 	top:0
 }
-.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon {
+.main-menu-right #main-navbar #main-menu-toggle .navbar-icon {
 	left:26px
 }
-.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon:after {
+.main-menu-right #main-navbar #main-menu-toggle .navbar-icon:after {
 	content:"\f0d9";
 	right:16px
 }
-#main-navbar #main-menu-toggle2 .hide-menu-text {
+#main-navbar #main-menu-toggle .hide-menu-text {
 	left:51px;
 	line-height:46px;
 	margin-top:-23px;
@@ -3883,7 +3883,7 @@ transition:all .2s
 	position:absolute;
 	z-index:1035
 }
-.ie8 #main-navbar #main-menu-toggle2 .hide-menu-text {
+.ie8 #main-navbar #main-menu-toggle .hide-menu-text {
 	left:53px
 }
 #main-navbar .navbar-toggle {
@@ -3965,25 +3965,25 @@ transition:background .2s
 .mme #main-navbar {
 	overflow:hidden
 }
-.mme #main-navbar #main-menu-toggle2 {
+.mme #main-navbar #main-menu-toggle {
 	width:80%
 }
-.mme #main-navbar #main-menu-toggle2 .navbar-icon {
+.mme #main-navbar #main-menu-toggle .navbar-icon {
 	left:26px
 }
-.mme #main-navbar #main-menu-toggle2 .navbar-icon:after {
+.mme #main-navbar #main-menu-toggle .navbar-icon:after {
 	content:"\f0d9";
 	right:16px
 }
-.mme #main-navbar #main-menu-toggle2 .hide-menu-text {
+.mme #main-navbar #main-menu-toggle .hide-menu-text {
 	opacity:1;
 	-webkit-transition:all 1s;
 	transition:all 1s
 }
-.mme.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon {
+.mme.main-menu-right #main-navbar #main-menu-toggle .navbar-icon {
 	left:20px
 }
-.mme.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon:after {
+.mme.main-menu-right #main-navbar #main-menu-toggle .navbar-icon:after {
 	content:"\f0da";
 	right:-8px
 }
@@ -4014,20 +4014,20 @@ z-index:1033
 #main-navbar .navbar-brand {
 padding-right:14px
 }
-#main-navbar #main-menu-toggle2 {
+#main-navbar #main-menu-toggle {
 width:56px!important
 }
-#main-navbar #main-menu-toggle2 .navbar-icon {
+#main-navbar #main-menu-toggle .navbar-icon {
 left:26px
 }
-#main-navbar #main-menu-toggle2 .navbar-icon:after {
+#main-navbar #main-menu-toggle .navbar-icon:after {
 content:"\f0d9";
 right:16px
 }
-.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon, .mme.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon {
+.main-menu-right #main-navbar #main-menu-toggle .navbar-icon, .mme.main-menu-right #main-navbar #main-menu-toggle .navbar-icon {
 left:20px
 }
-.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon:after, .mme.main-menu-right #main-navbar #main-menu-toggle2 .navbar-icon:after {
+.main-menu-right #main-navbar #main-menu-toggle .navbar-icon:after, .mme.main-menu-right #main-navbar #main-menu-toggle .navbar-icon:after {
 content:"\f0da";
 right:-8px
 }
@@ -4106,17 +4106,17 @@ height:25px;
 margin-top:-3px;
 width:25px
 }
-.mmc #main-navbar #main-menu-toggle2 .navbar-icon, .mme.mmc #main-navbar #main-menu-toggle2 .navbar-icon {
+.mmc #main-navbar #main-menu-toggle .navbar-icon, .mme.mmc #main-navbar #main-menu-toggle .navbar-icon {
 left:20px
 }
-.mmc #main-navbar #main-menu-toggle2 .navbar-icon:after, .mme.mmc #main-navbar #main-menu-toggle2 .navbar-icon:after {
+.mmc #main-navbar #main-menu-toggle .navbar-icon:after, .mme.mmc #main-navbar #main-menu-toggle .navbar-icon:after {
 content:"\f0da";
 right:-8px
 }
-.main-menu-right.mmc #main-navbar #main-menu-toggle2 .navbar-icon, .main-menu-right.mme.mmc #main-navbar #main-menu-toggle2 .navbar-icon {
+.main-menu-right.mmc #main-navbar #main-menu-toggle .navbar-icon, .main-menu-right.mme.mmc #main-navbar #main-menu-toggle .navbar-icon {
 left:26px
 }
-.main-menu-right.mmc #main-navbar #main-menu-toggle2 .navbar-icon:after, .main-menu-right.mme.mmc #main-navbar #main-menu-toggle2 .navbar-icon:after {
+.main-menu-right.mmc #main-navbar #main-menu-toggle .navbar-icon:after, .main-menu-right.mme.mmc #main-navbar #main-menu-toggle .navbar-icon:after {
 content:"\f0d9";
 right:16px
 }
@@ -4534,7 +4534,7 @@ left:184px
 left:240px;
 padding-left:0
 }
-.mme #main-navbar #main-menu-toggle2 {
+.mme #main-navbar #main-menu-toggle {
 width:240px
 }
 }
@@ -4568,7 +4568,7 @@ width:240px
 .main-menu-right #main-navbar .navbar-header {
 	padding-left:0
 }
-.main-menu-right #main-navbar #main-menu-toggle2, .main-menu-right #main-navbar .navbar-inner {
+.main-menu-right #main-navbar #main-menu-toggle, .main-menu-right #main-navbar .navbar-inner {
 	left:auto;
 	right:0
 }
@@ -4607,7 +4607,7 @@ right:184px
 left:auto;
 right:240px
 }
-.main-menu-right.mme #main-navbar #main-menu-toggle2 {
+.main-menu-right.mme #main-navbar #main-menu-toggle {
 width:240px
 }
 }
@@ -4632,7 +4632,7 @@ padding-left:0
 padding-left:0!important
 }
 }
-body.no-main-menu #main-menu, body.no-main-menu #main-menu-bg, body.no-main-menu #main-menu-toggle2 {
+body.no-main-menu #main-menu, body.no-main-menu #main-menu-bg, body.no-main-menu #main-menu-toggle {
 	display:none!important
 }
 body.no-main-menu #main-wrapper {

@@ -295,9 +295,6 @@ export class LoginComponent {
                     "accountToken",
                     btoa(userId + ":" + accountId + ":" + is_net_metering)
                   ); // set new account access token.
-                  $("body").addClass("animate-mm-lg");
-                  $("body").addClass("animate-mm-md");
-                  $("body").addClass("animate-mm-sm");
                 } else {
                   this.helper.setLocalStoragData(
                     "accountToken",
@@ -305,9 +302,6 @@ export class LoginComponent {
                   ); // set new account access token.
                 }
                 //redirect user to dashboard.
-                $("body").addClass("animate-mm-lg");
-                $("body").addClass("animate-mm-md");
-                $("body").addClass("animate-mm-sm");
                 this.router.navigate([returnUrl || "/dashboard"]);
               });
             } else {
