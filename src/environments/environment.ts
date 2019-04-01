@@ -30,7 +30,7 @@ export const environment = {
   ads:{
     options:{
       pubId: "pub-9616389000213823", // Make sure this the correct client ID!
-      query: "hotels",
+      query: "google_ad",
       adPage: 1
     },
     adblock:{

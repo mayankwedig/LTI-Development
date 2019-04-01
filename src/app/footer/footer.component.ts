@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit {
   }
   GetSocialLinks() {
     
-      if(this.siteSettings.getSiteSettings() == null){
+      //if(this.siteSettings.getSiteSettings() == null){
         this.siteSettings.getSiteSettingsAPI().subscribe(
           (result: any) => {
             if (result.authCode == 200 && result.status) {
@@ -43,10 +43,10 @@ export class FooterComponent implements OnInit {
             }
           }
         );
-      }else{
-        this.setSocialLinks();
+      //}else{
+        //this.setSocialLinks();
         
-      }
+      //}
     
   }
   constructor(private auth:AuthService,private siteSettings:SiteSettingsService) { }
@@ -56,5 +56,6 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.GetSocialLinks();
   }
+  
 
 }

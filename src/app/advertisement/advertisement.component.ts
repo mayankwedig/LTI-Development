@@ -41,7 +41,9 @@ export class AdvertisementComponent implements OnInit, AfterViewInit {
         this.adLoader = false;
         if (res.authCode) {
           if (res.authCode == "200" && res.status == true) {
+            
             this.adData = res.data_params;
+            console.log(this.adData);
             this.isAdFound = true;
           } else {
             this.isAdFound = false;

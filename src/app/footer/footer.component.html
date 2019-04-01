@@ -59,6 +59,7 @@
 				 <div class="btn-group" *ngIf="socialLinks != null">
 				<ng-container *ngIf="socialLinks.facebook_link !=''"><button type="button" class="btn facebook"><a [href]="socialLinks.facebook_link" target="_blank" style="color:#ffffff;"><i class="menu-icon fa fa-facebook"></i></a></button></ng-container>	
 				<ng-container *ngIf="socialLinks.twitter !=''"><button type="button" class="btn twitter" ><a [href]="socialLinks.twitter" target="_blank" style="color:#ffffff;"><i class="menu-icon fa fa-twitter"></i></a></button></ng-container>
+				<ng-container *ngIf="socialLinks.linkdin_link !=''"><button type="button" class="btn linked-in"><a [href]="socialLinks.linkdin_link" target="_blank" style="color:#ffffff;"><i class="menu-icon fa fa-linkedin"></i></a></button></ng-container>
 				<ng-container *ngIf="socialLinks.google_plus !=''"><button type="button" class="btn google-plus"><a [href]="socialLinks.google_plus" target="_blank" style="color:#ffffff;"><i class="menu-icon fa fa-google-plus"></i></a></button></ng-container>
 				 </div>
 			  </li>

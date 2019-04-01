@@ -59,6 +59,7 @@ export class AboutComponent implements OnInit,AfterViewInit {
 				this.contentLoader=false;
 				if(response.status && response.authCode == "200"){
 					this.isContentFound=true;
+					console.log(response.data_params);
 					this.contentTitle=response.data_params.title;
 					this.content=response.data_params.description;/* .replace(/<(.|\n)*?>/g, '').replace(/\n/g, '').replace(/\t/g, '').replace("&#39;", "'").replace("�",'-').replace("�",'"').replace("&ldquo;",'"').replace("&rdquo;",'"').replace("&amp;",'&').replace('&#39;',"'");	 */
 					this.aboutImage=environment.cms_img+response.data_params.id+"/"+response.data_params.uploaded_file;
