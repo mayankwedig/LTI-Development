@@ -43,7 +43,7 @@ button:hover {
 
 #demo-settings,
 .hide,
-.theme-default #main-navbar #main-menu-toggle {
+.theme-default #main-navbar #main-menu-toggle2 {
     display: none
 }
 
@@ -4027,7 +4027,7 @@ body {
     color: #303030
 }
 
-#main-menu-toggle,
+#main-menu-toggle2,
 .responsive-menu {
     display: none
 }

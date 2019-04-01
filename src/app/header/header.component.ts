@@ -60,6 +60,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.searchKeyWord=searchKeyWord;
     }
   }
+
+  changeNavBar(){
+    $("body").toggleClass("mme");
+  }
   
 
 
@@ -273,5 +277,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.auth.logout();
+    $("body").removeClass("mme");
+    $("body").removeClass("animate-mm-lg");
+    $("body").removeClass("animate-mm-md");
+    $("body").removeClass("animate-mm-sm");
   }
 }
